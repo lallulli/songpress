@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="songpress" />
+		<Option pch_mode="2" />
+		<Option compiler="msvctk" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin\Release\songpress.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\Release" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="msvctk" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="/MT" />
+					<Add option="/O2" />
+					<Add option="/Ox" />
+					<Add option="/Og" />
+					<Add option="/Ob1" />
+					<Add option="/DNDEBUG" />
+					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib\mswu" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib\mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="/NODEFAULTLIB:libcpmt.lib" />
+					<Add option="/NODEFAULTLIB:libcmt.lib" />
+					<Add library="wxmsw28u_core.lib" />
+					<Add library="wxbase28u.lib" />
+					<Add library="wxpng.lib" />
+					<Add library="wxjpeg.lib" />
+					<Add library="wxtiff.lib" />
+					<Add library="wxzlib.lib" />
+					<Add library="wxregexu.lib" />
+					<Add library="wxexpat.lib" />
+					<Add library="libcmt.lib" />
+					<Add library="wxmsw28u_aui.lib" />
+					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/Gd" />
+			<Add option="/W3" />
+			<Add option="/TP" />
+			<Add option="/GF" />
+			<Add option="/EHsc" />
+			<Add option="/DWIN32" />
+			<Add option="/D__WIN32__" />
+			<Add option="/D__WXMSW__" />
+			<Add option="/DwxUSE_UNICODE" />
+			<Add option="/D_WINDOWS" />
+			<Add option="/D_CRT_SECURE_DEPRECATE" />
+			<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\include" />
+			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\contrib\include" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\include" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="/INCREMENTAL:NO" />
+			<Add option="/SUBSYSTEM:WINDOWS" />
+			<Add library="winmm.lib" />
+			<Add library="rpcrt4.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+			<Add library="winspool.lib" />
+			<Add library="comdlg32.lib" />
+			<Add library="advapi32.lib" />
+			<Add library="shell32.lib" />
+			<Add library="ole32.lib" />
+			<Add library="oleaut32.lib" />
+			<Add library="uuid.lib" />
+			<Add library="comctl32.lib" />
+			<Add library="wsock32.lib" />
+		</Linker>
+		<Unit filename="Skcoda.h" />
+		<Unit filename="Skvett.h" />
+		<Unit filename="debmessage.cpp" />
+		<Unit filename="debmessage.h" />
+		<Unit filename="inputpanel.cpp" />
+		<Unit filename="inputpanel.h" />
+		<Unit filename="pannelloprincipale.cpp" />
+		<Unit filename="pannelloprincipale.h" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="songdrawer.cpp" />
+		<Unit filename="songdrawer.h" />
+		<Unit filename="songparser.cpp" />
+		<Unit filename="songparser.h" />
+		<Unit filename="songpress.depend" />
+		<Unit filename="songpressApp.cpp" />
+		<Unit filename="songpressApp.h" />
+		<Unit filename="songpressMain.cpp" />
+		<Unit filename="songpressMain.h" />
+		<Unit filename="stringparser.cpp" />
+		<Unit filename="stringparser.h" />
+		<Unit filename="tela.cpp" />
+		<Unit filename="tela.h" />
+		<Unit filename="textpreferences.cpp" />
+		<Unit filename="textpreferences.h" />
+		<Unit filename="wxsmith\FinestraPrincipale.wxs" />
+		<Unit filename="wxsmith\PannelloPrincipale.wxs" />
+		<Unit filename="wxsmith\Tela.wxs" />
+		<Unit filename="wxsmith\songpressframe.wxs" />
+		<Extensions>
+			<code_completion />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="songpressApp.cpp" main="songpressFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/songpressframe.wxs" src="songpressMain.cpp" hdr="songpressMain.h" name="songpressFrame" language="CPP" />
+					<wxPanel wxs="wxsmith/inputpanel.wxs" src="inputpanel.cpp" hdr="inputpanel.h" name="InputPanel" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

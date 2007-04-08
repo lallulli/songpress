@@ -1,0 +1,18 @@
+<resource>
+    <object class="wxFrame" name="FinestraPrincipale">
+        <title>Canzoniere</title>
+        <style>wxDEFAULT_FRAME_STYLE</style>
+        <object class="wxBoxSizer" variable="BoxSizer1" member="yes">
+            <orient>wxHORIZONTAL</orient>
+            <object class="sizeritem">
+                <option>1</option>
+                <border>5</border>
+                <flag>wxALIGN_CENTER|wxEXPAND</flag>
+                <object class="Custom" name="ID_CUSTOM1" variable="pannello" member="yes">
+                    <class>PannelloPrincipale</class>
+                    <creating_code>$(THIS) = new $(CLASS)($(PARENT),$(ID));</creating_code>
+                </object>
+            </object>
+        </object>
+    </object>
+</resource>
