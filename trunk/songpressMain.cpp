@@ -1,0 +1,306 @@
+/***************************************************************
+ * Name:      songpressMain.cpp
+ * Purpose:   Code for Application Frame
+ * Author:    Luca Allulli (webmaster@roma21.it)
+ * Created:   2007-03-25
+ * Copyright: Luca Allulli (http://www.roma21.it/songpress)
+ * License:   GNU GPL v2
+ **************************************************************/
+
+#ifdef WX_PRECOMP
+#include "wx_pch.h"
+#endif
+
+#ifdef __BORLANDC__
+#pragma hdrstop
+#endif //__BORLANDC__
+
+#include <wx/filedlg.h>
+
+#include "songpressMain.h"
+
+#include <wx/dnd.h>
+
+class PannelloPrincipaleDropTarget: public wxFileDropTarget {
+	public:
+		PannelloPrincipaleDropTarget(songpressFrame* p): fp(p) {}
+    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a);
+
+	private:
+		songpressFrame* fp;
+};
+
+bool PannelloPrincipaleDropTarget::
+  OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a) {
+  //fp->LoadFile(a[0]);
+  return false;
+}
+
+//helper functions
+enum wxbuildinfoformat {
+    short_f, long_f };
+
+wxString wxbuildinfo(wxbuildinfoformat format)
+{
+    wxString wxbuild(wxVERSION_STRING);
+
+    if (format == long_f )
+    {
+#if defined(__WXMSW__)
+        wxbuild << _T("-Windows");
+#elif defined(__UNIX__)
+        wxbuild << _T("-Linux");
+#endif
+
+#if wxUSE_UNICODE
+        wxbuild << _T("-Unicode build");
+#else
+        wxbuild << _T("-ANSI build");
+#endif // wxUSE_UNICODE
+    }
+
+    return wxbuild;
+}
+
+//(*InternalHeaders(songpressFrame)
+#include <wx/bitmap.h>
+#include <wx/font.h>
+#include <wx/fontenum.h>
+#include <wx/fontmap.h>
+#include <wx/image.h>
+#include <wx/intl.h>
+#include <wx/settings.h>
+//*)
+
+//(*IdInit(songpressFrame)
+const long songpressFrame::idMenuNew = wxNewId();
+const long songpressFrame::idMenuOpen = wxNewId();
+const long songpressFrame::idMenuSave = wxNewId();
+const long songpressFrame::idMenuSaveAs = wxNewId();
+const long songpressFrame::idMenuExit = wxNewId();
+const long songpressFrame::idMenuAbout = wxNewId();
+const long songpressFrame::ID_STATUSBAR1 = wxNewId();
+const long songpressFrame::ID_TIMER = wxNewId();
+const long songpressFrame::ID_TOOLBAR1 = wxNewId();
+const long songpressFrame::Open = wxNewId();
+//*)
+
+BEGIN_EVENT_TABLE(songpressFrame,wxFrame)
+	//(*EventTable(songpressFrame)
+	//*)
+END_EVENT_TABLE()
+
+songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
+  fileNameValid(false),
+  fileModified(false)
+{
+	//(*Initialize(songpressFrame)
+	wxMenuBar* MenuBar1;
+	
+	Create(parent,id,_("Songpress - Il Canzonatore"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE,_T("wxFrame"));
+	MenuBar1 = new wxMenuBar();
+	Menu1 = new wxMenu();
+	MenuFileNew = new wxMenuItem(Menu1,idMenuNew,_("&New"),_("Create a new song"),wxITEM_NORMAL);
+	Menu1->Append(MenuFileNew);
+	MenuFileOpen = new wxMenuItem(Menu1,idMenuOpen,_("&Open..."),_("Open an existing song"),wxITEM_NORMAL);
+	Menu1->Append(MenuFileOpen);
+	MenuFileSave = new wxMenuItem(Menu1,idMenuSave,_("&Save..."),_("Save current song"),wxITEM_NORMAL);
+	Menu1->Append(MenuFileSave);
+	MenuFileSaveAs = new wxMenuItem(Menu1,idMenuSaveAs,_("Save &As..."),_("Save with a different name"),wxITEM_NORMAL);
+	Menu1->Append(MenuFileSaveAs);
+	MenuExit = new wxMenuItem(Menu1,idMenuExit,_("&Exit\tAlt-F4"),_("Quit the application"),wxITEM_NORMAL);
+	Menu1->Append(MenuExit);
+	MenuBar1->Append(Menu1,_("&File"));
+	Menu2 = new wxMenu();
+	MenuHelpAbout = new wxMenuItem(Menu2,idMenuAbout,_("About...\tF1"),_("Show info about this application"),wxITEM_NORMAL);
+	Menu2->Append(MenuHelpAbout);
+	MenuBar1->Append(Menu2,_("&Help"));
+	SetMenuBar(MenuBar1);
+	StatusBar1 = new wxStatusBar(this,ID_STATUSBAR1,0,_T("ID_STATUSBAR1"));
+	int StatusBar1__widths[1] = { -1 };
+	int StatusBar1__styles[1] = { wxSB_NORMAL };
+	StatusBar1->SetFieldsCount(1,StatusBar1__widths);
+	StatusBar1->SetStatusStyles(1,StatusBar1__styles);
+	SetStatusBar(StatusBar1);
+	Timer.SetOwner(this,ID_TIMER);
+	ToolBar1 = CreateToolBar(wxTB_FLAT|wxTB_DOCKABLE|wxTB_HORIZONTAL|wxTB_NODIVIDER|wxNO_BORDER,ID_TOOLBAR1,_T("ID_TOOLBAR1"));
+	ToolBarItem1 = ToolBar1->AddTool(Open,_("New item"),wxBitmap(wxImage(_T("C:\\Documents and Settings\\Luca\\Documenti\\cpp\\songpress\\open.png"))),wxNullBitmap,wxITEM_NORMAL,wxEmptyString,wxEmptyString);
+	ToolBar1->Realize();
+	SetToolBar(ToolBar1);
+	Connect(idMenuOpen,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileOpenSelected);
+	Connect(idMenuSave,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileSaveSelected);
+	Connect(idMenuSaveAs,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileSaveAsSelected);
+	Connect(idMenuExit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnQuit);
+	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnAbout);
+	Connect(ID_TIMER,wxEVT_TIMER,(wxObjectEventFunction)&songpressFrame::OnTimerTrigger);
+	//*)
+	
+	auiManager = new wxAuiManager(this);
+	inputPanel = new InputPanel(this, -1);
+  outputPanel = new PannelloPrincipale(this, -1);
+  auiManager->AddPane(inputPanel, wxCENTER, wxT("CRD data"));
+  auiManager->AddPane(outputPanel, wxRIGHT, wxT("Output"));
+  auiManager->AddPane(
+    ToolBar1,
+    wxAuiPaneInfo().
+    Name(wxT("tb1")).Caption(wxT("Big Toolbar")).
+    ToolbarPane().Top().
+    LeftDockable(false).RightDockable(false)
+  );
+  auiManager->Update();
+  SetWindowTitle();
+	
+}
+
+songpressFrame::~songpressFrame()
+{
+	//(*Destroy(songpressFrame)
+	//*)
+}
+
+void songpressFrame::OnQuit(wxCommandEvent& event)
+{
+    Close();
+}
+
+void songpressFrame::OnAbout(wxCommandEvent& event)
+{
+    wxString msg = wxbuildinfo(long_f);
+    wxMessageBox(msg, _("Welcome to..."));
+}
+
+void songpressFrame::NotifyLazySongModified() {
+  Timer.Start(1000, true);
+}
+
+void songpressFrame::NotifySongModified() {
+  Timer.Stop();
+  outputPanel->LoadSong(inputPanel->GetSong());  
+}
+
+void songpressFrame::OnTimerTrigger(wxTimerEvent& event) {
+  outputPanel->LoadSong(inputPanel->GetSong());  
+}
+
+void songpressFrame::OnMenuFileSaveSelected(wxCommandEvent& event) {
+  Save();
+  event.Skip();
+}
+
+void songpressFrame::SaveAs() {
+  bool leave = false;
+  bool consensus = false;
+  wxFileName fn;
+  do {
+      wxFileDialog dlg (
+      this,
+      _("Choose a name for the file"), 
+      _T(""),
+      _T(""),
+      _("CRD files (*.crd)|*.crd|All files (*.*)|*.*"),
+      wxFD_SAVE
+    );
+    
+    if(dlg.ShowModal()==wxID_OK) {
+      
+      fn = dlg.GetPath();
+      if(fn.FileExists()) {
+        wxString msg;
+        msg.Printf(_("File \"%s\" already exists. Do you want to overwrite it?"), fn.GetName());
+        wxMessageDialog d(
+          this,
+          msg,
+          _T("Songpress"),
+          wxYES_NO | wxCANCEL | wxICON_QUESTION 
+        );
+        switch(d.ShowModal()) {
+          case wxID_CANCEL:
+            leave = true;
+            consensus = false;
+            break;
+          case wxID_NO:
+            leave = false;
+            consensus = false;
+            break;
+          default: //wxID_YES
+            leave = true;
+            consensus = true;
+        }
+      } else {
+        leave = true;
+        consensus = true;
+      }
+      
+    } else {
+      leave = true;
+      consensus = false;
+    }
+
+  } while(!leave);
+  
+  if(consensus) {
+    fileName=fn;
+    fileNameValid = true;
+    SetWindowTitle();
+    Save();
+  }
+
+}
+
+void songpressFrame::Save() {
+  if(!fileNameValid)
+    SaveAs();
+  else {
+    //Save file
+  }
+}
+
+void songpressFrame::OpenFile() {
+  wxFileDialog dlg (
+    this,
+    _("Open file"), 
+    _T(""),
+    _T(""),
+    _("CRD files (*.crd)|*.crd|All files (*.*)|*.*"),
+    wxFD_OPEN
+  );
+  
+  if(dlg.ShowModal()==wxID_OK) {
+    wxFileName fn = dlg.GetPath();
+    if(fn.FileExists()) {
+      fileName = fn;
+      fileNameValid = true;
+      SetWindowTitle();
+      //TODO: open file
+    } else {
+      wxString msg;
+      msg.Printf(_("File \"%s\" does not exist."), fn.GetName());
+      wxMessageDialog d(
+        this,
+        msg,
+        _T("Songpress"),
+        wxOK | wxICON_ERROR 
+      );
+      d.ShowModal();      
+    }
+    
+  }
+}
+
+void songpressFrame::SetWindowTitle() {
+  if(!fileNameValid) {
+    SetTitle(_("Untitled - Songpress"));
+  } else {
+    SetTitle(fileName.GetName() + _(" - Songpress"));
+  }
+}
+
+void songpressFrame::OnMenuFileOpenSelected(wxCommandEvent& event) {
+  OpenFile();
+  event.Skip();
+}
+
+void songpressFrame::OnMenuFileSaveAsSelected(wxCommandEvent& event) {
+  SaveAs();
+  event.Skip();
+}
