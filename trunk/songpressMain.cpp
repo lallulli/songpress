@@ -16,6 +16,9 @@
 #endif //__BORLANDC__
 
 #include <wx/filedlg.h>
+#include <wx/sstream.h>
+#include <wx/wfstream.h>
+#include <wx/txtstrm.h>
 
 #include "songpressMain.h"
 
@@ -251,11 +254,14 @@ void songpressFrame::Save() {
   if(!fileNameValid)
     SaveAs();
   else {
-    //Save file
+    wxFileOutputStream f(fileName.GetFullPath());
+    wxTextOutputStream out(f, wxEOL_NATIVE, wxConvISO8859_1);
+// TODO (Luca#1#): Give also UTF8 converter
+    out << inputPanel->GetSong();
   }
 }
 
-void songpressFrame::OpenFile() {
+void songpressFrame::OpenFileAsk() {
   wxFileDialog dlg (
     this,
     _("Open file"), 
@@ -271,7 +277,7 @@ void songpressFrame::OpenFile() {
       fileName = fn;
       fileNameValid = true;
       SetWindowTitle();
-      //TODO: open file
+      OpenFile();
     } else {
       wxString msg;
       msg.Printf(_("File \"%s\" does not exist."), fn.GetName());
@@ -287,6 +293,22 @@ void songpressFrame::OpenFile() {
   }
 }
 
+void songpressFrame::OpenFile() {
+  wxString song;
+  wxFileInputStream f(fileName.GetFullPath());
+  wxTextInputStream in(f, _T("\t"), wxConvISO8859_1);
+// TODO (Luca#1#): Give also UTF8 converter
+  wxString s;
+  while(!f.Eof()) {
+    s = in.ReadLine();
+    song += s;
+    if(!f.Eof())
+      song += _T("\n");
+  }
+  inputPanel->SetSong(song);
+}
+
+
 void songpressFrame::SetWindowTitle() {
   if(!fileNameValid) {
     SetTitle(_("Untitled - Songpress"));
@@ -296,7 +318,7 @@ void songpressFrame::SetWindowTitle() {
 }
 
 void songpressFrame::OnMenuFileOpenSelected(wxCommandEvent& event) {
-  OpenFile();
+  OpenFileAsk();
   event.Skip();
 }
 

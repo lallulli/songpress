@@ -65,6 +65,11 @@ wxString InputPanel::GetSong() {
   return SongText->GetValue();
 }
 
+void InputPanel::SetSong(const wxString& s) {
+  SongText->SetValue(s);
+  parent->NotifySongModified();
+}
+
 void InputPanel::OnSongTextChar(wxKeyEvent& event) {
   if(event.GetKeyCode() == WXK_RETURN) {
     parent->NotifySongModified();
