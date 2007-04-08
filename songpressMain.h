@@ -39,6 +39,7 @@ class songpressFrame: public wxFrame
 	
     void SaveAs();
     void Save();
+    void OpenFileAsk();
     void OpenFile();
     void SetWindowTitle();
 

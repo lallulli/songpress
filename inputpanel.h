@@ -35,6 +35,7 @@ class InputPanel: public wxPanel
 		//*)
 		
 		wxString GetSong();
+		void SetSong(const wxString& song);
 
 	protected:
 
