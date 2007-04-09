@@ -20,13 +20,13 @@
 //(*AppHeaders
 #include "songpressMain.h"
 #include <wx/image.h>
+#include <wx/cmdline.h>
 //*)
 
 IMPLEMENT_APP(songpressApp);
 
 bool songpressApp::OnInit()
 {
-	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	if ( wxsOK )
@@ -34,8 +34,15 @@ bool songpressApp::OnInit()
 	  songpressFrame* Frame = new songpressFrame(NULL);
 	  Frame->Show();
 	  SetTopWindow(Frame);
+	  wxCmdLineParser cmd(argc, argv);
+	  cmd.AddParam(_("inputFile"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+	  if(cmd.Parse()==0) {
+      if(cmd.GetParamCount()==1) {
+        Frame->OpenFile(cmd.GetParam(0));
+      }
+	  }
 	}
-	//*)
+
 	return wxsOK;
 
 }
