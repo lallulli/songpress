@@ -4,8 +4,7 @@
         <object class="wxBoxSizer" variable="BoxSizer1" member="yes">
             <object class="sizeritem">
                 <object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="SongText" member="yes">
-                    <value>Text</value>
-                    <style>wxTE_MULTILINE</style>
+                    <style>wxTE_MULTILINE|wxTE_RICH2</style>
                     <handler function="OnSongTextModified" entry="EVT_TEXT" />
                     <handler function="OnSongTextChar" entry="EVT_CHAR" />
                 </object>

@@ -23,21 +23,9 @@
 
 #include "songpressMain.h"
 
-#include <wx/dnd.h>
 
-class PannelloPrincipaleDropTarget: public wxFileDropTarget {
-	public:
-		PannelloPrincipaleDropTarget(songpressFrame* p): fp(p) {}
-    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a);
-
-	private:
-		songpressFrame* fp;
-};
-
-bool PannelloPrincipaleDropTarget::
-  OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a) {
-  //fp->LoadFile(a[0]);
-  return false;
+bool songpressFrameDropTarget::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a) {
+  return fp->OpenFile(a[0]);
 }
 
 //helper functions
@@ -139,6 +127,8 @@ songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
 	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnAbout);
 	Connect(ID_TIMER,wxEVT_TIMER,(wxObjectEventFunction)&songpressFrame::OnTimerTrigger);
 	//*)
+	dropTarget = new songpressFrameDropTarget(this);
+	SetDropTarget(dropTarget);
 	
 	auiManager = new wxAuiManager(this);
 	inputPanel = new InputPanel(this, -1);
@@ -170,8 +160,8 @@ void songpressFrame::OnQuit(wxCommandEvent& event)
 
 void songpressFrame::OnAbout(wxCommandEvent& event)
 {
-    wxString msg = wxbuildinfo(long_f);
-    wxMessageBox(msg, _("The Song Press - Il Canzonatore.\nCopyright (c) 2006-2007 Luca Allulli"));
+    wxString msg = _("The Song Press - Il Canzonatore.\nCopyright (c) 2006-2007 Luca Allulli");
+    wxMessageBox(msg, _("About The Song Press"));
 }
 
 void songpressFrame::NotifyLazySongModified() {
@@ -341,13 +331,14 @@ void songpressFrame::OnMenuFileSaveAsSelected(wxCommandEvent& event) {
 }
 
 
-bool songpressFrame::EnforceFileSaved() {
+bool songpressFrame::EnforceFileSaved(bool canCancel) {
   if(fileModified) {
+    
     wxMessageDialog d(
       this,
       _("Your song has been modified. Do you want to save it?"),
       _("The Song Press"),
-      wxYES_NO | wxCANCEL | wxICON_QUESTION 
+      wxYES_NO | wxICON_QUESTION | (canCancel? wxCANCEL: 0)
     );
     switch(d.ShowModal()) {
       case wxID_CANCEL:
@@ -378,11 +369,18 @@ bool songpressFrame::NewFile() {
 }
 
 void songpressFrame::OnClose(wxCloseEvent& e) {
-  if(e.CanVeto()) {
-    if(EnforceFileSaved())
-      Destroy();
-    else
-      e.Veto();
-  } else
+  if(EnforceFileSaved(e.CanVeto()))
     Destroy();
+  else
+    e.Veto();
+}
+
+bool songpressFrame::OpenFile(wxString filePath) {
+  if(EnforceFileSaved()) {
+    fileName = filePath;
+    fileNameValid = true;
+    OpenFile();
+    return true;
+  }
+  return false;
 }
