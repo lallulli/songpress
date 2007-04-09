@@ -376,11 +376,15 @@ void songpressFrame::OnClose(wxCloseEvent& e) {
 }
 
 bool songpressFrame::OpenFile(wxString filePath) {
-  if(EnforceFileSaved()) {
-    fileName = filePath;
-    fileNameValid = true;
-    OpenFile();
-    return true;
+  wxFileName fn = filePath;
+  if(fn.FileExists()) {
+    if(EnforceFileSaved()) {
+      fileName = fn;
+      fileNameValid = true;
+      SetWindowTitle();
+      OpenFile();
+      return true;
+    }
   }
   return false;
 }
