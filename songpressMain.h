@@ -37,6 +37,7 @@ class songpressFrame: public wxFrame
 
 	private:
 	
+    bool NewFile();          //Clears current file
     bool SaveAs();           //Ask for file name and save
     bool Save();             //Save file fileName
     bool OpenFileAsk();      //Ask for file name and open
@@ -52,7 +53,9 @@ class songpressFrame: public wxFrame
 		void OnMenuFileSaveSelected(wxCommandEvent& event);
 		void OnMenuFileOpenSelected(wxCommandEvent& event);
 		void OnMenuFileSaveAsSelected(wxCommandEvent& event);
+		void OnMenuFileNewSelected(wxCommandEvent& event);
 		//*)
+		void OnClose(wxCloseEvent& event);
 
 		//(*Identifiers(songpressFrame)
 		static const long idMenuNew;
