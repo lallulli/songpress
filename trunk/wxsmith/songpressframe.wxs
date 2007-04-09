@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
     <object class="wxFrame" name="songpressFrame">
-        <title>Songpress - Il Canzonatore</title>
+        <title>The Song Press - Il Canzonatore</title>
         <object class="wxMenuBar" variable="MenuBar1" member="no">
             <object class="wxMenu" variable="Menu1" member="yes">
                 <label>_File</label>
                 <object class="wxMenuItem" name="idMenuNew" variable="MenuFileNew" member="yes">
                     <label>_New</label>
                     <help>Create a new song</help>
+                    <handler function="OnMenuFileNewSelected" entry="EVT_MENU" />
                 </object>
                 <object class="wxMenuItem" name="idMenuOpen" variable="MenuFileOpen" member="yes">
                     <label>_Open...</label>

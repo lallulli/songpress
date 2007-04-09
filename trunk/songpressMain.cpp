@@ -19,6 +19,7 @@
 #include <wx/sstream.h>
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
+#include <wx/event.h>
 
 #include "songpressMain.h"
 
@@ -91,6 +92,7 @@ const long songpressFrame::Open = wxNewId();
 BEGIN_EVENT_TABLE(songpressFrame,wxFrame)
 	//(*EventTable(songpressFrame)
 	//*)
+	EVT_CLOSE(songpressFrame::OnClose)
 END_EVENT_TABLE()
 
 songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
@@ -100,7 +102,7 @@ songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
 	//(*Initialize(songpressFrame)
 	wxMenuBar* MenuBar1;
 	
-	Create(parent,id,_("Songpress - Il Canzonatore"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE,_T("wxFrame"));
+	Create(parent,id,_("The Song Press - Il Canzonatore"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE,_T("wxFrame"));
 	MenuBar1 = new wxMenuBar();
 	Menu1 = new wxMenu();
 	MenuFileNew = new wxMenuItem(Menu1,idMenuNew,_("&New"),_("Create a new song"),wxITEM_NORMAL);
@@ -143,13 +145,13 @@ songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
   outputPanel = new PannelloPrincipale(this, -1);
   auiManager->AddPane(inputPanel, wxCENTER, wxT("CRD data"));
   auiManager->AddPane(outputPanel, wxRIGHT, wxT("Output"));
-  auiManager->AddPane(
+  /*auiManager->AddPane(
     ToolBar1,
     wxAuiPaneInfo().
     Name(wxT("tb1")).Caption(wxT("Big Toolbar")).
     ToolbarPane().Top().
     LeftDockable(false).RightDockable(false)
-  );
+  );*/
   auiManager->Update();
   SetWindowTitle();
 	
@@ -295,7 +297,7 @@ bool songpressFrame::OpenFileAsk() {
           wxOK | wxICON_ERROR 
         );
         d.ShowModal();      
-        return false;      
+        return false;
       }
     } else return false;
   } else return false;
@@ -358,4 +360,29 @@ bool songpressFrame::EnforceFileSaved() {
   }
   else
     return true;
+}
+
+void songpressFrame::OnMenuFileNewSelected(wxCommandEvent& event) {
+  NewFile();
+}
+
+bool songpressFrame::NewFile() {
+  if(EnforceFileSaved()) {
+    inputPanel->Clear();
+    fileNameValid = false;
+    fileModified = false;
+    outputPanel->LoadSong(_T(""));
+    SetWindowTitle();
+    return true;  
+  } else return false;
+}
+
+void songpressFrame::OnClose(wxCloseEvent& e) {
+  if(e.CanVeto()) {
+    if(EnforceFileSaved())
+      Destroy();
+    else
+      e.Veto();
+  } else
+    Destroy();
 }

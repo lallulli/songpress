@@ -76,3 +76,7 @@ void InputPanel::OnSongTextChar(wxKeyEvent& event) {
   }
   event.Skip();
 }
+
+void InputPanel::Clear() {
+  SongText->SetValue(_T(""));
+}
