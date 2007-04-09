@@ -38,7 +38,7 @@ InputPanel::InputPanel(songpressFrame* parent, wxWindowID id)
 	//(*Initialize(InputPanel)
 	Create(parent,id,wxDefaultPosition,wxDefaultSize,wxTAB_TRAVERSAL,_T("wxPanel"));
 	BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-	SongText = new wxTextCtrl(this,ID_TEXTCTRL1,_("Text"),wxDefaultPosition,wxDefaultSize,wxTE_MULTILINE,wxDefaultValidator,_T("ID_TEXTCTRL1"));
+	SongText = new wxTextCtrl(this,ID_TEXTCTRL1,wxEmptyString,wxDefaultPosition,wxDefaultSize,wxTE_MULTILINE|wxTE_RICH2,wxDefaultValidator,_T("ID_TEXTCTRL1"));
 	BoxSizer1->Add(SongText,1,wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL,0);
 	SetSizer(BoxSizer1);
 	BoxSizer1->Fit(this);

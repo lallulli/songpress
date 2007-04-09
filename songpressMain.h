@@ -15,6 +15,7 @@
 #include "inputpanel.h"
 #include <wx/aui/aui.h>
 #include <wx/filename.h>
+#include <wx/dnd.h>
 
 
 //(*Headers(songpressFrame)
@@ -25,6 +26,15 @@
 #include <wx/toolbar.h>
 //*)
 
+class songpressFrameDropTarget: public wxFileDropTarget {
+	public:
+		songpressFrameDropTarget(songpressFrame* p): fp(p) {}
+    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& a);
+
+	private:
+		songpressFrame* fp;
+};
+
 class songpressFrame: public wxFrame
 {
 	public:
@@ -34,6 +44,7 @@ class songpressFrame: public wxFrame
 		
 		void NotifySongModified();
 		void NotifyLazySongModified();
+		bool OpenFile(wxString filePath);
 
 	private:
 	
@@ -43,7 +54,8 @@ class songpressFrame: public wxFrame
     bool OpenFileAsk();      //Ask for file name and open
     void OpenFile();         //Open file fileName
     void SetWindowTitle();   //Sets window title from fileName (or Untitled)
-    bool EnforceFileSaved(); //If there are modifications, ask whether to save;
+    bool EnforceFileSaved(bool canCancel = true);
+                             //If there are modifications, ask whether to save;
                              //Return false if user cancels operation
 
 		//(*Handlers(songpressFrame)
@@ -88,6 +100,8 @@ class songpressFrame: public wxFrame
 		wxAuiManager* auiManager;
 		PannelloPrincipale* outputPanel;
 		InputPanel* inputPanel;
+		songpressFrameDropTarget* dropTarget;
+		
 		wxFileName fileName;
 		bool fileNameValid;
 		bool fileModified;
