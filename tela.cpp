@@ -107,6 +107,17 @@ void Tela::Disegna(wxDC& dc, bool metafile) {
     SongParser sp(sd);
     sp.Parse(song);
     SetVirtualSize(sd.GetWidth(), sd.GetHeight());
+    
+    /*
+    TiXmlDocument doc;
+    TiXmlDeclaration* dec = new TiXmlDeclaration("1.0", "", "");
+    doc.LinkEndChild(dec);
+    TiXmlElement* el = new TiXmlElement("Preferences");
+    doc.LinkEndChild(el);
+    t.Serialize(el);
+    doc.SaveFile("pippo.xml");    
+    */
+    
   }
 }
 

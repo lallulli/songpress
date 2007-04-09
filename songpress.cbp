@@ -83,6 +83,8 @@
 		<Unit filename="Skvett.h" />
 		<Unit filename="debmessage.cpp" />
 		<Unit filename="debmessage.h" />
+		<Unit filename="global.cpp" />
+		<Unit filename="global.h" />
 		<Unit filename="inputpanel.cpp" />
 		<Unit filename="inputpanel.h" />
 		<Unit filename="pannelloprincipale.cpp" />
@@ -105,6 +107,12 @@
 		<Unit filename="tela.h" />
 		<Unit filename="textpreferences.cpp" />
 		<Unit filename="textpreferences.h" />
+		<Unit filename="tinyxml\tinystr.cpp" />
+		<Unit filename="tinyxml\tinystr.h" />
+		<Unit filename="tinyxml\tinyxml.cpp" />
+		<Unit filename="tinyxml\tinyxml.h" />
+		<Unit filename="tinyxml\tinyxmlerror.cpp" />
+		<Unit filename="tinyxml\tinyxmlparser.cpp" />
 		<Unit filename="wxsmith\FinestraPrincipale.wxs" />
 		<Unit filename="wxsmith\PannelloPrincipale.wxs" />
 		<Unit filename="wxsmith\Tela.wxs" />
