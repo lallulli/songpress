@@ -12,6 +12,7 @@
 
 #include <wx/font.h>
 #include <wx/dc.h>
+#include "tinyxml/tinyxml.h"
 
 class TextPreferences {
 public:
@@ -37,7 +38,6 @@ public:
   void SetUseDecorations(bool b) {useDecorations=b; }
   void SetChorusHeaderText(const wxString& s) {chorusHeaderText=s; }
 
-
   wxFont GetVerse() {return verse; }
   wxFont GetChord() {return chord; }
   wxFont GetComment() {return comment; }
@@ -56,6 +56,9 @@ public:
   bool GetPrintChorusHeaders() {return printChorusHeaders; }
   bool GetUseDecorations() {return useDecorations; }
   wxString GetChorusHeaderText() {return chorusHeaderText; }
+  
+  void SerializeFont(TiXmlElement* node, const wxString& name, const wxFont& font);
+  void Serialize(TiXmlElement* node);
 
 private:
   wxFont verse;

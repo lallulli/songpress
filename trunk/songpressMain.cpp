@@ -373,6 +373,7 @@ void songpressFrame::OnClose(wxCloseEvent& e) {
     Destroy();
   else
     e.Veto();
+  e.Skip();
 }
 
 bool songpressFrame::OpenFile(wxString filePath) {

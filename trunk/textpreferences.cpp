@@ -11,6 +11,7 @@
 #include <wx/dc.h>
 
 #include "textpreferences.h"
+#include "global.h"
 
 TextPreferences::TextPreferences() {
   verseIndent=0;
@@ -28,5 +29,31 @@ TextPreferences::TextPreferences() {
 
 TextPreferences::~TextPreferences() {
 
+}
+
+void TextPreferences::SerializeFont(TiXmlElement* node, const wxString& name, const wxFont& font) {
+  node->SetAttribute(name.mb_str(wxConvUTF8), font.GetNativeFontInfoDesc().mb_str(wxConvUTF8));
+}
+
+
+void TextPreferences::Serialize(TiXmlElement* node) {
+  SerializeFont(node, _T("verse"), verse);
+  SerializeFont(node, _T("chord"), chord);
+  SerializeFont(node, _T("comment"), comment);
+  SerializeFont(node, _T("chorus"), chorus);
+  SerializeFont(node, _T("title"), title);
+  SerializeFont(node, _T("verseHeader"), verseHeader);
+  SerializeFont(node, _T("chorusHeader"), chorusHeader);
+  node->SetAttribute("verseIndent", verseIndent);
+  node->SetAttribute("chorusIndent", chorusIndent);
+  node->SetAttribute("blockSeparator", blockSeparator);
+  node->SetAttribute("verseHeaderSeparator", verseHeaderSeparator);
+  node->SetAttribute("chorusHeaderSeparator", chorusHeaderSeparator);
+  node->SetAttribute("titleIndent", titleIndent);
+  node->SetAttribute("titleBlockSeparator", titleBlockSeparator);
+  node->SetAttribute("printVerseHeader", printVerseHeaders);
+  node->SetAttribute("printChorusHeader", printChorusHeaders);
+  node->SetAttribute("useDecorations", useDecorations);
+  node->SetAttribute("chorusHeaderText", chorusHeaderText.mb_str(wxConvUTF8));
 }
 
