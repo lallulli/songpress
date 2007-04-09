@@ -37,11 +37,13 @@ class songpressFrame: public wxFrame
 
 	private:
 	
-    void SaveAs();
-    void Save();
-    void OpenFileAsk();
-    void OpenFile();
-    void SetWindowTitle();
+    bool SaveAs();           //Ask for file name and save
+    bool Save();             //Save file fileName
+    bool OpenFileAsk();      //Ask for file name and open
+    void OpenFile();         //Open file fileName
+    void SetWindowTitle();   //Sets window title from fileName (or Untitled)
+    bool EnforceFileSaved(); //If there are modifications, ask whether to save;
+                             //Return false if user cancels operation
 
 		//(*Handlers(songpressFrame)
 		void OnQuit(wxCommandEvent& event);

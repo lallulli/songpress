@@ -169,14 +169,16 @@ void songpressFrame::OnQuit(wxCommandEvent& event)
 void songpressFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = wxbuildinfo(long_f);
-    wxMessageBox(msg, _("Welcome to..."));
+    wxMessageBox(msg, _("The Song Press - Il Canzonatore.\nCopyright (c) 2006-2007 Luca Allulli"));
 }
 
 void songpressFrame::NotifyLazySongModified() {
+  fileModified = true;
   Timer.Start(1000, true);
 }
 
 void songpressFrame::NotifySongModified() {
+  fileModified = true;
   Timer.Stop();
   outputPanel->LoadSong(inputPanel->GetSong());  
 }
@@ -190,7 +192,7 @@ void songpressFrame::OnMenuFileSaveSelected(wxCommandEvent& event) {
   event.Skip();
 }
 
-void songpressFrame::SaveAs() {
+bool songpressFrame::SaveAs() {
   bool leave = false;
   bool consensus = false;
   wxFileName fn;
@@ -213,7 +215,7 @@ void songpressFrame::SaveAs() {
         wxMessageDialog d(
           this,
           msg,
-          _T("Songpress"),
+          _("The Song Press"),
           wxYES_NO | wxCANCEL | wxICON_QUESTION 
         );
         switch(d.ShowModal()) {
@@ -246,51 +248,57 @@ void songpressFrame::SaveAs() {
     fileNameValid = true;
     SetWindowTitle();
     Save();
-  }
+    return true;
+  } else return false;
 
 }
 
-void songpressFrame::Save() {
+bool songpressFrame::Save() {
   if(!fileNameValid)
-    SaveAs();
+    return SaveAs();
   else {
     wxFileOutputStream f(fileName.GetFullPath());
     wxTextOutputStream out(f, wxEOL_NATIVE, wxConvISO8859_1);
 // TODO (Luca#1#): Give also UTF8 converter
     out << inputPanel->GetSong();
+    fileModified = false;
+    return true;
   }
 }
 
-void songpressFrame::OpenFileAsk() {
-  wxFileDialog dlg (
-    this,
-    _("Open file"), 
-    _T(""),
-    _T(""),
-    _("CRD files (*.crd)|*.crd|All files (*.*)|*.*"),
-    wxFD_OPEN
-  );
-  
-  if(dlg.ShowModal()==wxID_OK) {
-    wxFileName fn = dlg.GetPath();
-    if(fn.FileExists()) {
-      fileName = fn;
-      fileNameValid = true;
-      SetWindowTitle();
-      OpenFile();
-    } else {
-      wxString msg;
-      msg.Printf(_("File \"%s\" does not exist."), fn.GetName());
-      wxMessageDialog d(
-        this,
-        msg,
-        _T("Songpress"),
-        wxOK | wxICON_ERROR 
-      );
-      d.ShowModal();      
-    }
+bool songpressFrame::OpenFileAsk() {
+  if(EnforceFileSaved()) {
+    wxFileDialog dlg (
+      this,
+      _("Open file"), 
+      _T(""),
+      _T(""),
+      _("CRD files (*.crd)|*.crd|All files (*.*)|*.*"),
+      wxFD_OPEN
+    );
     
-  }
+    if(dlg.ShowModal()==wxID_OK) {
+      wxFileName fn = dlg.GetPath();
+      if(fn.FileExists()) {
+        fileName = fn;
+        fileNameValid = true;
+        SetWindowTitle();
+        OpenFile();
+        return true;
+      } else {
+        wxString msg;
+        msg.Printf(_("File \"%s\" does not exist."), fn.GetName());
+        wxMessageDialog d(
+          this,
+          msg,
+          _("The Song Press"),
+          wxOK | wxICON_ERROR 
+        );
+        d.ShowModal();      
+        return false;      
+      }
+    } else return false;
+  } else return false;
 }
 
 void songpressFrame::OpenFile() {
@@ -306,23 +314,48 @@ void songpressFrame::OpenFile() {
       song += _T("\n");
   }
   inputPanel->SetSong(song);
+  fileModified = false;
 }
 
 
 void songpressFrame::SetWindowTitle() {
   if(!fileNameValid) {
-    SetTitle(_("Untitled - Songpress"));
+    SetTitle(_("Untitled - The Song Press"));
   } else {
-    SetTitle(fileName.GetName() + _(" - Songpress"));
+    SetTitle(fileName.GetName() + _(" - The Song Press"));
   }
 }
+
 
 void songpressFrame::OnMenuFileOpenSelected(wxCommandEvent& event) {
   OpenFileAsk();
   event.Skip();
 }
 
+
 void songpressFrame::OnMenuFileSaveAsSelected(wxCommandEvent& event) {
   SaveAs();
   event.Skip();
+}
+
+
+bool songpressFrame::EnforceFileSaved() {
+  if(fileModified) {
+    wxMessageDialog d(
+      this,
+      _("Your song has been modified. Do you want to save it?"),
+      _("The Song Press"),
+      wxYES_NO | wxCANCEL | wxICON_QUESTION 
+    );
+    switch(d.ShowModal()) {
+      case wxID_CANCEL:
+        return false;
+      case wxID_NO:
+        return true;
+      default: //wxID_YES
+        return Save();
+    }
+  }
+  else
+    return true;
 }
