@@ -3,81 +3,102 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="songpress" />
-		<Option pch_mode="2" />
-		<Option compiler="msvctk" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
 		<Build>
-			<Target title="Release">
-				<Option output="bin\Release\songpress.exe" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin\Release" />
-				<Option object_output="obj\Release\" />
+			<Target title="Debug">
+				<Option output="bin\Debug\songpress" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="0" />
-				<Option compiler="msvctk" />
+				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="/MT" />
-					<Add option="/O2" />
-					<Add option="/Ox" />
-					<Add option="/Og" />
-					<Add option="/Ob1" />
-					<Add option="/DNDEBUG" />
-					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib\mswu" />
+					<Add option="-g" />
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib\mswu" />
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
 				</ResourceCompiler>
 				<Linker>
-					<Add option="/NODEFAULTLIB:libcpmt.lib" />
-					<Add option="/NODEFAULTLIB:libcmt.lib" />
-					<Add library="wxmsw28u_core.lib" />
-					<Add library="wxbase28u.lib" />
-					<Add library="wxpng.lib" />
-					<Add library="wxjpeg.lib" />
-					<Add library="wxtiff.lib" />
-					<Add library="wxzlib.lib" />
-					<Add library="wxregexu.lib" />
-					<Add library="wxexpat.lib" />
-					<Add library="libcmt.lib" />
-					<Add library="wxmsw28u_aui.lib" />
-					<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\lib\vc_lib" />
+					<Add library="libwxmsw28u_richtext.a" />
+					<Add library="libwxmsw28u_xrc.a" />
+					<Add library="libwxmsw28u_aui.a" />
+					<Add library="libwxbase28u_xml.a" />
+					<Add library="libwxmsw28u_adv.a" />
+					<Add library="libwxmsw28u_html.a" />
+					<Add library="libwxmsw28u_core.a" />
+					<Add library="libwxbase28u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\songpress" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="libwxmsw28u_richtext.a" />
+					<Add library="libwxmsw28u_xrc.a" />
+					<Add library="libwxmsw28u_aui.a" />
+					<Add library="libwxbase28u_xml.a" />
+					<Add library="libwxmsw28u_adv.a" />
+					<Add library="libwxmsw28u_html.a" />
+					<Add library="libwxmsw28u_core.a" />
+					<Add library="libwxbase28u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="/Gd" />
-			<Add option="/W3" />
-			<Add option="/TP" />
-			<Add option="/GF" />
-			<Add option="/EHsc" />
-			<Add option="/DWIN32" />
-			<Add option="/D__WIN32__" />
-			<Add option="/D__WXMSW__" />
-			<Add option="/DwxUSE_UNICODE" />
-			<Add option="/D_WINDOWS" />
-			<Add option="/D_CRT_SECURE_DEPRECATE" />
-			<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
-			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\include" />
-			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\contrib\include" />
+			<Add option="-pipe" />
+			<Add option="-mthreads" />
+			<Add option="-D__GNUWIN32__" />
+			<Add option="-D__WXMSW__" />
+			<Add option="-DwxUSE_UNICODE" />
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-Winvalid-pch" />
+			<Add option="-include wx_pch.h" />
+			<Add option="-DWX_PRECOMP" />
+			<Add option="-Wall" />
+			<Add directory="C:\wxWidgets-2.8.7\include" />
+			<Add directory="C:\wxWidgets-2.8.7\contrib\include" />
 		</Compiler>
 		<ResourceCompiler>
-			<Add directory="C:\Documents and Settings\Luca\Documenti\cpp\wxWidgets-2.8.3\include" />
+			<Add directory="C:\wxWidgets-2.8.7\include" />
 		</ResourceCompiler>
 		<Linker>
-			<Add option="/INCREMENTAL:NO" />
-			<Add option="/SUBSYSTEM:WINDOWS" />
-			<Add library="winmm.lib" />
-			<Add library="rpcrt4.lib" />
-			<Add library="kernel32.lib" />
-			<Add library="user32.lib" />
-			<Add library="gdi32.lib" />
-			<Add library="winspool.lib" />
-			<Add library="comdlg32.lib" />
-			<Add library="advapi32.lib" />
-			<Add library="shell32.lib" />
-			<Add library="ole32.lib" />
-			<Add library="oleaut32.lib" />
-			<Add library="uuid.lib" />
-			<Add library="comctl32.lib" />
-			<Add library="wsock32.lib" />
+			<Add library="libkernel32.a" />
+			<Add library="libuser32.a" />
+			<Add library="libgdi32.a" />
+			<Add library="libwinspool.a" />
+			<Add library="libcomdlg32.a" />
+			<Add library="libadvapi32.a" />
+			<Add library="libshell32.a" />
+			<Add library="libole32.a" />
+			<Add library="liboleaut32.a" />
+			<Add library="libuuid.a" />
+			<Add library="libcomctl32.a" />
+			<Add library="libwsock32.a" />
+			<Add library="libodbc32.a" />
 		</Linker>
 		<Unit filename="Skcoda.h" />
 		<Unit filename="Skvett.h" />
@@ -87,16 +108,19 @@
 		<Unit filename="global.h" />
 		<Unit filename="inputpanel.cpp" />
 		<Unit filename="inputpanel.h" />
+		<Unit filename="open.png" />
 		<Unit filename="pannelloprincipale.cpp" />
 		<Unit filename="pannelloprincipale.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="songdrawer.cpp" />
 		<Unit filename="songdrawer.h" />
 		<Unit filename="songparser.cpp" />
 		<Unit filename="songparser.h" />
-		<Unit filename="songpress.depend" />
+		<Unit filename="songpress.cbp" />
 		<Unit filename="songpressApp.cpp" />
 		<Unit filename="songpressApp.h" />
 		<Unit filename="songpressMain.cpp" />
@@ -113,17 +137,19 @@
 		<Unit filename="tinyxml\tinyxml.h" />
 		<Unit filename="tinyxml\tinyxmlerror.cpp" />
 		<Unit filename="tinyxml\tinyxmlparser.cpp" />
-		<Unit filename="wxsmith\FinestraPrincipale.wxs" />
-		<Unit filename="wxsmith\PannelloPrincipale.wxs" />
-		<Unit filename="wxsmith\Tela.wxs" />
+		<Unit filename="wx_pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="wxsmith\songpressframe.wxs" />
 		<Extensions>
 			<code_completion />
+			<envvars />
+			<debugger />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="songpressApp.cpp" main="songpressFrame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/songpressframe.wxs" src="songpressMain.cpp" hdr="songpressMain.h" name="songpressFrame" language="CPP" />
-					<wxPanel wxs="wxsmith/inputpanel.wxs" src="inputpanel.cpp" hdr="inputpanel.h" name="InputPanel" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

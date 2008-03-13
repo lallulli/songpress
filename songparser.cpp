@@ -145,13 +145,12 @@ void SongParser::Parse(FILE* f) {
 }
 
 void SongParser::Parse(wxString s) {
-  bool esci=false;
   wxString buffer;
   StringParser pars(s);
   while(!pars.NoMore()) {
-    
+
     buffer = pars.FindAllBut(_T("[{\n"));
-        
+
     if(buffer.Length()>0) {
       if(!inChorus) ApriStrofa();
       sd->AddWords(buffer);
