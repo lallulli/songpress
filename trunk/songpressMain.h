@@ -19,11 +19,11 @@
 
 
 //(*Headers(songpressFrame)
-#include <wx/frame.h>
 #include <wx/menu.h>
-#include <wx/statusbr.h>
-#include <wx/timer.h>
 #include <wx/toolbar.h>
+#include <wx/frame.h>
+#include <wx/timer.h>
+#include <wx/statusbr.h>
 //*)
 
 class songpressFrameDropTarget: public wxFileDropTarget {
@@ -78,23 +78,23 @@ class songpressFrame: public wxFrame
 		static const long idMenuAbout;
 		static const long ID_STATUSBAR1;
 		static const long ID_TIMER;
-		static const long ID_TOOLBAR1;
 		static const long Open;
+		static const long ID_TOOLBAR1;
 		//*)
 
 		//(*Declarations(songpressFrame)
-		wxMenu* Menu1;
-		wxMenuItem* MenuFileNew;
-		wxMenuItem* MenuFileOpen;
-		wxMenuItem* MenuFileSave;
-		wxMenuItem* MenuFileSaveAs;
+		wxToolBar* ToolBar1;
 		wxMenuItem* MenuExit;
-		wxMenu* Menu2;
+		wxMenuItem* MenuFileSaveAs;
 		wxMenuItem* MenuHelpAbout;
+		wxMenuItem* MenuFileOpen;
+		wxMenuItem* MenuFileNew;
+		wxMenu* Menu1;
+		wxToolBarToolBase* ToolBarItem1;
 		wxStatusBar* StatusBar1;
 		wxTimer Timer;
-		wxToolBar* ToolBar1;
-		wxToolBarToolBase* ToolBarItem1;
+		wxMenuItem* MenuFileSave;
+		wxMenu* Menu2;
 		//*)
 		
 		wxAuiManager* auiManager;

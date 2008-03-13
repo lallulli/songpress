@@ -6,7 +6,7 @@
  * Copyright: Luca Allulli (http://www.roma21.it/songpress)
  * License:   GNU GPL v2
  **************************************************************/
- 
+
  #include "songdrawer.h"
 
 //public:
@@ -109,7 +109,7 @@ void SongDrawer::CommitLine() {
         dc->DrawText(b.text, b.x+xBase, (b.isChord? yBase: yVerse)-yOffset);
       }
     }
-    wxCoord yBaseOld=yBase;
+    //wxCoord yBaseOld=yBase;
     yBase=yVerse+heightText;
     if(VerifySelectionIntersection(yBase, heightChord-5+heightText)) {
       yMax=yMax>yBase? yMax: yBase;

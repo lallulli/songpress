@@ -6,7 +6,7 @@
  * Copyright: Luca Allulli (http://www.roma21.it/songpress)
  * License:   GNU GPL v2
  **************************************************************/
- 
+
 #include "pannelloprincipale.h"
 #include <wx/metafile.h>
 
@@ -45,7 +45,7 @@ void PannelloPrincipale::OnBottoneClick(wxCommandEvent& event) {
     tela->Disegna(dc, true);
     wxMetafile *mf = dc.Close();
     if(mf) {
-      bool success = mf->SetClipboard((int)(dc.MaxX() + 10), (int)(dc.MaxY() + 10));
+      /*bool success = */mf->SetClipboard((int)(dc.MaxX() + 10), (int)(dc.MaxY() + 10));
       delete mf;
     }
   }
