@@ -104,6 +104,14 @@
 		<Unit filename="Skvett.h" />
 		<Unit filename="debmessage.cpp" />
 		<Unit filename="debmessage.h" />
+		<Unit filename="format\font.cpp" />
+		<Unit filename="format\font.h" />
+		<Unit filename="format\inheritedfont.cpp" />
+		<Unit filename="format\inheritedfont.h" />
+		<Unit filename="format\inheritedparagraph.cpp" />
+		<Unit filename="format\inheritedparagraph.h" />
+		<Unit filename="format\paragraph.cpp" />
+		<Unit filename="format\paragraph.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Unit filename="inputpanel.cpp" />
