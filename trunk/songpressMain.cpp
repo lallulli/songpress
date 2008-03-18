@@ -86,7 +86,7 @@ songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
 {
 	//(*Initialize(songpressFrame)
 	wxMenuBar* MenuBar1;
-
+	
 	Create(parent, id, _("The Song Press - Il Canzonatore"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
 	MenuBar1 = new wxMenuBar();
 	Menu1 = new wxMenu();
@@ -117,7 +117,7 @@ songpressFrame::songpressFrame(wxWindow* parent, wxWindowID id):
 	ToolBarItem1 = ToolBar1->AddTool(Open, _("New item"), wxBitmap(wxImage(_T("C:\\Documents and Settings\\Luca\\Documenti\\cpp\\songpress\\open.png"))), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString);
 	ToolBar1->Realize();
 	SetToolBar(ToolBar1);
-
+	
 	Connect(idMenuNew,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileNewSelected);
 	Connect(idMenuOpen,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileOpenSelected);
 	Connect(idMenuSave,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&songpressFrame::OnMenuFileSaveSelected);

@@ -6,7 +6,7 @@
  * Copyright: Luca Allulli (http://www.roma21.it/songpress)
  * License:   GNU GPL v2
  **************************************************************/
- 
+
 #ifndef TEXTPREFERENCES_H
 #define TEXTPREFERENCES_H
 
@@ -56,11 +56,12 @@ public:
   bool GetPrintChorusHeaders() {return printChorusHeaders; }
   bool GetUseDecorations() {return useDecorations; }
   wxString GetChorusHeaderText() {return chorusHeaderText; }
-  
-  void SerializeFont(TiXmlElement* node, const wxString& name, const wxFont& font);
+
   void Serialize(TiXmlElement* node);
 
 private:
+  static void SerializeFont(TiXmlElement* node, const wxString& name, const wxFont& font);
+
   wxFont verse;
   wxFont chord;
   wxFont comment;
