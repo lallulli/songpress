@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="MainFrame">
+		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
+		<size>611,477</size>
+		<title>Songpress</title>
+		<object class="wxMenuBar" name="m_menubar1">
+			<label>MyMenuBar</label>
+			<object class="wxMenu" name="file">
+				<label>_File</label>
+				<object class="wxMenuItem" name="new">
+					<label>&amp;New</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="open">
+					<label>&amp;Open...</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="save">
+					<label>&amp;Save</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="saveAs">
+					<label>Save &amp;as...</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="exit">
+					<label>&amp;Exit</label>
+					<help></help>
+				</object>
+			</object>
+			<object class="wxMenu" name="help">
+				<label>?</label>
+				<object class="wxMenuItem" name="about">
+					<label>&amp;About...</label>
+					<help></help>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="m_statusBar1">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+</resource>

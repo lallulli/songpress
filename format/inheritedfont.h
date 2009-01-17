@@ -7,6 +7,8 @@
 class InheritedFont : public Font
 {
 	public:
+		InheritedFont(Font* parent): parent(parent) {}
+
 		void SetInheritName(bool inherit);
 		void SetInheritBold(bool inherit);
 		void SetInheritItalic(bool inherit);
@@ -24,6 +26,8 @@ class InheritedFont : public Font
     virtual double GetSize();
 
 	protected:
+		Font* parent;
+
 		bool inheritName;
 		bool inheritBold;
 		bool inheritItalic;

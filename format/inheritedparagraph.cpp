@@ -56,3 +56,31 @@ bool InheritedParagraph::GetInheritedShowChords() {
 bool InheritedParagraph::GetInheritedTransposeChords() {
 	return inheritedTransposeChords;
 }
+
+void InheritedParagraph::GetRightMargin() {
+	return inheritedRightMargin? parent->rightMargin: rightMargin;
+}
+
+void InheritedParagraph::GetLineSpacing() {
+	return inheritedLineSpacing? parent->lineSpacing: lineSpacing;
+}
+
+void InheritedParagraph::GetParagraphSpacing() {
+	return inheritedParagraphSpacing? parent->paragraphSpacing: paragraphSpacing;
+}
+
+void InheritedParagraph::GetShowNumber() {
+	return inheritedShowNumber? parent->showNumber: showNumber;
+}
+
+void InheritedParagraph::GetShowDecorations() {
+	return inheritedShowDecorations? parent->showDecorations: showDecorations;
+}
+
+void InheritedParagraph::GetShowChords() {
+	return inheritedShowChords? parent->showChords: showChords;
+}
+
+void InheritedParagraph::GetTransposeChords() {
+	return inheritedTransposeChords? parent->transposeChords: transposeChords;
+}
