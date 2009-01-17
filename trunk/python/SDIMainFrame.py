@@ -23,7 +23,15 @@ import wx
 from wx import xrc
 import os
 
-class SDIMainFrame():
+
+class SDIDropTarget(wx.FileDropTarget):
+	def __init__(self, sdi):
+		wx.FileDropTarget.__init__(self)
+		self.sdi = sdi
+	def OnDropFiles(self, x, y, arr):
+		self.sdi.OnDropFiles(arr)
+
+class SDIMainFrame(wx.FileDropTarget):
 
 	###UI generation###
 
@@ -37,9 +45,11 @@ class SDIMainFrame():
 		self.docExt = docExt
 		self.frame = self.res.LoadFrame(None, frameName)
 		self.BindMenu()
+		self.frame.Bind(wx.EVT_CLOSE, self.OnClose, self.frame)
+		dt = SDIDropTarget(self)
+		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
 		self.frame.Show()
-
 
 	def Bind(self, event, handler, xrcname):
 		self.frame.Bind(event, handler, id=xrc.XRCID(xrcname))
@@ -87,8 +97,6 @@ class SDIMainFrame():
 						wx.OK | wx.ICON_ERROR
 					)
 					d.ShowModal()
-				
-
 		
 	def OnSave(self, evt):
 		self.SaveFile()
@@ -98,11 +106,25 @@ class SDIMainFrame():
 			self.SaveFile()
 
 	def OnExit(self, evt):
-		if self.AskSaveModified():
-			self.frame.Close()
+		self.frame.Close()
 
 	def OnAbout(self, evt):
-		wx.MessageBox('%s by %s' % (self.appName, self.authorName))
+		wx.MessageBox('%s by %s' % (self.appName, self.authorName), 'About ' + self.appName)
+		
+	def OnDropFiles(self, arr):
+		if len(arr) == 1:
+			fn = arr[0]
+			if os.path.isfile(fn) and self.AskSaveModified():
+				self.document = fn
+				self.modified = False
+				self.UpdateTitle()
+				self.Open()
+	
+	def OnClose(self, evt):
+		if self.AskSaveModified(evt.CanVeto()):
+			self.frame.Destroy()
+		else:
+			evt.Veto()
 
 	###Ordinary methods###
 
