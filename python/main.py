@@ -7,6 +7,7 @@
 # License:	 GNU GPL v2
 ##############################################################
 
+		
 import wx
 from wx import xrc
 from SDIMainFrame import *
