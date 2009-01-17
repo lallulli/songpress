@@ -45,6 +45,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
+					<Add directory="C:\lib\boost_1_35_0" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="C:\wxWidgets-2.8.7\lib\gcc_lib\mswu" />
@@ -104,14 +105,6 @@
 		<Unit filename="Skvett.h" />
 		<Unit filename="debmessage.cpp" />
 		<Unit filename="debmessage.h" />
-		<Unit filename="format\font.cpp" />
-		<Unit filename="format\font.h" />
-		<Unit filename="format\inheritedfont.cpp" />
-		<Unit filename="format\inheritedfont.h" />
-		<Unit filename="format\inheritedparagraph.cpp" />
-		<Unit filename="format\inheritedparagraph.h" />
-		<Unit filename="format\paragraph.cpp" />
-		<Unit filename="format\paragraph.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Unit filename="inputpanel.cpp" />
@@ -119,6 +112,24 @@
 		<Unit filename="open.png" />
 		<Unit filename="pannelloprincipale.cpp" />
 		<Unit filename="pannelloprincipale.h" />
+		<Unit filename="pref\class.cpp" />
+		<Unit filename="pref\class.h" />
+		<Unit filename="pref\int.cpp" />
+		<Unit filename="pref\int.h" />
+		<Unit filename="pref\inttype.cpp" />
+		<Unit filename="pref\inttype.h" />
+		<Unit filename="pref\object.cpp" />
+		<Unit filename="pref\object.h" />
+		<Unit filename="pref\type.cpp" />
+		<Unit filename="pref\type.h" />
+		<Unit filename="pref\typegui.cpp" />
+		<Unit filename="pref\typegui.h" />
+		<Unit filename="pref\value.cpp" />
+		<Unit filename="pref\value.h" />
+		<Unit filename="pref\wxpropertypanel.cpp" />
+		<Unit filename="pref\wxpropertypanel.h" />
+		<Unit filename="pref\wxtypegui.cpp" />
+		<Unit filename="pref\wxtypegui.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option compile="0" />

@@ -7,6 +7,8 @@
 class InheritedParagraph : public Paragraph {
 	public:
 
+		InheritedParagraph(Paragraph* parent): parent(parent) {}
+
 		void SetInheritedRightMargin(bool inherited);
 		void SetInheritedLineSpacing(bool inherited);
 		void SetInheritedParagraphSpacing(bool inherited);
@@ -23,9 +25,18 @@ class InheritedParagraph : public Paragraph {
 		bool GetInheritedShowChords();
 		bool GetInheritedTransposeChords();
 
+		virtual double GetRightMargin();
+		virtual double GetLineSpacing();
+		virtual double GetParagraphSpacing();
+		virtual bool GetShowNumber();
+		virtual bool GetShowDecorations();
+		virtual bool GetShowChords();
+		virtual int GetTransposeChords();
 
 
 	protected:
+
+		Paragraph* parent;
 
 		bool inheritedRightMargin;
 		bool inheritedLineSpacing;
@@ -55,7 +66,7 @@ Genera variabili inherited
 \t\tbool inherited\2;
 
 Genera dichiarazioni funzioni Get:
-\t\t\1 Get\2();
+\t\tvirtual \1 Get\2();
 
 Genera dichiarazioni funzioni Set:
 \t\tvoid Set\2(\1 \3);
@@ -71,5 +82,8 @@ void InheritedParagraph::SetInherited\2(bool inherited) {\n\tinherited\2 = inher
 
 Genera implementazione funzioni GetInherited:
 bool InheritedParagraph::GetInherited\2() {\n\treturn inherited\2;\n}\n
+
+Genera implementazione funzioni Get:
+void InheritedParagraph::Get\2() {\n\treturn inherited\2? parent->\3: \3;\n}\n
 
 */

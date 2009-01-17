@@ -23,10 +23,12 @@
 #include <wx/cmdline.h>
 //*)
 
+
 IMPLEMENT_APP(songpressApp);
 
 bool songpressApp::OnInit()
 {
+
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	if ( wxsOK )
