@@ -32,7 +32,7 @@ class SDIDropTarget(wx.FileDropTarget):
 		self.sdi.OnDropFiles(arr)
 
 class SDIMainFrame(wx.FileDropTarget):
-
+	"""Abstract class. Override methods New, Open, Save"""
 	###UI generation###
 
 	def __init__(self, res, frameName='MainFrame', appName='SDIApp', authorName='Nobody', docType='document', docExt='txt'):
@@ -52,9 +52,11 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.frame.Show()
 
 	def Bind(self, event, handler, xrcname):
+		"""Bind an event, coming from a control by xrc name, to a handler"""
 		self.frame.Bind(event, handler, id=xrc.XRCID(xrcname))
 
 	def BindMenu(self):
+		"""Bind a menu item, by xrc name, to a handler"""
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 
@@ -66,11 +68,13 @@ class SDIMainFrame(wx.FileDropTarget):
 		Bind(self.OnAbout, 'about')
 
 	def OnNew(self, evt):
+		"""Menu handler for File->New"""
 		if self.AskSaveModified():
 			self.document = ''
 			self.New()
 		
 	def OnOpen(self, evt):
+		"""Menu handler for File->Open"""
 		if self.AskSaveModified():
 			dlg = wx.FileDialog(
 				self.frame,
@@ -99,19 +103,24 @@ class SDIMainFrame(wx.FileDropTarget):
 					d.ShowModal()
 		
 	def OnSave(self, evt):
+		"""Menu handler for File->Save"""
 		self.SaveFile()
 		
 	def OnSaveAs(self, evt):
+		"""Menu handler for File->Save As"""
 		if self.AskSaveFilename():
 			self.SaveFile()
 
 	def OnExit(self, evt):
+		"""Menu handler for File->Exit"""
 		self.frame.Close()
 
 	def OnAbout(self, evt):
+		"""Menu handler for ?->About"""
 		wx.MessageBox('%s by %s' % (self.appName, self.authorName), 'About ' + self.appName)
 		
 	def OnDropFiles(self, arr):
+		"""Handler for drop action: opens the dropped file, if it is exactly one"""
 		if len(arr) == 1:
 			fn = arr[0]
 			if os.path.isfile(fn) and self.AskSaveModified():
@@ -121,6 +130,7 @@ class SDIMainFrame(wx.FileDropTarget):
 				self.Open()
 	
 	def OnClose(self, evt):
+		"""Handler for windows close event"""	
 		if self.AskSaveModified(evt.CanVeto()):
 			self.frame.Destroy()
 		else:
@@ -129,10 +139,12 @@ class SDIMainFrame(wx.FileDropTarget):
 	###Ordinary methods###
 
 	def SetModified(self, m = True):
+		"""Set the modified flag, if main document is modified"""	
 		self.modified = m
 		self.UpdateTitle()
 
 	def UpdateTitle(self):
+		"""Updates form title; to be called when the filename or the modified status changes"""
 		if self.modified:
 			mod = '* '
 		else:
@@ -145,6 +157,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.frame.SetTitle("%s%s - %s" % (mod, doc, self.appName))
 		
 	def AskSaveModified(self, canCancel = True):
+		"""If file has been modified, propose to save changes. Return False if cancelled, True otherwise"""	
 		if not self.modified:
 			return True
 		
@@ -163,6 +176,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			return self.SaveFile();
 		
 	def AskSaveFilename(self):
+		"""Ask and updates the filename (without saving); return False if user cancels, True otherwise"""	
 		leave = False;
 		consensus = False;
 		while not leave:
@@ -212,6 +226,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			return False
 			
 	def SaveFile(self):
+		"""Save file, asking for file name if necessary. Return False if user cancels, True otherwise"""
 		if self.document == '':
 			if not self.AskSaveFilename():
 				return False
@@ -222,10 +237,13 @@ class SDIMainFrame(wx.FileDropTarget):
 		return True
 	
 	def New(self):
+		"""To be overridden: create a blank document"""
 		pass
 	
 	def Open(self):
+		"""To be overridden: open a document"""
 		pass
 	
 	def Save(self):
+		"""To be overridden: save a document"""
 		return True
