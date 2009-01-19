@@ -39,7 +39,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.res = res
 		self.appName = appName
 		self.authorName = authorName
-		self.modified = True
+		self.modified = False
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
@@ -89,9 +89,9 @@ class SDIMainFrame(wx.FileDropTarget):
 				fn = dlg.GetPath()
 				if os.path.isfile(fn):
 					self.document = fn
+					self.Open()
 					self.modified = False
 					self.UpdateTitle()
-					self.Open()
 				else:
 					msg = "File \"%s\" does not exist." % (fn, )
 					d = wx.MessageDialog(
@@ -125,9 +125,9 @@ class SDIMainFrame(wx.FileDropTarget):
 			fn = arr[0]
 			if os.path.isfile(fn) and self.AskSaveModified():
 				self.document = fn
+				self.Open()
 				self.modified = False
 				self.UpdateTitle()
-				self.Open()
 	
 	def OnClose(self, evt):
 		"""Handler for windows close event"""	
@@ -231,9 +231,9 @@ class SDIMainFrame(wx.FileDropTarget):
 			if not self.AskSaveFilename():
 				return False
 		if self.modified:
+			self.Save()
 			self.modified = False
 			self.UpdateTitle()
-			self.Save()
 		return True
 	
 	def New(self):
