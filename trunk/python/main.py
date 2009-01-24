@@ -10,38 +10,25 @@
 		
 import wx
 from wx import xrc
-from wx.stc import *
 from SDIMainFrame import *
+from Editor import *
+import re
 
 class SongpressFrame(SDIMainFrame):
 
 	def __init__(self, res):
 		SDIMainFrame.__init__(self, res, 'MainFrame', 'Songpress - Il Canzonatore', 'Luca Allulli', 'song', 'crd')
-		self.text = StyledTextCtrl(self.frame)
-		self.frame.Bind(EVT_STC_MODIFIED, self.OnTextModified, self.text)
-		font = wx.Font(
-			12,
-			wx.FONTFAMILY_DEFAULT,
-			wx.FONTSTYLE_NORMAL,
-			wx.FONTWEIGHT_NORMAL,
-			faceName = "Times New Roman"
-		)
-		self.text.StyleSetFont(STC_STYLE_DEFAULT, font)
+		self.text = Editor(self)
 
 	def New(self):
-		print("File->New");
+		self.text.New();
 		
 	def Open(self):
-		self.text.LoadFile(self.document)
+		self.text.Open()
 		
 	def Save(self):
-		self.text.SaveFile(self.document)
+		self.text.Save()
 		
-	def OnTextModified(self, evt):
-		self.SetModified()
-	
-	
-	
 
 class SongpressApp(wx.App):
 
@@ -50,9 +37,6 @@ class SongpressApp(wx.App):
 		songpressFrame = SongpressFrame(self.res)
 		
 		return True
-
-
-
 
 
 if __name__ == '__main__':
