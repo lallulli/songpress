@@ -1,6 +1,7 @@
 ###############################################################
-# Name:			 main.py
-# Purpose:	 Entry point for Songpress
+# Name:			 Editor.py
+# Purpose:	 Subclass of StyledTextControl providing songpress
+#            editor: loading, saving and syntax hilighting
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
 # Copyright: Luca Allulli (http://www.roma21.it/songpress)
@@ -12,62 +13,55 @@ import wx
 from wx import xrc
 from wx.stc import *
 from SDIMainFrame import *
-import re
-from Enumerate import Enumerate
+from SongTokenizer import *
 import sys
-
-class Token(object):
-	def __init__(self, token, start, end, content):
-		object.__init__(self)
-		self.token = token
-		self.start = start
-		self.end = end
-		self.content = content
-		
-	def __str__(self):
-		return '%s, %d, %d, %s' % (str(self.token), self.start, self.end, self.content)
-		
-class TokenType(object):
-	def __init__(self, r, name):
-		object.__init__(self)
-		self.r = re.compile(r)
-		self.name = name
-		
-	def __str__(self):
-		return self.name
 
 class Editor(StyledTextCtrl):
 
 	def __init__(self, spframe):
 		StyledTextCtrl.__init__(self, spframe.frame)
 		self.spframe = spframe
-		self.spframe.frame.Bind(EVT_STC_MODIFIED, self.OnTextModified, self)
+		self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
 		font = wx.Font(
 			12,
 			wx.FONTFAMILY_DEFAULT,
 			wx.FONTSTYLE_NORMAL,
 			wx.FONTWEIGHT_NORMAL,
-			faceName = "Times New Roman"
+			faceName = "Lucida Console"
 		)
 		self.StyleSetFont(STC_STYLE_DEFAULT, font)
 		self.spframe.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
 		self.SetLexer(STC_LEX_CONTAINER)
-		self.STC_STYLE_RED = 11
-		self.STC_STYLE_BLUE = 12
-		self.StyleSetForeground(self.STC_STYLE_RED, wx.Color(255, 0, 0))
-		self.StyleSetForeground(self.STC_STYLE_BLUE, wx.Color(0, 0, 255))
-		self.reChord = re.compile('(\[[^]]*\])')
-		self.__initRegularExpressions()
-		
-	def __initRegularExpressions(self):
-		self.openCurlyToken = TokenType('(\{)', 'openCurlyToken')
-		self.closeCurlyToken = TokenType('(\})', 'closeCurlyToken')
-		self.normalToken = TokenType('([^[{]+)', 'normalToken')
-		self.commandToken = TokenType('([^}:]+)', 'commandToken')
-		self.attrToken = TokenType('([^}]+)', 'attrToken')
-		self.chordToken = TokenType('(\[[^]]+)', 'chordToken')
-		self.closeChordToken = TokenType('(\])', 'closeChordToken')
-		self.colonToken = TokenType('(:)', 'colonToken')
+		self.STC_STYLE_NORMAL = 11
+		self.STC_STYLE_CHORD = 12
+		self.STC_STYLE_COMMAND = 13
+		self.STC_STYLE_ATTR = 14
+		self.STC_STYLE_CHORUS = 15
+		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Color(0, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Color(0, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Color(255, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_COMMAND, wx.Color(0, 0, 255))
+		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Color(0, 128, 0))
+		#I don't know why, but the following line is necessary in order to make
+		#the font bold
+		self.StyleSetFont(self.STC_STYLE_CHORUS, font)		
+		self.StyleSetBold(self.STC_STYLE_CHORUS, True)
+		#Dummy "token": we artificially replace every normalToken into a chorusToken when we are
+		#inside chorus.  Then, we can associate the chorus style in self.tokenStyle dictionary.
+		self.chorusToken = 'chorusToken'
+		self.tokenStyle = {
+			SongTokenizer.openCurlyToken: self.STC_STYLE_COMMAND,
+			SongTokenizer.closeCurlyToken: self.STC_STYLE_COMMAND,
+			SongTokenizer.normalToken: self.STC_STYLE_NORMAL,
+			SongTokenizer.commandToken: self.STC_STYLE_COMMAND,
+			SongTokenizer.attrToken: self.STC_STYLE_ATTR,
+			SongTokenizer.chordToken: self.STC_STYLE_CHORD,
+			SongTokenizer.closeChordToken: self.STC_STYLE_CHORD,
+			SongTokenizer.colonToken: self.STC_STYLE_COMMAND,
+			self.chorusToken: self.STC_STYLE_CHORUS
+		}
+		#self.chorus[i] == True iff, at the end of line i, we are still in chorus (i.e. bold) mode
+		self.chorus = []
 	
 	def New(self):
 		print("File->New");
@@ -78,81 +72,44 @@ class Editor(StyledTextCtrl):
 	def Save(self):
 		self.SaveFile(self.spframe.document)
 		
-	def OnTextModified(self, evt):
+	def OnTextChange(self, evt):
 		self.spframe.SetModified()
-	
-	
-	def __NextToken(self):
-	
-		def MatchToken(list):
-			for t in list:
-				m = t.r.match(self.tokenLine, self.tokenPos)
-				if m != None:
-					break
-			if m == None:
-				return None				
-			tok = Token(t, self.tokenPos, m.end(0), m.group(0))
-			print("Found %s" % (tok,))
-			self.tokenPos = m.end(0)
-			return tok
-	
-		#End of line
-		if self.tokenPos >= len(self.tokenLine):
-			return None
-		if self.tokenState == self.normal:
-			list = (self.openCurlyToken, self.chordToken, self.closeChordToken, self.normalToken)
-		elif self.tokenState == self.command:
-			list = (self.colonToken, self.closeCurlyToken, self.commandToken)
-		else: #self.tokenState == self.attr:
-			list = (self.attrToken, self.closeCurlyToken)
-
-		return MatchToken(list)
-
-	def __StartTokenize(self, l):
-		self.tokenLine = l
-		self.tokenPos = 0
-		self.tokenState = self.normal
-		print l
 	
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()
 		pos = self.GetEndStyled()
 		ln = self.LineFromPosition(pos)
-		l = self.GetLine(ln)
 		start = self.PositionFromLine(ln)
-		self.StartStyling(start, 0x1f)
-		self.__StartTokenize(l)
-		tok = self.__NextToken()
-		while tok != None:
-			t = tok.token
-			if self.tokenState == self.normal:
-				if t == self.normalToken:
-					pass
-				elif t == self.openCurlyToken:
-					self.tokenState = self.command
-				else: #t == self.chordToken or t == self.closeChordToken
-					pass
-			elif self.tokenState == self.command:
-				if t == self.commandToken:
-					pass
-				elif t == self.colonToken:
-					self.tokenState = self.attr
-				else: #t == self.closeCurlyToken
-					self.tokenState = self.normal
-			else: # self.tokenState == self.attr
-				if t == self.attrToken:
-					pass
-				else: #t = self.closeCurlyToken
-					self.tokenState = self.normal
-					
-			print "state = %d" % (self.tokenState,)
-			
-			tok = self.__NextToken()
-		
-		
-		self.SetStyling(pos-start, self.STC_STYLE_BLUE)
-		
-		
+		if ln > 0 and len(self.chorus) > ln-1:
+			bold = self.chorus[ln-1]
+		else:
+			bold = False
+		#changedBold is True iff self.chorus has changed for the current line, and thus we need
+		#to process (at least) another line
+		changedBold = False
+		lc = self.GetLineCount()
+		while (changedBold and ln < lc) or start < end:
+			self.StartStyling(start, 0x1f)
+			l = self.GetLine(ln)
+			tkz = SongTokenizer(l)
+			for tok in tkz:
+				n = len(tok.content.encode('utf-8'))
+				t = tok.token
+				if bold and t == SongTokenizer.normalToken:
+					t = self.chorusToken
+				self.SetStyling(n, self.tokenStyle[t])
+				if t == SongTokenizer.commandToken:
+					if tok.content.upper() == 'SOC':
+						bold = True
+					elif tok.content.upper() == 'EOC':
+						bold = False
+			if len(self.chorus) > ln:
+				changedBold = self.chorus[ln] != bold
+				self.chorus[ln] = bold
+			else:
+				self.chorus.append(bold)
+				changedBold = False
+			ln = ln + 1
+			start = self.PositionFromLine(ln)
 
 
-Enumerate(Editor, ('normal', 'command', 'attr'))

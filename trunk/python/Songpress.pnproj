@@ -1,1 +1,1 @@
-<Project name="Songpress"><File path="main.py"></File><File path="SDIMainFrame.py"></File><File path="Editor.py"></File><File path="Enumerate.py"></File></Project>
+<Project name="Songpress"><File path="main.py"></File><File path="SDIMainFrame.py"></File><File path="Editor.py"></File><File path="Enumerate.py"></File><File path="Tokenizer.py"></File><File path="SongTokenizer.py"></File></Project>
