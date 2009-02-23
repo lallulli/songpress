@@ -26,11 +26,85 @@ class PreviewCanvas(object):
 		self.ch = ch
 		
 	def OnPaint(self, e):
+		def BeginVerse():
+			pass
+			
+		def EndVerse():
+			pass
+			
+		def BeginChorus():
+			pass
+			
+		def EndChorus():
+			pass
+			
+		def ChorusVSkip():
+			pass
+			
+		def AddText(text):
+			pass
+		
+		def AddChord(chord):
+			pass
+			
+		def AddTitle(title):
+			pass
+			
+		def EndCurrent():
+			if state == verse:
+				EndVerse()
+			elif state == chorus:
+				EndChorus()
+		
+		def GetArgument():
+			tok = tkz.next()
+			if tok.token == SongTokenizer.attrToken:
+				return tok.content
+			tkz.Repeat()
+			return None
+	
 		dc = wx.PaintDC(self.frame)
+		
+		#states
+		none = 0
+		verse = 1
+		chorus = 2
+		
 		for l in self.text.splitlines():
 			tkz = SongTokenizer(l)
+			empty = True
 			for tok in tkz:
-				pass
+				empty = False
+				t = tok.token
+				if t == SongTokenizer.normalToken:
+					if state == none:
+						BeginVerse()
+					AddText(tok.content)
+				elif t == SongTokenizer.chordToken:
+					AddChord(tok.content[1:])
+				elif t == SongTokenizer.commandToken:
+					cmd = tok.content
+					if cmd == 'soc':
+						EndCurrent()
+						BeginChorus()
+					elif cmd == 'eoc' and state == chorus:
+						EndChorus()
+					elif cmd == 'c' or cmd == 'comment':
+						a = GetArgument()
+						if a != None:
+							AddComment(a)
+					elif cmd == 't' or cmd == 'title':
+						a = GetArgument()
+						if a != None:
+							EndCurrent()
+							AddTitle(a)			
+					
+			if empty:
+				if state == verse:
+					EndVerse()
+					state = none
+				elif state == chorus:
+					ChorusVSkip()
 		
 	def Refresh(self, text):
 		self.text = text
