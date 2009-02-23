@@ -36,11 +36,16 @@ class Tokenizer(object):
 		self.line = l
 		self.pos = 0
 		self.state = self.normal
+		self.prevToken = None
+		self.repeatToken = False
 		
 	def __iter__(self):
 		return self
 		
 	def next(self):
+		if self.repeatToken:
+			self.repeatToken = false
+			return self.prevToken
 		if self.pos >= len(self.line):
 			#End of line
 			raise StopIteration
@@ -57,4 +62,8 @@ class Tokenizer(object):
 		self.state = t[1]
 		#print("Found %s" % (tok,))
 		self.pos = m.end(0)
+		self.prevToken = tok
 		return tok
+
+	def Repeat(repeat = True):
+		self.repeatToken = repeat
