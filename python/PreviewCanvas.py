@@ -11,12 +11,13 @@ import wx
 from wx import xrc
 from VerseChorusHandler import *
 from SongTokenizer import *
+from SongFormat import *
 
 class PreviewCanvas(object):
 	"""Abstract class. Override methods New, Open, Save"""
 	###UI generation###
 
-	def __init__(self, parent, vh = VerseHandler(), ch = ChorusHandler()):
+	def __init__(self, parent, sf, vh = VerseHandler(), ch = ChorusHandler()):
 		self.frame = wx.Frame(parent, -1, "Preview")
 		self.frame.Bind(wx.EVT_PAINT, self.OnPaint, self.frame)
 		self.frame.SetBackgroundColour(wx.WHITE)
@@ -24,13 +25,28 @@ class PreviewCanvas(object):
 		self.frame.Show()
 		self.vh = vh
 		self.ch = ch
+		#SongFormat
+		self.sf = sf
 		
 	def OnPaint(self, e):
-		def BeginVerse():
+	
+		def BeginParagraph():
 			pass
 			
-		def EndVerse():
+		def EndParagraph():
 			pass
+	
+		def BeginVerse():
+			verseNumber = verseNumber + 1
+			verseFormat = sf.verse[verseNumber]
+			x = verseFormat.leftMargin
+			(w, h) = vh.Begin(x, y)
+			x = x + w
+			y = y + h
+			xMargin = x
+
+		def EndVerse():
+			y = vh.End(xMax, y)
 			
 		def BeginChorus():
 			pass
@@ -50,6 +66,9 @@ class PreviewCanvas(object):
 		def AddTitle(title):
 			pass
 			
+		def EndLine():
+			pass
+			
 		def EndCurrent():
 			if state == verse:
 				EndVerse()
@@ -64,6 +83,18 @@ class PreviewCanvas(object):
 			return None
 	
 		dc = wx.PaintDC(self.frame)
+		# current x position (for verse)
+		x = 0
+		# current y position
+		y = 0
+		# left margin in current paragraph
+		xMargin = 0
+		# current x position for chord
+		xChord = 0
+		# max x value in current paragraph
+		xMax = 0
+		verseNumber = 0
+		verseFormat = sf
 		
 		#states
 		none = 0
@@ -99,7 +130,9 @@ class PreviewCanvas(object):
 							EndCurrent()
 							AddTitle(a)			
 					
-			if empty:
+			if !empty:
+				EndLine()
+			else:
 				if state == verse:
 					EndVerse()
 					state = none
