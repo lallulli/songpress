@@ -8,14 +8,14 @@
 ##############################################################
 
 class VerseHandler(object):
-	def GetOffset(verseNumber):
+	def Begin(x, y):
 		return (0, 0)
-	def Draw(y, width, height):
-		return 0
+	def End(x, y):
+		return y
 	
 class ChorusHandler(object):
-	def GetOffset(verseNumber):
+	def Begin(x, y):
 		return (0, 0)
-	def Draw(y, width, height):
-		return 0
+	def End(x, y):
+		return y
 	
