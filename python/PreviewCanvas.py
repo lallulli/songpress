@@ -13,6 +13,12 @@ from VerseChorusHandler import *
 from SongTokenizer import *
 from SongFormat import *
 
+class TextPortion(object):
+	def __init__(text, font, x):
+		self.text = text
+		self.font = font
+		self.x = x
+
 class PreviewCanvas(object):
 	"""Abstract class. Override methods New, Open, Save"""
 	###UI generation###
@@ -44,6 +50,7 @@ class PreviewCanvas(object):
 			x = x + w
 			y = y + h
 			xMargin = x
+			textFont = verseFormat.GetWxFont()
 
 		def EndVerse():
 			y = vh.End(xMax, y)
@@ -58,15 +65,34 @@ class PreviewCanvas(object):
 			pass
 			
 		def AddText(text):
-			pass
+			if not appendToLastText:
+				lineText.append(TextPortion(text, textFont, x))
+				appendToLastText = True
+			else:
+				lineText[-1].text += text
+			dc.SetFont(textFont)
+			(w, h) = dc.GetTextExtent(lineText[-1].text)
+			x = lineText[-1].x + w
+			textHeight = max(textHeight, h)
+			appendToLastText = True
 		
 		def AddChord(chord):
-			pass
+			if xChord > x:
+				appendToLastText = False
+				x = xChord
+			lineChord.append(TextPortion(chord, chordFont, xChord))
+			dc.SetFont(chordFont)
+			(w, h) = dc.GetTextExtent(chord)
+			xChord += w
+			chordHeight = max(chordHeight, h)
 			
 		def AddTitle(title):
 			pass
 			
 		def EndLine():
+			# xMax = ..
+			# reset lists, append..., etc.
+			# draw!
 			pass
 			
 		def EndCurrent():
@@ -93,8 +119,14 @@ class PreviewCanvas(object):
 		xChord = 0
 		# max x value in current paragraph
 		xMax = 0
+		appendToLastText = False
 		verseNumber = 0
 		verseFormat = sf
+		lineText = []
+		lineChords = []
+		textHeight = 0
+		widthHeight = 0
+		textFont = None
 		
 		#states
 		none = 0
