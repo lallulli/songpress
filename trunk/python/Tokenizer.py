@@ -44,7 +44,7 @@ class Tokenizer(object):
 		
 	def next(self):
 		if self.repeatToken:
-			self.repeatToken = false
+			self.repeatToken = False
 			return self.prevToken
 		if self.pos >= len(self.line):
 			#End of line
@@ -65,5 +65,5 @@ class Tokenizer(object):
 		self.prevToken = tok
 		return tok
 
-	def Repeat(repeat = True):
+	def Repeat(self, repeat = True):
 		self.repeatToken = repeat

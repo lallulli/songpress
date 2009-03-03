@@ -73,7 +73,9 @@ class Editor(StyledTextCtrl):
 		self.SaveFile(self.spframe.document)
 		
 	def OnTextChange(self, evt):
+		print("OnTextChange")
 		self.spframe.SetModified()
+		self.spframe.TextUpdated()
 	
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()
