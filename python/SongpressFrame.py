@@ -12,13 +12,15 @@ from wx import xrc
 from SDIMainFrame import *
 from Editor import *
 from PreviewCanvas import *
+from SongFormat import *
 
 class SongpressFrame(SDIMainFrame):
 
 	def __init__(self, res):
 		SDIMainFrame.__init__(self, res, 'MainFrame', 'Songpress - Il Canzonatore', 'Luca Allulli', 'song', 'crd')
 		self.text = Editor(self)
-		self.previewCanvas = PreviewCanvas(self.frame)
+		self.format = SongFormat()
+		self.previewCanvas = PreviewCanvas(self.frame, self.format)
 
 	def New(self):
 		self.text.New();
@@ -29,3 +31,5 @@ class SongpressFrame(SDIMainFrame):
 	def Save(self):
 		self.text.Save()
 		
+	def TextUpdated(self):
+		self.previewCanvas.Refresh(self.text.GetText())		
