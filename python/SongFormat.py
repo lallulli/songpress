@@ -12,13 +12,18 @@ import wx
 class FontFormat(object):
 	def __init__(self):
 		object.__init__(self)
+		# Definable by user
 		self.face = "Arial"
 		self.size = 12
 		self.bold = False
 		self.italic = False
 		self.underline = False
+		# Auto set
+		self.wxFont = None
+		self._UpdateWxFont()
 		
-	def GetWxFont(self):
+	#TODO: Call following method automatically upon property change		
+	def _UpdateWxFont(self):
 		if self.italic:
 			style = wx.FONTSTYLE_ITALIC
 		else:
@@ -27,7 +32,7 @@ class FontFormat(object):
 			weight = wx.FONTWEIGHT_BOLD
 		else:
 			weight = wx.FONTWEIGHT_NORMAL
-		return wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
+		self.wxFont = wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
 	
 class ParagraphFormat(FontFormat):
 	def __init__(self):
