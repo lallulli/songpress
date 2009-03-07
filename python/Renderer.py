@@ -12,52 +12,61 @@ from SongDecorator import *
 from SongTokenizer import *
 from SongFormat import *
 
-class TextPortion(object):
-	def __init__(self, text, font, x):
+class SongBox(object):
+	def __init__(self, x, y, w, h):
 		object.__init__(self)
-		self.text = text
-		self.font = font
 		self.x = x
+		self.y = y
+		self.w = w
+		self.h = h
+		self.boxes = []
+
+	def RelocateBox(self, box):
+		self.w = max(self.w, box.x + box.w)
+		self.y = max(self.y, box.y + box.w)
 		
-class SongBlock(object):
+	def AddBox(self, box):
+		self.boxes.append(box)
+		box.parent = self
+		self.RelocateBox(box)
 	
+class SongSong(SongBox):
+	def __init__(self):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		
+class SongBlock(SongBox, format):
 	# types
 	verse = 1
 	chorus = 2
 	title = 3
 	
-	def __init__(self, type, format, dc):
-	
-		def GetFontHeight(font):
-			dc.SetFont(font)
-			return dc.GetTextExtent('Dummy')[1]
-			
-		object.__init__(self)
-		self.height = 0
-		self.width = 0
-		self.textLines = []
-		self.yText = []
-		self.chordLines = []
-		self.yChord = []
+	def __init__(self, type, format):
+		SongBox.__init__(self, 0, 0, 0, 0)
 		self.type = type
+		self.verseNumber = 0
 		self.format = format
-		self.textHeight = GetFontHeight(self.format.wxFont)
-		self.chordHeight = GetFontHeight(self.format.chord.wxFont)
-		
-	def AddLine(self, text, chords, width):
-		self.yChord.append(width)
-		self.chordLines.append(chords)
-		if(len(chords) > 0):
-			self.height += self.chordHeight * self.format.chordSpacing
-		self.yText.append(self.height)
-		self.textLines.append(text)
-		self.height += self.textHeight * self.format.textSpacing
-		self.yText.append(self.height)
-		self.UpdateWidth(width + self.format.leftMargin)
 			
-	def UpdateWidth(self, width):
-		if width > self.width:
-			self.width = width	
+class SongLine(SongBox):
+	def __init__(self):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.hasChords = False
+
+	def AddBox(self, text):
+		if text.type == self.chord:
+			self.hasChords = True
+		SongBox.AddBox(self, text)
+	
+class SongText(SongBox):
+	text = 1
+	chord = 2
+	comment = 3
+	title = 4
+	
+	def __init__(self, text, font, type):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.text = text
+		self.font = font
+		self.type = type
 
 
 class Renderer(object):
@@ -69,30 +78,22 @@ class Renderer(object):
 		self.dc = None
 		# SongFormat
 		self.sf = sf
-		# current self.x position (within line)
-		self.x = 0
-		# current self.x position for chord
-		self.xChord = 0
-		# overall song width and height (excluding decorations)
-		self.width = 0
-		self.height = 0
-		self.appendToLastText = False
 		self.verseNumber = 0
-		self.lineText = []
-		self.lineChords = []
-		self.textHeight = 0
-		self.chordHeight = 0
 		self.textFont = None
 		self.chordFont = None
 		self.commentFont = None
 		self.format = None
 		self.inLine = False
 		self.currentBlock = None
-		self.blocks = []
+		self.currentLine = None
+		self.song = None
 
 	def BeginBlock(self, type):
 		self.EndBlock()
-		self.currentBlock = SongBlock(type, self.format, self.dc)
+		self.currentBlock = SongBlock(type)
+		if type == SongBlock.verse:
+			self.verseNumber += 1
+			self.currentBlock.verseNumber = self.verseNumber
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont	
 		self.commentFont = self.format.comment.wxFont
@@ -100,11 +101,7 @@ class Renderer(object):
 	def EndBlock(self):
 		if self.currentBlock != None:
 			self.EndLine()
-			if(self.currentBlock.width > self.width):
-				self.width = self.currentBlock.width
-			if(self.currentBlock.height > self.height):
-				self.height = self.currentBlock.height				
-			self.blocks.append(self.currentBlock)
+			self.song.AddBox(self.currentBlock)
 			currentBlock = None
 
 	def BeginVerse(self):
@@ -124,77 +121,34 @@ class Renderer(object):
 		self.BeginLine()
 		self.EndLine()
 		
-	def AddText(self, text, comment = False):
+	def AddText(self, text, type = SongText.text):
 		self.BeginVerse()
 		self.BeginLine()
-		if comment:
+		if type == SongText.comment:
 			text = "(" + text + ")"
-		if (not self.appendToLastText) or comment:
-			print("Appending at " + str(self.x))
-			if not comment:
-				self.lineText.append(TextPortion(text, self.textFont, self.x))
-				self.appendToLastText = True
-			else:
-				self.lineText.append(TextPortion(text, self.commentFont, self.x))
-				self.appendToLastText = False
+			font = self.commentFont
+		elif text == SongText.chord:
+			font = self.chordFont
 		else:
-			self.lineText[-1].text += text
-		self.dc.SetFont(self.textFont)
-		(w, h) = self.dc.GetTextExtent(self.lineText[-1].text)
-		self.x = self.lineText[-1].x + w
-		self.textHeight = max(self.textHeight, h)
-	
-	def AddChord(self, chord):
-		self.BeginVerse()
-		self.BeginLine()
-		if self.xChord > self.x:
-			self.appendToLastText = False
-			self.x = self.xChord
-			print("Ora vale "+str(self.x))
-		else:
-			self.xChord = self.x
-		self.lineChords.append(TextPortion(chord, self.chordFont, self.xChord))
-		self.dc.SetFont(self.chordFont)
-		(w, h) = self.dc.GetTextExtent(chord)
-		self.xChord += w
-		self.chordHeight = max(self.chordHeight, h)
+			font = self.textFont
+		t = SongText(text, font, type)
+		self.currentLine.AddBox(t)
 		
 	def AddTitle(self, title):
 		self.format = self.sf.title
 		self.BeginBlock(SongBlock.title)	
-		self.AddText(title)
+		self.AddText(title, SongText.title)
 		self.EndBlock()
 		
 	def BeginLine(self):
 		if not self.inLine:
 			self.inLine = True
-			self.lineText = []
-			self.lineChords = []
-			self.textHeight = 0
-			self.chordHeight = 0
-			self.x = 0
-			self.xChord = 0
-			self.appendToLastText = False	
+			self.currentLine = SongLine()
 			
 	def EndLine(self):
 		if self.inLine:
-			self.currentBlock.AddLine(self.lineText, self.lineChords, max(self.xChord, self.x))
-		old = """
-		if self.inLine:
-			self.inLine = False
-			# Draw chords
-			if len(self.lineChords) > 0:
-				self.dc.SetFont(self.chordFont)
-				for c in self.lineChords:
-					self.dc.DrawText(c.text, c.x, self.y)
-				self.y += self.chordHeight * self.format.chordSpacing
-			# Draw text
-			for t in self.lineText:
-				self.dc.SetFont(t.font)
-				self.dc.DrawText(t.text, t.x, self.y)
-			self.y += self.textHeight * self.format.textSpacing
-			self.xMax = max(self.xMax, self.xChord, self.x)
-		"""
+			self.currentBlock.AddBox(self.currentLine)
+			self.currentLine = None
 		
 	def GetAttribute(self):
 		print("Getting attribute...")
@@ -219,11 +173,11 @@ class Renderer(object):
 	def Render(self, text, dc):
 		self.text = text
 		self.dc = dc
-		self.width = 0
 		self.verseNumber = 0
 		self.format = self.sf
 		self.inLine = False
 		self.currentBlock = None
+		self.song = SongSong()
 		
 		for l in self.text.splitlines():
 			state = self.GetState()
@@ -236,7 +190,7 @@ class Renderer(object):
 				if t == SongTokenizer.normalToken:
 					self.AddText(tok.content)
 				elif t == SongTokenizer.chordToken:
-					self.AddChord(tok.content[1:])
+					self.AddChord(tok.content[1:], SongText.chord)
 				elif t == SongTokenizer.commandToken:
 					cmd = tok.content
 					if cmd == 'soc':
@@ -246,7 +200,7 @@ class Renderer(object):
 					elif cmd == 'c' or cmd == 'comment':
 						a = self.GetAttribute()
 						if a != None:
-							self.AddText(a, True)
+							self.AddText(a, SongText.comment)
 					elif cmd == 't' or cmd == 'title':
 						a = self.GetAttribute()
 						if a != None:
@@ -258,6 +212,8 @@ class Renderer(object):
 					self.EndBlock()
 				elif state == SongBlock.chorus:
 					self.ChorusVSkip()
+		self.EndBlock()
+		self.sd.Draw(self.blocks, self.width, self.height, self.sf, dc)
 		self.dc = None
 		
 		
