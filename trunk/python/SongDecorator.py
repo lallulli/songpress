@@ -21,29 +21,45 @@ class SongDecorator(object):
 		# SongBox
 		self.s = None
 		
-	def LayoutComposeChord(self, text):
-		# Modify chord size
+	def SetMarginText(self, text):
+		# Modify text margins
 		pass
 		
-	def LayoutComposeChord(self, text):
-		# Modify text size
+	def SetMarginChord(self, chord):
+		# Modify chord margins
+		pass
+		
+	def SetMarginLine(self, line):
+		# Modify line margins
+		pass
+
+	def SetMarginBlock(self, block):
+		# Modify line margins
+		pass
+
+	def SetMarginSong(self, song):
+		# Modify line margins
 		pass
 		
 	def LayoutComposeLine(self, line):
 		# Pass 1: determine size of text
 		chordMaxH = 0
+		chordMaxTH = 0
 		textMaxH = 0
+		textMaxTH = 0
 		for t in line.boxes:
 			self.dc.SetFont(t.font)
 			t.w, t.h = self.dc.GetTextExtent(t.text)
 			if t.type == SongText.chord:
-				self.LayoutComposeChord(t)
+				self.SetMarginChord(t)
 				chordMaxH = max(chordMaxH, t.h)
+				chordMaxTH = max(chordMaxTH, t.GetTotalHeight())
 			else:
-				self.LayoutComposeText(t)
+				self.SetMarginText(t)
 				textMaxH = max(textMaxH, t.h)
-		chordBaseline = chordMaxH
-		textBaseline = chordMaxH * line.parent.format.chordSpacing + textMaxH
+				textMaxTH = max(textMaxTH, t.GetTotalHeight())
+		chordBaseline = chordMaxTH
+		textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
 		line.h = textBaseline + textMaxH * (line.parent.format.textSpacing - 1)
 		# Pass 2: set layout
 		x = 0
@@ -53,17 +69,34 @@ class SongDecorator(object):
 			if t.type == SongText.chord:
 				t.x = max(x, chordX)
 				x = t.x
-				chordX = x + t.w 
-				t.y = chordBaseline - t.h
+				chordX = x + t.GetTotalWidth()
+				t.y = chordBaseline - t.GetTotalHeight()
 			else:
 				t.x = x
-				x = t.x + t.w
-				t.y = textBaseline - t.h
-		line.w = max(x, chordX)
+				x = t.x + t.GetTotalWidth()
+				t.y = textBaseline - t.GetTotalHeight()
+			line.RelocateBox(t)
+		self.SetMarginLine(line)
 		
-	def LayoutComposeBlock(self):
-		pass
+		
+	def LayoutComposeBlock(self, block):
+		y = 0
+		for l in block.boxes:
+			l.y = y
+			y += l.GetTotalHeight()
+			block.RelocateBox(l)
+		self.SetMarginBlock(block)
 
+	def LayoutComposeSong(self, song):
+		y = 0
+		self.dc.SetFont(song.format.wxFont)
+		w, h = self.dc.GetTextExtent("Dummy")
+		for b in song.boxes:
+			b.y = y
+			y += b.GetTotalHeight() + h * song.blockSpacing
+			song.RelocateBox(b)
+		self.SetMarginSong(song)
+		
 
 	def LayoutCompose(self):
 		# Postorder layout composing
@@ -73,6 +106,15 @@ class SongDecorator(object):
 		for block in self.s.boxes:
 			self.LayoutComposeBlock(block)				
 		self.LayoutComposeSong()
+		
+	def LayoutMoveBlock(self, block):
+		# Move block within song
+		pass
+		
+	def LayoutMoveLine(self, line):
+		# Move line within block
+		# If we need to, we can even move text and chords inside this line
+		pass
 
 	def LayoutMove(self):
 		# Now that sizes are set, we can move elements inside each box if we need to
@@ -84,18 +126,60 @@ class SongDecorator(object):
 				# If we need to, we can even move text and chords inside this line
 				self.LayoutMoveLine(line)
 				
+	def PreDrawSong(self, song):
+		pass
+		
+	def PreDrawBlock(self, block, bx, by):
+		# bx, by: coordinates of top-left corner of drawable area
+		pass
+		
+	def PreDrawLine(self, line, lx, ly):
+		# lx, ly: coordinates of top-left corner of drawable area
+		pass
+		
+	def PreDrawText(self, text, tx, ty):
+		# tx, ty: coordinates of top-left corner of drawable area
+		pass
+		
+	def DrawText(self, text, tx, ty):
+		# tx, ty: coordinates of top-left corner of drawable area
+		dc.SetFont(text.font)
+		dc.DrawText(text.text, tx + t.marginLeft, ty + t.marginTop)
+		
+	def PostDrawText(self, text, tx, ty):
+		# tx, ty: coordinates of top-left corner of drawable area
+		pass		
+		
+	def PostDrawLine(self, line, lx, ly):
+		# lx, ly: coordinates of top-left corner of drawable area
+		pass		
+		
+	def PostDrawBlock(self, block, bx, by):
+		# bx, by: coordinates of top-left corner of drawable area
+		pass
+		
+	def PostDrawSong(self, song):
+		pass		
+				
+		
 	def DrawBoxes(self):
 		self.PreDrawSong(song)
 		for block in self.s.boxes:
-			self.PreDrawBlock(block)
+			bx = song.marginLeft + block.x
+			by = song.marginTop + block.y
+			self.PreDrawBlock(block, bx, by)
 			for line in block.boxes:
-				self.PreDrawLine(line)
+				lx = bx + block.marginLeft + line.x
+				ly = by + block.marginTop + line.y
+				self.PreDrawLine(line, lx, ly)
 				for text in line.boxes:
-					self.PreDrawText(text)
-					self.DrawText(text)
-					self.PostDrawText(text)
-				self.PostDrawLine(line)
-			self.PostDrawBox(box)
+					tx = lx + line.marginLeft + text.x
+					ty = ly + line.marginTop + text.y
+					self.PreDrawText(text, tx, ty)
+					self.DrawText(text, tx, ty)
+					self.PostDrawText(text, tx, ty)
+				self.PostDrawLine(line, lx, ly)
+			self.PostDrawBlock(block, bx, by)
 		self.PostDrawSong(song)
 		
 	def Draw(self, s, dc):
