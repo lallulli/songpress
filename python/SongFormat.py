@@ -9,9 +9,32 @@
 
 import wx
 
-class FontFormat(object):
-	def __init__(self):
+class AttributeMonitor(object):
+	def __init__(self, handlers):
 		object.__init__(self)
+		self.am_started = False
+		self.am_handlers = handlers
+		
+	def __setattr__(self, name, value):
+		object.__setattr__(self, name, value)
+		if name != 'am_started' and self.am_started:
+			for h in self.am_handlers:
+				if name in h.names:
+					print name
+					h.OnSetAttr(self, name, value)
+					
+	def Am_Start(self):
+		self.am_started = True
+			
+class FontChangeHandler(object):
+	names = set(("face", "size", "bold", "italic", "underline"))
+	@staticmethod
+	def OnSetAttr(format, name, value):
+		format.UpdateWxFont()
+
+class FontFormat(AttributeMonitor):
+	def __init__(self):
+		AttributeMonitor.__init__(self, (FontChangeHandler, ))
 		# Definable by user
 		self.face = "Arial"
 		self.size = 12
@@ -20,10 +43,12 @@ class FontFormat(object):
 		self.underline = False
 		# Auto set
 		self.wxFont = None
-		self._UpdateWxFont()
+		self.UpdateWxFont()
+		# Start monitor
+		self.Am_Start()
 		
-	#TODO: Call following method automatically upon property change		
-	def _UpdateWxFont(self):
+	def UpdateWxFont(self):
+		print("Updated")
 		if self.italic:
 			style = wx.FONTSTYLE_ITALIC
 		else:
@@ -36,7 +61,6 @@ class FontFormat(object):
 	
 class ParagraphFormat(FontFormat):
 	def __init__(self):
-		object.__init__(self)
 		FontFormat.__init__(self)
 		self.leftMargin = 0
 		self.topMargin = 12
@@ -52,15 +76,16 @@ class ParagraphFormat(FontFormat):
 
 class SongFormat(ParagraphFormat):
 	def __init__(self):
-		object.__init__(self)
 		ParagraphFormat.__init__(self)
 		self.verse = []
 		self.chorus = ParagraphFormat()
 		self.chorus.bold = True
+		self.chorus.underline = False
 		self.title = ParagraphFormat()
 		self.title.bold = True
 		self.title.underline = True
 		self.blockSpacing = 1
+		
 	def StubSetVerseCount(self, n):
 		i = len(self.verse)
 		while i < n:

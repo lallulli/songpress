@@ -38,8 +38,10 @@ class Renderer(object):
 			# self.currentBlock.verseNumber = self.verseNumber
 			self.sf.StubSetVerseCount(self.verseNumber)
 			self.format = self.sf.verse[self.verseNumber-1]
-		else:
+		elif type == SongBlock.chorus:
 			self.format = self.sf.chorus
+		else:
+			self.format = self.sf.title
 		self.currentBlock = SongBlock(type, self.format)
 		self.currentBlock.verseNumber = self.verseNumber
 		self.textFont = self.format.wxFont
@@ -75,7 +77,7 @@ class Renderer(object):
 		if type == SongText.comment:
 			text = "(" + text + ")"
 			font = self.commentFont
-		elif text == SongText.chord:
+		elif type == SongText.chord:
 			font = self.chordFont
 		else:
 			font = self.textFont
@@ -83,7 +85,6 @@ class Renderer(object):
 		self.currentLine.AddBox(t)
 		
 	def AddTitle(self, title):
-		self.format = self.sf.title
 		self.BeginBlock(SongBlock.title)	
 		self.AddText(title, SongText.title)
 		self.EndBlock()
