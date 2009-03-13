@@ -8,7 +8,7 @@
 ##############################################################
 
 from SongFormat import *
-from Renderer import *
+from SongBoxes import *
 
 class SongDecorator(object):
 	def __init__(self, sf = None):
@@ -93,7 +93,7 @@ class SongDecorator(object):
 		w, h = self.dc.GetTextExtent("Dummy")
 		for b in song.boxes:
 			b.y = y
-			y += b.GetTotalHeight() + h * song.blockSpacing
+			y += b.GetTotalHeight() + h * song.format.blockSpacing
 			song.RelocateBox(b)
 		self.SetMarginSong(song)
 		
@@ -105,7 +105,7 @@ class SongDecorator(object):
 				self.LayoutComposeLine(line)
 		for block in self.s.boxes:
 			self.LayoutComposeBlock(block)				
-		self.LayoutComposeSong()
+		self.LayoutComposeSong(self.s)
 		
 	def LayoutMoveBlock(self, block):
 		# Move block within song
@@ -143,8 +143,8 @@ class SongDecorator(object):
 		
 	def DrawText(self, text, tx, ty):
 		# tx, ty: coordinates of top-left corner of drawable area
-		dc.SetFont(text.font)
-		dc.DrawText(text.text, tx + t.marginLeft, ty + t.marginTop)
+		self.dc.SetFont(text.font)
+		self.dc.DrawText(text.text, tx + text.marginLeft, ty + text.marginTop)
 		
 	def PostDrawText(self, text, tx, ty):
 		# tx, ty: coordinates of top-left corner of drawable area
@@ -163,10 +163,10 @@ class SongDecorator(object):
 				
 		
 	def DrawBoxes(self):
-		self.PreDrawSong(song)
+		self.PreDrawSong(self.s)
 		for block in self.s.boxes:
-			bx = song.marginLeft + block.x
-			by = song.marginTop + block.y
+			bx = self.s.marginLeft + block.x
+			by = self.s.marginTop + block.y
 			self.PreDrawBlock(block, bx, by)
 			for line in block.boxes:
 				lx = bx + block.marginLeft + line.x
@@ -180,7 +180,7 @@ class SongDecorator(object):
 					self.PostDrawText(text, tx, ty)
 				self.PostDrawLine(line, lx, ly)
 			self.PostDrawBlock(block, bx, by)
-		self.PostDrawSong(song)
+		self.PostDrawSong(self.s)
 		
 	def Draw(self, s, dc):
 		# SongBox s
@@ -189,6 +189,7 @@ class SongDecorator(object):
 		self.LayoutCompose()
 		self.LayoutMove()
 		self.DrawBoxes()
+		self.dc = None
 	
 		
 		
