@@ -60,6 +60,7 @@ class SongFormat(ParagraphFormat):
 		self.title = ParagraphFormat()
 		self.title.bold = True
 		self.title.underline = True
+		self.blockSpacing = 1
 	def StubSetVerseCount(self, n):
 		i = len(self.verse)
 		while i < n:

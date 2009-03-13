@@ -19,16 +19,33 @@ class SongBox(object):
 		self.y = y
 		self.w = w
 		self.h = h
+		self.marginLeft = 0
+		self.marginRight = 0
+		self.marginTop = 0
+		self.marginBottom = 0
 		self.boxes = []
 
 	def RelocateBox(self, box):
-		self.w = max(self.w, box.x + box.w)
-		self.y = max(self.y, box.y + box.w)
+		self.w = max(self.w, box.x + box.GetTotalWidth())
+		self.h = max(self.h, box.y + box.GetTotalHeight())
 		
 	def AddBox(self, box):
 		self.boxes.append(box)
 		box.parent = self
 		self.RelocateBox(box)
+		
+	def SetMargin(self, top, right, bottom, left):
+		self.marginTop = top
+		self.marginRight = right
+		self.marginBottom = bottom
+		self.marginLeft = left
+		
+	def GetTotalHeight(self):
+		return self.h + self.marginTop + self.marginBottom
+
+	def GetTotalWidth(self):
+		return self.w + self.marginLeft + self.marginRight
+
 	
 class SongSong(SongBox):
 	def __init__(self):
