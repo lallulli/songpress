@@ -1,0 +1,85 @@
+###############################################################
+# Name:			 SongBoxes.py
+# Purpose:	 Elements that make up a song
+# Author:		 Luca Allulli (webmaster@roma21.it)
+# Created:	 2009-02-21
+# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# License:	 GNU GPL v2
+##############################################################
+
+import wx
+from SongFormat import *
+
+class SongBox(object):
+	def __init__(self, x, y, w, h):
+		object.__init__(self)
+		self.x = x
+		self.y = y
+		self.w = w
+		self.h = h
+		self.marginLeft = 0
+		self.marginRight = 0
+		self.marginTop = 0
+		self.marginBottom = 0
+		self.boxes = []
+
+	def RelocateBox(self, box):
+		self.w = max(self.w, box.x + box.GetTotalWidth())
+		self.h = max(self.h, box.y + box.GetTotalHeight())
+		
+	def AddBox(self, box):
+		self.boxes.append(box)
+		box.parent = self
+		self.RelocateBox(box)
+		
+	def SetMargin(self, top, right, bottom, left):
+		self.marginTop = top
+		self.marginRight = right
+		self.marginBottom = bottom
+		self.marginLeft = left
+		
+	def GetTotalHeight(self):
+		return self.h + self.marginTop + self.marginBottom
+
+	def GetTotalWidth(self):
+		return self.w + self.marginLeft + self.marginRight
+
+	
+class SongSong(SongBox):
+	def __init__(self, format):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.format = format
+		
+class SongBlock(SongBox):
+	# types
+	verse = 1
+	chorus = 2
+	title = 3
+	
+	def __init__(self, type, format):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.type = type
+		self.verseNumber = 0
+		self.format = format
+			
+class SongLine(SongBox):
+	def __init__(self):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.hasChords = False
+
+	def AddBox(self, text):
+		if text.type == text.chord:
+			self.hasChords = True
+		SongBox.AddBox(self, text)
+	
+class SongText(SongBox):
+	text = 1
+	chord = 2
+	comment = 3
+	title = 4
+	
+	def __init__(self, text, font, type):
+		SongBox.__init__(self, 0, 0, 0, 0)
+		self.text = text
+		self.font = font
+		self.type = type

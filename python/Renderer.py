@@ -11,80 +11,7 @@ import wx
 from SongDecorator import *
 from SongTokenizer import *
 from SongFormat import *
-
-class SongBox(object):
-	def __init__(self, x, y, w, h):
-		object.__init__(self)
-		self.x = x
-		self.y = y
-		self.w = w
-		self.h = h
-		self.marginLeft = 0
-		self.marginRight = 0
-		self.marginTop = 0
-		self.marginBottom = 0
-		self.boxes = []
-
-	def RelocateBox(self, box):
-		self.w = max(self.w, box.x + box.GetTotalWidth())
-		self.h = max(self.h, box.y + box.GetTotalHeight())
-		
-	def AddBox(self, box):
-		self.boxes.append(box)
-		box.parent = self
-		self.RelocateBox(box)
-		
-	def SetMargin(self, top, right, bottom, left):
-		self.marginTop = top
-		self.marginRight = right
-		self.marginBottom = bottom
-		self.marginLeft = left
-		
-	def GetTotalHeight(self):
-		return self.h + self.marginTop + self.marginBottom
-
-	def GetTotalWidth(self):
-		return self.w + self.marginLeft + self.marginRight
-
-	
-class SongSong(SongBox):
-	def __init__(self):
-		SongBox.__init__(self, 0, 0, 0, 0)
-		
-class SongBlock(SongBox, format):
-	# types
-	verse = 1
-	chorus = 2
-	title = 3
-	
-	def __init__(self, type, format):
-		SongBox.__init__(self, 0, 0, 0, 0)
-		self.type = type
-		self.verseNumber = 0
-		self.format = format
-			
-class SongLine(SongBox):
-	def __init__(self):
-		SongBox.__init__(self, 0, 0, 0, 0)
-		self.hasChords = False
-
-	def AddBox(self, text):
-		if text.type == self.chord:
-			self.hasChords = True
-		SongBox.AddBox(self, text)
-	
-class SongText(SongBox):
-	text = 1
-	chord = 2
-	comment = 3
-	title = 4
-	
-	def __init__(self, text, font, type):
-		SongBox.__init__(self, 0, 0, 0, 0)
-		self.text = text
-		self.font = font
-		self.type = type
-
+from SongBoxes import *
 
 class Renderer(object):
 	
@@ -100,17 +27,21 @@ class Renderer(object):
 		self.chordFont = None
 		self.commentFont = None
 		self.format = None
-		self.inLine = False
 		self.currentBlock = None
 		self.currentLine = None
 		self.song = None
 
 	def BeginBlock(self, type):
 		self.EndBlock()
-		self.currentBlock = SongBlock(type)
 		if type == SongBlock.verse:
 			self.verseNumber += 1
-			self.currentBlock.verseNumber = self.verseNumber
+			# self.currentBlock.verseNumber = self.verseNumber
+			self.sf.StubSetVerseCount(self.verseNumber)
+			self.format = self.sf.verse[self.verseNumber-1]
+		else:
+			self.format = self.sf.chorus
+		self.currentBlock = SongBlock(type, self.format)
+		self.currentBlock.verseNumber = self.verseNumber
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont	
 		self.commentFont = self.format.comment.wxFont
@@ -119,7 +50,7 @@ class Renderer(object):
 		if self.currentBlock != None:
 			self.EndLine()
 			self.song.AddBox(self.currentBlock)
-			currentBlock = None
+			self.currentBlock = None
 
 	def BeginVerse(self):
 		if self.currentBlock == None:
@@ -158,12 +89,11 @@ class Renderer(object):
 		self.EndBlock()
 		
 	def BeginLine(self):
-		if not self.inLine:
-			self.inLine = True
+		if self.currentLine == None:
 			self.currentLine = SongLine()
 			
 	def EndLine(self):
-		if self.inLine:
+		if self.currentLine != None:
 			self.currentBlock.AddBox(self.currentLine)
 			self.currentLine = None
 		
@@ -192,9 +122,9 @@ class Renderer(object):
 		self.dc = dc
 		self.verseNumber = 0
 		self.format = self.sf
-		self.inLine = False
+		self.currentLine = None
 		self.currentBlock = None
-		self.song = SongSong()
+		self.song = SongSong(self.sf)
 		
 		for l in self.text.splitlines():
 			state = self.GetState()
@@ -207,7 +137,7 @@ class Renderer(object):
 				if t == SongTokenizer.normalToken:
 					self.AddText(tok.content)
 				elif t == SongTokenizer.chordToken:
-					self.AddChord(tok.content[1:], SongText.chord)
+					self.AddText(tok.content[1:], SongText.chord)
 				elif t == SongTokenizer.commandToken:
 					cmd = tok.content
 					if cmd == 'soc':
@@ -230,7 +160,7 @@ class Renderer(object):
 				elif state == SongBlock.chorus:
 					self.ChorusVSkip()
 		self.EndBlock()
-		self.sd.Draw(self.blocks, self.width, self.height, self.sf, dc)
+		self.sd.Draw(self.song, dc)
 		self.dc = None
 		
 		
