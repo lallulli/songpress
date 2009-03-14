@@ -22,7 +22,6 @@ class Renderer(object):
 		self.dc = None
 		# SongFormat
 		self.sf = sf
-		self.verseNumber = 0
 		self.textFont = None
 		self.chordFont = None
 		self.commentFont = None
@@ -34,16 +33,15 @@ class Renderer(object):
 	def BeginBlock(self, type):
 		self.EndBlock()
 		if type == SongBlock.verse:
-			self.verseNumber += 1
-			# self.currentBlock.verseNumber = self.verseNumber
-			self.sf.StubSetVerseCount(self.verseNumber)
-			self.format = self.sf.verse[self.verseNumber-1]
+			self.song.verseCount += 1
+			self.sf.StubSetVerseCount(self.song.verseCount)
+			self.format = self.sf.verse[self.song.verseCount-1]
 		elif type == SongBlock.chorus:
 			self.format = self.sf.chorus
 		else:
 			self.format = self.sf.title
 		self.currentBlock = SongBlock(type, self.format)
-		self.currentBlock.verseNumber = self.verseNumber
+		self.currentBlock.verseNumber = self.song.verseCount
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont	
 		self.commentFont = self.format.comment.wxFont
@@ -56,14 +54,9 @@ class Renderer(object):
 
 	def BeginVerse(self):
 		if self.currentBlock == None:
-			self.verseNumber += 1
-			print("self.verse %d" % (self.verseNumber,))
-			self.sf.StubSetVerseCount(self.verseNumber)
-			self.format = self.sf.verse[self.verseNumber-1]
 			self.BeginBlock(SongBlock.verse)
 
 	def BeginChorus(self):
-		self.format = self.sf.chorus
 		self.BeginBlock(SongBlock.chorus)
 		
 	def ChorusVSkip(self):

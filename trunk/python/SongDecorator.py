@@ -11,9 +11,8 @@ from SongFormat import *
 from SongBoxes import *
 
 class SongDecorator(object):
-	def __init__(self, sf = None):
+	def __init__(self):
 		object.__init__(self)
-		self.sf = None
 		self.dc = None
 		# Current y
 		self.y = 0
@@ -58,9 +57,9 @@ class SongDecorator(object):
 				self.SetMarginText(t)
 				textMaxH = max(textMaxH, t.h)
 				textMaxTH = max(textMaxTH, t.GetTotalHeight())
-		chordBaseline = chordMaxTH
-		textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
-		line.h = textBaseline + textMaxH * (line.parent.format.textSpacing - 1)
+		line.chordBaseline = chordMaxTH
+		line.textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
+		line.h = line.textBaseline + textMaxH * (line.parent.format.textSpacing - 1)
 		# Pass 2: set layout
 		x = 0
 		chordX = 0
@@ -70,11 +69,11 @@ class SongDecorator(object):
 				t.x = max(x, chordX)
 				x = t.x
 				chordX = x + t.GetTotalWidth()
-				t.y = chordBaseline - t.GetTotalHeight()
+				t.y = line.chordBaseline - t.GetTotalHeight()
 			else:
 				t.x = x
 				x = t.x + t.GetTotalWidth()
-				t.y = textBaseline - t.GetTotalHeight()
+				t.y = line.textBaseline - t.GetTotalHeight()
 			line.RelocateBox(t)
 		self.SetMarginLine(line)
 		
@@ -182,10 +181,14 @@ class SongDecorator(object):
 			self.PostDrawBlock(block, bx, by)
 		self.PostDrawSong(self.s)
 		
+	def InitDraw(self):
+		pass
+		
 	def Draw(self, s, dc):
 		# SongBox s
 		self.s = s
 		self.dc = dc
+		self.InitDraw()
 		self.LayoutCompose()
 		self.LayoutMove()
 		self.DrawBoxes()

@@ -13,6 +13,7 @@ from SDIMainFrame import *
 from Editor import *
 from PreviewCanvas import *
 from SongFormat import *
+from decorators import StandardVerseNumbers
 
 class SongpressFrame(SDIMainFrame):
 
@@ -20,7 +21,8 @@ class SongpressFrame(SDIMainFrame):
 		SDIMainFrame.__init__(self, res, 'MainFrame', 'Songpress - Il Canzonatore', 'Luca Allulli', 'song', 'crd')
 		self.text = Editor(self)
 		self.format = SongFormat()
-		self.previewCanvas = PreviewCanvas(self.frame, self.format)
+		decorator = StandardVerseNumbers.Decorator(StandardVerseNumbers.Format(self.format))
+		self.previewCanvas = PreviewCanvas(self.frame, self.format, decorator)
 
 	def New(self):
 		self.text.New();

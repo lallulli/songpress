@@ -49,6 +49,7 @@ class SongSong(SongBox):
 	def __init__(self, format):
 		SongBox.__init__(self, 0, 0, 0, 0)
 		self.format = format
+		self.verseCount = 0
 		
 class SongBlock(SongBox):
 	# types
@@ -66,6 +67,8 @@ class SongLine(SongBox):
 	def __init__(self):
 		SongBox.__init__(self, 0, 0, 0, 0)
 		self.hasChords = False
+		self.chordBaseline = 0
+		self.textBaseline = 0
 
 	def AddBox(self, text):
 		if text.type == text.chord:
