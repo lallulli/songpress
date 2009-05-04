@@ -72,7 +72,6 @@ class Pref(object):
 		return self.__GetPrefByName(name).value
 		
 	def __setattr__(self, name, value):
-		print name
 		if name != '_Pref__prefs' and name in self.__prefs:
 			p = self.__prefs[name]
 			if p.validator != None:
@@ -95,7 +94,7 @@ class Pref(object):
 				del self.__prefs[name]
 		else:
 			p = self.__GetPrefByName(name)
-			self.__prefs[name] = self.__DeepCopyWithOwner(p, None, self)
+			self.__prefs[name] = Pref.__DeepCopyPrefProp(p, None, self)
 			
 	def __GetAllPrefs(self):
 		for n in self.__prefs:
@@ -103,45 +102,25 @@ class Pref(object):
 		for p in self.__parents:
 			for n, v in p.__GetAllPrefs():
 				yield n, v
-
-	"""	
-	def __Detach(self, parent):
-		# del self.__parentsByName[self.__parents[parent]]
-		# del self.__parents[parent]
-		np = Pref(
-			[p for p in self.__parentsByName],
-			self.__validator,
-			self.__gui
-		)
-		for n, p in parent.__GetAllPrefs():
-			self.Register(
-				n,
-				copy.deepcopy(p.value),
-				copy.deepcopy(p.validator),
-				copy.deepcopy(p.gui)
-			)
-	"""
 	
-	def __DeepCopyWithOwner(self, el, d, owner):
-		c = copy.deepcopy(el, d)
-		if isinstance(el, Pref):
-			print("Instance, copying owner")
-			c.owner = owner
-			c.__CacheParents()
-		return c
-		
-	def __deepcopy__(self, d):
-		c = Pref(
-			[p for p in self.__parentsByName],
-			copy.deepcopy(self.__gui, d)
+	@staticmethod
+	def __DeepCopyPrefProp(p, d, owner):
+		q = PrefProp(
+			Pref.__DeepCopyPref(p.value, d, owner) if isinstance(p.value, Pref) else copy.deepcopy(p.value, d),
+			copy.deepcopy(p.validator, d),
+			copy.deepcopy(p.gui, d)
 		)
-		for n in self.__prefs:
-			p = self.__prefs[n]
-			c.Register(
-				n,
-				self.__DeepCopyWithOwner(p.value, d, c),
-				copy.deepcopy(p.validator, d),
-				copy.deepcopy(p.gui, d)
-			)
+		return q
+	
+	@staticmethod 
+	def __DeepCopyPref(p, d, owner):
+		c = Pref(
+			[pa for pa in p.__parentsByName],
+			copy.deepcopy(p.__gui, d)
+		)
+		c.__owner = owner
+		c.__CacheParents()
+		for n in p.__prefs:
+			c.__prefs[n] = Pref.__DeepCopyPrefProp(p.__prefs[n], p)
 		return c
 
