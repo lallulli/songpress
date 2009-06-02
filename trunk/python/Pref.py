@@ -9,6 +9,7 @@
 
 import copy
 import string
+from xml.dom import minidom
 
 class Property(object):
 	"""Structure for properties"""
@@ -45,7 +46,25 @@ class PropertyDef(object):
 		self.validator = validator
 		self.gui = gui
 
-			
+
+class XmlManager(object):
+	def __init__(self):
+		object.__init__(self)
+		self.idn = 0
+		self.dom = minidom.Document()
+		self.ids = {}
+		
+	def RegisterId(self, p):
+		self.idn += 1
+		self.ids[p] = self.idn
+		return str(self.idn)
+		
+	def GetId(self, p):
+		return str(self.ids[p])
+		
+	def Serialize(self, p):
+		self.dom.appendChild(p.XmlSerialize(self))
+		
 class NameNotFoundException(Exception):
 	def __init__(self, arg):
 		Exception.__init__(self, arg)
@@ -182,4 +201,29 @@ class Preferences(object):
 		for n in p.__prefs:
 			c.__prefs[n] = Preferences.__DeepCopyPrefProp(p.__prefs[n], p)
 		return c
+		
+	def XmlSerialize(self, xm):
+		xd = xm.dom
+		pref = xd.createElement("pref")
+		pref.setAttribute("ptype", self.__class__.__name__)
+		pref.setAttribute("id", xm.RegisterId(self))
+		for n in self.__parentsByName:
+			par = xd.createElement("parent")
+			if type(n) == str:
+				par.setAttribute("rel", n)
+			else:
+				par.setAttribute("id", xm.GetId(n))
+			pref.appendChild(par)
+		for n in self.__prefs:
+			print n
+			elem = xd.createElement("elem")
+			elem.setAttribute("name", n)
+			p = self.__prefs[n].value
+			if isinstance(p, Preferences):
+				elem.appendChild(p.XmlSerialize(xm))
+			else:
+				elem.appendChild(xd.createTextNode(str(p)))
+			pref.appendChild(elem)
+		return pref
+
 

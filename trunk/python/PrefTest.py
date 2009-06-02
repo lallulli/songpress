@@ -25,11 +25,15 @@ Persona.Register("nome", str)
 Persona.Register("cognome", str, lambda: "Allulli")
 Persona.Register("eta", int, None, EtaValidator)
 
-#Register("figlio", Persona)
-"""	
+Persona.Register("figlio", Persona)
+	
 a = Persona()
 a.nome = 'Luca'
-a.figlio = Persona(['..'])
-b = Persona(a)
-"""
+a.figlio = Persona([a, '..'])
+
+x = XmlManager()
+x.Serialize(a)
+print x.dom.toprettyxml()
+
+
 
