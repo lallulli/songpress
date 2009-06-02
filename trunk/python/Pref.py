@@ -47,7 +47,7 @@ class PropertyDef(object):
 		self.gui = gui
 
 
-class XmlManager(object):
+class XmlSerializer(object):
 	def __init__(self):
 		object.__init__(self)
 		self.idn = 0
@@ -64,6 +64,32 @@ class XmlManager(object):
 		
 	def Serialize(self, p):
 		self.dom.appendChild(p.XmlSerialize(self))
+				
+class XmlDeserializer(object):
+	def __init__(self, dom, classes):
+		object.__init__(self)
+		self.dom = dom
+		self.ids = {}
+		self.classes = dict((c.__name__, c) for c in classes)
+		
+	def RegisterId(self, id, p):
+		self.ids[id] = p
+		
+	def GetById(self, p):
+		return self.ids[p]
+		
+	def Serialize(self, p):
+		self.dom.appendChild(p.XmlSerialize(self))
+		
+	def GetClass(self, name):
+		return self.classes[name]
+		
+	def Deserialize(self):
+		l = []
+		for el in self.dom.childNodes:
+			l.append(Preferences.XmlDeserialize(self, el))
+		return l
+		
 		
 class NameNotFoundException(Exception):
 	def __init__(self, arg):
@@ -215,15 +241,37 @@ class Preferences(object):
 				par.setAttribute("id", xm.GetId(n))
 			pref.appendChild(par)
 		for n in self.__prefs:
-			print n
 			elem = xd.createElement("elem")
 			elem.setAttribute("name", n)
 			p = self.__prefs[n].value
 			if isinstance(p, Preferences):
 				elem.appendChild(p.XmlSerialize(xm))
 			else:
-				elem.appendChild(xd.createTextNode(str(p)))
+				t = xd.createElement(type(p).__name__)
+				t.appendChild(xd.createTextNode(str(p)))
+				elem.appendChild(t)
 			pref.appendChild(elem)
 		return pref
-
+		
+	@staticmethod
+	def XmlDeserialize(xm, pref):
+		while pref.nodeName == '#text':
+			pref = pref.nextSibling
+		if pref.nodeName == 'pref':
+			p = [c.getAttribute('rel') if c.hasAttribute('rel') else xm.GetById(c.getAttribute('id')) for c in pref.childNodes if c.nodeName == 'parent']
+			c = xm.GetClass(pref.getAttribute('ptype'))
+			assert issubclass(c, Preferences)
+			pr = c(p)
+			xm.RegisterId(pref.getAttribute('id'), pr)
+			for c in pref.childNodes:
+				if c.nodeName == 'elem':
+					name = c.getAttribute('name')
+					pr.__setattr__(name, pr.XmlDeserialize(xm, c.firstChild))
+			return pr
+		elif pref.nodeName == 'str':
+			return str(pref.firstChild.nodeValue)
+		elif pref.nodeName == 'int':
+			return int(pref.firstChild.nodeValue)
+			
+			
 

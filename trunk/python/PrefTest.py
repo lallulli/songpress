@@ -8,6 +8,7 @@
 ##############################################################
 
 from Pref import *
+from xml.dom import minidom
 
 def EtaValidator(eta):
 	if eta < 0:
@@ -21,6 +22,8 @@ class Persona(Preferences):
 	def __init__(self, parents = [], gui = None):
 		Preferences.__init__(self, parents, gui)	
 	
+	
+
 Persona.Register("nome", str)
 Persona.Register("cognome", str, lambda: "Allulli")
 Persona.Register("eta", int, None, EtaValidator)
@@ -31,9 +34,34 @@ a = Persona()
 a.nome = 'Luca'
 a.figlio = Persona([a, '..'])
 
-x = XmlManager()
+x = XmlSerializer()
 x.Serialize(a)
 print x.dom.toprettyxml()
 
+xml = """<?xml version="1.0" ?>
+<pref id="1" ptype="Persona">
+        <elem name="figlio">
+                <pref id="2" ptype="Persona">
+                        <parent id="1"/>
+                        <elem name="cognome">
+                                <str>Allulli</str>
+                        </elem>
+                </pref>
+        </elem>
+        <elem name="cognome">
+                <str>Allulli</str>
+        </elem>
+        <elem name="nome">
+                <str>Luca</str>
+        </elem>
+        <elem name="eta">
+                <int>30</int>
+        </elem>
+</pref>
+"""
 
+xp = minidom.parseString(xml)
+
+y = XmlDeserializer(xp, [Persona, Preferences])
+k = y.Deserialize()
 
