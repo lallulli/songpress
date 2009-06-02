@@ -18,7 +18,7 @@ class Property(object):
 		
 	def __setValue(self, value):
 		if self.validator != None:
-			valid, value = self.validator.Validate(value)
+			valid, value = self.validator(value)
 			if valid:
 				self.__value = value
 		else:
@@ -61,6 +61,10 @@ class Preferences(object):
 		self.__owner = None
 		self.__CacheParents()
 		self.__gui = gui
+		for n, v in self.__GetAllPrefDef():
+			f = v.init
+			if f != None:
+				self.__setattr__(n, f())
 		
 	prefDef = {}
 	
@@ -89,13 +93,6 @@ class Preferences(object):
 				val = reduce(Navigate, string.split(n, '/'), self)
 				self.__parentsByName[n] = val
 				self.__parents[val] = n		
-		
-	"""
-	def Register(self, name, value, validator = None, gui = None):
-		self.__prefs[name] = Property(value, validator, gui)
-		if isinstance(value, Preferences):
-			value.__SetOwner(self)
-	"""
 		
 	def __GetPrefByName(self, name):
 		if name in self.__prefs:
@@ -154,6 +151,16 @@ class Preferences(object):
 		for p in self.__parents:
 			for n, v in p.__GetAllPrefs():
 				yield n, v
+	
+	@classmethod
+	def __GetAllPrefDef(cls):
+		if 'prefDef' in cls.__dict__:	
+			for n in cls.prefDef:
+				yield n, cls.prefDef[n]
+		for b in cls.__bases__:
+			if isinstance(b, Preferences):
+				for n, v in b.__GetAllPrefDef():
+					yield n, v
 	
 	@staticmethod
 	def __DeepCopyPrefProp(p, d, owner):
