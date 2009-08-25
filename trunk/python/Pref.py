@@ -158,7 +158,7 @@ class Preferences(object):
 				return b.__GetPrefDefByName(name)
 			except Exception:
 				pass
-		raise NameNotFoundException(name)	
+		raise NameNotFoundException(name)
 	
 	def __getattr__(self, name):
 		return self.__GetPrefByName(name).value

@@ -13,19 +13,24 @@ from Renderer import *
 class PreviewCanvas(object):
 	def __init__(self, parent, sf, sd = SongDecorator()):
 		object.__init__(self)
-		self.frame = wx.Frame(parent, -1, "Preview")
-		self.frame.Bind(wx.EVT_PAINT, self.OnPaint, self.frame)
-		self.frame.SetBackgroundColour(wx.WHITE)
+		self.panel = wx.ScrolledWindow(parent, style=wx.BORDER_DOUBLE)
+		self.pixedScrolled = 10
+		self.panel.SetScrollbars(self.pixedScrolled, self.pixedScrolled, 0, 0)
+		self.panel.Bind(wx.EVT_PAINT, self.OnPaint, self.panel)
+		self.panel.SetBackgroundColour(wx.WHITE)
 		self.text = ""
-		self.frame.Show()
+		self.panel.Show()
 		#SongFormat
 		self.renderer = Renderer(sf, sd)
 		
 	def OnPaint(self, e):		
 		print("OnPaint")
-		dc = wx.PaintDC(self.frame)
-		self.renderer.Render(self.text, dc)
+		dc = wx.PaintDC(self.panel)
+		self.panel.DoPrepareDC(dc)
+		w, h = self.renderer.Render(self.text, dc)
+		self.panel.SetVirtualSize(wx.Size(w, h))
+		
 		
 	def Refresh(self, text):
 		self.text = text
-		self.frame.Refresh()
+		self.panel.Refresh()

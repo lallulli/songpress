@@ -36,6 +36,21 @@ a.figlio = Persona([a, '..'])
 
 x = XmlSerializer()
 x.Serialize(a)
+
+#Patch
+def newwritexml(self, writer, indent= '', addindent= '', newl= ''):
+	if len(self.childNodes)==1 and self.firstChild.nodeType==3:
+		writer.write(indent)
+		self.oldwritexml(writer) # cancel extra whitespace
+		writer.write(newl)
+	else:
+		self.oldwritexml(writer, indent, addindent, newl)
+
+if not ('oldwritexml' in minidom.Element.__dict__):
+	minidom.Element.oldwritexml = minidom.Element.writexml
+	minidom.Element.writexml = newwritexml
+#End patch
+
 print x.dom.toprettyxml()
 
 xml = """<?xml version="1.0" ?>
@@ -64,4 +79,3 @@ xp = minidom.parseString(xml)
 
 y = XmlDeserializer(xp, [Persona, Preferences])
 k = y.Deserialize()
-

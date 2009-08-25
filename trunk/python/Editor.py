@@ -64,7 +64,7 @@ class Editor(StyledTextCtrl):
 		self.chorus = []
 	
 	def New(self):
-		print("File->New");
+		self.ClearAll();
 		
 	def Open(self):
 		self.LoadFile(self.spframe.document)
