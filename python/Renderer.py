@@ -84,6 +84,8 @@ class Renderer(object):
 		
 	def BeginLine(self):
 		if self.currentLine == None:
+			if self.song.drawWholeSong or (self.fromLine <= self.lineCount and self.lineCount <= self.toLine):
+				self.currentBlock.drawBlock = True
 			self.currentLine = SongLine()
 			
 	def EndLine(self):
@@ -111,7 +113,8 @@ class Renderer(object):
 	def GetState(self):
 		return None if self.currentBlock == None else self.currentBlock.type
 	
-	def Render(self, text, dc):
+	def Render(self, text, dc, fromLine = -1, toLine = -1):
+		print "Face is " + self.sf.face
 		self.text = text
 		self.dc = dc
 		self.verseNumber = 0
@@ -119,8 +122,13 @@ class Renderer(object):
 		self.currentLine = None
 		self.currentBlock = None
 		self.song = SongSong(self.sf)
+		self.song.drawWholeSong = fromLine == -1
+		self.lineCount = -1
+		self.fromLine = fromLine
+		self.toLine = toLine
 		
 		for l in self.text.splitlines():
+			self.lineCount += 1
 			state = self.GetState()
 			self.tkz = SongTokenizer(l)
 			empty = True
@@ -154,7 +162,7 @@ class Renderer(object):
 				elif state == SongBlock.chorus:
 					self.ChorusVSkip()
 		self.EndBlock()
-		self.sd.Draw(self.song, dc)
+		w, h = self.sd.Draw(self.song, dc)
 		self.dc = None
-		
+		return w, h
 		

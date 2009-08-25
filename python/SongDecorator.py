@@ -158,28 +158,37 @@ class SongDecorator(object):
 		pass
 		
 	def PostDrawSong(self, song):
-		pass		
-				
+		pass
 		
 	def DrawBoxes(self):
-		self.PreDrawSong(self.s)
+		if self.s.drawWholeSong:
+			self.PreDrawSong(self.s)
+			firstBlock = False
+			firstBlockOffsetY = 0
+		else:
+			firstBlock = True
 		for block in self.s.boxes:
-			bx = self.s.marginLeft + block.x
-			by = self.s.marginTop + block.y
-			self.PreDrawBlock(block, bx, by)
-			for line in block.boxes:
-				lx = bx + block.marginLeft + line.x
-				ly = by + block.marginTop + line.y
-				self.PreDrawLine(line, lx, ly)
-				for text in line.boxes:
-					tx = lx + line.marginLeft + text.x
-					ty = ly + line.marginTop + text.y
-					self.PreDrawText(text, tx, ty)
-					self.DrawText(text, tx, ty)
-					self.PostDrawText(text, tx, ty)
-				self.PostDrawLine(line, lx, ly)
-			self.PostDrawBlock(block, bx, by)
-		self.PostDrawSong(self.s)
+			if block.drawBlock:
+				if firstBlock:
+					firstBlock = False
+					firstBlockOffsetY = self.s.marginTop + block.y
+				bx = self.s.marginLeft + block.x
+				by = self.s.marginTop + block.y - firstBlockOffsetY
+				self.PreDrawBlock(block, bx, by)
+				for line in block.boxes:
+					lx = bx + block.marginLeft + line.x
+					ly = by + block.marginTop + line.y
+					self.PreDrawLine(line, lx, ly)
+					for text in line.boxes:
+						tx = lx + line.marginLeft + text.x
+						ty = ly + line.marginTop + text.y
+						self.PreDrawText(text, tx, ty)
+						self.DrawText(text, tx, ty)
+						self.PostDrawText(text, tx, ty)
+					self.PostDrawLine(line, lx, ly)
+				self.PostDrawBlock(block, bx, by)
+		if self.s.drawWholeSong:
+			self.PostDrawSong(self.s)
 		
 	def InitDraw(self):
 		pass
@@ -193,6 +202,6 @@ class SongDecorator(object):
 		self.LayoutMove()
 		self.DrawBoxes()
 		self.dc = None
-	
+		return self.s.GetTotalWidth(), self.s.GetTotalHeight()
 
 	

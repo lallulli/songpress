@@ -20,6 +20,7 @@ It expects to find some menu elements, characterized by their XRC name:
 ##############################################################
 
 import wx
+import wx.aui
 from wx import xrc
 import os
 
@@ -49,6 +50,9 @@ class SDIMainFrame(wx.FileDropTarget):
 		dt = SDIDropTarget(self)
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
+		self._mgr = wx.aui.AuiManager(self.frame)
+		self.panesByMenu = {}
+		self.menusByPane = {}
 		self.frame.Show()
 
 	def Bind(self, event, handler, xrcname):
@@ -72,6 +76,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		if self.AskSaveModified():
 			self.document = ''
 			self.New()
+			self.modified = False
+			self.UpdateTitle()
 		
 	def OnOpen(self, evt):
 		"""Menu handler for File->Open"""
@@ -132,6 +138,9 @@ class SDIMainFrame(wx.FileDropTarget):
 	def OnClose(self, evt):
 		"""Handler for windows close event"""	
 		if self.AskSaveModified(evt.CanVeto()):
+			p = self._mgr.SavePerspective()
+			c = wx.FileConfig()
+			c.Write("Perspective", p)
 			self.frame.Destroy()
 		else:
 			evt.Veto()
@@ -247,3 +256,33 @@ class SDIMainFrame(wx.FileDropTarget):
 	def Save(self):
 		"""To be overridden: save a document"""
 		return True
+
+	def AddMainPane(self, window):
+		self._mgr.AddPane(window, wx.aui.AuiPaneInfo().CenterPane().Name('_main'))
+
+	def AddPane(self, window, info, caption, menuName):
+		self._mgr.AddPane(window, info.Name(menuName).Caption(caption))
+		pane = self._mgr.GetPane(window)
+		menuid = xrc.XRCID(menuName)
+		self.panesByMenu[menuid] = pane
+		self.menusByPane[pane] = menuid
+		self.Bind(wx.EVT_MENU, self.OnTogglePaneView, menuName)		
+		return pane
+		
+	def OnTogglePaneView(self, evt):
+		status = evt.GetInt()
+		menu = evt.GetId()
+		self.panesByMenu[menu].Show(status)
+		self._mgr.Update()		
+	
+	def OnPaneClose(self, evt):
+		print "Render: " + str(evt)
+		
+	def FinalizePaneInitialization(self):
+		c = wx.FileConfig()
+		p = c.Read("Perspective")
+		if p:
+			print "yes, " + p
+			self._mgr.LoadPerspective(p)
+		else:
+			self._mgr.Update()

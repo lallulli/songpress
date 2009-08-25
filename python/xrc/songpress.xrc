@@ -13,11 +13,11 @@
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="open">
-					<label>&amp;Open...</label>
+					<label>&amp;Open...\tCTRL+O</label>
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="save">
-					<label>&amp;Save</label>
+					<label>&amp;Save\tSHIFT+F12</label>
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="saveAs">
@@ -29,8 +29,91 @@
 					<help></help>
 				</object>
 			</object>
-			<object class="wxMenu" name="help">
-				<label>?</label>
+			<object class="wxMenu" name="edit">
+				<label>_Edit</label>
+				<object class="wxMenuItem" name="undo">
+					<label>&amp;Undo\tCTRL+Z</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="redo">
+					<label>&amp;Redo\tCTRL+Y</label>
+					<help></help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="cut">
+					<label>&amp;Cut\tCTRL+X</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="copy">
+					<label>&amp;Copy\tCTRL+C</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="copyAsImage">
+					<label>&amp;Copy as Image\tCTRL+D</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="paste">
+					<label>&amp;Paste\tCTRL+V</label>
+					<help></help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="find">
+					<label>&amp;Find\tCTRL+F</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="findNext">
+					<label>Find &amp;Next\tF3</label>
+					<help></help>
+				</object>
+			</object>
+			<object class="wxMenu" name="view">
+				<label>_View</label>
+				<object class="wxMenu" name="toolbars">
+					<label>_Toolbars</label>
+					<object class="wxMenuItem" name="standard">
+						<label>&amp;Standard</label>
+						<help></help>
+						<checkable>1</checkable>
+					</object>
+					<object class="wxMenuItem" name="format1">
+						<label>&amp;Format</label>
+						<help></help>
+						<checkable>1</checkable>
+					</object>
+				</object>
+				<object class="wxMenuItem" name="preview">
+					<label>&amp;Preview</label>
+					<help></help>
+				</object>
+			</object>
+			<object class="wxMenu" name="insert">
+				<label>_Insert</label>
+				<object class="wxMenuItem" name="title">
+					<label>&amp;Title\tCTRL+T</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="chord">
+					<label>C&amp;hord\tCTRL+H</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="chorus">
+					<label>Cho&amp;rus\tCTRL+U</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="comment">
+					<label>Co&amp;mment\tCTRL+M</label>
+					<help></help>
+				</object>
+			</object>
+			<object class="wxMenu" name="format">
+				<label>F_ormat</label>
+				<object class="wxMenuItem" name="font">
+					<label>&amp;Font...</label>
+					<help></help>
+				</object>
+			</object>
+			<object class="wxMenu">
+				<label>_?</label>
 				<object class="wxMenuItem" name="about">
 					<label>&amp;About...</label>
 					<help></help>
