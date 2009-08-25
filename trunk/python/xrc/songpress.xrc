@@ -4,7 +4,7 @@
 		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
 		<size>611,477</size>
 		<title>Songpress</title>
-		<object class="wxMenuBar" name="m_menubar1">
+		<object class="wxMenuBar" name="menuBar">
 			<label>MyMenuBar</label>
 			<object class="wxMenu" name="file">
 				<label>_File</label>
@@ -75,7 +75,7 @@
 						<help></help>
 						<checkable>1</checkable>
 					</object>
-					<object class="wxMenuItem" name="format1">
+					<object class="wxMenuItem" name="format">
 						<label>&amp;Format</label>
 						<help></help>
 						<checkable>1</checkable>
@@ -84,6 +84,7 @@
 				<object class="wxMenuItem" name="preview">
 					<label>&amp;Preview</label>
 					<help></help>
+					<checkable>1</checkable>
 				</object>
 			</object>
 			<object class="wxMenu" name="insert">
@@ -105,7 +106,7 @@
 					<help></help>
 				</object>
 			</object>
-			<object class="wxMenu" name="format">
+			<object class="wxMenu" name="formatMenu">
 				<label>F_ormat</label>
 				<object class="wxMenuItem" name="font">
 					<label>&amp;Font...</label>
