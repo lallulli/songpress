@@ -81,7 +81,7 @@
                 <property name="label">MyMenuBar</property>
                 <property name="maximum_size"></property>
                 <property name="minimum_size"></property>
-                <property name="name">m_menubar1</property>
+                <property name="name">menuBar</property>
                 <property name="permission">protected</property>
                 <property name="pos"></property>
                 <property name="size"></property>
@@ -356,7 +356,7 @@
                             <property name="id">ID_FORMAT</property>
                             <property name="kind">wxITEM_CHECK</property>
                             <property name="label">&amp;Format</property>
-                            <property name="name">format1</property>
+                            <property name="name">format</property>
                             <property name="permission">none</property>
                             <property name="shortcut"></property>
                             <property name="unchecked_bitmap"></property>
@@ -370,7 +370,7 @@
                         <property name="enabled">1</property>
                         <property name="help"></property>
                         <property name="id">ID_PREVIEW</property>
-                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="kind">wxITEM_CHECK</property>
                         <property name="label">&amp;Preview</property>
                         <property name="name">preview</property>
                         <property name="permission">none</property>
@@ -447,7 +447,7 @@
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">F&amp;ormat</property>
-                    <property name="name">format</property>
+                    <property name="name">formatMenu</property>
                     <property name="permission">protected</property>
                     <object class="wxMenuItem" expanded="1">
                         <property name="bitmap"></property>

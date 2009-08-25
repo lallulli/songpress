@@ -51,6 +51,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
 		self._mgr = wx.aui.AuiManager(self.frame)
+		self._mgr.Bind(wx.aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)	
+		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
 		self.menusByPane = {}
 		self.frame.Show()
@@ -265,7 +267,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		pane = self._mgr.GetPane(window)
 		menuid = xrc.XRCID(menuName)
 		self.panesByMenu[menuid] = pane
-		self.menusByPane[pane] = menuid
+		self.menusByPane[pane.name] = menuid
 		self.Bind(wx.EVT_MENU, self.OnTogglePaneView, menuName)		
 		return pane
 		
@@ -276,7 +278,9 @@ class SDIMainFrame(wx.FileDropTarget):
 		self._mgr.Update()		
 	
 	def OnPaneClose(self, evt):
-		print "Render: " + str(evt)
+		pane = evt.GetPane()
+		menuid = self.menusByPane[pane.name]
+		self.menuBar.Check(menuid, False)
 		
 	def FinalizePaneInitialization(self):
 		c = wx.FileConfig()

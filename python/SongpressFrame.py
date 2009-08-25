@@ -64,7 +64,6 @@ class SongpressFrame(SDIMainFrame):
 		self.formatToolBar.AddTool(wx.xrc.XRCID('chorus'), wx.BitmapFromImage(wx.Image("img/chorus.png")))
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), 'Format', 'format')
-		self.frame.Bind(wx.aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose, self.frame)
 		self.FinalizePaneInitialization()
 		self.BindMyMenu()
 		
