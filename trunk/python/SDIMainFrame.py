@@ -23,7 +23,7 @@ import wx
 import wx.aui
 from wx import xrc
 import os
-
+import os.path
 
 class SDIDropTarget(wx.FileDropTarget):
 	def __init__(self, sdi):
@@ -44,6 +44,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
+		self.config = wx.FileConfig(appName)
+		wx.Config.Set(self.config)
 		self.frame = self.res.LoadFrame(None, frameName)
 		self.BindMenu()
 		self.frame.Bind(wx.EVT_CLOSE, self.OnClose, self.frame)
@@ -55,7 +57,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
 		self.menusByPane = {}
-		self.frame.Show()
+		self.RetrieveRecentFileList()
 
 	def Bind(self, event, handler, xrcname):
 		"""Bind an event, coming from a control by xrc name, to a handler"""
@@ -98,6 +100,7 @@ class SDIMainFrame(wx.FileDropTarget):
 				if os.path.isfile(fn):
 					self.document = fn
 					self.Open()
+					self.UpdateRecentFileList(fn)
 					self.modified = False
 					self.UpdateTitle()
 				else:
@@ -134,15 +137,16 @@ class SDIMainFrame(wx.FileDropTarget):
 			if os.path.isfile(fn) and self.AskSaveModified():
 				self.document = fn
 				self.Open()
+				self.UpdateRecentFileList(fn)
 				self.modified = False
 				self.UpdateTitle()
 	
 	def OnClose(self, evt):
 		"""Handler for windows close event"""	
 		if self.AskSaveModified(evt.CanVeto()):
+			self.config.SetPath('/SDIMainFrame')
 			p = self._mgr.SavePerspective()
-			c = wx.FileConfig()
-			c.Write("Perspective", p)
+			self.config.Write("Perspective", p)
 			self.frame.Destroy()
 		else:
 			evt.Veto()
@@ -243,6 +247,7 @@ class SDIMainFrame(wx.FileDropTarget):
 				return False
 		if self.modified:
 			self.Save()
+			self.UpdateRecentFileList(self.document)
 			self.modified = False
 			self.UpdateTitle()
 		return True
@@ -282,11 +287,61 @@ class SDIMainFrame(wx.FileDropTarget):
 		menuid = self.menusByPane[pane.name]
 		self.menuBar.Check(menuid, False)
 		
+	def RetrieveRecentFileList(self):
+		self.recentMenuBase = 800
+		self.config.SetPath('/SDIMainFrame/RecentFiles')
+		self.recentFiles = []
+		for i in xrange(1, 5):
+			f = self.config.Read(str(i))
+			if f:
+				self.recentFiles.append(f)
+			self.frame.Bind(wx.EVT_MENU, self.OnRecentFile, id = self.recentMenuBase + i)
+		self.UpdateRecentFileMenu()
+		
+	def EmptyRecentFileMenu(self):
+		fileMenu = self.menuBar.GetMenu(0)
+		for i in xrange(1, len(self.recentFiles)+1):
+			fileMenu.Remove(self.recentMenuBase + i)	
+	
+	def UpdateRecentFileMenu(self):
+		i = 1
+		fileMenu = self.menuBar.GetMenu(0)
+		self.config.SetPath('/SDIMainFrame/RecentFiles')
+		for k in self.recentFiles:
+			d, f = os.path.split(k)
+			if len(d) > 25:
+				d = d[:25] + "..."
+			fileMenu.Append(self.recentMenuBase + i, os.path.join(d, f))
+			self.config.Write(str(i), k)
+			i += 1
+		
+	def UpdateRecentFileList(self, name):
+		self.EmptyRecentFileMenu()
+		if name in self.recentFiles:
+			self.recentFiles.remove(name)
+		self.recentFiles.insert(0, name)
+		if len(self.recentFiles) > 4:
+			self.recentFiles.pop()
+		self.UpdateRecentFileMenu()
+	
+	def OnRecentFile(self, evt):
+		i = evt.GetId() - self.recentMenuBase
+		fn = self.recentFiles[i-1]
+		if os.path.isfile(fn) and self.AskSaveModified():
+			self.document = fn
+			self.Open()
+			self.UpdateRecentFileList(fn)
+			self.modified = False
+			self.UpdateTitle()
+	
 	def FinalizePaneInitialization(self):
-		c = wx.FileConfig()
-		p = c.Read("Perspective")
+		self.config.SetPath('/SDIMainFrame')
+		p = self.config.Read("Perspective")
+		print "Config: " + str(p)
 		if p:
-			print "yes, " + p
 			self._mgr.LoadPerspective(p)
+			for menuid in self.panesByMenu:
+				self.menuBar.Check(menuid, self.panesByMenu[menuid].IsShown())
 		else:
 			self._mgr.Update()
+		self.frame.Show()

@@ -193,6 +193,9 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
+                    <object class="separator" expanded="1">
+                        <property name="permission">none</property>
+                    </object>
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">&amp;Edit</property>
@@ -301,7 +304,7 @@
                         <property name="help"></property>
                         <property name="id">ID_FIND</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">&amp;Find</property>
+                        <property name="label">&amp;Find...</property>
                         <property name="name">find</property>
                         <property name="permission">none</property>
                         <property name="shortcut">CTRL+F</property>
@@ -324,6 +327,36 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">ID_FIND_NEXT</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Find Pre&amp;vious</property>
+                        <property name="name">findPrevious</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">SHIFT+F3</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">ID_FIND</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">R&amp;eplace...</property>
+                        <property name="name">replace</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">CTRL+R</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">&amp;View</property>
@@ -335,7 +368,7 @@
                         <property name="permission">protected</property>
                         <object class="wxMenuItem" expanded="1">
                             <property name="bitmap"></property>
-                            <property name="checked">0</property>
+                            <property name="checked">1</property>
                             <property name="enabled">1</property>
                             <property name="help"></property>
                             <property name="id">ID_STANDARD</property>
@@ -350,7 +383,7 @@
                         </object>
                         <object class="wxMenuItem" expanded="1">
                             <property name="bitmap"></property>
-                            <property name="checked">0</property>
+                            <property name="checked">1</property>
                             <property name="enabled">1</property>
                             <property name="help"></property>
                             <property name="id">ID_FORMAT</property>
@@ -366,7 +399,7 @@
                     </object>
                     <object class="wxMenuItem" expanded="1">
                         <property name="bitmap"></property>
-                        <property name="checked">0</property>
+                        <property name="checked">1</property>
                         <property name="enabled">1</property>
                         <property name="help"></property>
                         <property name="id">ID_PREVIEW</property>
