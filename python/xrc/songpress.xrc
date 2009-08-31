@@ -28,6 +28,7 @@
 					<label>&amp;Exit</label>
 					<help></help>
 				</object>
+				<object class="separator" />
 			</object>
 			<object class="wxMenu" name="edit">
 				<label>_Edit</label>
@@ -58,11 +59,19 @@
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="find">
-					<label>&amp;Find\tCTRL+F</label>
+					<label>&amp;Find...\tCTRL+F</label>
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="findNext">
 					<label>Find &amp;Next\tF3</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="findPrevious">
+					<label>Find Pre&amp;vious\tSHIFT+F3</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="replace">
+					<label>R&amp;eplace...\tCTRL+R</label>
 					<help></help>
 				</object>
 			</object>
@@ -73,17 +82,20 @@
 					<object class="wxMenuItem" name="standard">
 						<label>&amp;Standard</label>
 						<help></help>
+						<checked>1</checked>
 						<checkable>1</checkable>
 					</object>
 					<object class="wxMenuItem" name="format">
 						<label>&amp;Format</label>
 						<help></help>
+						<checked>1</checked>
 						<checkable>1</checkable>
 					</object>
 				</object>
 				<object class="wxMenuItem" name="preview">
 					<label>&amp;Preview</label>
 					<help></help>
+					<checked>1</checked>
 					<checkable>1</checkable>
 				</object>
 			</object>

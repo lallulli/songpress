@@ -19,11 +19,93 @@ from decorators import StandardVerseNumbers
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 
+class SongpressFindReplaceDialog(object):
+	def __init__(self, owner, replace = False):
+		object.__init__(self)
+		self.data = wx.FindReplaceData()
+		self.owner = owner
+		self.searchString = ""
+		self.dialog = wx.FindReplaceDialog(
+			owner.frame,
+			self.data,
+			"Replace" if replace else "Find",
+			wx.FR_REPLACEDIALOG if replace else 0
+		)
+		owner.frame.Bind(wx.EVT_FIND, self.OnFind, self.dialog)
+		owner.frame.Bind(wx.EVT_FIND_NEXT, self.OnFind, self.dialog)
+		owner.frame.Bind(wx.EVT_FIND_CLOSE, self.OnClose, id=wx.ID_ANY)
+		owner.frame.Bind(wx.EVT_FIND_REPLACE, self.OnReplace, self.dialog)
+		owner.frame.Bind(wx.EVT_FIND_REPLACE_ALL, self.OnReplaceAll, self.dialog)
+		self.dialog.Show()
+
+	def OnFind(self, evt):
+		self.st = evt.GetFindString()
+		f = self.data.GetFlags()
+		self.down = f & wx.FR_DOWN
+		self.whole = f & wx.FR_WHOLEWORD
+		self.case = f & wx.FR_MATCHCASE
+		self.FindNext()
+
+	def FindNext(self):
+		s, e = self.owner.text.GetSelection()
+		fromStart = s == 0
+		p = self.owner.text.FindText(e, self.owner.text.GetTextLength(), self.st)
+		if p != -1:
+			self.owner.text.SetSelection(p, p + len(self.st))
+		else:
+			if not fromStart:
+				d = wx.MessageDialog(
+					self.owner.frame,
+					"Reached the end of the song, restarting search from the beginning",
+					self.owner.appName,
+					wx.OK | wx.CANCEL | wx.ICON_INFORMATION
+				)
+				res = d.ShowModal()
+				if res == wx.ID_OK:
+					self.owner.text.SetSelection(0, 0)
+					self.FindNext()
+			else:
+				d = wx.MessageDialog(
+					self.owner.frame,
+					"The specified text was not found",
+					self.owner.appName,
+					wx.OK | wx.ICON_INFORMATION
+				)
+				res = d.ShowModal()
+	
+	def OnReplace(self, evt):
+		r = evt.GetReplaceString()
+		if self.owner.text.GetSelectedText() == self.st:
+			self.owner.text.ReplaceSelection(r)
+			self.FindNext()
+	
+	def OnReplaceAll(self, evt):
+		f = evt.GetFindString()
+		r = evt.GetReplaceString()
+		text = self.owner.text.GetText()
+		c = text.count(f)
+		text = text.replace(f, r)
+		self.owner.text.SetText(text)
+		d = wx.MessageDialog(
+			self.owner.frame,
+			"%d text occurrences have been replaced" % (c,),
+			self.owner.appName,
+			wx.OK | wx.ICON_INFORMATION
+		)
+		res = d.ShowModal()
+		
+	
+	def OnClose(self, evt):
+		self.dialog.Destroy()
+		self.dialog = None
+
+
 class SongpressFrame(SDIMainFrame):
 
 	def __init__(self, res):
 		SDIMainFrame.__init__(self, res, 'MainFrame', 'Songpress - Il Canzonatore', 'Luca Allulli', 'song', 'crd')
 		self.text = Editor(self)
+		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		self.format = SongFormat()
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format)
 		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
@@ -64,8 +146,12 @@ class SongpressFrame(SDIMainFrame):
 		self.formatToolBar.AddTool(wx.xrc.XRCID('chorus'), wx.BitmapFromImage(wx.Image("img/chorus.png")))
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), 'Format', 'format')
-		self.FinalizePaneInitialization()
 		self.BindMyMenu()
+		self.cutMenuId = xrc.XRCID('cut')
+		self.copyMenuId = xrc.XRCID('copy')
+		self.pasteMenuId = xrc.XRCID('paste')
+		self.findReplaceDialog = None
+		self.FinalizePaneInitialization()
 		
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""
@@ -106,7 +192,11 @@ class SongpressFrame(SDIMainFrame):
 	def UpdateCutCopyPaste(self):
 		s, e = self.text.GetSelection()
 		self.mainToolBar.EnableTool(self.cutTool, s != e)
+		self.menuBar.Enable(self.cutMenuId, s != e)
 		self.mainToolBar.EnableTool(self.copyTool, s != e)
+		self.menuBar.Enable(self.copyMenuId, s != e)
+		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
+		self.menuBar.Enable(self.pasteMenuId, self.text.CanPaste())
 		
 	def UpdateEverything(self):
 		self.UpdateUndoRedo()
@@ -114,6 +204,9 @@ class SongpressFrame(SDIMainFrame):
 		
 	def TextUpdated(self):
 		self.previewCanvas.Refresh(self.text.GetText())
+		#self.UpdateEverything()
+		
+	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
 
 	def OnUndo(self, evt):
@@ -147,17 +240,14 @@ class SongpressFrame(SDIMainFrame):
 		self.text.Paste()
 	
 	def OnFind(self, evt):
-		f = wx.FindReplaceDialog(self.frame, wx.FindReplaceData(), "Find")
-		f.Show()
-		
-	def OnFindDialog(self, evt):
-		pass
+		self.findReplaceDialog = SongpressFindReplaceDialog(self)
 		
 	def OnFindNext(self, evt):
-		pass
+		if self.findReplaceDialog != None:
+			self.findReplaceDialog.FindNext()
 
 	def OnReplace(self, evt):
-		pass
+		self.findReplaceDialog = SongpressFindReplaceDialog(self, True)
 	
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
@@ -202,4 +292,5 @@ class SongpressFrame(SDIMainFrame):
 	
 	def OnComment(self, evt):
 		self.InsertWithCaret("{c:|}")
+		
 
