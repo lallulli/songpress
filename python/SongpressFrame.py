@@ -22,7 +22,7 @@ from FontFaceDialog import FontFaceDialog
 class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):
 		object.__init__(self)
-		self.data = wx.FindReplaceData()
+		self.data = wx.FindReplaceData(wx.FR_DOWN)
 		self.owner = owner
 		self.searchString = ""
 		self.dialog = wx.FindReplaceDialog(
@@ -44,29 +44,53 @@ class SongpressFindReplaceDialog(object):
 		self.down = f & wx.FR_DOWN
 		self.whole = f & wx.FR_WHOLEWORD
 		self.case = f & wx.FR_MATCHCASE
+		self.flags = 0
+		if self.down:
+			self.search = self.owner.text.SearchNext
+		else:
+			self.search = self.owner.text.SearchPrev		
+		if self.whole:
+			self.flags |= wx.stc.STC_FIND_WHOLEWORD
+		if self.case:
+			self.flags |= wx.stc.STC_FIND_MATCHCASE
 		self.FindNext()
 
 	def FindNext(self):
 		s, e = self.owner.text.GetSelection()
-		fromStart = s == 0
-		p = self.owner.text.FindText(e, self.owner.text.GetTextLength(), self.st)
+		if self.down:
+			self.owner.text.SetSelection(e, e)
+			fromStart = s == 0
+		else:
+			self.owner.text.SetSelection(s, s)
+			fromStart = s == self.owner.text.GetLength()
+		self.owner.text.SearchAnchor()		
+		p = self.search(self.flags, self.st)
+		print p
 		if p != -1:
+			pass
 			self.owner.text.SetSelection(p, p + len(self.st))
 		else:
 			if not fromStart:
+				parent = self.dialog if self.dialog != None else self.owner.frame
+				if self.down:
+					where = "beginning"
+					newStart = 0
+				else:
+					where = "end"
+					newStart = self.owner.text.GetLength()
 				d = wx.MessageDialog(
-					self.owner.frame,
-					"Reached the end of the song, restarting search from the beginning",
+					parent,
+					"Reached the end of the song, restarting search from the %s" % (where,),
 					self.owner.appName,
 					wx.OK | wx.CANCEL | wx.ICON_INFORMATION
 				)
 				res = d.ShowModal()
 				if res == wx.ID_OK:
-					self.owner.text.SetSelection(0, 0)
+					self.owner.text.SetSelection(newStart, newStart)
 					self.FindNext()
 			else:
 				d = wx.MessageDialog(
-					self.owner.frame,
+					parent,
 					"The specified text was not found",
 					self.owner.appName,
 					wx.OK | wx.ICON_INFORMATION
@@ -87,7 +111,7 @@ class SongpressFindReplaceDialog(object):
 		text = text.replace(f, r)
 		self.owner.text.SetText(text)
 		d = wx.MessageDialog(
-			self.owner.frame,
+			self.dialog,
 			"%d text occurrences have been replaced" % (c,),
 			self.owner.appName,
 			wx.OK | wx.ICON_INFORMATION
