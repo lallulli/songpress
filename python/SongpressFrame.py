@@ -45,10 +45,6 @@ class SongpressFindReplaceDialog(object):
 		self.whole = f & wx.FR_WHOLEWORD
 		self.case = f & wx.FR_MATCHCASE
 		self.flags = 0
-		if self.down:
-			self.search = self.owner.text.SearchNext
-		else:
-			self.search = self.owner.text.SearchPrev		
 		if self.whole:
 			self.flags |= wx.stc.STC_FIND_WHOLEWORD
 		if self.case:
@@ -56,6 +52,10 @@ class SongpressFindReplaceDialog(object):
 		self.FindNext()
 
 	def FindNext(self):
+		if self.down:
+			self.search = self.owner.text.SearchNext
+		else:
+			self.search = self.owner.text.SearchPrev
 		s, e = self.owner.text.GetSelection()
 		if self.down:
 			self.owner.text.SetSelection(e, e)
@@ -65,7 +65,6 @@ class SongpressFindReplaceDialog(object):
 			fromStart = s == self.owner.text.GetLength()
 		self.owner.text.SearchAnchor()		
 		p = self.search(self.flags, self.st)
-		print p
 		if p != -1:
 			pass
 			self.owner.text.SetSelection(p, p + len(self.st))
@@ -104,12 +103,30 @@ class SongpressFindReplaceDialog(object):
 			self.FindNext()
 	
 	def OnReplaceAll(self, evt):
-		f = evt.GetFindString()
+		self.owner.text.BeginUndoAction()
+		s = evt.GetFindString()
 		r = evt.GetReplaceString()
-		text = self.owner.text.GetText()
-		c = text.count(f)
-		text = text.replace(f, r)
-		self.owner.text.SetText(text)
+		f = self.data.GetFlags()
+		self.whole = f & wx.FR_WHOLEWORD
+		self.case = f & wx.FR_MATCHCASE
+		flags = 0
+		if self.whole:
+			flags |= wx.stc.STC_FIND_WHOLEWORD
+		if self.case:
+			flags |= wx.stc.STC_FIND_MATCHCASE
+		self.owner.text.SetSelection(0, 0)
+		p = 0
+		c = 0
+		while p != -1:
+			p = self.owner.text.FindText(p, self.owner.text.GetLength(), s, flags)
+			if p != -1:
+				self.owner.text.SetTargetStart(p)
+				self.owner.text.SetTargetEnd(p + len(s))
+				p += self.owner.text.ReplaceTarget(r)
+				c += 1
+				
+		self.owner.text.EndUndoAction()
+		
 		d = wx.MessageDialog(
 			self.dialog,
 			"%d text occurrences have been replaced" % (c,),
@@ -190,6 +207,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnPaste, 'paste')
 		Bind(self.OnFind, 'find')
 		Bind(self.OnFindNext, 'findNext')
+		Bind(self.OnFindPrevious, 'findPrevious')
 		Bind(self.OnReplace, 'replace')
 		Bind(self.OnTitle, 'title')
 		Bind(self.OnChord, 'chord')
@@ -268,6 +286,12 @@ class SongpressFrame(SDIMainFrame):
 		
 	def OnFindNext(self, evt):
 		if self.findReplaceDialog != None:
+			self.findReplaceDialog.down = True
+			self.findReplaceDialog.FindNext()
+
+	def OnFindPrevious(self, evt):
+		if self.findReplaceDialog != None:
+			self.findReplaceDialog.down = False
 			self.findReplaceDialog.FindNext()
 
 	def OnReplace(self, evt):
