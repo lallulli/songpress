@@ -124,6 +124,12 @@
 					<label>&amp;Font...</label>
 					<help></help>
 				</object>
+				<object class="wxMenuItem" name="labelVerses">
+					<label>&amp;Label verses</label>
+					<help></help>
+					<checked>1</checked>
+					<checkable>1</checkable>
+				</object>
 			</object>
 			<object class="wxMenu">
 				<label>_?</label>

@@ -166,3 +166,6 @@ class Renderer(object):
 		self.dc = None
 		return w, h
 		
+	def SetDecorator(self, sd):
+		self.sd = sd
+		

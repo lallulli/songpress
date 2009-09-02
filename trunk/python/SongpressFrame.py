@@ -16,6 +16,7 @@ from PreviewCanvas import *
 from SongFormat import *
 from Renderer import *
 from decorators import StandardVerseNumbers
+from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 
@@ -185,13 +186,18 @@ class SongpressFrame(SDIMainFrame):
 		self.formatToolBar.AddTool(wx.xrc.XRCID('title'), wx.BitmapFromImage(wx.Image("img/title.png")))
 		self.formatToolBar.AddTool(wx.xrc.XRCID('chord'), wx.BitmapFromImage(wx.Image("img/chord.png")))
 		self.formatToolBar.AddTool(wx.xrc.XRCID('chorus'), wx.BitmapFromImage(wx.Image("img/chorus.png")))
+		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image("img/labelVerses.png")), isToggle=True)
+		self.labelVersesToolId = labelVersesTool.GetId()
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), 'Format', 'format')
 		self.BindMyMenu()
 		self.cutMenuId = xrc.XRCID('cut')
 		self.copyMenuId = xrc.XRCID('copy')
 		self.pasteMenuId = xrc.XRCID('paste')
+		self.labelVersesMenuId = xrc.XRCID('labelVerses')
 		self.findReplaceDialog = None
+		self.labelVerses = True
+		self.CheckLabelVerses()
 		self.FinalizePaneInitialization()
 		
 	def BindMyMenu(self):
@@ -214,6 +220,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnChorus, 'chorus')
 		Bind(self.OnComment, 'comment')
 		Bind(self.OnFormatFont, 'font')
+		Bind(self.OnLabelVerses, 'labelVerses')
 
 	def New(self):
 		self.text.New()
@@ -340,5 +347,17 @@ class SongpressFrame(SDIMainFrame):
 	
 	def OnComment(self, evt):
 		self.InsertWithCaret("{c:|}")
-		
+	
+	def OnLabelVerses(self, evt):
+		self.labelVerses = not self.labelVerses
+		self.CheckLabelVerses()
+
+	def CheckLabelVerses(self):
+		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.labelVerses)
+		self.menuBar.Check(self.labelVersesMenuId, self.labelVerses)
+		if self.labelVerses:
+			self.previewCanvas.SetDecorator(self.decorator)
+		else:
+			self.previewCanvas.SetDecorator(SongDecorator())
+		self.previewCanvas.Refresh(self.text.GetText())
 

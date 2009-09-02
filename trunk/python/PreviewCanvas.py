@@ -30,7 +30,9 @@ class PreviewCanvas(object):
 		w, h = self.renderer.Render(self.text, dc)
 		self.panel.SetVirtualSize(wx.Size(w, h))
 		
-		
 	def Refresh(self, text):
 		self.text = text
 		self.panel.Refresh()
+
+	def SetDecorator(self, sd):
+		self.renderer.SetDecorator(sd)
