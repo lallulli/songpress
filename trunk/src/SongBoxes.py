@@ -3,7 +3,7 @@
 # Purpose:	 Elements that make up a song
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-02-21
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 

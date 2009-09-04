@@ -3,7 +3,7 @@
 # Purpose:	 Window containing preview
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-02-21
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -22,14 +22,14 @@ class PreviewCanvas(object):
 		self.panel.Show()
 		#SongFormat
 		self.renderer = Renderer(sf, sd)
-		
-	def OnPaint(self, e):		
-		print("OnPaint")
+
+	def OnPaint(self, e):
+		#print("OnPaint")
 		dc = wx.PaintDC(self.panel)
 		self.panel.DoPrepareDC(dc)
 		w, h = self.renderer.Render(self.text, dc)
 		self.panel.SetVirtualSize(wx.Size(w, h))
-		
+
 	def Refresh(self, text):
 		self.text = text
 		self.panel.Refresh()

@@ -15,7 +15,7 @@ It expects to find some menu elements, characterized by their XRC name:
 # Purpose:	 Abstract class for SDI Main Frames
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -53,7 +53,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
 		self._mgr = wx.aui.AuiManager(self.frame)
-		self._mgr.Bind(wx.aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)	
+		self._mgr.Bind(wx.aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
 		self.menusByPane = {}
@@ -82,7 +82,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.New()
 			self.modified = False
 			self.UpdateTitle()
-		
+
 	def OnOpen(self, evt):
 		"""Menu handler for File->Open"""
 		if self.AskSaveModified():
@@ -112,11 +112,11 @@ class SDIMainFrame(wx.FileDropTarget):
 						wx.OK | wx.ICON_ERROR
 					)
 					d.ShowModal()
-		
+
 	def OnSave(self, evt):
 		"""Menu handler for File->Save"""
 		self.SaveFile()
-		
+
 	def OnSaveAs(self, evt):
 		"""Menu handler for File->Save As"""
 		if self.AskSaveFilename():
@@ -129,7 +129,7 @@ class SDIMainFrame(wx.FileDropTarget):
 	def OnAbout(self, evt):
 		"""Menu handler for ?->About"""
 		wx.MessageBox('%s by %s' % (self.appName, self.authorName), 'About ' + self.appName)
-		
+
 	def OnDropFiles(self, arr):
 		"""Handler for drop action: opens the dropped file, if it is exactly one"""
 		if len(arr) == 1:
@@ -140,9 +140,9 @@ class SDIMainFrame(wx.FileDropTarget):
 				self.UpdateRecentFileList(fn)
 				self.modified = False
 				self.UpdateTitle()
-	
+
 	def OnClose(self, evt):
-		"""Handler for windows close event"""	
+		"""Handler for windows close event"""
 		if self.AskSaveModified(evt.CanVeto()):
 			self.config.SetPath('/SDIMainFrame')
 			p = self._mgr.SavePerspective()
@@ -154,7 +154,7 @@ class SDIMainFrame(wx.FileDropTarget):
 	###Ordinary methods###
 
 	def SetModified(self, m = True):
-		"""Set the modified flag, if main document is modified"""	
+		"""Set the modified flag, if main document is modified"""
 		self.modified = m
 		self.UpdateTitle()
 
@@ -170,17 +170,17 @@ class SDIMainFrame(wx.FileDropTarget):
 			doc = os.path.basename(self.document)
 			(doc, ext) = os.path.splitext(doc)
 		self.frame.SetTitle("%s%s - %s" % (mod, doc, self.appName))
-		
+
 	def AskSaveModified(self, canCancel = True):
-		"""If file has been modified, propose to save changes. Return False if cancelled, True otherwise"""	
+		"""If file has been modified, propose to save changes. Return False if cancelled, True otherwise"""
 		if not self.modified:
 			return True
-		
+
 		if canCancel:
 			cc = wx.CANCEL
 		else:
 			cc = 0
-	
+
 		d = wx.MessageDialog(self.frame, "Your %s has been modified. Do you want to save it?" % (self.docType), self.appName, wx.YES_NO | wx.ICON_QUESTION | cc)
 		res = d.ShowModal()
 		if res == wx.ID_CANCEL:
@@ -189,9 +189,9 @@ class SDIMainFrame(wx.FileDropTarget):
 			return True
 		else: #wxID_YES
 			return self.SaveFile();
-		
+
 	def AskSaveFilename(self):
-		"""Ask and updates the filename (without saving); return False if user cancels, True otherwise"""	
+		"""Ask and updates the filename (without saving); return False if user cancels, True otherwise"""
 		leave = False;
 		consensus = False;
 		while not leave:
@@ -239,7 +239,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			return wx.ID_OK
 		else:
 			return False
-			
+
 	def SaveFile(self):
 		"""Save file, asking for file name if necessary. Return False if user cancels, True otherwise"""
 		if self.document == '':
@@ -251,15 +251,15 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.modified = False
 			self.UpdateTitle()
 		return True
-	
+
 	def New(self):
 		"""To be overridden: create a blank document"""
 		pass
-	
+
 	def Open(self):
 		"""To be overridden: open a document"""
 		pass
-	
+
 	def Save(self):
 		"""To be overridden: save a document"""
 		return True
@@ -273,20 +273,20 @@ class SDIMainFrame(wx.FileDropTarget):
 		menuid = xrc.XRCID(menuName)
 		self.panesByMenu[menuid] = pane
 		self.menusByPane[pane.name] = menuid
-		self.Bind(wx.EVT_MENU, self.OnTogglePaneView, menuName)		
+		self.Bind(wx.EVT_MENU, self.OnTogglePaneView, menuName)
 		return pane
-		
+
 	def OnTogglePaneView(self, evt):
 		status = evt.GetInt()
 		menu = evt.GetId()
 		self.panesByMenu[menu].Show(status)
-		self._mgr.Update()		
-	
+		self._mgr.Update()
+
 	def OnPaneClose(self, evt):
 		pane = evt.GetPane()
 		menuid = self.menusByPane[pane.name]
 		self.menuBar.Check(menuid, False)
-		
+
 	def RetrieveRecentFileList(self):
 		self.recentMenuBase = 800
 		self.config.SetPath('/SDIMainFrame/RecentFiles')
@@ -297,12 +297,12 @@ class SDIMainFrame(wx.FileDropTarget):
 				self.recentFiles.append(f)
 			self.frame.Bind(wx.EVT_MENU, self.OnRecentFile, id = self.recentMenuBase + i)
 		self.UpdateRecentFileMenu()
-		
+
 	def EmptyRecentFileMenu(self):
 		fileMenu = self.menuBar.GetMenu(0)
 		for i in xrange(1, len(self.recentFiles)+1):
-			fileMenu.Remove(self.recentMenuBase + i)	
-	
+			fileMenu.Remove(self.recentMenuBase + i)
+
 	def UpdateRecentFileMenu(self):
 		i = 1
 		fileMenu = self.menuBar.GetMenu(0)
@@ -314,7 +314,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			fileMenu.Append(self.recentMenuBase + i, os.path.join(d, f))
 			self.config.Write(str(i), k)
 			i += 1
-		
+
 	def UpdateRecentFileList(self, name):
 		self.EmptyRecentFileMenu()
 		if name in self.recentFiles:
@@ -323,7 +323,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		if len(self.recentFiles) > 4:
 			self.recentFiles.pop()
 		self.UpdateRecentFileMenu()
-	
+
 	def OnRecentFile(self, evt):
 		i = evt.GetId() - self.recentMenuBase
 		fn = self.recentFiles[i-1]
@@ -333,11 +333,11 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.UpdateRecentFileList(fn)
 			self.modified = False
 			self.UpdateTitle()
-	
+
 	def FinalizePaneInitialization(self):
 		self.config.SetPath('/SDIMainFrame')
 		p = self.config.Read("Perspective")
-		print "Config: " + str(p)
+		#print "Config: " + str(p)
 		if p:
 			self._mgr.LoadPerspective(p)
 			for menuid in self.panesByMenu:

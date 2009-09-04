@@ -4,11 +4,11 @@
 #            editor: loading, saving and syntax hilighting
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
-		
+
 import wx
 from wx import xrc
 from wx.stc import *
@@ -44,7 +44,7 @@ class Editor(StyledTextCtrl):
 		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Color(0, 128, 0))
 		#I don't know why, but the following line is necessary in order to make
 		#the font bold
-		self.StyleSetFont(self.STC_STYLE_CHORUS, font)		
+		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
 		self.StyleSetBold(self.STC_STYLE_CHORUS, True)
 		#Dummy "token": we artificially replace every normalToken into a chorusToken when we are
 		#inside chorus.  Then, we can associate the chorus style in self.tokenStyle dictionary.
@@ -62,21 +62,21 @@ class Editor(StyledTextCtrl):
 		}
 		#self.chorus[i] == True iff, at the end of line i, we are still in chorus (i.e. bold) mode
 		self.chorus = []
-	
+
 	def New(self):
 		self.ClearAll();
-		
+
 	def Open(self):
 		self.LoadFile(self.spframe.document)
-		
+
 	def Save(self):
 		self.SaveFile(self.spframe.document)
-		
+
 	def OnTextChange(self, evt):
-		print("OnTextChange")
+		#print("OnTextChange")
 		self.spframe.SetModified()
 		self.spframe.TextUpdated()
-	
+
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()
 		pos = self.GetEndStyled()

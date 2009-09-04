@@ -3,7 +3,7 @@
 # Purpose:	 Main frame for Songpress
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -19,6 +19,7 @@ from decorators import StandardVerseNumbers
 from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
+from Globals import *
 
 class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):
