@@ -10,11 +10,12 @@
 import wx
 from wx import xrc
 from SongpressFrame import *
+from Globals import glb
 
 class SongpressApp(wx.App):
 
 	def OnInit(self):
-		self.res = xrc.XmlResource('xrc/songpress.xrc')
+		self.res = xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
 		songpressFrame = SongpressFrame(self.res)
 		
 		return True

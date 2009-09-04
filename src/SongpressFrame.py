@@ -19,7 +19,7 @@ from decorators import StandardVerseNumbers
 from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
-from Globals import *
+from Globals import glb
 
 class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):
@@ -160,22 +160,22 @@ class SongpressFrame(SDIMainFrame):
 		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
-		self.mainToolBar.AddTool(wx.xrc.XRCID('new'), wx.BitmapFromImage(wx.Image("img/new.png")))
-		self.mainToolBar.AddTool(wx.xrc.XRCID('open'), wx.BitmapFromImage(wx.Image("img/open.png")))
-		self.mainToolBar.AddTool(wx.xrc.XRCID('save'), wx.BitmapFromImage(wx.Image("img/save.png")))
+		self.mainToolBar.AddTool(wx.xrc.XRCID('new'), wx.BitmapFromImage(wx.Image(glb.AddPath(glb.AddPath("img/new.png")))))
+		self.mainToolBar.AddTool(wx.xrc.XRCID('open'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/open.png"))))
+		self.mainToolBar.AddTool(wx.xrc.XRCID('save'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/save.png"))))
 		self.mainToolBar.AddSeparator()
 		self.undoTool = wx.xrc.XRCID('undo')
-		self.mainToolBar.AddTool(self.undoTool, wx.BitmapFromImage(wx.Image("img/undo.png")))
+		self.mainToolBar.AddTool(self.undoTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/undo.png"))))
 		self.redoTool = wx.xrc.XRCID('redo')
-		self.mainToolBar.AddTool(self.redoTool, wx.BitmapFromImage(wx.Image("img/redo.png")))
+		self.mainToolBar.AddTool(self.redoTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/redo.png"))))
 		self.mainToolBar.AddSeparator()
 		self.cutTool = wx.xrc.XRCID('cut')
-		self.mainToolBar.AddTool(self.cutTool, wx.BitmapFromImage(wx.Image("img/cut.png")))
+		self.mainToolBar.AddTool(self.cutTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/cut.png"))))
 		self.copyTool = wx.xrc.XRCID('copy')
-		self.mainToolBar.AddTool(self.copyTool, wx.BitmapFromImage(wx.Image("img/copy.png")))
-		self.mainToolBar.AddTool(wx.xrc.XRCID('copyAsImage'), wx.BitmapFromImage(wx.Image("img/copyAsImage2.png")))
+		self.mainToolBar.AddTool(self.copyTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/copy.png"))))
+		self.mainToolBar.AddTool(wx.xrc.XRCID('copyAsImage'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/copyAsImage2.png"))))
 		self.pasteTool = wx.xrc.XRCID('paste')
-		self.mainToolBar.AddTool(self.pasteTool, wx.BitmapFromImage(wx.Image("img/paste.png")))
+		self.mainToolBar.AddTool(self.pasteTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/paste.png"))))
 		self.mainToolBar.Realize()
 		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), 'Standard', 'standard')		
 		self.formatToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
@@ -184,10 +184,10 @@ class SongpressFrame(SDIMainFrame):
 		self.formatToolBar.AddControl(self.fontChooser)
 		self.frame.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontChooser)
 		self.frame.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontChooser)
-		self.formatToolBar.AddTool(wx.xrc.XRCID('title'), wx.BitmapFromImage(wx.Image("img/title.png")))
-		self.formatToolBar.AddTool(wx.xrc.XRCID('chord'), wx.BitmapFromImage(wx.Image("img/chord.png")))
-		self.formatToolBar.AddTool(wx.xrc.XRCID('chorus'), wx.BitmapFromImage(wx.Image("img/chorus.png")))
-		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image("img/labelVerses.png")), isToggle=True)
+		self.formatToolBar.AddTool(wx.xrc.XRCID('title'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/title.png"))))
+		self.formatToolBar.AddTool(wx.xrc.XRCID('chord'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/chord.png"))))
+		self.formatToolBar.AddTool(wx.xrc.XRCID('chorus'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/chorus.png"))))
+		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/labelVerses.png"))), isToggle=True)
 		self.labelVersesToolId = labelVersesTool.GetId()
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), 'Format', 'format')
