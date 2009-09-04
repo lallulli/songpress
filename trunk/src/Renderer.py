@@ -141,10 +141,10 @@ class Renderer(object):
 				elif t == SongTokenizer.chordToken:
 					self.AddText(tok.content[1:], SongText.chord)
 				elif t == SongTokenizer.commandToken:
-					cmd = tok.content
-					if cmd == 'soc':
+					cmd = tok.content.lower()
+					if cmd == 'soc' or cmd == 'start_of_chorus':
 						self.BeginChorus()
-					elif cmd == 'eoc' and state == SongBlock.chorus:
+					elif (cmd == 'eoc' or cmd == 'end_of_chorus') and state == SongBlock.chorus:
 						self.EndBlock()
 					elif cmd == 'c' or cmd == 'comment':
 						a = self.GetAttribute()
