@@ -71,8 +71,8 @@ class SongpressFindReplaceDialog(object):
 			pass
 			self.owner.text.SetSelection(p, p + len(self.st))
 		else:
+			parent = self.dialog if self.dialog != None else self.owner.frame
 			if not fromStart:
-				parent = self.dialog if self.dialog != None else self.owner.frame
 				if self.down:
 					where = "beginning"
 					newStart = 0
@@ -100,7 +100,7 @@ class SongpressFindReplaceDialog(object):
 	
 	def OnReplace(self, evt):
 		r = evt.GetReplaceString()
-		if self.owner.text.GetSelectedText() == self.st:
+		if self.owner.text.GetSelectedText().lower() == self.st.lower():
 			self.owner.text.ReplaceSelection(r)
 			self.FindNext()
 	
