@@ -3,7 +3,7 @@
 # Purpose:	 Subclass of Tokenizer to tokenize songs
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-31
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 

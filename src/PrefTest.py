@@ -3,7 +3,7 @@
 # Purpose:	 Test preference management module
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-05-30
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -20,16 +20,16 @@ def EtaValidator(eta):
 
 class Persona(Preferences):
 	def __init__(self, parents = [], gui = None):
-		Preferences.__init__(self, parents, gui)	
-	
-	
+		Preferences.__init__(self, parents, gui)
+
+
 
 Persona.Register("nome", str)
 Persona.Register("cognome", str, lambda: "Allulli")
 Persona.Register("eta", int, None, EtaValidator)
 
 Persona.Register("figlio", Persona)
-	
+
 a = Persona()
 a.nome = 'Luca'
 a.figlio = Persona([a, '..'])
@@ -51,7 +51,7 @@ if not ('oldwritexml' in minidom.Element.__dict__):
 	minidom.Element.writexml = newwritexml
 #End patch
 
-print x.dom.toprettyxml()
+#print x.dom.toprettyxml()
 
 xml = """<?xml version="1.0" ?>
 <pref id="1" ptype="Persona">

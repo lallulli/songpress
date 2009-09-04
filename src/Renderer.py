@@ -3,7 +3,7 @@
 # Purpose:	 Render a song on a dc
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-02-21
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -14,7 +14,7 @@ from SongFormat import *
 from SongBoxes import *
 
 class Renderer(object):
-	
+
 	def __init__(self, sf, sd = SongDecorator()):
 		object.__init__(self)
 		self.text = ""
@@ -43,9 +43,9 @@ class Renderer(object):
 		self.currentBlock = SongBlock(type, self.format)
 		self.currentBlock.verseNumber = self.song.verseCount
 		self.textFont = self.format.wxFont
-		self.chordFont = self.format.chord.wxFont	
+		self.chordFont = self.format.chord.wxFont
 		self.commentFont = self.format.comment.wxFont
-	
+
 	def EndBlock(self):
 		if self.currentBlock != None:
 			self.EndLine()
@@ -58,12 +58,12 @@ class Renderer(object):
 
 	def BeginChorus(self):
 		self.BeginBlock(SongBlock.chorus)
-		
+
 	def ChorusVSkip(self):
 		self.EndLine()
 		self.BeginLine()
 		self.EndLine()
-		
+
 	def AddText(self, text, type = SongText.text):
 		self.BeginVerse()
 		self.BeginLine()
@@ -76,25 +76,25 @@ class Renderer(object):
 			font = self.textFont
 		t = SongText(text, font, type)
 		self.currentLine.AddBox(t)
-		
+
 	def AddTitle(self, title):
-		self.BeginBlock(SongBlock.title)	
+		self.BeginBlock(SongBlock.title)
 		self.AddText(title, SongText.title)
 		self.EndBlock()
-		
+
 	def BeginLine(self):
 		if self.currentLine == None:
 			if self.song.drawWholeSong or (self.fromLine <= self.lineCount and self.lineCount <= self.toLine):
 				self.currentBlock.drawBlock = True
 			self.currentLine = SongLine()
-			
+
 	def EndLine(self):
 		if self.currentLine != None:
 			self.currentBlock.AddBox(self.currentLine)
 			self.currentLine = None
-		
+
 	def GetAttribute(self):
-		print("Getting attribute...")
+		#print("Getting attribute...")
 		try:
 			tok = self.tkz.next()
 			if tok.token != SongTokenizer.colonToken:
@@ -106,15 +106,15 @@ class Renderer(object):
 				return None
 			return tok.content
 		except StopIteration:
-			print("No attribute")
+			#print("No attribute")
 			pass
 		return None
-		
+
 	def GetState(self):
 		return None if self.currentBlock == None else self.currentBlock.type
-	
+
 	def Render(self, text, dc, fromLine = -1, toLine = -1):
-		print "Face is " + self.sf.face
+		#print "Face is " + self.sf.face
 		self.text = text
 		self.dc = dc
 		self.verseNumber = 0
@@ -126,7 +126,7 @@ class Renderer(object):
 		self.lineCount = -1
 		self.fromLine = fromLine
 		self.toLine = toLine
-		
+
 		for l in self.text.splitlines():
 			self.lineCount += 1
 			state = self.GetState()
@@ -154,7 +154,7 @@ class Renderer(object):
 						a = self.GetAttribute()
 						if a != None:
 							self.AddTitle(a)
-							
+
 			self.EndLine()
 			if empty:
 				if state == SongBlock.verse:
@@ -165,7 +165,6 @@ class Renderer(object):
 		w, h = self.sd.Draw(self.song, dc)
 		self.dc = None
 		return w, h
-		
+
 	def SetDecorator(self, sd):
 		self.sd = sd
-		

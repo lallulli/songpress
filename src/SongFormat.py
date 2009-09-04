@@ -3,7 +3,7 @@
 # Purpose:	 Song format options
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-02-24
-# Copyright: Luca Allulli (http://www.roma21.it/songpress)
+# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -14,18 +14,18 @@ class AttributeMonitor(object):
 		object.__init__(self)
 		self.am_started = False
 		self.am_handlers = handlers
-		
+
 	def __setattr__(self, name, value):
 		object.__setattr__(self, name, value)
 		if name != 'am_started' and self.am_started:
 			for h in self.am_handlers:
 				if name in h.names:
-					print name
+					#print name
 					h.OnSetAttr(self, name, value)
-					
+
 	def Am_Start(self):
 		self.am_started = True
-			
+
 class FontChangeHandler(object):
 	names = set(("face", "size", "bold", "italic", "underline"))
 	@staticmethod
@@ -46,9 +46,9 @@ class FontFormat(AttributeMonitor):
 		self.UpdateWxFont()
 		# Start monitor
 		self.Am_Start()
-		
+
 	def UpdateWxFont(self):
-		print("Updated")
+		#print("Updated")
 		if self.italic:
 			style = wx.FONTSTYLE_ITALIC
 		else:
@@ -58,7 +58,7 @@ class FontFormat(AttributeMonitor):
 		else:
 			weight = wx.FONTWEIGHT_NORMAL
 		self.wxFont = wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
-	
+
 class ParagraphFormat(FontFormat):
 	def __init__(self):
 		FontFormat.__init__(self)
@@ -85,7 +85,7 @@ class SongFormat(ParagraphFormat):
 		self.title.bold = True
 		self.title.underline = True
 		self.blockSpacing = 1
-		
+
 	def StubSetVerseCount(self, n):
 		i = len(self.verse)
 		while i < n:
