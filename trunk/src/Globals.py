@@ -14,5 +14,8 @@ class Globals(object):
 	def __init__(self):
 		object.__init__(self)
 		self.path = os.path.abspath(os.path.dirname(sys.argv[0]))
+		
+	def AddPath(self, filename):
+		return os.path.join(self.path, filename)
 
 glb = Globals()
