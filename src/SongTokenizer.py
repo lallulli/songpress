@@ -18,12 +18,13 @@ class SongTokenizer(Tokenizer):
 	#Tokens
 	openCurlyToken = TokenType('(\{)', 'openCurlyToken')
 	closeCurlyToken = TokenType('(\})', 'closeCurlyToken')
-	normalToken = TokenType('([^[{]+)', 'normalToken')
+	normalToken = TokenType('([^[{#]+)', 'normalToken')
 	commandToken = TokenType('([^}:]+)', 'commandToken')
 	attrToken = TokenType('([^}]+)', 'attrToken')
 	chordToken = TokenType('(\[[^]]*)', 'chordToken')
 	closeChordToken = TokenType('(\])', 'closeChordToken')
 	colonToken = TokenType('(:)', 'colonToken')
+	commentToken = TokenType('(#.*)$', 'commentToken')
 
 	#States
 	normal = 1
@@ -32,8 +33,8 @@ class SongTokenizer(Tokenizer):
 	
 	#Transition function
 	transition = {
-		normal: ((openCurlyToken, command), (chordToken, normal), (closeChordToken, normal), (normalToken, normal)),
+		normal: ((openCurlyToken, command), (chordToken, normal), (closeChordToken, normal), (normalToken, normal), (commentToken, normal)),
 		command: ((colonToken, attr), (closeCurlyToken, normal), (commandToken, command)),
-		attr: ((attrToken, attr), (closeCurlyToken, normal))
+		attr: ((attrToken, attr), (closeCurlyToken, normal), (commentToken, normal))
 	}
 

@@ -37,11 +37,13 @@ class Editor(StyledTextCtrl):
 		self.STC_STYLE_COMMAND = 13
 		self.STC_STYLE_ATTR = 14
 		self.STC_STYLE_CHORUS = 15
+		self.STC_STYLE_COMMENT = 16
 		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Color(255, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_COMMAND, wx.Color(0, 0, 255))
 		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Color(0, 128, 0))
+		self.StyleSetForeground(self.STC_STYLE_COMMENT, wx.Color(128, 128, 128))
 		#I don't know why, but the following line is necessary in order to make
 		#the font bold
 		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
@@ -58,6 +60,7 @@ class Editor(StyledTextCtrl):
 			SongTokenizer.chordToken: self.STC_STYLE_CHORD,
 			SongTokenizer.closeChordToken: self.STC_STYLE_CHORD,
 			SongTokenizer.colonToken: self.STC_STYLE_COMMAND,
+			SongTokenizer.commentToken: self.STC_STYLE_COMMENT,
 			self.chorusToken: self.STC_STYLE_CHORUS
 		}
 		#self.chorus[i] == True iff, at the end of line i, we are still in chorus (i.e. bold) mode
