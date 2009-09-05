@@ -308,14 +308,16 @@ class SongpressFrame(SDIMainFrame):
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
 		self.format.face = font
+		self.format.comment.face = font
 		self.format.chord.face = font
 		self.format.chorus.face = font
 		self.format.chorus.chord.face = font
+		self.format.chorus.comment.face = font
 		for v in self.format.verse:
 			v.face = font
 			v.chord.face = font
+			v.comment.face = font
 		self.format.title.face = font
-		self.format.comment.face = font
 		self.decoratorFormat.face = font
 		self.decoratorFormat.chorus.face = font		
 		self.previewCanvas.Refresh(self.text.GetText())
