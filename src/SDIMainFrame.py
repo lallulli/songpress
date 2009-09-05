@@ -45,6 +45,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		docType='document',
 		docExt='txt',
 		appLongName=None,
+		icon=None,
 		version="1.0",
 		url="",
 		copyright = "",
@@ -67,6 +68,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.config = wx.FileConfig(appName)
 		wx.Config.Set(self.config)
 		self.frame = self.res.LoadFrame(None, frameName)
+		if icon != None:
+			self.frame.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_ICO))
 		self.BindMenu()
 		self.frame.Bind(wx.EVT_CLOSE, self.OnClose, self.frame)
 		dt = SDIDropTarget(self)

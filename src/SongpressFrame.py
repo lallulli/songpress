@@ -155,6 +155,7 @@ class SongpressFrame(SDIMainFrame):
 			'song',
 			'crd',
 			'Songpress - Il Canzonatore',
+			glb.AddPath('img/songpress.ico'),
 			"1.0 beta 1 (1.0.b+1)",
 			"http://www.skeed.it/songpress.html",
 			"Copyright (c) 2009 Luca Allulli - Skeed",
