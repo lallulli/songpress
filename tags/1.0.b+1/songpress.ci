@@ -1,0 +1,89 @@
+<*project
+      version = 4 civer = "Free v4.14.5" winver = "2.8/6.0.6001" > 
+   <output> C:\Users\Luca\Documents\lucappl\Applicazioni\songpress</>
+   <exename> setup.exe</>
+   <digitsign> </>
+   <appname> Songpress</>
+   <password> </>
+   <addlang> </>
+   <icon> Default</>
+   <selfextr> 1</>
+   <voltype> nolimit</>
+   <volsize> </>
+   <volpattern> disk%i.pak</>
+   <load> </>
+   <loadtime> 1000</>
+   <checktype> admin</>
+   <chkname> </>
+   <chkmsg> </>
+   <dlgfont> Verdana,8</>
+   <lang> English</>
+   <theme> Dark</>
+   <iface> leftlogo</>
+   <leftlogo> </>
+   <logo> </>
+   <vb> </>
+   <dao> </>
+   <background> 0</>
+   <dlgwelcome> 1</>
+   <dlgreadme> </>
+   <dlglic> C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\dist\license.txt</>
+   <dlgcustpath> </>
+   <dlgenfpath> 0</>
+   <dlgsavepath> 0</>
+   <dlgautoprog> 1</>
+   <dlgfinish> 1</>
+   <comptype> ppmdmax</>
+   <solid> 0</>
+   <srcfolder> C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\dist</>
+   <ifexist> overnewer</>
+   <runafter> </>
+   <runconfirm> 0</>
+   <uninclude> 1</>
+   <unicon> Uninstall</>
+   <unshortcut> 1</>
+   <unrun> </>
+   <silent> 0</>
+   <unfeed> </>
+   <unautoclose> 1</>
+   <unfinish> 1</>
+   <bl> My Demo</>
+   <blurl> </>
+   <bghead> </>
+   <bgfoot> </> 
+   <bgback> </>
+   <files listview >
+      <_><src>54445</><dest>inst</><custom></><ifexist>overnewer</><recurs>0</></>
+
+   </files>
+   <runx listview >
+      
+   </runx>
+   <registry listview >
+      
+   </registry>
+   <shcut listview >
+      <_><shpath>prog</><shname>Songpress</><tarpath>inst</><tarname>songpress.exe</><cmdline></><workpath>def</><workcust></><icon></></>
+
+   </shcut>
+   <ini listview >
+      
+   </ini>
+   <copy listview >
+      
+   </copy>
+   <activex listview >
+      
+   </activex>
+   <font listview >
+      
+   </font>
+   <ext listview >
+      <_><ext>crd</><path>inst</><name>songpress.exe</><cmdline></></>
+
+   </ext>
+   <mreg listview >
+      
+   </mreg>
+   <macros> Pathadd=</>
+</project>
