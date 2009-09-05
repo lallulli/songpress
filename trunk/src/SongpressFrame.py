@@ -211,8 +211,7 @@ class SongpressFrame(SDIMainFrame):
 		self.pasteMenuId = xrc.XRCID('paste')
 		self.labelVersesMenuId = xrc.XRCID('labelVerses')
 		self.findReplaceDialog = None
-		self.labelVerses = True
-		self.CheckLabelVerses()
+		self.LoadConfig()
 		self.FinalizePaneInitialization()
 		
 	def BindMyMenu(self):
@@ -321,6 +320,10 @@ class SongpressFrame(SDIMainFrame):
 	
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
+		self.SetFont(font)
+		
+	def SetFont(self, font):
+		self.fontChooser.SetValue(font)	
 		self.format.face = font
 		self.format.comment.face = font
 		self.format.chord.face = font
@@ -335,13 +338,13 @@ class SongpressFrame(SDIMainFrame):
 		self.decoratorFormat.face = font
 		self.decoratorFormat.chorus.face = font		
 		self.previewCanvas.Refresh(self.text.GetText())
+		self.config.SetPath('/Format/Font')
+		self.config.Write('FontFace', font)
 		
 	def OnFormatFont(self, evt):
 		f = FontFaceDialog(self.frame, wx.ID_ANY, "Songpress", self.format, self.decorator, self.decoratorFormat)
 		if f.ShowModal() == wx.ID_OK:
-			self.fontChooser.SetValue(f.GetValue())
-			self.previewCanvas.Refresh(self.text.GetText())
-			#self.OnFontSelected(evt)
+			self.SetFont(f.GetValue())
 			
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()
@@ -372,9 +375,26 @@ class SongpressFrame(SDIMainFrame):
 	def CheckLabelVerses(self):
 		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.labelVerses)
 		self.menuBar.Check(self.labelVersesMenuId, self.labelVerses)
+		self.config.SetPath('/Format/Style')
 		if self.labelVerses:
 			self.previewCanvas.SetDecorator(self.decorator)
+			self.config.Write('LabelVerses', "1")
 		else:
 			self.previewCanvas.SetDecorator(SongDecorator())
+			self.config.Write('LabelVerses', "0")
 		self.previewCanvas.Refresh(self.text.GetText())
-
+		
+	def LoadConfig(self):
+		self.config.SetPath('/Format/Font')
+		face = self.config.Read('FontFace')
+		if face:
+			self.SetFont(face)
+		self.config.SetPath('/Format/Style')
+		labelVerses = self.config.Read('LabelVerses')
+		if labelVerses:
+			self.labelVerses = bool(int(labelVerses))
+			self.CheckLabelVerses()
+		else:
+			self.labelVerses = True
+			self.CheckLabelVerses()
+	
