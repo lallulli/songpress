@@ -36,11 +36,31 @@ class SDIMainFrame(wx.FileDropTarget):
 	"""Abstract class. Override methods New, Open, Save"""
 	###UI generation###
 
-	def __init__(self, res, frameName='MainFrame', appName='SDIApp', authorName='Nobody', docType='document', docExt='txt'):
+	def __init__(
+		self,
+		res,
+		frameName='MainFrame',
+		appName='SDIApp',
+		authorName='Nobody',
+		docType='document',
+		docExt='txt',
+		appLongName=None,
+		version="1.0",
+		url="",
+		copyright = "",
+		licensing = "",
+		thanks = ""
+	):
 		self.res = res
 		self.appName = appName
+		self.appLongName = self.appName if appLongName == None else appLongName
 		self.authorName = authorName
 		self.modified = False
+		self.version = version
+		self.url = url
+		self.copyright = copyright
+		self.licensing = licensing
+		self.thanks = thanks
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
@@ -108,7 +128,7 @@ class SDIMainFrame(wx.FileDropTarget):
 					d = wx.MessageDialog(
 						self.frame,
 						msg,
-						self.appName,
+						self.appLongName,
 						wx.OK | wx.ICON_ERROR
 					)
 					d.ShowModal()
@@ -128,7 +148,14 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def OnAbout(self, evt):
 		"""Menu handler for ?->About"""
-		wx.MessageBox('%s by %s' % (self.appName, self.authorName), 'About ' + self.appName)
+		msg = "%s version %s\n\n%s\n\n%s\n\n%s" % (
+			self.appLongName, 
+			self.version, 
+			self.copyright, 
+			self.licensing,
+			self.thanks
+		)
+		wx.MessageBox(msg, 'About ' + self.appLongName)
 
 	def OnDropFiles(self, arr):
 		"""Handler for drop action: opens the dropped file, if it is exactly one"""
@@ -169,7 +196,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			doc = os.path.basename(self.document)
 			(doc, ext) = os.path.splitext(doc)
-		self.frame.SetTitle("%s%s - %s" % (mod, doc, self.appName))
+		self.frame.SetTitle("%s%s - %s" % (mod, doc, self.appLongName))
 
 	def AskSaveModified(self, canCancel = True):
 		"""If file has been modified, propose to save changes. Return False if cancelled, True otherwise"""
@@ -181,7 +208,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			cc = 0
 
-		d = wx.MessageDialog(self.frame, "Your %s has been modified. Do you want to save it?" % (self.docType), self.appName, wx.YES_NO | wx.ICON_QUESTION | cc)
+		d = wx.MessageDialog(self.frame, "Your %s has been modified. Do you want to save it?" % (self.docType), self.appLongName, wx.YES_NO | wx.ICON_QUESTION | cc)
 		res = d.ShowModal()
 		if res == wx.ID_CANCEL:
 			return False
@@ -212,7 +239,7 @@ class SDIMainFrame(wx.FileDropTarget):
 					d = wx.MessageDialog(
 						self.frame,
 						msg,
-						self.appName,
+						self.appLongName,
 						wx.YES_NO | wx.CANCEL | wx.ICON_QUESTION
 					)
 					res = d.ShowModal()

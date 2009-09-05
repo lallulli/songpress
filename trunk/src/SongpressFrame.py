@@ -146,7 +146,21 @@ class SongpressFindReplaceDialog(object):
 class SongpressFrame(SDIMainFrame):
 
 	def __init__(self, res):
-		SDIMainFrame.__init__(self, res, 'MainFrame', 'Songpress - Il Canzonatore', 'Luca Allulli', 'song', 'crd')
+		SDIMainFrame.__init__(
+			self,
+			res,
+			'MainFrame',
+			'songpress',
+			'Skeed',
+			'song',
+			'crd',
+			'Songpress - Il Canzonatore',
+			"1.0 beta 1 (1.0.b+1)",
+			"http://www.skeed.it/songpress.html",
+			"Copyright (c) 2009 Luca Allulli - Skeed",
+			"Licensed under the terms and conditions of the GNU General Public License, version 2",
+			"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)"
+		)
 		self.text = Editor(self)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		self.format = SongFormat()
