@@ -6,7 +6,7 @@
    <appname> Songpress</>
    <password> </>
    <addlang> </>
-   <icon> Default - 1</>
+   <icon> Default</>
    <selfextr> 1</>
    <voltype> nolimit</>
    <volsize> </>
@@ -27,7 +27,7 @@
    <background> 0</>
    <dlgwelcome> 1</>
    <dlgreadme> </>
-   <dlglic> </>
+   <dlglic> C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\dist\license.txt</>
    <dlgcustpath> </>
    <dlgenfpath> 0</>
    <dlgsavepath> 0</>
@@ -41,7 +41,7 @@
    <runconfirm> 0</>
    <uninclude> 1</>
    <unicon> Uninstall</>
-   <unshortcut> 0</>
+   <unshortcut> 1</>
    <unrun> </>
    <silent> 0</>
    <unfeed> </>

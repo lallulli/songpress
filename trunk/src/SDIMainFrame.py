@@ -24,6 +24,7 @@ import wx.aui
 from wx import xrc
 import os
 import os.path
+import sys
 
 class SDIDropTarget(wx.FileDropTarget):
 	def __init__(self, sdi):
@@ -374,4 +375,6 @@ class SDIMainFrame(wx.FileDropTarget):
 				self.menuBar.Check(menuid, self.panesByMenu[menuid].IsShown())
 		else:
 			self._mgr.Update()
+		if len(sys.argv) > 1:
+			self.OnDropFiles([sys.argv[1]])
 		self.frame.Show()
