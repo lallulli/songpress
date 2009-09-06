@@ -30,7 +30,7 @@ class Format(FontFormat):
 		self.chorus.bold = sf.chorus.bold
 		self.chorus.italic = sf.chorus.italic
 		self.chorus.underline = sf.chorus.underline
-		self.chorus.label = "Chorus"
+		self.chorus.label = _("Chorus")
 
 class Decorator(SongDecorator):
 	def __init__(self, format):
