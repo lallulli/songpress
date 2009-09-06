@@ -30,7 +30,7 @@ class SongpressFindReplaceDialog(object):
 		self.dialog = wx.FindReplaceDialog(
 			owner.frame,
 			self.data,
-			"Replace" if replace else "Find",
+			_("Replace") if replace else _("Find"),
 			wx.FR_REPLACEDIALOG if replace else 0
 		)
 		owner.frame.Bind(wx.EVT_FIND, self.OnFind, self.dialog)
@@ -74,14 +74,14 @@ class SongpressFindReplaceDialog(object):
 			parent = self.dialog if self.dialog != None else self.owner.frame
 			if not fromStart:
 				if self.down:
-					where = "beginning"
+					where = _("beginning")
 					newStart = 0
 				else:
-					where = "end"
+					where = _("end")
 					newStart = self.owner.text.GetLength()
 				d = wx.MessageDialog(
 					parent,
-					"Reached the end of the song, restarting search from the %s" % (where,),
+					_("Reached the end of the song, restarting search from the %s") % (where,),
 					self.owner.appName,
 					wx.OK | wx.CANCEL | wx.ICON_INFORMATION
 				)
@@ -92,7 +92,7 @@ class SongpressFindReplaceDialog(object):
 			else:
 				d = wx.MessageDialog(
 					parent,
-					"The specified text was not found",
+					_("The specified text was not found"),
 					self.owner.appName,
 					wx.OK | wx.ICON_INFORMATION
 				)
@@ -131,7 +131,7 @@ class SongpressFindReplaceDialog(object):
 		
 		d = wx.MessageDialog(
 			self.dialog,
-			"%d text occurrences have been replaced" % (c,),
+			_("%d text occurrences have been replaced") % (c,),
 			self.owner.appName,
 			wx.OK | wx.ICON_INFORMATION
 		)
@@ -152,15 +152,15 @@ class SongpressFrame(SDIMainFrame):
 			'MainFrame',
 			'songpress',
 			'Skeed',
-			'song',
+			_('song'),
 			'crd',
-			'Songpress - Il Canzonatore',
+			_('Songpress - Il Canzonatore'),
 			glb.AddPath('img/songpress.ico'),
-			"1.0 beta 1 (1.0.b+1)",
-			"http://www.skeed.it/songpress.html",
-			"Copyright (c) 2009 Luca Allulli - Skeed",
-			"Licensed under the terms and conditions of the GNU General Public License, version 2",
-			"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)"
+			_("1.0 beta 1 (1.0.b+1)"),
+			_("http://www.skeed.it/songpress.html"),
+			_("Copyright (c) 2009 Luca Allulli - Skeed"),
+			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
+			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)")
 		)
 		self.text = Editor(self)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
@@ -170,7 +170,7 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvas = PreviewCanvas(self.frame, self.format, self.decorator)
 		self.AddMainPane(self.text)
 		self.previewCanvas.panel.SetSize(wx.Size(400, 800))
-		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), 'Preview', 'preview')
+		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
 		self.previewCanvasPane.BestSize(wx.Size(400,800))
 		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
@@ -192,7 +192,7 @@ class SongpressFrame(SDIMainFrame):
 		self.pasteTool = wx.xrc.XRCID('paste')
 		self.mainToolBar.AddTool(self.pasteTool, wx.BitmapFromImage(wx.Image(glb.AddPath("img/paste.png"))))
 		self.mainToolBar.Realize()
-		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), 'Standard', 'standard')		
+		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')		
 		self.formatToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
 		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.format.face)
@@ -205,7 +205,7 @@ class SongpressFrame(SDIMainFrame):
 		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/labelVerses.png"))), isToggle=True)
 		self.labelVersesToolId = labelVersesTool.GetId()
 		self.formatToolBar.Realize()
-		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), 'Format', 'format')
+		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), _('Format'), 'format')
 		self.BindMyMenu()
 		self.cutMenuId = xrc.XRCID('cut')
 		self.copyMenuId = xrc.XRCID('copy')
@@ -343,7 +343,7 @@ class SongpressFrame(SDIMainFrame):
 		self.config.Write('FontFace', font)
 		
 	def OnFormatFont(self, evt):
-		f = FontFaceDialog(self.frame, wx.ID_ANY, "Songpress", self.format, self.decorator, self.decoratorFormat)
+		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.format, self.decorator, self.decoratorFormat)
 		if f.ShowModal() == wx.ID_OK:
 			self.SetFont(f.GetValue())
 			

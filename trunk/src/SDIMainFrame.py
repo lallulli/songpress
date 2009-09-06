@@ -112,10 +112,10 @@ class SDIMainFrame(wx.FileDropTarget):
 		if self.AskSaveModified():
 			dlg = wx.FileDialog(
 				self.frame,
-				"Open file",
+				_("Open file"),
 				"",
 				"",
-				"%s files (*.%s)|*.%s|All files (*.*)|*.*" % (self.docExt, self.docExt, self.docExt),
+				_("%s files (*.%s)|*.%s|All files (*.*)|*.*") % (self.docExt, self.docExt, self.docExt),
 				wx.FD_OPEN
 			)
 
@@ -128,7 +128,7 @@ class SDIMainFrame(wx.FileDropTarget):
 					self.modified = False
 					self.UpdateTitle()
 				else:
-					msg = "File \"%s\" does not exist." % (fn, )
+					msg = _("File \"%s\" does not exist.") % (fn, )
 					d = wx.MessageDialog(
 						self.frame,
 						msg,
@@ -152,7 +152,7 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def OnAbout(self, evt):
 		"""Menu handler for ?->About"""
-		msg = "%s version %s\n%s\n\n%s\n\n%s\n\n%s" % (
+		msg = _("%s version %s\n%s\n\n%s\n\n%s\n\n%s") % (
 			self.appLongName,
 			self.version, 
 			self.url,
@@ -160,7 +160,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.licensing,
 			self.thanks
 		)
-		wx.MessageBox(msg, 'About ' + self.appLongName)
+		wx.MessageBox(msg, _('About ') + self.appLongName)
 
 	def OnDropFiles(self, arr):
 		"""Handler for drop action: opens the dropped file, if it is exactly one"""
@@ -197,7 +197,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			mod = ''
 		if self.document == '':
-			doc = 'Untitled'
+			doc = _('Untitled')
 		else:
 			doc = os.path.basename(self.document)
 			(doc, ext) = os.path.splitext(doc)
@@ -213,7 +213,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			cc = 0
 
-		d = wx.MessageDialog(self.frame, "Your %s has been modified. Do you want to save it?" % (self.docType), self.appLongName, wx.YES_NO | wx.ICON_QUESTION | cc)
+		d = wx.MessageDialog(self.frame, _("Your %s has been modified. Do you want to save it?") % (self.docType), self.appLongName, wx.YES_NO | wx.ICON_QUESTION | cc)
 		res = d.ShowModal()
 		if res == wx.ID_CANCEL:
 			return False
@@ -229,10 +229,10 @@ class SDIMainFrame(wx.FileDropTarget):
 		while not leave:
 			dlg = wx.FileDialog(
 				self.frame,
-				"Choose a name for the file",
+				_("Choose a name for the file"),
 				"",
 				"",
-				"%s files (*.%s)|*.%s|All files (*.*)|*.*" % (self.docExt, self.docExt, self.docExt),
+				_("%s files (*.%s)|*.%s|All files (*.*)|*.*") % (self.docExt, self.docExt, self.docExt),
 				wx.FD_SAVE
 			)
 
@@ -240,7 +240,7 @@ class SDIMainFrame(wx.FileDropTarget):
 
 				fn = dlg.GetPath()
 				if os.path.isfile(fn):
-					msg = "File \"%s\" already exists. Do you want to overwrite it?" % (fn, );
+					msg = _("File \"%s\" already exists. Do you want to overwrite it?") % (fn, );
 					d = wx.MessageDialog(
 						self.frame,
 						msg,

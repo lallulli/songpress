@@ -12,14 +12,7 @@ import wx
 from PreviewCanvas import *
 from FontComboBox import FontComboBox
 
-previewSong = """{t:My Bonnie}
-
-My [D]Bonnie lies [G]over the [D]ocean
-oh [G]bring back my [A]Bonnie to [D]me!
-
-{soc}[D]Bring back, [E-]bring back,
-[A]bring back my Bonnie to [D]me!{eoc}
-"""
+previewSong = _("{t:My Bonnie}\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n{soc}[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!{eoc}")
 
 class FontFaceDialog(wx.Dialog):
 	def __init__(self, parent, id, title, songFormat, songDecorator, decoratorFormat):
@@ -31,7 +24,7 @@ class FontFaceDialog(wx.Dialog):
 		bSizer1 = wx.BoxSizer(wx.VERTICAL)
 		hSizer1 = wx.BoxSizer(wx.HORIZONTAL)
 		
-		m_staticText1 = wx.StaticText(self, wx.ID_ANY, "Font")
+		m_staticText1 = wx.StaticText(self, wx.ID_ANY, _("Font"))
 		m_staticText1.Wrap(-1);
 		hSizer1.Add(m_staticText1, 0, wx.ALL, 5)
 		
@@ -41,7 +34,7 @@ class FontFaceDialog(wx.Dialog):
 
 		hSizer2 = wx.BoxSizer(wx.HORIZONTAL)
 		
-		m_staticText2 = wx.StaticText(self, wx.ID_ANY, "Preview")
+		m_staticText2 = wx.StaticText(self, wx.ID_ANY, _("Preview"))
 		m_staticText2.Wrap(-1)
 		hSizer2.Add(m_staticText2, 0, wx.ALL, 5)
 		
@@ -56,10 +49,10 @@ class FontFaceDialog(wx.Dialog):
 		
 		bSizer2.AddStretchSpacer(1)
 		
-		self.ok = wx.Button(self, wx.ID_OK, "OK")
+		self.ok = wx.Button(self, wx.ID_OK, _("OK"))
 		bSizer2.Add(self.ok, 0, wx.ALL, 5 )
 		
-		self.cancel = wx.Button(self, wx.ID_CANCEL, "Cancel")
+		self.cancel = wx.Button(self, wx.ID_CANCEL, _("Cancel"))
 		bSizer2.Add(self.cancel, 0, wx.ALL, 5)
 		self.Bind(wx.EVT_BUTTON, self.OnCancel, self.cancel)
 		
