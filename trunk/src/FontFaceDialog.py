@@ -14,7 +14,7 @@ from FontComboBox import FontComboBox
 
 previewSong = """{t:My Bonnie}
 
-My [D]Bonnie is [G]over the [D]ocean
+My [D]Bonnie lies [G]over the [D]ocean
 oh [G]bring back my [A]Bonnie to [D]me!
 
 {soc}[D]Bring back, [E-]bring back,

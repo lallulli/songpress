@@ -152,9 +152,10 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def OnAbout(self, evt):
 		"""Menu handler for ?->About"""
-		msg = "%s version %s\n\n%s\n\n%s\n\n%s" % (
-			self.appLongName, 
+		msg = "%s version %s\n%s\n\n%s\n\n%s\n\n%s" % (
+			self.appLongName,
 			self.version, 
+			self.url,
 			self.copyright, 
 			self.licensing,
 			self.thanks
