@@ -38,15 +38,20 @@ def execute(path, xrc=False, lang=[]):
 			for f in created:
 				n, e = os.path.splitext(f)
 				fn = os.path.join(pl, n + ".po")
-				if not os.path.isfile(fn):
-					shutil.copy(os.path.join(path, f), fn)
+				fo = os.path.join(path, f)
+				if os.path.isfile(fn):
+					s = 'msgmerge -U "%s" "%s"' % (fn, fo)
+					print s
+					os.system(s)
+				else:
+					shutil.copy(fo, fn)
 
 if __name__ == '__main__':
 	parser = OptionParser()
 	parser.add_option("-d", "--dir", dest="dir",
 										help="directory to process")
 	parser.add_option("-l", "--languages", dest="lang",
-										help="comma-separated list of languages to initialize")
+										help="comma-separated list of languages to handle (init, merge)")
 	parser.add_option("-x", "--xrc",
 										action="store_true", dest="xrc", default=False,
 										help="process xrc files (wxWidgets required)")
