@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-11 23:00+0200\n"
+"PO-Revision-Date: 2009-09-11 23:23+0100\n"
+"Last-Translator: Luca Allulli\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+msgid "Replace"
+msgstr "Sostituisci"
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+msgid "Find"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:80
+msgid "beginning"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:83
+msgid "end"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:87
+#, python-format
+msgid "Reached the end of the song, restarting search from the %s"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:98
+msgid "The specified text was not found"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:137
+#, python-format
+msgid "%d text occurrences have been replaced"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:158
+msgid "song"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:160
+msgid "Songpress - Il Canzonatore"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:162
+msgid "1.0 beta 1 (1.0.b+1)"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:163
+msgid "http://www.skeed.it/songpress.html"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:164
+msgid "Copyright (c) 2009 Luca Allulli - Skeed"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:165
+msgid "Licensed under the terms and conditions of the GNU General Public License, version 2"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:166
+msgid ""
+"Special thanks to:\n"
+"  * The Pyhton programming language (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:176
+msgid "Preview"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:198
+msgid "Standard"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:211
+msgid "Format"
+msgstr ""
+
+#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:349
+msgid "Songpress"
+msgstr ""
+

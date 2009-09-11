@@ -25,6 +25,10 @@ from wx import xrc
 import os
 import os.path
 import sys
+import i18n
+
+i18n.register()
+i18n.setLang("it")
 
 class SDIDropTarget(wx.FileDropTarget):
 	def __init__(self, sdi):

@@ -20,6 +20,9 @@ from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from Globals import glb
+import i18n
+
+i18n.register()
 
 class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):
