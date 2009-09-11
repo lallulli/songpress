@@ -9,6 +9,9 @@
 
 from SongDecorator import *
 from SongFormat import * 
+import i18n
+
+i18n.register()
 
 class Format(FontFormat):
 	def __init__(self, sf):

@@ -11,6 +11,9 @@
 import wx
 from PreviewCanvas import *
 from FontComboBox import FontComboBox
+import i18n
+
+i18n.register()
 
 previewSong = _("{t:My Bonnie}\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n{soc}[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!{eoc}")
 
