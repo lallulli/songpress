@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 22:18+0200\n"
+"POT-Creation-Date: 2009-09-29 20:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,138 +16,138 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:1
+#: src\xrc\songpress.pos:1
 msgid "Songpress"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:2
+#: src\xrc\songpress.pos:2
 msgid "MyMenuBar"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:3
+#: src\xrc\songpress.pos:3
 msgid "&File"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:4
+#: src\xrc\songpress.pos:4
 msgid "&New"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:5
+#: src\xrc\songpress.pos:5
 msgid "&Open...\tCTRL+O"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:6
+#: src\xrc\songpress.pos:6
 msgid "&Save\tSHIFT+F12"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:7
+#: src\xrc\songpress.pos:7
 msgid "Save &as..."
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:8
+#: src\xrc\songpress.pos:8
 msgid "&Exit"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:9
+#: src\xrc\songpress.pos:9
 msgid "&Edit"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:10
+#: src\xrc\songpress.pos:10
 msgid "&Undo\tCTRL+Z"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:11
+#: src\xrc\songpress.pos:11
 msgid "&Redo\tCTRL+Y"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:12
+#: src\xrc\songpress.pos:12
 msgid "&Cut\tCTRL+X"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:13
-msgid "&Copy\tCTRL+C"
+#: src\xrc\songpress.pos:13
+msgid "C&opy\tCTRL+C"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:14
-msgid "&Copy as Image\tCTRL+D"
+#: src\xrc\songpress.pos:14
+msgid "Copy as &Image\tCTRL+D"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:15
+#: src\xrc\songpress.pos:15
 msgid "&Paste\tCTRL+V"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:16
+#: src\xrc\songpress.pos:16
 msgid "&Find...\tCTRL+F"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:17
+#: src\xrc\songpress.pos:17
 msgid "Find &Next\tF3"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:18
+#: src\xrc\songpress.pos:18
 msgid "Find Pre&vious\tSHIFT+F3"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:19
+#: src\xrc\songpress.pos:19
 msgid "R&eplace...\tCTRL+R"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:20
+#: src\xrc\songpress.pos:20
 msgid "&View"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:21
+#: src\xrc\songpress.pos:21
 msgid "&Toolbars"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:22
+#: src\xrc\songpress.pos:22
 msgid "&Standard"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:23
+#: src\xrc\songpress.pos:23
 msgid "&Format"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:24
+#: src\xrc\songpress.pos:24
 msgid "&Preview"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:25
+#: src\xrc\songpress.pos:25
 msgid "&Insert"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:26
+#: src\xrc\songpress.pos:26
 msgid "&Title\tCTRL+T"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:27
+#: src\xrc\songpress.pos:27
 msgid "C&hord\tCTRL+H"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:28
+#: src\xrc\songpress.pos:28
 msgid "Cho&rus\tCTRL+U"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:29
+#: src\xrc\songpress.pos:29
 msgid "Co&mment\tCTRL+M"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:30
+#: src\xrc\songpress.pos:30
 msgid "F&ormat"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:31
+#: src\xrc\songpress.pos:31
 msgid "&Font..."
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:32
+#: src\xrc\songpress.pos:32
 msgid "&Label verses"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:33
+#: src\xrc\songpress.pos:33
 msgid "&?"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\xrc\songpress.pos:34
+#: src\xrc\songpress.pos:34
 msgid "&About..."
 msgstr ""

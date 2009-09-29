@@ -256,7 +256,7 @@
                         <property name="help"></property>
                         <property name="id">ID_COPY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">&amp;Copy</property>
+                        <property name="label">C&amp;opy</property>
                         <property name="name">copy</property>
                         <property name="permission">none</property>
                         <property name="shortcut">CTRL+C</property>
@@ -271,7 +271,7 @@
                         <property name="help"></property>
                         <property name="id">ID_COPY_AS_IMAGE</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">&amp;Copy as Image</property>
+                        <property name="label">Copy as &amp;Image</property>
                         <property name="name">copyAsImage</property>
                         <property name="permission">none</property>
                         <property name="shortcut">CTRL+D</property>

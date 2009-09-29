@@ -46,11 +46,11 @@
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="copy">
-					<label>&amp;Copy\tCTRL+C</label>
+					<label>C&amp;opy\tCTRL+C</label>
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="copyAsImage">
-					<label>&amp;Copy as Image\tCTRL+D</label>
+					<label>Copy as &amp;Image\tCTRL+D</label>
 					<help></help>
 				</object>
 				<object class="wxMenuItem" name="paste">

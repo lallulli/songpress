@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 23:00+0200\n"
+"POT-Creation-Date: 2009-09-29 22:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,63 +16,71 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+#: src\SongpressFrame.py:36
 msgid "Replace"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+#: src\SongpressFrame.py:36
 msgid "Find"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:80
+#: src\SongpressFrame.py:80
 msgid "beginning"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:83
+#: src\SongpressFrame.py:81
+msgid "Reached the end"
+msgstr ""
+
+#: src\SongpressFrame.py:84
 msgid "end"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:87
-#, python-format
-msgid "Reached the end of the song, restarting search from the %s"
+#: src\SongpressFrame.py:85
+msgid "Reached the beginning"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:98
+#: src\SongpressFrame.py:89
+#, python-format
+msgid "%s of the song, restarting search from the %s"
+msgstr ""
+
+#: src\SongpressFrame.py:100
 msgid "The specified text was not found"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:137
+#: src\SongpressFrame.py:139
 #, python-format
 msgid "%d text occurrences have been replaced"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:158
+#: src\SongpressFrame.py:160
 msgid "song"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:160
+#: src\SongpressFrame.py:162
 msgid "Songpress - Il Canzonatore"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:162
+#: src\SongpressFrame.py:164
 msgid "1.0 beta 1 (1.0.b+1)"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:163
+#: src\SongpressFrame.py:165
 msgid "http://www.skeed.it/songpress.html"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:164
+#: src\SongpressFrame.py:166
 msgid "Copyright (c) 2009 Luca Allulli - Skeed"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:165
+#: src\SongpressFrame.py:167
 msgid ""
 "Licensed under the terms and conditions of the GNU General Public License, "
 "version 2"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:166
+#: src\SongpressFrame.py:168
 msgid ""
 "Special thanks to:\n"
 "  * The Pyhton programming language (http://www.python.org)\n"
@@ -80,18 +88,18 @@ msgid ""
 "  * wxPython (http://www.wxpython.org)"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:176
+#: src\SongpressFrame.py:178 src\SongpressFrame.py:223
 msgid "Preview"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:198
+#: src\SongpressFrame.py:200 src\SongpressFrame.py:224
 msgid "Standard"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:211
+#: src\SongpressFrame.py:213 src\SongpressFrame.py:225
 msgid "Format"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:349
+#: src\SongpressFrame.py:355
 msgid "Songpress"
 msgstr ""

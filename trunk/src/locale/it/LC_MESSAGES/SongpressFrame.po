@@ -7,89 +7,104 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 23:00+0200\n"
-"PO-Revision-Date: 2009-09-11 23:23+0100\n"
+"POT-Creation-Date: 2009-09-29 22:18+0200\n"
+"PO-Revision-Date: 2009-09-29 22:20+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+#: src\SongpressFrame.py:36
 msgid "Replace"
 msgstr "Sostituisci"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:36
+#: src\SongpressFrame.py:36
 msgid "Find"
-msgstr ""
+msgstr "Trova"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:80
+#: src\SongpressFrame.py:80
 msgid "beginning"
-msgstr ""
+msgstr "l'inizio"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:83
+#: src\SongpressFrame.py:81
+msgid "Reached the end"
+msgstr "Raggiunta la fine"
+
+#: src\SongpressFrame.py:84
 msgid "end"
-msgstr ""
+msgstr "la fine"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:87
+#: src\SongpressFrame.py:85
+msgid "Reached the beginning"
+msgstr "Raggiunto l'inizio"
+
+#: src\SongpressFrame.py:89
 #, python-format
-msgid "Reached the end of the song, restarting search from the %s"
-msgstr ""
+msgid "%s of the song, restarting search from the %s"
+msgstr "%s della canzone; la ricerca riprende dal%s"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:98
+#: src\SongpressFrame.py:100
 msgid "The specified text was not found"
-msgstr ""
+msgstr "Il testo immesso non è stato trovato"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:137
+#: src\SongpressFrame.py:139
 #, python-format
 msgid "%d text occurrences have been replaced"
-msgstr ""
+msgstr "Sono state sostituite %d occorrenze del testo"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:158
+#: src\SongpressFrame.py:160
 msgid "song"
-msgstr ""
+msgstr "canzone"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:160
+#: src\SongpressFrame.py:162
 msgid "Songpress - Il Canzonatore"
-msgstr ""
+msgstr "Songpress - Il Canzonatore"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:162
+#: src\SongpressFrame.py:164
 msgid "1.0 beta 1 (1.0.b+1)"
-msgstr ""
+msgstr "1.0 beta 1 (1.0.b+1)"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:163
+#: src\SongpressFrame.py:165
 msgid "http://www.skeed.it/songpress.html"
-msgstr ""
+msgstr "http://www.skeed.it/songpress.html"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:164
+#: src\SongpressFrame.py:166
 msgid "Copyright (c) 2009 Luca Allulli - Skeed"
-msgstr ""
+msgstr "Copyright (c) 2009 Luca Allulli - Skeed"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:165
+#: src\SongpressFrame.py:167
 msgid "Licensed under the terms and conditions of the GNU General Public License, version 2"
-msgstr ""
+msgstr "Concesso in licenza secondo i termini e le condizioni della GNU General Public License, versione 2"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:166
+#: src\SongpressFrame.py:168
 msgid ""
 "Special thanks to:\n"
 "  * The Pyhton programming language (http://www.python.org)\n"
 "  * wxWidgets (http://www.wxwidgets.org)\n"
 "  * wxPython (http://www.wxpython.org)"
 msgstr ""
+"Un sentito ringraziamento a:\n"
+"  * Il linguaggio di programmazione Pyhton (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:176
+#: src\SongpressFrame.py:178
+#: src\SongpressFrame.py:223
 msgid "Preview"
-msgstr ""
+msgstr "Anteprima"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:198
+#: src\SongpressFrame.py:200
+#: src\SongpressFrame.py:224
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:211
+#: src\SongpressFrame.py:213
+#: src\SongpressFrame.py:225
 msgid "Format"
-msgstr ""
+msgstr "Formattazione"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SongpressFrame.py:349
+#: src\SongpressFrame.py:355
 msgid "Songpress"
-msgstr ""
+msgstr "Songpress"
 

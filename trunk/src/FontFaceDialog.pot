@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 22:59+0200\n"
+"POT-Creation-Date: 2009-09-29 22:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\FontFaceDialog.py:18
+#: src\FontFaceDialog.py:18
 msgid ""
 "{t:My Bonnie}\n"
 "My [D]Bonnie lies [G]over the [D]ocean\n"
@@ -25,18 +25,18 @@ msgid ""
 "[A]bring back my Bonnie to [D]me!{eoc}"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\FontFaceDialog.py:30
+#: src\FontFaceDialog.py:30
 msgid "Font"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\FontFaceDialog.py:40
+#: src\FontFaceDialog.py:40
 msgid "Preview"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\FontFaceDialog.py:55
+#: src\FontFaceDialog.py:55
 msgid "OK"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\FontFaceDialog.py:58
+#: src\FontFaceDialog.py:58
 msgid "Cancel"
 msgstr ""

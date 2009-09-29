@@ -14,16 +14,30 @@ import os.path
 
 reg = []
 lang = ['']
+mylocale = [None]
 
 def GetDomainAndLocale(name):
 	d, f = os.path.split(name.replace('.', '/'))
 	return (f, os.path.join(d, "locale"))
 
+def localizeXrc(filename):
+	import wx
+	langid = wx.LANGUAGE_ITALIAN    # use OS default; or use LANGUAGE_JAPANESE, etc.
+	d, domain = os.path.split(filename)
+	localedir = os.path.join(d, "locale")
+	# Set locale for wxWidgets
+	mylocale[0] = wx.Locale(langid)
+	mylocale[0].AddCatalogLookupPathPrefix(localedir)
+	#print localedir
+	mylocale[0].AddCatalog(domain)
+	#print domain
+
+
 def setLang(l):
 	lang[0] = l
 	for mod in reg:
 		d, loc = GetDomainAndLocale(mod.__name__)
-		mod._ = gettext.translation(d, loc, languages=lang).gettext
+		mod._ = gettext.translation(d, loc, languages=lang, codeset="iso-8859-1").ugettext
 
 
 def register():
@@ -34,8 +48,8 @@ def register():
 	# Done
 	reg.append(mod)
 	if lang[0] == '':
-		mod._ = gettext.NullTranslations().gettext
+		mod._ = gettext.NullTranslations().ugettext
 	else:
-		mod._ = gettext.translation(d, loc, languages=lang).gettext
+		mod._ = gettext.translation(d, loc, languages=lang, codeset="iso-8859-1").ugettext
 	
 	
