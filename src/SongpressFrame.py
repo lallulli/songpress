@@ -78,13 +78,15 @@ class SongpressFindReplaceDialog(object):
 			if not fromStart:
 				if self.down:
 					where = _("beginning")
+					wherefrom = _("Reached the end")
 					newStart = 0
 				else:
 					where = _("end")
+					wherefrom = _("Reached the beginning")
 					newStart = self.owner.text.GetLength()
 				d = wx.MessageDialog(
 					parent,
-					_("Reached the end of the song, restarting search from the %s") % (where,),
+					_("%s of the song, restarting search from the %s") % (wherefrom, where,),
 					self.owner.appName,
 					wx.OK | wx.CANCEL | wx.ICON_INFORMATION
 				)
@@ -217,6 +219,10 @@ class SongpressFrame(SDIMainFrame):
 		self.findReplaceDialog = None
 		self.LoadConfig()
 		self.FinalizePaneInitialization()
+		# Reassign caption value to override caption saved in preferences (it could be another language)
+		self.previewCanvasPane.caption = _('Preview')
+		self.mainToolBar.caption = _('Standard')
+		self.formatToolBar.caption = _('Format')
 		
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""

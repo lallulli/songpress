@@ -58,6 +58,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		thanks = ""
 	):
 		self.res = res
+		i18n.localizeXrc('xrc/songpress.xrc')
 		self.appName = appName
 		self.appLongName = self.appName if appLongName == None else appLongName
 		self.authorName = authorName
@@ -71,7 +72,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.docType = docType
 		self.docExt = docExt
 		self.config = wx.FileConfig(appName)
-		wx.Config.Set(self.config)
+		wx.Config.Set(self.config)		
 		self.frame = self.res.LoadFrame(None, frameName)
 		if icon != None:
 			self.frame.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_ICO))
@@ -244,7 +245,7 @@ class SDIMainFrame(wx.FileDropTarget):
 
 				fn = dlg.GetPath()
 				if os.path.isfile(fn):
-					msg = _("File \"%s\" already exists. Do you want to overwrite it?") % (fn, );
+					msg = _("File \"%s\" already exists. Do you want to overwrite it?") % (fn, )
 					d = wx.MessageDialog(
 						self.frame,
 						msg,

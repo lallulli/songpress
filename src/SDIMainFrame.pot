@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 23:00+0200\n"
+"POT-Creation-Date: 2009-09-29 22:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,22 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:119
+#: src\SDIMainFrame.py:120
 msgid "Open file"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:122
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:239
+#: src\SDIMainFrame.py:123 src\SDIMainFrame.py:240
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:135
+#: src\SDIMainFrame.py:136
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:159
+#: src\SDIMainFrame.py:160
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -44,24 +43,24 @@ msgid ""
 "%s"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:167
+#: src\SDIMainFrame.py:168
 msgid "About "
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:204
+#: src\SDIMainFrame.py:205
 msgid "Untitled"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:220
+#: src\SDIMainFrame.py:221
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:236
+#: src\SDIMainFrame.py:237
 msgid "Choose a name for the file"
 msgstr ""
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\SDIMainFrame.py:247
+#: src\SDIMainFrame.py:248
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr ""

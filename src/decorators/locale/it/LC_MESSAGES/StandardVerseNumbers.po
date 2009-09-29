@@ -7,18 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 22:59+0200\n"
-"PO-Revision-Date: 2009-09-11 22:13+0100\n"
+"POT-Creation-Date: 2009-09-29 19:33+0200\n"
+"PO-Revision-Date: 2009-09-29 21:32+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\decorators\StandardVerseNumbers.py:36
+#: src\decorators\StandardVerseNumbers.py:36
 msgid "Chorus"
-msgstr "Rit."
+msgstr "Rit"
 
-#: C:\Users\Luca\Documents\lucappl\Applicazioni\songpress\src\decorators\StandardVerseNumbers.py:37
+#: src\decorators\StandardVerseNumbers.py:37
 msgid "Test"
-msgstr ""
+msgstr "Prova"
+
