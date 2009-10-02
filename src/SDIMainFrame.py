@@ -57,6 +57,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		licensing = "",
 		thanks = ""
 	):
+		self.config = wx.Config.Get()
 		self.res = res
 		i18n.localizeXrc('xrc/songpress.xrc')
 		self.appName = appName
@@ -71,7 +72,6 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
-		self.config = wx.FileConfig(appName)
 		wx.Config.Set(self.config)		
 		self.frame = self.res.LoadFrame(None, frameName)
 		if icon != None:

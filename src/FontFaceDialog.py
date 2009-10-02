@@ -22,7 +22,7 @@ class FontFaceDialog(wx.Dialog):
 		self.format = songFormat
 		self.originalFont = songFormat.face
 		self.decoratorFormat = decoratorFormat
-		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(380, 280))
+		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(540, 320))
 
 		bSizer1 = wx.BoxSizer(wx.VERTICAL)
 		hSizer1 = wx.BoxSizer(wx.HORIZONTAL)
