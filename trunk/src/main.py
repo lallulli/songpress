@@ -11,10 +11,20 @@ import wx
 from wx import xrc
 from SongpressFrame import *
 from Globals import glb
+import i18n
 
 class SongpressApp(wx.App):
 
 	def OnInit(self):
+		self.config = wx.FileConfig("songpress")
+		wx.Config.Set(self.config)
+		i18n.init(glb.default_language, [l for l in glb.languages])
+		self.config.SetPath("/App")
+		l = self.config.Read("locale")
+		if l:
+			i18n.setLang(l)
+		else:
+			i18n.setSystemLang()
 		self.res = xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
 		songpressFrame = SongpressFrame(self.res)
 		

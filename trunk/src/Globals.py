@@ -9,6 +9,7 @@
 
 import os.path
 import sys
+import wx
 
 class Globals(object):
 	def __init__(self):
@@ -17,5 +18,17 @@ class Globals(object):
 		
 	def AddPath(self, filename):
 		return os.path.join(self.path, filename)
+		
+	languages = {
+		'en': "English",
+		'it': "Italiano"
+	}
+	
+	default_language = 'en'
+
 
 glb = Globals()
+
+
+
+
