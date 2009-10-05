@@ -122,13 +122,13 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Create a new song</property>
                         <property name="id">ID_NEW</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;New</property>
                         <property name="name">new</property>
                         <property name="permission">none</property>
-                        <property name="shortcut"></property>
+                        <property name="shortcut">CTRL+N</property>
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
@@ -137,7 +137,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Open an existing song</property>
                         <property name="id">ID_OPEN</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Open...</property>
@@ -152,7 +152,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Save song with the current filename</property>
                         <property name="id">ID_SAVE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Save</property>
@@ -167,7 +167,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Ask a filename for the song and save it</property>
                         <property name="id">ID_SAVE_AS</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Save &amp;as...</property>
@@ -182,7 +182,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Quit Songpress</property>
                         <property name="id">wxID_EXIT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Exit</property>
@@ -205,7 +205,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Undo last edit</property>
                         <property name="id">ID_UNDO</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Undo</property>
@@ -220,7 +220,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Redo previously undone edit</property>
                         <property name="id">ID_REDO</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Redo</property>
@@ -238,7 +238,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Move selected text in the clipboard</property>
                         <property name="id">ID_CUT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Cut</property>
@@ -253,7 +253,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Copy selected text in the clipboard</property>
                         <property name="id">ID_COPY</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">C&amp;opy</property>
@@ -268,7 +268,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Copy the whole FORMATTED song (or selected verses) to the clipboard</property>
                         <property name="id">ID_COPY_AS_IMAGE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Copy as &amp;Image</property>
@@ -283,7 +283,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Read text from the clipboard and place it at the cursor position</property>
                         <property name="id">ID_PASTE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Paste</property>
@@ -301,7 +301,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Search some text</property>
                         <property name="id">ID_FIND</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Find...</property>
@@ -316,7 +316,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Search for the next occurrence of text</property>
                         <property name="id">ID_FIND_NEXT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Find &amp;Next</property>
@@ -331,7 +331,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Search for the previous occurrence of text</property>
                         <property name="id">ID_FIND_NEXT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Find Pre&amp;vious</property>
@@ -346,7 +346,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Replace some text with some other text</property>
                         <property name="id">ID_FIND</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">R&amp;eplace...</property>
@@ -370,7 +370,7 @@
                             <property name="bitmap"></property>
                             <property name="checked">1</property>
                             <property name="enabled">1</property>
-                            <property name="help"></property>
+                            <property name="help">Show/hide toolbar with file and common buttons</property>
                             <property name="id">ID_STANDARD</property>
                             <property name="kind">wxITEM_CHECK</property>
                             <property name="label">&amp;Standard</property>
@@ -385,7 +385,7 @@
                             <property name="bitmap"></property>
                             <property name="checked">1</property>
                             <property name="enabled">1</property>
-                            <property name="help"></property>
+                            <property name="help">Show/hide toolbar with format tools</property>
                             <property name="id">ID_FORMAT</property>
                             <property name="kind">wxITEM_CHECK</property>
                             <property name="label">&amp;Format</property>
@@ -401,7 +401,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">1</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Show/hide preview pane</property>
                         <property name="id">ID_PREVIEW</property>
                         <property name="kind">wxITEM_CHECK</property>
                         <property name="label">&amp;Preview</property>
@@ -421,7 +421,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Insert a command to display song title</property>
                         <property name="id">ID_TITLE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Title</property>
@@ -436,7 +436,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Insert square brackets that will host a chord</property>
                         <property name="id">ID_CHORD</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">C&amp;hord</property>
@@ -451,7 +451,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Insert a couple of commands that will contain chorus</property>
                         <property name="id">ID_CHORUS</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Cho&amp;rus</property>
@@ -466,7 +466,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Insert a command to display a comment</property>
                         <property name="id">ID_COMMENT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Co&amp;mment</property>
@@ -486,7 +486,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Select song font</property>
                         <property name="id">ID_FONT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Font...</property>
@@ -501,11 +501,46 @@
                         <property name="bitmap"></property>
                         <property name="checked">1</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Show/hide labels at the beginning of verses and chorus</property>
                         <property name="id">ID_LABEL_VERSES</property>
                         <property name="kind">wxITEM_CHECK</property>
                         <property name="label">&amp;Label verses</property>
                         <property name="name">labelVerses</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Set label for chorus</property>
+                        <property name="id">ID_CHORUS_LABEL</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">&amp;Chorus label...</property>
+                        <property name="name">chorusLabel</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                </object>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">&amp;Tools</property>
+                    <property name="name">tools</property>
+                    <property name="permission">protected</property>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Set program options</property>
+                        <property name="id">ID_OPTIONS</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">&amp;Options...</property>
+                        <property name="name">options</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
@@ -521,7 +556,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Show credits</property>
                         <property name="id">wxID_ABOUT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;About...</property>

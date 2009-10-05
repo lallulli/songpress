@@ -29,6 +29,6 @@ class FontComboBox(wx.ComboBox):
 	def __init__(self, parent, id=-1, defaultFont="Arial"):
 		s = wx.Size()
 		s.width = 200
-		wx.ComboBox.__init__(self, parent, id, defaultFont, size=s, style=wx.CB_SORT | wx.TE_PROCESS_ENTER)
+		wx.ComboBox.__init__(self, parent, id, defaultFont, size=s, style=wx.CB_SORT)
 		MyFontEnumerator().Enumerate().AppendToComboBox(self)
 		
