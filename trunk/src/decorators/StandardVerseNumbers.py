@@ -10,11 +10,10 @@
 from SongDecorator import *
 from SongFormat import * 
 import i18n
-
-i18n.register()
+import wx
 
 class Format(FontFormat):
-	def __init__(self, sf):
+	def __init__(self, sf, chorusLabel):
 		FontFormat.__init__(self)
 		self.face = sf.face
 		self.size = sf.size
@@ -33,8 +32,15 @@ class Format(FontFormat):
 		self.chorus.bold = sf.chorus.bold
 		self.chorus.italic = sf.chorus.italic
 		self.chorus.underline = sf.chorus.underline
-		self.chorus.label = _("Chorus")
-		self.test = _("Test")
+		config = wx.Config.Get()
+		self.chorus.label = chorusLabel
+		
+	def SetChorusLabel(self, label):
+		self.chorus.label = label
+		
+	def GetChorusLabel(self):
+		return self.chorus.label
+
 
 class Decorator(SongDecorator):
 	def __init__(self, format):

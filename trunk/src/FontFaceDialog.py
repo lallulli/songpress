@@ -15,7 +15,7 @@ import i18n
 
 i18n.register()
 
-previewSong = _("{t:My Bonnie}\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n{soc}[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!{eoc}")
+previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 
 class FontFaceDialog(wx.Dialog):
 	def __init__(self, parent, id, title, songFormat, songDecorator, decoratorFormat):
@@ -33,6 +33,8 @@ class FontFaceDialog(wx.Dialog):
 		
 		self.fontCB = FontComboBox(self, wx.ID_ANY, songFormat.face)
 		self.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontCB)
+		self.fontCB.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontCB)
+		self.fontCB.Bind(wx.EVT_KILL_FOCUS, self.OnFontSelected, self.fontCB)
 		hSizer1.Add(self.fontCB, 1, wx.EXPAND | wx.ALL, 5)
 
 		hSizer2 = wx.BoxSizer(wx.HORIZONTAL)
@@ -83,6 +85,7 @@ class FontFaceDialog(wx.Dialog):
 	def OnFontSelected(self, evt):
 		font = self.fontCB.GetValue()
 		self.SetFont(font)
+		evt.Skip()
 		
 	def GetValue(self):
 		return self.fontCB.GetValue()

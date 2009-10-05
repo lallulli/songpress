@@ -18,35 +18,27 @@ import sys
 
 class Editor(StyledTextCtrl):
 
-	def __init__(self, spframe):
-		StyledTextCtrl.__init__(self, spframe.frame)
+	def __init__(self, spframe, interactive=True):
+		StyledTextCtrl.__init__(self, spframe.frame if interactive else spframe)
 		self.spframe = spframe
-		self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
-		font = wx.Font(
-			12,
-			wx.FONTFAMILY_DEFAULT,
-			wx.FONTSTYLE_NORMAL,
-			wx.FONTWEIGHT_NORMAL,
-			faceName = "Lucida Console"
-		)
-		self.StyleSetFont(STC_STYLE_DEFAULT, font)
+		self.interactive = interactive
+		if self.interactive:
+			self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
 		self.spframe.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
-		self.SetLexer(STC_LEX_CONTAINER)
 		self.STC_STYLE_NORMAL = 11
 		self.STC_STYLE_CHORD = 12
 		self.STC_STYLE_COMMAND = 13
 		self.STC_STYLE_ATTR = 14
 		self.STC_STYLE_CHORUS = 15
 		self.STC_STYLE_COMMENT = 16
+		self.SetFont("Lucida Console", 12)
+		self.SetLexer(STC_LEX_CONTAINER)		
 		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Color(255, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_COMMAND, wx.Color(0, 0, 255))
 		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Color(0, 128, 0))
 		self.StyleSetForeground(self.STC_STYLE_COMMENT, wx.Color(128, 128, 128))
-		#I don't know why, but the following line is necessary in order to make
-		#the font bold
-		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
 		self.StyleSetBold(self.STC_STYLE_CHORUS, True)
 		#Dummy "token": we artificially replace every normalToken into a chorusToken when we are
 		#inside chorus.  Then, we can associate the chorus style in self.tokenStyle dictionary.
@@ -66,6 +58,19 @@ class Editor(StyledTextCtrl):
 		#self.chorus[i] == True iff, at the end of line i, we are still in chorus (i.e. bold) mode
 		self.chorus = []
 
+	def SetFont(self, face, size):
+		font = wx.Font(
+			size,
+			wx.FONTFAMILY_DEFAULT,
+			wx.FONTSTYLE_NORMAL,
+			wx.FONTWEIGHT_NORMAL,
+			faceName = face
+		)
+		self.StyleSetFont(STC_STYLE_DEFAULT, font)
+		#I don't know why, but the following line is necessary in order to make
+		#the font bold
+		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
+		
 	def New(self):
 		self.ClearAll();
 
@@ -77,8 +82,9 @@ class Editor(StyledTextCtrl):
 
 	def OnTextChange(self, evt):
 		#print("OnTextChange")
-		self.spframe.SetModified()
-		self.spframe.TextUpdated()
+		if self.interactive:
+			self.spframe.SetModified()
+			self.spframe.TextUpdated()
 
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()

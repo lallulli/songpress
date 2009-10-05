@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-29 22:18+0200\n"
+"POT-Creation-Date: 2009-10-04 17:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,24 +19,28 @@ msgstr ""
 #: src\FontFaceDialog.py:18
 msgid ""
 "{t:My Bonnie}\n"
+"\n"
 "My [D]Bonnie lies [G]over the [D]ocean\n"
 "oh [G]bring back my [A]Bonnie to [D]me!\n"
-"{soc}[D]Bring back, [E-]bring back,\n"
-"[A]bring back my Bonnie to [D]me!{eoc}"
+"\n"
+"{soc}\n"
+"[D]Bring back, [E-]bring back,\n"
+"[A]bring back my Bonnie to [D]me!\n"
+"{eoc}"
 msgstr ""
 
 #: src\FontFaceDialog.py:30
 msgid "Font"
 msgstr ""
 
-#: src\FontFaceDialog.py:40
+#: src\FontFaceDialog.py:42
 msgid "Preview"
 msgstr ""
 
-#: src\FontFaceDialog.py:55
+#: src\FontFaceDialog.py:57
 msgid "OK"
 msgstr ""
 
-#: src\FontFaceDialog.py:58
+#: src\FontFaceDialog.py:60
 msgid "Cancel"
 msgstr ""
