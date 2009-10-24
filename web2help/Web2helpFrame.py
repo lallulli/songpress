@@ -12,6 +12,9 @@ import wx
 from wx import xrc
 from SDIMainFrame import *
 from Globals import glb
+from MyProperties import *
+from Project import *
+import re
 
 
 class Web2helpFrame(SDIMainFrame):
@@ -33,6 +36,9 @@ class Web2helpFrame(SDIMainFrame):
 			"Licensed under the terms and conditions of the GNU General Public License, version 2",
 			"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)"
 		)
+		
+		# Menu
+		self.BindMyMenu()
 		
 		# Tree
 		self.tree = wx.TreeCtrl(self.frame)
@@ -58,8 +64,19 @@ class Web2helpFrame(SDIMainFrame):
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveUp, id=self.MOVE_UP)
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveDown, id=self.MOVE_DOWN)
 		
+		# Regular expressions
+		self.splitUrl = re.compile(r'\[(http://.*)\]$')
 
 		self.frame.Show()
+		
+	def Join(self, title, url):
+		if url[:7].lower() != 'http://':
+			url = 'http://' + url
+		return "%s [%s]" % (title, url)
+		
+	def Split(self, text):
+		m = self.splitUrl.search(text)
+		return (text[:m.start(0)-1], m.group(1))
 		
 	def CopySubtree(self, source, dest, previous=None):
 		if previous is None:
@@ -92,12 +109,20 @@ class Web2helpFrame(SDIMainFrame):
 		msg = "Page URL:"
 		d = wx.TextEntryDialog(self.frame, msg, "web2help", "http://")
 		if d.ShowModal() == wx.ID_OK:
-			c = d.GetValue()
+			u = d.GetValue()
+			c = self.Join("", u)
 			i = self.tree.AppendItem(self.activeMenuItem, c)
 			self.tree.Expand(self.activeMenuItem)
 		evt.Skip()
 		
 	def OnEditItem(self, evt):
+		t, u = self.Split(self.tree.GetItemText(self.activeMenuItem))
+		msg = "Page URL:"
+		d = wx.TextEntryDialog(self.frame, msg, "web2help", u)
+		if d.ShowModal() == wx.ID_OK:
+			u = d.GetValue()
+			c = self.Join("", u)
+			i = self.tree.SetItemText(self.activeMenuItem, c)
 		evt.Skip()
 		
 	def OnDeleteItem(self, evt):
@@ -144,32 +169,21 @@ class Web2helpFrame(SDIMainFrame):
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 			
-		Bind(self.OnUndo, 'undo')
-		Bind(self.OnRedo, 'redo')
-		Bind(self.OnCut, 'cut')
-		Bind(self.OnCopy, 'copy')
-		Bind(self.OnCopyAsImage, 'copyAsImage')
-		Bind(self.OnPaste, 'paste')
-		Bind(self.OnFind, 'find')
-		Bind(self.OnFindNext, 'findNext')
-		Bind(self.OnFindPrevious, 'findPrevious')
-		Bind(self.OnReplace, 'replace')
-		Bind(self.OnTitle, 'title')
-		Bind(self.OnChord, 'chord')
-		Bind(self.OnChorus, 'chorus')
-		Bind(self.OnComment, 'comment')
-		Bind(self.OnFormatFont, 'font')
-		Bind(self.OnLabelVerses, 'labelVerses')
-		Bind(self.OnChorusLabel, 'chorusLabel')
-		Bind(self.OnOptions, 'options')
+		Bind(self.OnProjectProperties, 'properties')
+
 
 	def New(self):
 		self.tree.DeleteAllItems()
 		self.tree.AddRoot("Help")
+		self.project = Project()
 		
 	def Open(self):
 		pass
 		
 	def Save(self):
 		pass
+		
+	def OnProjectProperties(self, evt):
+		p = MyProperties(self.frame, self.project)
+		p.ShowModal()
 		
