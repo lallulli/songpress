@@ -32,6 +32,10 @@
 			</object>
 			<object class="wxMenu" name="project">
 				<label>_Project</label>
+				<object class="wxMenuItem" name="compile">
+					<label>_Compile</label>
+					<help></help>
+				</object>
 				<object class="wxMenuItem" name="properties">
 					<label>_Properties</label>
 					<help>Set project properties</help>
