@@ -15,6 +15,7 @@ class Project(object):
 		self.template = glb.AddPath('template/template.html')
 		self.css = glb.AddPath('template/template.css')
 		self.name = ""
-		self.extractTitle = ""
-		self.extractContent = ""
+		self.extractTitle = """return html.body.find("div", {'id': "main"}).h1.string"""
+		self.extractContent = """h1 = html.body.find("div", {'id': "main"}).h1
+return "".join([str(x) for x in h1.fetchNextSiblings()])"""
 		

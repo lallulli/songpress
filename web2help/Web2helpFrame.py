@@ -14,7 +14,7 @@ from SDIMainFrame import *
 from Globals import glb
 from MyProperties import *
 from Project import *
-import re
+from Grabber import *
 
 
 class Web2helpFrame(SDIMainFrame):
@@ -64,19 +64,8 @@ class Web2helpFrame(SDIMainFrame):
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveUp, id=self.MOVE_UP)
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveDown, id=self.MOVE_DOWN)
 		
-		# Regular expressions
-		self.splitUrl = re.compile(r'\[(http://.*)\]$')
-
 		self.frame.Show()
 		
-	def Join(self, title, url):
-		if url[:7].lower() != 'http://':
-			url = 'http://' + url
-		return "%s [%s]" % (title, url)
-		
-	def Split(self, text):
-		m = self.splitUrl.search(text)
-		return (text[:m.start(0)-1], m.group(1))
 		
 	def CopySubtree(self, source, dest, previous=None):
 		if previous is None:
@@ -110,18 +99,18 @@ class Web2helpFrame(SDIMainFrame):
 		d = wx.TextEntryDialog(self.frame, msg, "web2help", "http://")
 		if d.ShowModal() == wx.ID_OK:
 			u = d.GetValue()
-			c = self.Join("", u)
+			c = glb.Join("", u)
 			i = self.tree.AppendItem(self.activeMenuItem, c)
 			self.tree.Expand(self.activeMenuItem)
 		evt.Skip()
 		
 	def OnEditItem(self, evt):
-		t, u = self.Split(self.tree.GetItemText(self.activeMenuItem))
+		t, u = glb.Split(self.tree.GetItemText(self.activeMenuItem))
 		msg = "Page URL:"
 		d = wx.TextEntryDialog(self.frame, msg, "web2help", u)
 		if d.ShowModal() == wx.ID_OK:
 			u = d.GetValue()
-			c = self.Join("", u)
+			c = glb.Join("", u)
 			i = self.tree.SetItemText(self.activeMenuItem, c)
 		evt.Skip()
 		
@@ -170,6 +159,7 @@ class Web2helpFrame(SDIMainFrame):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 			
 		Bind(self.OnProjectProperties, 'properties')
+		Bind(self.OnCompile, 'compile')
 
 
 	def New(self):
@@ -186,4 +176,8 @@ class Web2helpFrame(SDIMainFrame):
 	def OnProjectProperties(self, evt):
 		p = MyProperties(self.frame, self.project)
 		p.ShowModal()
+		
+	def OnCompile(self, evt):
+		g = Grabber(self.tree, self.project)
+		g.Compile()
 		
