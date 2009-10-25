@@ -17,5 +17,5 @@ class Project(object):
 		self.name = ""
 		self.extractTitle = """return html.body.find("div", {'id': "main"}).h1.string"""
 		self.extractContent = """h1 = html.body.find("div", {'id': "main"}).h1
-return "".join([str(x) for x in h1.fetchNextSiblings()])"""
+return h1.fetchNextSiblings()"""
 		
