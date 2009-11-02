@@ -194,6 +194,8 @@ class Web2helpFrame(SDIMainFrame):
 	def OnCompile(self, evt):
 		g = Grabber(self.tree, self.project)
 		g.Compile()
+		self.SetModified()
+		
 		
 	def TreeSerializeNode(self, e, item):
 		if item != self.tree.GetRootItem():
@@ -213,5 +215,18 @@ class Web2helpFrame(SDIMainFrame):
 		self.TreeSerializeNode(e, self.tree.GetRootItem())
 		return e
 		
+	def TreeUnserializeChildren(self, e, item):
+		for n in e:
+			name = n.get('name')
+			url = n.get('url')
+			i = self.tree.AppendItem(item, glb.Join(name, url))
+			self.TreeUnserializeChildren(n, i)
+			
 	def TreeUnserialize(self, e):
-		pass
+		self.tree.DeleteAllItems()
+		rootitem = self.tree.AddRoot("Help")
+		toc = e.find('toc')
+		self.TreeUnserializeChildren(toc, rootitem)
+		self.tree.ExpandAll()
+		
+		
