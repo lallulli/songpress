@@ -1,7 +1,7 @@
 ###############################################################
-# Name:			 SongpressFrame.py
-# Purpose:	 Main frame for Songpress
-# Author:		 Luca Allulli (webmaster@roma21.it)
+# Name:			 Web2helpFrame.py
+# Purpose:	 Main frame for web2help
+# Author:		 Luca Allulli (luca@skeed.it)
 # Created:	 2009-01-16
 # Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
@@ -15,7 +15,7 @@ from Globals import glb
 from MyProperties import *
 from Project import *
 from Grabber import *
-
+import xml.etree.ElementTree as ET
 
 class Web2helpFrame(SDIMainFrame):
 
@@ -98,6 +98,7 @@ class Web2helpFrame(SDIMainFrame):
 		msg = "Page URL:"
 		d = wx.TextEntryDialog(self.frame, msg, "web2help", "http://")
 		if d.ShowModal() == wx.ID_OK:
+			self.SetModified()
 			u = d.GetValue()
 			c = glb.Join("", u)
 			i = self.tree.AppendItem(self.activeMenuItem, c)
@@ -105,20 +106,23 @@ class Web2helpFrame(SDIMainFrame):
 		evt.Skip()
 		
 	def OnEditItem(self, evt):
-		t, u = glb.Split(self.tree.GetItemText(self.activeMenuItem))
-		msg = "Page URL:"
-		d = wx.TextEntryDialog(self.frame, msg, "web2help", u)
-		if d.ShowModal() == wx.ID_OK:
-			u = d.GetValue()
-			c = glb.Join("", u)
-			i = self.tree.SetItemText(self.activeMenuItem, c)
+		if self.activeMenuItem != self.tree.GetRootItem():
+			t, u = glb.Split(self.tree.GetItemText(self.activeMenuItem))
+			msg = "Page URL:"
+			d = wx.TextEntryDialog(self.frame, msg, "web2help", u)
+			if d.ShowModal() == wx.ID_OK:
+				self.SetModified()
+				u = d.GetValue()
+				c = glb.Join("", u)
+				i = self.tree.SetItemText(self.activeMenuItem, c)
 		evt.Skip()
 		
 	def OnDeleteItem(self, evt):
 		if self.activeMenuItem != self.tree.GetRootItem():
 			msg = "Removing document and all its children: are you sure?"
 			d = wx.MessageDialog(self.frame, msg, "web2help", wx.YES_NO | wx.ICON_WARNING)
-			if d.ShowModal() == wx.ID_YES:				
+			if d.ShowModal() == wx.ID_YES:
+				self.SetModified()			
 				self.tree.Delete(self.activeMenuItem)
 			self.activeMenuItem = None
 		evt.Skip()
@@ -128,6 +132,7 @@ class Web2helpFrame(SDIMainFrame):
 		parent = self.tree.GetItemParent(act)
 		prev = self.tree.GetPrevSibling(act)
 		if prev.IsOk():
+			self.SetModified()		
 			prev = self.tree.GetPrevSibling(prev)
 			if prev.IsOk():
 				self.CopySubtree(act, parent, prev)
@@ -142,6 +147,7 @@ class Web2helpFrame(SDIMainFrame):
 		parent = self.tree.GetItemParent(act)
 		next = self.tree.GetNextSibling(act)
 		if next.IsOk():
+			self.SetModified()
 			self.CopySubtree(act, parent, next)
 			self.tree.Delete(act)
 			self.activeMenuItem = None
@@ -168,16 +174,44 @@ class Web2helpFrame(SDIMainFrame):
 		self.project = Project()
 		
 	def Open(self):
-		pass
+		t = ET.parse(self.document)
+		root = t.getroot()
+		self.project.Unserialize(root)
+		self.TreeUnserialize(root)		
 		
 	def Save(self):
-		pass
+		root = ET.Element('root')
+		root.append(self.project.Serialize())
+		root.append(self.TreeSerialize())
+		t = ET.ElementTree(root)
+		t.write(self.document)
 		
 	def OnProjectProperties(self, evt):
 		p = MyProperties(self.frame, self.project)
-		p.ShowModal()
+		if p.ShowModal() == wx.ID_OK:
+			self.SetModified()
 		
 	def OnCompile(self, evt):
 		g = Grabber(self.tree, self.project)
 		g.Compile()
 		
+	def TreeSerializeNode(self, e, item):
+		if item != self.tree.GetRootItem():
+			node = ET.SubElement(e, 'node')
+			n, u = glb.Split(self.tree.GetItemText(item))
+			node.set('name', n)
+			node.set('url', u)
+		else:
+			node = e
+		el, cookie = self.tree.GetFirstChild(item)
+		while el.IsOk():
+			self.TreeSerializeNode(node, el)
+			el, cookie = self.tree.GetNextChild(item, cookie)
+		
+	def TreeSerialize(self):
+		e = ET.Element('toc')
+		self.TreeSerializeNode(e, self.tree.GetRootItem())
+		return e
+		
+	def TreeUnserialize(self, e):
+		pass
