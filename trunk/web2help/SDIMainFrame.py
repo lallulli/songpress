@@ -13,7 +13,7 @@ It expects to find some menu elements, characterized by their XRC name:
 ###############################################################
 # Name:			 SDIMainFrame.py
 # Purpose:	 Abstract class for SDI Main Frames
-# Author:		 Luca Allulli (webmaster@roma21.it)
+# Author:		 Luca Allulli (luca@skeed.it)
 # Created:	 2009-01-16
 # Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
 # License:	 GNU GPL v2
