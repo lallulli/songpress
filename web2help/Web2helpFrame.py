@@ -8,7 +8,7 @@
 ##############################################################
 
 import wx
-#import wx.aui
+import wx.stc
 from wx import xrc
 from SDIMainFrame import *
 from Globals import glb
@@ -39,9 +39,12 @@ class Web2helpFrame(SDIMainFrame):
 		
 		# Menu
 		self.BindMyMenu()
-		
+
+		# Splitter creation
+		self.splitter = wx.SplitterWindow(self.frame);
+
 		# Tree
-		self.tree = wx.TreeCtrl(self.frame)
+		self.tree = wx.TreeCtrl(self.splitter)
 		self.New()
 		self.tree.Bind(wx.EVT_TREE_ITEM_RIGHT_CLICK, self.OnTreeItemRightClick)
 		
@@ -64,6 +67,22 @@ class Web2helpFrame(SDIMainFrame):
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveUp, id=self.MOVE_UP)
 		self.frame.Bind(wx.EVT_MENU, self.OnMoveDown, id=self.MOVE_DOWN)
 		
+		# Output pane
+		self.output = wx.stc.StyledTextCtrl(self.splitter)
+		font = wx.Font(
+			11,
+			wx.FONTFAMILY_DEFAULT,
+			wx.FONTSTYLE_NORMAL,
+			wx.FONTWEIGHT_NORMAL,
+			faceName = "Lucida Console"
+		)
+		self.output.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, font)
+		self.frame.Bind(EVT_TEXT_MESSAGE, self.OnTextMessage)
+
+		#self.output.SetReadOnly(True)
+		
+		# Pack and show
+		self.splitter.SplitVertically(self.tree, self.output)
 		self.frame.Show()
 		
 		
@@ -192,10 +211,14 @@ class Web2helpFrame(SDIMainFrame):
 			self.SetModified()
 		
 	def OnCompile(self, evt):
-		g = Grabber(self.tree, self.project)
-		g.Compile()
+		self.output.ClearAll()
+		g = Grabber(self.tree, self.project, self.frame)
+		g.start()
 		self.SetModified()
 		
+	def OnTextMessage(self, evt):
+		self.output.AppendText(evt.message + "\n")
+		evt.Skip()
 		
 	def TreeSerializeNode(self, e, item):
 		if item != self.tree.GetRootItem():
