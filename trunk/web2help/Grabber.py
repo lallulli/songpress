@@ -23,6 +23,8 @@ import threading
 import traceback
 
 EventTextMessage, EVT_TEXT_MESSAGE = wx.lib.newevent.NewEvent()
+EventCompleted, EVT_COMPLETED = wx.lib.newevent.NewEvent()
+
 
 class Repository(object):
 	def __init__(self):
@@ -229,9 +231,13 @@ Contents file=toc.hhc
 			self.GenerateProjectFile()
 			
 			# launch help compiler
+			self.Send("\nLaunching MS Help Compiler...")
 			hc = os.path.join(os.environ['PROGRAMFILES'], "HTML Help Workshop\\hhc.exe")
 			os.chdir(self.dir)
-			out = subprocess.Popen(("%s project.hhp" % (hc,)), stdout=subprocess.PIPE)
+			proc = subprocess.Popen(("%s project.hhp" % (hc,)), stdout=subprocess.PIPE)
+			for l in proc.stdout:
+				self.CheckStop()
+				self.Send(l.strip("\n"))
 			
 			# delete temp dir
 			print self.dir
@@ -256,5 +262,6 @@ Contents file=toc.hhc
 		
 	def run(self):
 		self.Compile()
-
+		evt = EventCompleted()
+		wx.PostEvent(self.owner, evt)		
 	
