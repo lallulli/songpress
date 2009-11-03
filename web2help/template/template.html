@@ -1,6 +1,12 @@
-<html>
-<head><title>[*Title*]</title></head>
-<body>
-[*Content*]
-</body>
+<?python from genshi import HTML ?>
+<html xmlns:py="http://genshi.edgewall.org/">
+  <head>
+    <title>$title</title>
+  </head>
+  <body>
+		<h1>$title</h1>
+		<div id="content">
+			${HTML(content)}
+		</div>
+  </body>
 </html>

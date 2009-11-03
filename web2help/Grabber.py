@@ -21,6 +21,7 @@ import wx
 import wx.lib.newevent
 import threading
 import traceback
+from genshi.template import TemplateLoader
 
 EventTextMessage, EVT_TEXT_MESSAGE = wx.lib.newevent.NewEvent()
 EventCompleted, EVT_COMPLETED = wx.lib.newevent.NewEvent()
@@ -110,8 +111,7 @@ class Grabber(threading.Thread):
 		for el in img:
 			self.TransformUrl(u, el, 'src', True)
 		c = "".join([str(x) for x in content])
-		t = self.template.replace('[*Title*]', t)
-		text = t.replace('[*Content*]', c)
+		text = self.tpl.generate(title=t, content=c).render('html')
 		self.Load(u, text)
 		# recurse on children
 		self.DoWithChildren(item, self.Grab)
@@ -216,9 +216,8 @@ Contents file=toc.hhc
 			self.repo = Repository()
 			
 			# load template
-			f = open(self.project.template)
-			self.template = f.read()
-			f.close()
+			loader = TemplateLoader('.')
+			self.tpl = loader.load(self.project.template)
 			
 			# traverse tree and insert urls into repository
 			self.DoWithChildren(self.tree.GetRootItem(), self.InsertIntoRepository)
