@@ -78,6 +78,7 @@ class Web2helpFrame(SDIMainFrame):
 		)
 		self.output.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, font)
 		self.frame.Bind(EVT_TEXT_MESSAGE, self.OnTextMessage)
+		self.frame.Bind(EVT_COMPLETED, self.OnCompileCompleted)
 
 		#self.output.SetReadOnly(True)
 		
@@ -212,12 +213,34 @@ class Web2helpFrame(SDIMainFrame):
 		
 	def OnCompile(self, evt):
 		self.output.ClearAll()
-		g = Grabber(self.tree, self.project, self.frame)
-		g.start()
+		self.grabber = Grabber(self.tree, self.project, self.frame)
+		self.grabber.start()
 		self.SetModified()
+		self.percentTotal = self.tree.GetCount()
+		self.percent = 0		
+		self.cancelDialog = wx.ProgressDialog(
+			"Compiling...",
+			"Compiling...",
+			self.percentTotal,
+			self.frame,
+			wx.PD_CAN_ABORT | wx.PD_AUTO_HIDE 
+		)
+		h = self.cancelDialog.Show()
+		
+	def OnCompileCompleted(self, evt):
+		self.cancelDialog.Update(self.percentTotal)
+		#self.cancelDialog.EndModal(0)
+		self.cancelDialog.Destroy()
+		self.cancelDialog = None
+		evt.Skip()
 		
 	def OnTextMessage(self, evt):
 		self.output.AppendText(evt.message + "\n")
+		if self.percent < self.percentTotal - 1:
+			self.percent += 1
+		cont, skip = self.cancelDialog.Update(self.percent, evt.message)
+		if not cont:
+			self.grabber.Stop()
 		evt.Skip()
 		
 	def TreeSerializeNode(self, e, item):
