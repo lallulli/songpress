@@ -133,10 +133,13 @@ class Grabber(threading.Thread):
 			soup = BeautifulSoup.BeautifulSoup(text)
 			a = soup.findAll('a')
 			img = soup.findAll('img')
+			link = soup.findAll('link')
 			for el in a:
 				self.TransformUrl(u, el, 'href')
 			for el in img:
 				self.TransformUrl(u, el, 'src', True)
+			for el in link:
+				self.TransformUrl(u, el, 'href', True)
 			self.Load(u, soup.renderContents())
 			i += 1
 
@@ -196,7 +199,6 @@ class Grabber(threading.Thread):
 		self.projFile = os.path.join(self.dir, "project.hhp")
 		f = open(self.projFile, "w")
 		i = """[OPTIONS]
-Language=0x409 English (United States)
 Default Font=Arial,8,0
 Title=%s
 Full-text search=Yes
