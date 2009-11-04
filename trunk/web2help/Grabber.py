@@ -16,12 +16,13 @@ import tempfile
 import os
 import os.path
 import subprocess
-import xml.etree.ElementTree as ET
+#import xml.etree.ElementTree as ET
 import wx
 import wx.lib.newevent
 import threading
 import traceback
 from genshi.template import TemplateLoader
+from genshi.builder import tag
 
 EventTextMessage, EVT_TEXT_MESSAGE = wx.lib.newevent.NewEvent()
 EventCompleted, EVT_COMPLETED = wx.lib.newevent.NewEvent()
@@ -142,14 +143,16 @@ class Grabber(threading.Thread):
 		
 	def GenerateTocItem(self, item, e):
 		t, u = glb.Split(self.tree.GetItemText(item))
-		li = ET.SubElement(e, 'li')
-		object = ET.SubElement(li, 'object')
-		object.set('type', 'text/sitemap')
-		param = ET.SubElement(object, 'param', name="Name", value=t)
-		param = ET.SubElement(object, 'param', name='Local', value=self.repo[u])
-		param = ET.SubElement(object, 'param', name='ImageNumber', value='0')
+		li = tag.li
+		e.append(li)
+		object = tag.object(type='text/sitemap')
+		li.append(object)
+		object.append(tag.param(name="Name", value=t))
+		object.append(tag.param(name="Local", value=self.repo[u]))
+		object.append(tag.param(name="ImageNumber", value='0'))
 		if self.tree.ItemHasChildren(item):
-			ul = ET.SubElement(li, 'ul')
+			ul = tag.ul
+			li.append(ul)
 			self.DoWithChildren(
 				item,
 				lambda i: self.GenerateTocItem(i, ul)
@@ -178,26 +181,15 @@ class Grabber(threading.Thread):
 			
 	def GenerateToc(self):
 		self.tocFile = os.path.join(self.dir, "toc.hhc")
-		html = ET.Element('html')
-		ET.SubElement(html, 'head')
-		body = ET.SubElement(html, 'body')
-		object = ET.SubElement(body, 'object')
-		object.set('type', 'text/site properties')
-		param = ET.SubElement(object, 'param')
-		param.set('name', 'ExWindow Styles')
-		param.set('value', '0x800225')
-		param = ET.SubElement(object, 'param')
-		param.set('name', 'Window Styles')
-		param.set('value', '0x800225')
-		ul = ET.SubElement(body, 'ul')
+		loader = TemplateLoader('.')
+		toctpl = loader.load(glb.AddPath('toc-template.hhc'))
+		ul = tag.ul
 		self.DoWithChildren(
 			self.tree.GetRootItem(),
 			lambda i: self.GenerateTocItem(i, ul)
 		)
 		f = open(self.tocFile, "w")
-		f.write('<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">\n')
-		t = ET.ElementTree(html)
-		t.write(f)
+		f.write(toctpl.generate(list=ul).render('html'))
 		f.close()
 		
 	def GenerateProjectFile(self):
