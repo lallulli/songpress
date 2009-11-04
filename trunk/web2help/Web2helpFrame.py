@@ -51,6 +51,8 @@ class Web2helpFrame(SDIMainFrame):
 		self.tree.SetImageList(self.imageList)
 		self.New()
 		self.tree.Bind(wx.EVT_TREE_ITEM_RIGHT_CLICK, self.OnTreeItemRightClick)
+		self.tree.Bind(wx.EVT_TREE_BEGIN_DRAG, self.OnBeginDrag)
+		self.tree.Bind(wx.EVT_TREE_END_DRAG, self.OnEndDrag)
 		
 		self.NEW = 1
 		self.EDIT = 2
@@ -91,15 +93,23 @@ class Web2helpFrame(SDIMainFrame):
 		self.frame.Show()
 		
 		
-	def CopySubtree(self, source, dest, previous=None):
-		if previous is None:
+	def CopySubtree(self, source, dest, previous=None, append=False, prepend=False):
+		if prepend:
 			di = self.tree.PrependItem(
-			dest,
-			self.tree.GetItemText(source),
-			self.tree.GetItemImage(source),
-			self.tree.GetItemImage(source, wx.TreeItemIcon_Selected)
-			#self.tree.GetItemData(source) # Disabled because it causes bad crashes!
-		)
+				dest,
+				self.tree.GetItemText(source),
+				self.tree.GetItemImage(source),
+				self.tree.GetItemImage(source, wx.TreeItemIcon_Selected)
+				#self.tree.GetItemData(source) # Disabled because it causes bad crashes!
+			)
+		elif append:
+			di = self.tree.AppendItem(
+				dest,
+				self.tree.GetItemText(source),
+				self.tree.GetItemImage(source),
+				self.tree.GetItemImage(source, wx.TreeItemIcon_Selected)
+				#self.tree.GetItemData(source) # Disabled because it causes bad crashes!
+			)		
 		else:
 			di = self.tree.InsertItem(
 				dest,
@@ -109,15 +119,30 @@ class Web2helpFrame(SDIMainFrame):
 				self.tree.GetItemImage(source, wx.TreeItemIcon_Selected)
 				#self.tree.GetItemData(source)
 			)
+		self.tree.SetItemImage(dest, self.bookIcon)
+		self.tree.Expand(dest)
 		el, cookie = self.tree.GetFirstChild(source)
 		pos = None
 		while el.IsOk():
-			pos = self.CopySubtree(el, di, pos)
+			pos = self.CopySubtree(el, di, pos, append=True)
 			el, cookie = self.tree.GetNextChild(source, cookie)
 		if self.tree.IsExpanded(source):
 			self.tree.Expand(di)
 		return di
 		
+	def MoveSubtree(self, source, dest, previous=None, append=False, prepend=False):
+		# Avoid circular references
+		item = dest
+		root = self.tree.GetRootItem()
+		while item != source and item != root:
+			item = self.tree.GetItemParent(item)
+		if item == root:
+			self.CopySubtree(source, dest, previous, append, prepend)
+			parent = self.tree.GetItemParent(source)
+			self.tree.Delete(source)
+			if not self.tree.ItemHasChildren(parent):
+				self.tree.SetItemImage(parent, self.pageIcon)
+
 	def OnNewItem(self, evt):
 		msg = "Page URL:"
 		d = wx.TextEntryDialog(self.frame, msg, "web2help", "http://")
@@ -165,7 +190,7 @@ class Web2helpFrame(SDIMainFrame):
 			if prev.IsOk():
 				self.CopySubtree(act, parent, prev)
 			else:
-				self.CopySubtree(act, parent)	
+				self.CopySubtree(act, parent, prepend=True)	
 			self.tree.Delete(act)
 			self.activeMenuItem = None
 		evt.Skip()
@@ -249,6 +274,17 @@ class Web2helpFrame(SDIMainFrame):
 		if not cont:
 			self.grabber.Stop()
 		evt.Skip()
+		
+	def OnBeginDrag(self, evt):
+		self.dragItem = evt.GetItem()
+		if self.dragItem.IsOk() and self.dragItem != self.tree.GetRootItem():
+			evt.Allow()
+		
+	def OnEndDrag(self, evt):
+		dest = evt.GetItem()
+		if dest.IsOk():
+			self.MoveSubtree(self.dragItem, dest, append=True)
+			self.SetModified()
 		
 	def TreeSerializeNode(self, e, item):
 		if item != self.tree.GetRootItem():
