@@ -44,7 +44,11 @@ class Web2helpFrame(SDIMainFrame):
 		self.splitter = wx.SplitterWindow(self.frame);
 
 		# Tree
+		self.imageList = wx.ImageList(16, 16)
+		self.pageIcon = self.imageList.Add(wx.Bitmap(glb.AddPath('img/page.png')))		
+		self.bookIcon = self.imageList.Add(wx.Bitmap(glb.AddPath('img/book.png')))		
 		self.tree = wx.TreeCtrl(self.splitter)
+		self.tree.SetImageList(self.imageList)
 		self.New()
 		self.tree.Bind(wx.EVT_TREE_ITEM_RIGHT_CLICK, self.OnTreeItemRightClick)
 		
@@ -121,8 +125,9 @@ class Web2helpFrame(SDIMainFrame):
 			self.SetModified()
 			u = d.GetValue()
 			c = glb.Join("", u)
-			i = self.tree.AppendItem(self.activeMenuItem, c)
+			i = self.tree.AppendItem(self.activeMenuItem, c, self.pageIcon)
 			self.tree.Expand(self.activeMenuItem)
+			self.tree.SetItemImage(self.activeMenuItem, self.bookIcon)
 		evt.Skip()
 		
 	def OnEditItem(self, evt):
@@ -142,8 +147,11 @@ class Web2helpFrame(SDIMainFrame):
 			msg = "Removing document and all its children: are you sure?"
 			d = wx.MessageDialog(self.frame, msg, "web2help", wx.YES_NO | wx.ICON_WARNING)
 			if d.ShowModal() == wx.ID_YES:
-				self.SetModified()			
+				self.SetModified()
+				parent = self.tree.GetItemParent(self.activeMenuItem)
 				self.tree.Delete(self.activeMenuItem)
+				if not self.tree.ItemHasChildren(parent) and parent != self.tree.GetRootItem():
+					self.tree.SetItemImage(parent, self.pageIcon)
 			self.activeMenuItem = None
 		evt.Skip()
 		
@@ -190,7 +198,7 @@ class Web2helpFrame(SDIMainFrame):
 
 	def New(self):
 		self.tree.DeleteAllItems()
-		self.tree.AddRoot("Help")
+		self.tree.AddRoot("Help", self.bookIcon)
 		self.project = Project()
 		
 	def Open(self):
@@ -261,15 +269,19 @@ class Web2helpFrame(SDIMainFrame):
 		return e
 		
 	def TreeUnserializeChildren(self, e, item):
+		hasChildren = False
 		for n in e:
+			hasChildren = True
 			name = n.get('name')
 			url = n.get('url')
-			i = self.tree.AppendItem(item, glb.Join(name, url))
-			self.TreeUnserializeChildren(n, i)
+			i = self.tree.AppendItem(item, glb.Join(name, url), self.pageIcon)
+			if self.TreeUnserializeChildren(n, i):
+				self.tree.SetItemImage(i, self.bookIcon)
+		return hasChildren
 			
 	def TreeUnserialize(self, e):
 		self.tree.DeleteAllItems()
-		rootitem = self.tree.AddRoot("Help")
+		rootitem = self.tree.AddRoot("Help", self.bookIcon)
 		toc = e.find('toc')
 		self.TreeUnserializeChildren(toc, rootitem)
 		self.tree.ExpandAll()
