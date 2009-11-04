@@ -9,15 +9,15 @@
 			<object class="wxMenu" name="file">
 				<label>_File</label>
 				<object class="wxMenuItem" name="new">
-					<label>_New\\tCTRL+N</label>
+					<label>_New\tCTRL+N</label>
 					<help>Create a new song</help>
 				</object>
 				<object class="wxMenuItem" name="open">
-					<label>_Open...\\tCTRL+O</label>
+					<label>_Open...\tCTRL+O</label>
 					<help>Open an existing song</help>
 				</object>
 				<object class="wxMenuItem" name="save">
-					<label>_Save\\tSHIFT+F12</label>
+					<label>_Save\tSHIFT+F12</label>
 					<help>Save song with the current filename</help>
 				</object>
 				<object class="wxMenuItem" name="saveAs">

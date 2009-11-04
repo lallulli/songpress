@@ -24,11 +24,11 @@ class Properties ( wx.Dialog ):
 		
 		bSizer22 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText12 = wx.StaticText( self, wx.ID_ANY, u"Project name:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText12 = wx.StaticText( self, wx.ID_ANY, u"Output file:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText12.Wrap( -1 )
 		bSizer22.Add( self.m_staticText12, 0, wx.ALL, 5 )
 		
-		self.name = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.name = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.chm", wx.DefaultPosition, wx.Size( -1,-1 ), wx.FLP_SAVE|wx.FLP_USE_TEXTCTRL )
 		bSizer22.Add( self.name, 1, wx.ALL, 5 )
 		
 		bSizer1.Add( bSizer22, 0, wx.EXPAND, 5 )

@@ -34,7 +34,7 @@ class Web2helpFrame(SDIMainFrame):
 			"http://www.skeed.it/web2help.html",
 			"Copyright (c) 2009 Luca Allulli - Skeed",
 			"Licensed under the terms and conditions of the GNU General Public License, version 2",
-			"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)"
+			"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Genshi (http://genshi.edgewall.org)\n  * Beautiful Soup (http://www.crummy.com/software/BeautifulSoup)"
 		)
 		
 		# Menu
@@ -211,7 +211,6 @@ class Web2helpFrame(SDIMainFrame):
 		self.frame.PopupMenu(self.menu)
 		evt.Skip()
 
-		
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""
 		def Bind(handler, xrcname):
@@ -219,7 +218,6 @@ class Web2helpFrame(SDIMainFrame):
 			
 		Bind(self.OnProjectProperties, 'properties')
 		Bind(self.OnCompile, 'compile')
-
 
 	def New(self):
 		self.tree.DeleteAllItems()
@@ -245,20 +243,25 @@ class Web2helpFrame(SDIMainFrame):
 			self.SetModified()
 		
 	def OnCompile(self, evt):
-		self.output.ClearAll()
-		self.grabber = Grabber(self.tree, self.project, self.frame)
-		self.grabber.start()
-		self.SetModified()
-		self.percentTotal = self.tree.GetCount()
-		self.percent = 0		
-		self.cancelDialog = wx.ProgressDialog(
-			"Compiling...",
-			"Web2help is about to retrieve your help files from the web, and convert them into CHM help files",
-			self.percentTotal,
-			self.frame,
-			wx.PD_CAN_ABORT | wx.PD_AUTO_HIDE 
-		)
-		h = self.cancelDialog.Show()
+		if self.project.name == "":
+			n = self.AskOutputFilename()
+			if n is not None:
+				self.project.name = n
+		if self.project.name != "":
+			self.output.ClearAll()
+			self.grabber = Grabber(self.tree, self.project, self.frame)
+			self.grabber.start()
+			self.SetModified()
+			self.percentTotal = self.tree.GetCount()
+			self.percent = 0		
+			self.cancelDialog = wx.ProgressDialog(
+				"Compiling...",
+				"Web2help is about to retrieve your help files from the web, and convert them into CHM help files",
+				self.percentTotal,
+				self.frame,
+				wx.PD_CAN_ABORT | wx.PD_AUTO_HIDE 
+			)
+			h = self.cancelDialog.Show()
 		
 	def OnCompileCompleted(self, evt):
 		self.cancelDialog.Update(self.percentTotal)
@@ -285,7 +288,56 @@ class Web2helpFrame(SDIMainFrame):
 		if dest.IsOk():
 			self.MoveSubtree(self.dragItem, dest, append=True)
 			self.SetModified()
-		
+
+	def AskOutputFilename(self):
+		"""Ask and updates the filename (without saving); return None if user cancels, the file name ow"""
+		leave = False;
+		consensus = False;
+		while not leave:
+			dlg = wx.FileDialog(
+				self.frame,
+				"Choose a name for the output file",
+				"",
+				"",
+				"%s files (*.%s)|*.%s|All files (*.*)|*.*" % ("HTML Help files", "chm", "chm"),
+				wx.FD_SAVE
+			)
+
+			if dlg.ShowModal() == wx.ID_OK:
+
+				fn = dlg.GetPath()
+				if os.path.isfile(fn):
+					msg = "File \"%s\" already exists. Do you want to overwrite it?" % (fn, )
+					d = wx.MessageDialog(
+						self.frame,
+						msg,
+						self.appLongName,
+						wx.YES_NO | wx.CANCEL | wx.ICON_QUESTION
+					)
+					res = d.ShowModal()
+					if res == wx.ID_CANCEL:
+						leave = True
+						consensus = False
+					elif res == wx.ID_NO:
+						leave = False
+						consensus = False
+					else: #wxID_YES
+						leave = True
+						consensus = True
+				else:
+					leave = True
+					consensus = True
+
+			else:
+				leave = True
+				consensus = False
+
+		if consensus:
+			return fn
+		else:
+			return None
+
+
 	def TreeSerializeNode(self, e, item):
 		if item != self.tree.GetRootItem():
 			node = ET.SubElement(e, 'node')

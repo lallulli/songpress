@@ -15,8 +15,8 @@ import urlparse
 import tempfile
 import os
 import os.path
+import shutil
 import subprocess
-#import xml.etree.ElementTree as ET
 import wx
 import wx.lib.newevent
 import threading
@@ -204,13 +204,13 @@ Title=%s
 Full-text search=Yes
 Compatibility=1.1
 Auto Index=Yes
-Compiled file=%s.chm
+Compiled file=%s
 Contents file=toc.hhc
 
 [FILES]
 """ % (
-			self.project.name,
-			self.project.name
+			os.path.splitext(self.name)[0],
+			self.name
 		)
 		f.write(i)
 		for k in self.treeList:
@@ -219,6 +219,8 @@ Contents file=toc.hhc
 		
 	def Compile(self):
 		try:
+			self.path, self.name = os.path.split(self.project.name)
+		
 			# define extracting methods
 			m = "def extractTitle(html):\n"
 			for l in self.project.extractTitle.splitlines():
@@ -263,19 +265,25 @@ Contents file=toc.hhc
 			for l in proc.stdout:
 				self.CheckStop()
 				self.Send(l.strip("\n"))
+				
+			# copy output file in project dir
+			#d, f = os.path.split(self.project.)
+			source = os.path.join(self.dir, self.name)
+			dest = os.path.join(self.path, self.name)
+			if os.path.isfile(dest):
+				os.remove(dest)
+			shutil.move(source, dest)			
 			
 			# delete temp dir
-			print self.dir
-			"""
 			for root, dirs, files in os.walk(self.dir, topdown=False):
 				for name in files:
 					os.remove(os.path.join(root, name))
 				for name in dirs:
 					os.rmdir(os.path.join(root, name))
-			"""
+					
 		except Exception, ex:
-			msg = "\nERROR:\n" + traceback.format_exc()
-			#msg = "\nERROR:\n" + str(ex)
+			#msg = "\nERROR:\n" + traceback.format_exc()
+			msg = "\nERROR:\n" + str(ex)
 			self.Send(msg)
 	
 	def Stop(self):
