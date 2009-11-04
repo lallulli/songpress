@@ -4,6 +4,24 @@
     <title>$title</title>
   </head>
   <body>
+		<center>
+			<py:if test="parent">
+				<a href="$parent">
+					<img align="center" src="up.gif" border="0" alt="up" />
+				</a>
+			</py:if>
+			<py:if test="prev">
+				<a href="$prev">
+					<img align="center" src="back.gif" border="0" alt="previous" />
+				</a>
+			</py:if>
+			<py:if test="next">
+				<a href="$next">
+					<img align="center" src="forward.gif" border="0" alt="next" />
+				</a>
+			</py:if>
+		</center>
+		<hr />
 		<h1>$title</h1>
 		<div id="content">
 			${HTML(content)}

@@ -49,6 +49,9 @@ class Repository(object):
 	def __iter__(self):
 		for k in self.d:
 			yield k
+			
+	def __in__(self, k):
+		return k in self.d
 		
 class Grabber(threading.Thread):
 	def __init__(self, tree, project, owner):
@@ -65,7 +68,10 @@ class Grabber(threading.Thread):
 	def Load(self, url, text=None):
 		fn = os.path.join(self.dir, self.repo[url])
 		if text is None:
-			s = urllib2.urlopen(url)
+			if not os.path.isfile(os.path.join(self.tpldir, url)):
+				s = urllib2.urlopen(url)
+			else:
+				s = open(os.path.join(self.tpldir, url), "rb")
 			text = s.read()
 			s.close()
 		f = open(fn, "wb")
@@ -77,19 +83,28 @@ class Grabber(threading.Thread):
 			url = node[attrib]
 		except:
 			return
-		if url[:7].lower() == "http://":
+		if url[:7].lower() == "http://" and url not in self.repo:
 			return
-		url = urlparse.urljoin(baseurl, url)
+		if not os.path.isfile(os.path.join(self.tpldir, url)):
+			url = urlparse.urljoin(baseurl, url)
 		node[attrib] = self.repo[url]
 		if load:
-			self.Load(url)		
+			self.Load(url)
 	
 	def InsertIntoRepository(self, item):
 		t, u = glb.Split(self.tree.GetItemText(item))
 		self.repo.SetItemWithExt(u, '.htm')
 		self.DoWithChildren(item, self.InsertIntoRepository)
 		
+	def GetItemUrl(self, item):
+		if item.IsOk() and item != self.tree.GetRootItem():
+			dummy, url = glb.Split(self.tree.GetItemText(item))
+		else:
+			url = False
+		return url
+		
 	def Grab(self, item):
+		# grab page and extract content
 		t, u = glb.Split(self.tree.GetItemText(item))
 		self.Send("Grabbing %s" % (u,))
 		s = urllib2.urlopen(u)
@@ -101,18 +116,22 @@ class Grabber(threading.Thread):
 		content = self.extractContent(soup.html)
 		if type(content) != list and type(content) != BeautifulSoup.ResultSet:
 			content = [content]
-		a = []
-		img = []
-		for el in content:
-			a += el.findAll('a')
-			img += el.findAll('img')
+		c = "".join([str(x) for x in content])
+		next = self.GetItemUrl(self.tree.GetNextSibling(item))
+		prev = self.GetItemUrl(self.tree.GetPrevSibling(item))
+		parent = self.GetItemUrl(self.tree.GetItemParent(item))
+
+		# apply template
+		text = self.tpl.generate(title=t, content=c, next=next, prev=prev, parent=parent).render('html')
+		# re-parse generated html, and "normalize" urls
+		soup = BeautifulSoup.BeautifulSoup(text)
+		a = soup.findAll('a')
+		img = soup.findAll('img')
 		for el in a:
 			self.TransformUrl(u, el, 'href')
 		for el in img:
 			self.TransformUrl(u, el, 'src', True)
-		c = "".join([str(x) for x in content])
-		text = self.tpl.generate(title=t, content=c).render('html')
-		self.Load(u, text)
+		self.Load(u, soup.renderContents())		
 		# recurse on children
 		self.DoWithChildren(item, self.Grab)
 		
@@ -218,6 +237,7 @@ Contents file=toc.hhc
 			# load template
 			loader = TemplateLoader('.')
 			self.tpl = loader.load(self.project.template)
+			self.tpldir, f = os.path.split(self.project.template)
 			
 			# traverse tree and insert urls into repository
 			self.DoWithChildren(self.tree.GetRootItem(), self.InsertIntoRepository)
