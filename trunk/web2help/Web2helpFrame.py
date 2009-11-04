@@ -70,7 +70,7 @@ class Web2helpFrame(SDIMainFrame):
 		# Output pane
 		self.output = wx.stc.StyledTextCtrl(self.splitter)
 		font = wx.Font(
-			11,
+			10,
 			wx.FONTFAMILY_DEFAULT,
 			wx.FONTSTYLE_NORMAL,
 			wx.FONTWEIGHT_NORMAL,
