@@ -49,7 +49,6 @@ class Web2helpFrame(SDIMainFrame):
 		self.bookIcon = self.imageList.Add(wx.Bitmap(glb.AddPath('img/book.png')))		
 		self.tree = wx.TreeCtrl(self.splitter)
 		self.tree.SetImageList(self.imageList)
-		self.New()
 		self.tree.Bind(wx.EVT_TREE_ITEM_RIGHT_CLICK, self.OnTreeItemRightClick)
 		self.tree.Bind(wx.EVT_TREE_BEGIN_DRAG, self.OnBeginDrag)
 		self.tree.Bind(wx.EVT_TREE_END_DRAG, self.OnEndDrag)
@@ -85,10 +84,9 @@ class Web2helpFrame(SDIMainFrame):
 		self.output.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, font)
 		self.frame.Bind(EVT_TEXT_MESSAGE, self.OnTextMessage)
 		self.frame.Bind(EVT_COMPLETED, self.OnCompileCompleted)
-
-		#self.output.SetReadOnly(True)
 		
 		# Pack and show
+		self.New()
 		self.splitter.SplitVertically(self.tree, self.output)
 		self.frame.Show()
 		
@@ -220,11 +218,13 @@ class Web2helpFrame(SDIMainFrame):
 		Bind(self.OnCompile, 'compile')
 
 	def New(self):
+		self.output.ClearAll()	
 		self.tree.DeleteAllItems()
 		self.tree.AddRoot("Help", self.bookIcon)
 		self.project = Project()
 		
 	def Open(self):
+		self.output.ClearAll()	
 		t = ET.parse(self.document)
 		root = t.getroot()
 		self.project.Unserialize(root)

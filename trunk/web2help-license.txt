@@ -339,3 +339,13 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
 IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---------
+ ARTWORK
+---------
+
+web2help icon is a derivative work of the icon "Erriol world 2" by
+Adrien Facélina. The original icon is released under the terms and
+conditions of the GNU Lesser General Public License.
+
+http://commons.wikimedia.org/wiki/File:Erioll_world_2.svg

@@ -134,7 +134,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help">Create a new song</property>
+                        <property name="help">Create a new project</property>
                         <property name="id">ID_NEW</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;New</property>
@@ -149,7 +149,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help">Open an existing song</property>
+                        <property name="help">Open an existing project</property>
                         <property name="id">ID_OPEN</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Open...</property>
@@ -164,7 +164,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help">Save song with the current filename</property>
+                        <property name="help">Save project with the current filename</property>
                         <property name="id">ID_SAVE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Save</property>
@@ -179,7 +179,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help">Ask a filename for the song and save it</property>
+                        <property name="help">Ask a filename for the project and save it</property>
                         <property name="id">ID_SAVE_AS</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">Save &amp;as...</property>
@@ -194,7 +194,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help">Quit Songpress</property>
+                        <property name="help">Quit web2help</property>
                         <property name="id">wxID_EXIT</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Exit</property>
@@ -218,7 +218,7 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
-                        <property name="help"></property>
+                        <property name="help">Compile project</property>
                         <property name="id">ID_COMPILE</property>
                         <property name="kind">wxITEM_NORMAL</property>
                         <property name="label">&amp;Compile</property>
