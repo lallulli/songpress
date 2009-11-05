@@ -9,23 +9,23 @@
 			<object class="wxMenu" name="file">
 				<label>_File</label>
 				<object class="wxMenuItem" name="new">
-					<label>&amp;New\tCTRL+N</label>
+					<label>_New\tCTRL+N</label>
 					<help>Create a new song</help>
 				</object>
 				<object class="wxMenuItem" name="open">
-					<label>&amp;Open...\tCTRL+O</label>
+					<label>_Open...\tCTRL+O</label>
 					<help>Open an existing song</help>
 				</object>
 				<object class="wxMenuItem" name="save">
-					<label>&amp;Save\tSHIFT+F12</label>
+					<label>_Save\tSHIFT+F12</label>
 					<help>Save song with the current filename</help>
 				</object>
 				<object class="wxMenuItem" name="saveAs">
-					<label>Save &amp;as...</label>
+					<label>Save _as...</label>
 					<help>Ask a filename for the song and save it</help>
 				</object>
 				<object class="wxMenuItem" name="exit">
-					<label>&amp;Exit</label>
+					<label>_Exit</label>
 					<help>Quit Songpress</help>
 				</object>
 				<object class="separator" />
@@ -33,45 +33,45 @@
 			<object class="wxMenu" name="edit">
 				<label>_Edit</label>
 				<object class="wxMenuItem" name="undo">
-					<label>&amp;Undo\tCTRL+Z</label>
+					<label>_Undo\tCTRL+Z</label>
 					<help>Undo last edit</help>
 				</object>
 				<object class="wxMenuItem" name="redo">
-					<label>&amp;Redo\tCTRL+Y</label>
+					<label>_Redo\tCTRL+Y</label>
 					<help>Redo previously undone edit</help>
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="cut">
-					<label>&amp;Cut\tCTRL+X</label>
+					<label>_Cut\tCTRL+X</label>
 					<help>Move selected text in the clipboard</help>
 				</object>
 				<object class="wxMenuItem" name="copy">
-					<label>C&amp;opy\tCTRL+C</label>
+					<label>C_opy\tCTRL+C</label>
 					<help>Copy selected text in the clipboard</help>
 				</object>
 				<object class="wxMenuItem" name="copyAsImage">
-					<label>Copy as &amp;Image\tCTRL+D</label>
+					<label>Copy as _Image\tCTRL+D</label>
 					<help>Copy the whole FORMATTED song (or selected verses) to the clipboard</help>
 				</object>
 				<object class="wxMenuItem" name="paste">
-					<label>&amp;Paste\tCTRL+V</label>
+					<label>_Paste\tCTRL+V</label>
 					<help>Read text from the clipboard and place it at the cursor position</help>
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="find">
-					<label>&amp;Find...\tCTRL+F</label>
+					<label>_Find...\tCTRL+F</label>
 					<help>Search some text</help>
 				</object>
 				<object class="wxMenuItem" name="findNext">
-					<label>Find &amp;Next\tF3</label>
+					<label>Find _Next\tF3</label>
 					<help>Search for the next occurrence of text</help>
 				</object>
 				<object class="wxMenuItem" name="findPrevious">
-					<label>Find Pre&amp;vious\tSHIFT+F3</label>
+					<label>Find Pre_vious\tSHIFT+F3</label>
 					<help>Search for the previous occurrence of text</help>
 				</object>
 				<object class="wxMenuItem" name="replace">
-					<label>R&amp;eplace...\tCTRL+R</label>
+					<label>R_eplace...\tCTRL+R</label>
 					<help>Replace some text with some other text</help>
 				</object>
 			</object>
@@ -80,20 +80,20 @@
 				<object class="wxMenu" name="toolbars">
 					<label>_Toolbars</label>
 					<object class="wxMenuItem" name="standard">
-						<label>&amp;Standard</label>
+						<label>_Standard</label>
 						<help>Show/hide toolbar with file and common buttons</help>
 						<checked>1</checked>
 						<checkable>1</checkable>
 					</object>
 					<object class="wxMenuItem" name="format">
-						<label>&amp;Format</label>
+						<label>_Format</label>
 						<help>Show/hide toolbar with format tools</help>
 						<checked>1</checked>
 						<checkable>1</checkable>
 					</object>
 				</object>
 				<object class="wxMenuItem" name="preview">
-					<label>&amp;Preview</label>
+					<label>_Preview</label>
 					<help>Show/hide preview pane</help>
 					<checked>1</checked>
 					<checkable>1</checkable>
@@ -102,50 +102,54 @@
 			<object class="wxMenu" name="insert">
 				<label>_Insert</label>
 				<object class="wxMenuItem" name="title">
-					<label>&amp;Title\tCTRL+T</label>
+					<label>_Title\tCTRL+T</label>
 					<help>Insert a command to display song title</help>
 				</object>
 				<object class="wxMenuItem" name="chord">
-					<label>C&amp;hord\tCTRL+H</label>
+					<label>C_hord\tCTRL+H</label>
 					<help>Insert square brackets that will host a chord</help>
 				</object>
 				<object class="wxMenuItem" name="chorus">
-					<label>Cho&amp;rus\tCTRL+U</label>
+					<label>Cho_rus\tCTRL+U</label>
 					<help>Insert a couple of commands that will contain chorus</help>
 				</object>
 				<object class="wxMenuItem" name="comment">
-					<label>Co&amp;mment\tCTRL+M</label>
+					<label>Co_mment\tCTRL+M</label>
 					<help>Insert a command to display a comment</help>
 				</object>
 			</object>
 			<object class="wxMenu" name="formatMenu">
 				<label>F_ormat</label>
 				<object class="wxMenuItem" name="font">
-					<label>&amp;Font...</label>
+					<label>_Font...</label>
 					<help>Select song font</help>
 				</object>
 				<object class="wxMenuItem" name="labelVerses">
-					<label>&amp;Label verses</label>
+					<label>_Label verses</label>
 					<help>Show/hide labels at the beginning of verses and chorus</help>
 					<checked>1</checked>
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="chorusLabel">
-					<label>&amp;Chorus label...</label>
+					<label>_Chorus label...</label>
 					<help>Set label for chorus</help>
 				</object>
 			</object>
 			<object class="wxMenu" name="tools">
 				<label>_Tools</label>
 				<object class="wxMenuItem" name="options">
-					<label>&amp;Options...</label>
+					<label>_Options...</label>
 					<help>Set program options</help>
 				</object>
 			</object>
 			<object class="wxMenu">
 				<label>_?</label>
+				<object class="wxMenuItem" name="guide">
+					<label>_Guide\tF1</label>
+					<help>Show user&apos;s manual</help>
+				</object>
 				<object class="wxMenuItem" name="about">
-					<label>&amp;About...</label>
+					<label>_About...</label>
 					<help>Show credits</help>
 				</object>
 			</object>

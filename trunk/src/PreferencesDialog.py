@@ -15,8 +15,6 @@ from Globals import glb
 
 i18n.register()
 
-previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
-
 class PreferencesDialog(wx.Dialog):
 	def __init__(self, parent, id, title):
 		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(540, 320))
@@ -59,6 +57,7 @@ class PreferencesDialog(wx.Dialog):
 		
 		self.frame = self
 		self.editor = Editor.Editor(self, False)
+		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 		self.editor.SetText(previewSong)
 		self.editor.SetFont(font, int(size))
 		self.editor.SetReadOnly(True)

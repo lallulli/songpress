@@ -21,6 +21,7 @@ from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from PreferencesDialog import PreferencesDialog
 from Globals import glb
+import subprocess
 import i18n
 
 i18n.register()
@@ -292,6 +293,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnOptions, 'options')
+		Bind(self.OnGuide, 'guide')
 
 	def New(self):
 		self.text.New()
@@ -384,6 +386,10 @@ class SongpressFrame(SDIMainFrame):
 		font = self.fontChooser.GetValue()
 		self.SetFont(font)
 		evt.Skip()
+		
+	def OnGuide(self, evt):
+		helpfile = os.path.join("help", "songpress-%s.chm" % (i18n.getLang(), ))
+		subprocess.Popen("hh " + glb.AddPath(helpfile))
 		
 	def OnIdle(self, evt):
 		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
