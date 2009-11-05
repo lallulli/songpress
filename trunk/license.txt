@@ -9,10 +9,15 @@ Copyright (C) 2009 Luca Allulli (Skeed)
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
+    This program makes use of third-party software components.
+    See the rest of this file for particular licensing conditions
+    of some of these software components.
+    
+    Third-party software components used in this software include:
+    
+     * Python and the Python Library
+     * wxPython
+     * The artwork
 
 
 		    GNU GENERAL PUBLIC LICENSE
@@ -295,4 +300,14 @@ PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 
 		     END OF TERMS AND CONDITIONS
+		     
+		     
+---------
+ ARTWORK
+---------
 
+Songpress icon is a derivative work of the icon "Document" by
+"Self". The original icon is released under the terms and
+conditions of the Creative Commons Attribution 3.0 Unported License.
+
+http://commons.wikimedia.org/wiki/File:Document.jpg
