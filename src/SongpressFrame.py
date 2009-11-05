@@ -24,7 +24,7 @@ from Globals import glb
 import subprocess
 import i18n
 
-i18n.register()
+i18n.register('SongpressFrame')
 
 class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):

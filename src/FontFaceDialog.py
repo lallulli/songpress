@@ -13,7 +13,7 @@ from PreviewCanvas import *
 from FontComboBox import FontComboBox
 import i18n
 
-i18n.register()
+i18n.register('FontFaceDialog')
 
 class FontFaceDialog(wx.Dialog):
 	def __init__(self, parent, id, title, songFormat, songDecorator, decoratorFormat):

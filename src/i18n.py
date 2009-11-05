@@ -12,6 +12,8 @@ import inspect
 import os
 import os.path
 import locale
+import sys
+from Globals import *
 
 reg = []
 lang = ['']
@@ -32,7 +34,7 @@ def setLang(l):
 	for mod in reg:
 		if l != defaultLang[0]:
 			d, loc = GetDomainAndLocale(mod.__name__)
-			mod._ = gettext.translation(d, loc, languages=lang, codeset="iso-8859-1").ugettext
+			mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").ugettext
 		else:
 			mod._ = gettext.NullTranslations().ugettext
 
@@ -46,17 +48,20 @@ def setSystemLang():
 	else:
 		setLang(defaultLang[0])
 
-def register():
-	# Determine caller module name
-	frm = inspect.stack()[1]
-	mod = inspect.getmodule(frm[0])
-	d, loc = GetDomainAndLocale(mod.__name__)
-	# Done
+def register(moduleName=None):
+	if moduleName is None:
+		# Try to determine caller module name
+		frm = inspect.stack()[1]
+		mod = inspect.getmodule(frm[0])
+		moduleName = mod.__name__
+	else:
+		mod = sys.modules[moduleName]
+	d, loc = GetDomainAndLocale(moduleName)
 	reg.append(mod)
 	if lang[0] == defaultLang[0]:
 		mod._ = gettext.NullTranslations().ugettext
 	else:
-		mod._ = gettext.translation(d, loc, languages=lang, codeset="iso-8859-1").ugettext
+		mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").ugettext
 
 
 def localizeXrc(filename):
@@ -64,7 +69,7 @@ def localizeXrc(filename):
 	if lang[0] != defaultLang[0]:
 		langid = wx.Locale.FindLanguageInfo(lang[0]).Language		
 		d, domain = os.path.split(filename)
-		localedir = os.path.join(d, "locale")
+		localedir = os.path.join(glb.AddPath(d), "locale")
 		# Set locale for wxWidgets
 		mylocale[0] = wx.Locale(langid)
 		mylocale[0].AddCatalogLookupPathPrefix(localedir)
