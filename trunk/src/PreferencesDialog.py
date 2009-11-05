@@ -13,7 +13,7 @@ import i18n
 import Editor
 from Globals import glb
 
-i18n.register()
+i18n.register('PreferencesDialog')
 
 class PreferencesDialog(wx.Dialog):
 	def __init__(self, parent, id, title):
