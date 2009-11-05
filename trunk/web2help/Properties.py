@@ -8,6 +8,7 @@
 ###########################################################################
 
 import wx
+from PythonSTC import *
 
 ###########################################################################
 ## Class Properties
@@ -16,7 +17,7 @@ import wx
 class Properties ( wx.Dialog ):
 	
 	def __init__( self, parent ):
-		wx.Dialog.__init__  ( self, parent, id = wx.ID_ANY, title = u"Project Properties", pos = wx.DefaultPosition, size = wx.Size( 500,400 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
+		wx.Dialog.__init__  ( self, parent, id = wx.ID_ANY, title = u"Project Properties", pos = wx.DefaultPosition, size = wx.Size( 700,500 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
 		
 		self.SetSizeHintsSz( wx.Size( 300,-1 ), wx.DefaultSize )
 		
@@ -61,7 +62,7 @@ class Properties ( wx.Dialog ):
 		self.m_staticText111.Wrap( -1 )
 		bSizer211.Add( self.m_staticText111, 0, wx.ALL, 5 )
 		
-		self.title = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( -1,60 ), wx.TE_MULTILINE )
+		self.title = PythonSTC(self, wx.ID_ANY)
 		bSizer211.Add( self.title, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		bSizer1.Add( bSizer211, 1, wx.EXPAND, 5 )
@@ -72,7 +73,7 @@ class Properties ( wx.Dialog ):
 		self.m_staticText1111.Wrap( -1 )
 		bSizer2111.Add( self.m_staticText1111, 0, wx.ALL, 5 )
 		
-		self.content = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( -1,60 ), wx.TE_MULTILINE )
+		self.content = PythonSTC(self, wx.ID_ANY)
 		bSizer2111.Add( self.content, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		bSizer1.Add( bSizer2111, 1, wx.EXPAND, 5 )

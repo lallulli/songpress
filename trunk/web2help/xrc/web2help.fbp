@@ -316,7 +316,7 @@
                 <event name="OnUpdateUI"></event>
             </object>
         </object>
-        <object class="Dialog" expanded="0">
+        <object class="Dialog" expanded="1">
             <property name="bg"></property>
             <property name="center"></property>
             <property name="context_help"></property>
@@ -331,7 +331,7 @@
             <property name="minimum_size">300,-1</property>
             <property name="name">Properties</property>
             <property name="pos"></property>
-            <property name="size">500,400</property>
+            <property name="size">700,500</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</property>
             <property name="subclass"></property>
             <property name="title">Project Properties</property>
@@ -815,29 +815,31 @@
                             <property name="border">5</property>
                             <property name="flag">wxALL|wxEXPAND</property>
                             <property name="proportion">1</property>
-                            <object class="wxTextCtrl" expanded="1">
+                            <object class="CustomControl" expanded="1">
                                 <property name="bg"></property>
+                                <property name="class">PythonSTC</property>
+                                <property name="construction">self.title = PythonSTC(self, wx.ID_ANY)</property>
                                 <property name="context_help"></property>
+                                <property name="declaration"></property>
                                 <property name="enabled">1</property>
                                 <property name="fg"></property>
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
+                                <property name="include">from PythonSTC import *</property>
                                 <property name="maximum_size"></property>
-                                <property name="maxlength">0</property>
                                 <property name="minimum_size"></property>
                                 <property name="name">title</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
-                                <property name="size">-1,60</property>
-                                <property name="style">wxTE_MULTILINE</property>
+                                <property name="settings"></property>
+                                <property name="size"></property>
                                 <property name="subclass"></property>
                                 <property name="tooltip"></property>
                                 <property name="validator_data_type"></property>
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
-                                <property name="value"></property>
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
@@ -863,10 +865,6 @@
                                 <event name="OnRightUp"></event>
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
-                                <event name="OnText"></event>
-                                <event name="OnTextEnter"></event>
-                                <event name="OnTextMaxLen"></event>
-                                <event name="OnTextURL"></event>
                                 <event name="OnUpdateUI"></event>
                             </object>
                         </object>
@@ -940,29 +938,31 @@
                             <property name="border">5</property>
                             <property name="flag">wxALL|wxEXPAND</property>
                             <property name="proportion">1</property>
-                            <object class="wxTextCtrl" expanded="1">
+                            <object class="CustomControl" expanded="1">
                                 <property name="bg"></property>
+                                <property name="class">PythonSTC</property>
+                                <property name="construction">self.content = PythonSTC(self, wx.ID_ANY)</property>
                                 <property name="context_help"></property>
+                                <property name="declaration"></property>
                                 <property name="enabled">1</property>
                                 <property name="fg"></property>
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
+                                <property name="include">from PythonSTC import *</property>
                                 <property name="maximum_size"></property>
-                                <property name="maxlength">0</property>
                                 <property name="minimum_size"></property>
                                 <property name="name">content</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
-                                <property name="size">-1,60</property>
-                                <property name="style">wxTE_MULTILINE</property>
+                                <property name="settings"></property>
+                                <property name="size"></property>
                                 <property name="subclass"></property>
                                 <property name="tooltip"></property>
                                 <property name="validator_data_type"></property>
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
-                                <property name="value"></property>
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
@@ -988,10 +988,6 @@
                                 <event name="OnRightUp"></event>
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
-                                <event name="OnText"></event>
-                                <event name="OnTextEnter"></event>
-                                <event name="OnTextMaxLen"></event>
-                                <event name="OnTextURL"></event>
                                 <event name="OnUpdateUI"></event>
                             </object>
                         </object>
