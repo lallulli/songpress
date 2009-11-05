@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="MainFrame">
+		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
+		<size>611,477</size>
+		<title>web2help</title>
+		<object class="wxMenuBar" name="menuBar">
+			<label>MyMenuBar</label>
+			<object class="wxMenu" name="file">
+				<label>_File</label>
+				<object class="wxMenuItem" name="new">
+					<label>_New\tCTRL+N</label>
+					<help>Create a new project</help>
+				</object>
+				<object class="wxMenuItem" name="open">
+					<label>_Open...\tCTRL+O</label>
+					<help>Open an existing project</help>
+				</object>
+				<object class="wxMenuItem" name="save">
+					<label>_Save\tSHIFT+F12</label>
+					<help>Save project with the current filename</help>
+				</object>
+				<object class="wxMenuItem" name="saveAs">
+					<label>Save _as...</label>
+					<help>Ask a filename for the project and save it</help>
+				</object>
+				<object class="wxMenuItem" name="exit">
+					<label>_Exit</label>
+					<help>Quit web2help</help>
+				</object>
+				<object class="separator" />
+			</object>
+			<object class="wxMenu" name="project">
+				<label>_Project</label>
+				<object class="wxMenuItem" name="compile">
+					<label>_Compile</label>
+					<help>Compile project</help>
+				</object>
+				<object class="wxMenuItem" name="properties">
+					<label>_Properties</label>
+					<help>Set project properties</help>
+				</object>
+			</object>
+			<object class="wxMenu">
+				<label>_?</label>
+				<object class="wxMenuItem" name="about">
+					<label>_About...</label>
+					<help>Show credits</help>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="m_statusBar1">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+</resource>

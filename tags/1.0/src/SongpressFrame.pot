@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-05 16:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\SongpressFrame.py:38
+msgid "Replace"
+msgstr ""
+
+#: src\SongpressFrame.py:38
+msgid "Find"
+msgstr ""
+
+#: src\SongpressFrame.py:82
+msgid "beginning"
+msgstr ""
+
+#: src\SongpressFrame.py:83
+msgid "Reached the end"
+msgstr ""
+
+#: src\SongpressFrame.py:86
+msgid "end"
+msgstr ""
+
+#: src\SongpressFrame.py:87
+msgid "Reached the beginning"
+msgstr ""
+
+#: src\SongpressFrame.py:91
+#, python-format
+msgid "%s of the song, restarting search from the %s"
+msgstr ""
+
+#: src\SongpressFrame.py:102
+msgid "The specified text was not found"
+msgstr ""
+
+#: src\SongpressFrame.py:141
+#, python-format
+msgid "%d text occurrences have been replaced"
+msgstr ""
+
+#: src\SongpressFrame.py:162
+msgid "song"
+msgstr ""
+
+#: src\SongpressFrame.py:164
+msgid "Songpress - Il Canzonatore"
+msgstr ""
+
+#: src\SongpressFrame.py:166
+msgid "1.0"
+msgstr ""
+
+#: src\SongpressFrame.py:167
+msgid "http://www.skeed.it/songpress.html"
+msgstr ""
+
+#: src\SongpressFrame.py:168
+msgid "Copyright (c) 2009 Luca Allulli - Skeed"
+msgstr ""
+
+#: src\SongpressFrame.py:169
+msgid ""
+"Licensed under the terms and conditions of the GNU General Public License, "
+"version 2"
+msgstr ""
+
+#: src\SongpressFrame.py:170
+msgid ""
+"Special thanks to:\n"
+"  * The Pyhton programming language (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)"
+msgstr ""
+
+#: src\SongpressFrame.py:175
+msgid "Chorus"
+msgstr ""
+
+#: src\SongpressFrame.py:180 src\SongpressFrame.py:269
+msgid "Preview"
+msgstr ""
+
+#: src\SongpressFrame.py:186
+msgid "New"
+msgstr ""
+
+#: src\SongpressFrame.py:187
+msgid "Create a new song"
+msgstr ""
+
+#: src\SongpressFrame.py:190
+msgid "Open"
+msgstr ""
+
+#: src\SongpressFrame.py:191
+msgid "Open an existing song"
+msgstr ""
+
+#: src\SongpressFrame.py:194
+msgid "Save"
+msgstr ""
+
+#: src\SongpressFrame.py:195
+msgid "Save song with the current filename"
+msgstr ""
+
+#: src\SongpressFrame.py:200
+msgid "Undo"
+msgstr ""
+
+#: src\SongpressFrame.py:201
+msgid "Undo last edit"
+msgstr ""
+
+#: src\SongpressFrame.py:205
+msgid "Redo"
+msgstr ""
+
+#: src\SongpressFrame.py:206
+msgid "Redo previously undone edit"
+msgstr ""
+
+#: src\SongpressFrame.py:211
+msgid "Cut"
+msgstr ""
+
+#: src\SongpressFrame.py:212
+msgid "Move selected text in the clipboard"
+msgstr ""
+
+#: src\SongpressFrame.py:216
+msgid "Copy"
+msgstr ""
+
+#: src\SongpressFrame.py:217
+msgid "Copy selected text in the clipboard"
+msgstr ""
+
+#: src\SongpressFrame.py:220
+msgid "Copy as Image"
+msgstr ""
+
+#: src\SongpressFrame.py:221
+msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
+msgstr ""
+
+#: src\SongpressFrame.py:225
+msgid "Paste"
+msgstr ""
+
+#: src\SongpressFrame.py:226
+msgid "Read text from the clipboard and place it at the cursor position"
+msgstr ""
+
+#: src\SongpressFrame.py:229 src\SongpressFrame.py:270
+msgid "Standard"
+msgstr ""
+
+#: src\SongpressFrame.py:242
+msgid "Insert title"
+msgstr ""
+
+#: src\SongpressFrame.py:243
+msgid "Insert a command to display song title"
+msgstr ""
+
+#: src\SongpressFrame.py:246
+msgid "Insert chord"
+msgstr ""
+
+#: src\SongpressFrame.py:247
+msgid "Insert square brackets that will host a chord"
+msgstr ""
+
+#: src\SongpressFrame.py:250
+msgid "Insert chorus"
+msgstr ""
+
+#: src\SongpressFrame.py:251
+msgid "Insert a couple of commands that will contain chorus"
+msgstr ""
+
+#: src\SongpressFrame.py:254
+msgid "Insert comment"
+msgstr ""
+
+#: src\SongpressFrame.py:255
+msgid "Insert a command to display a comment"
+msgstr ""
+
+#: src\SongpressFrame.py:259 src\SongpressFrame.py:271
+msgid "Format"
+msgstr ""
+
+#: src\SongpressFrame.py:419 src\SongpressFrame.py:436
+#: src\SongpressFrame.py:471
+msgid "Songpress"
+msgstr ""
+
+#: src\SongpressFrame.py:424
+msgid "Songpress options"
+msgstr ""
+
+#: src\SongpressFrame.py:435
+msgid "Language settings will be applied when you restart Songpress."
+msgstr ""
+
+#: src\SongpressFrame.py:470
+msgid "Please enter a label for chorus"
+msgstr ""
