@@ -15,8 +15,6 @@ import i18n
 
 i18n.register()
 
-previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
-
 class FontFaceDialog(wx.Dialog):
 	def __init__(self, parent, id, title, songFormat, songDecorator, decoratorFormat):
 		self.format = songFormat
@@ -45,6 +43,7 @@ class FontFaceDialog(wx.Dialog):
 		
 		self.previewCanvas = PreviewCanvas(self, songFormat, songDecorator)
 		hSizer2.Add(self.previewCanvas.panel, 1, wx.EXPAND | wx.ALL, 5)
+		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 		self.previewCanvas.Refresh(previewSong)
 		
 		bSizer1.AddSizer(hSizer1, 0, wx.EXPAND, 5)
@@ -79,7 +78,8 @@ class FontFaceDialog(wx.Dialog):
 			v.comment.face = font
 		self.format.title.face = font
 		self.decoratorFormat.face = font
-		self.decoratorFormat.chorus.face = font		
+		self.decoratorFormat.chorus.face = font
+		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")		
 		self.previewCanvas.Refresh(previewSong)	
 		
 	def OnFontSelected(self, evt):

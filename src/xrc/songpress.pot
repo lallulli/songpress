@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-04 17:13+0200\n"
+"POT-Creation-Date: 2009-11-05 16:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,9 +265,17 @@ msgid "&?"
 msgstr ""
 
 #: src\xrc\songpress.pos:63
-msgid "&About..."
+msgid "&Guide\tF1"
 msgstr ""
 
 #: src\xrc\songpress.pos:64
+msgid "Show user's manual"
+msgstr ""
+
+#: src\xrc\songpress.pos:65
+msgid "&About..."
+msgstr ""
+
+#: src\xrc\songpress.pos:66
 msgid "Show credits"
 msgstr ""

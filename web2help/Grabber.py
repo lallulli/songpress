@@ -124,6 +124,7 @@ class Grabber(threading.Thread):
 			if type(content) != list and type(content) != BeautifulSoup.ResultSet:
 				content = [content]
 			c = "".join([str(x) for x in content])
+			print c
 			next = self.treeList[i + 1][1] if i + 1 < nn else False
 			prev = self.treeList[i - 1][1] if i - 1 >= 0 else False
 			parent = k[2] if k[2] != "" else False

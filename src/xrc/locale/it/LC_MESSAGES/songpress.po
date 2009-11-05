@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-04 17:13+0200\n"
-"PO-Revision-Date: 2009-10-04 17:26+0100\n"
+"POT-Creation-Date: 2009-11-05 16:00+0100\n"
+"PO-Revision-Date: 2009-11-05 16:01+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -264,10 +264,18 @@ msgid "&?"
 msgstr "&?"
 
 #: src\xrc\songpress.pos:63
+msgid "&Guide\tF1"
+msgstr "&Guida\tF1"
+
+#: src\xrc\songpress.pos:64
+msgid "Show user's manual"
+msgstr "Mostra il manuale utente"
+
+#: src\xrc\songpress.pos:65
 msgid "&About..."
 msgstr "&Informazioni su..."
 
-#: src\xrc\songpress.pos:64
+#: src\xrc\songpress.pos:66
 msgid "Show credits"
 msgstr "Mostra i crediti"
 
