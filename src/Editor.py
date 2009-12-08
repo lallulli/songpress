@@ -79,6 +79,20 @@ class Editor(StyledTextCtrl):
 
 	def Save(self):
 		self.SaveFile(self.spframe.document)
+		
+	def GetTextOrSelection(self):
+		start, end = self.GetSelection()
+		if start == end:
+			return self.GetText()
+		return self.GetSelectedText()
+		
+	def ReplaceTextOrSelection(self, text):
+		start, end = self.GetSelection()
+		if start == end:
+			self.SetText(text)
+		else:
+			self.ReplaceSelection(text)
+	
 
 	def OnTextChange(self, evt):
 		#print("OnTextChange")

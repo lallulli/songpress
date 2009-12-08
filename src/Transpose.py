@@ -11,7 +11,7 @@ from Globals import *
 import i18n
 import re
 
-class Scale(object):
+class Notation(object):
 	def __init__(self, desc, chords, repl):
 		object.__init__(self)
 		self.desc = desc
@@ -53,13 +53,13 @@ class Scale(object):
 		return self.__AlterationStandard(a, 1, 0)
 		
 
-engScale = Scale(
+enNotation = Notation(
 	'C D E...',
 	['C', 'D', 'E', 'F', 'G', 'A', 'B'],
 	[]
 )
 
-itScale = Scale(
+itNotation = Notation(
 	'Do Re Mi...',
 	['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
 	[
@@ -113,8 +113,8 @@ scales = {
 	'B': (11, ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'])
 }
 
-def splitChord(c, locScale=engScale):
-	for k in locScale.chords:
+def splitChord(c, locNotation=enNotation):
+	for k in locNotation.chords:
 		if c.startswith(k):
 			if c != k:
 				d = c[len(k)]
@@ -132,59 +132,59 @@ def __alteration(chord):
 	else:
 		return (chord[0], -1)
 
-def __chord2pos(chord, scale):
+def __chord2pos(chord, key):
 	c, a = __alteration(chord)
-	s, b = __alteration(scale)
+	s, b = __alteration(key)
 	return (tone[c] + a - tone[s] - b) % 12
 	
-def __pos2chord(pos, scale):
+def __pos2chord(pos, key):
 	n, i = interval[pos]
 	# if pos in scale, use it
 	if i == 0:
-		return scales[scale][1][n]
+		return scales[key][1][n]
 	# else use natural scale
-	ref = scales[scale][0]
+	ref = scales[key][0]
 	diff = (pos + ref) % 12
 	return naturalScale[diff]	
 
-def transpose(s, d, chord, scale=engScale):
-	chord = translateChord(chord, scale, engScale)
+def transpose(s, d, chord, notation=enNotation):
+	chord = translateChord(chord, notation, enNotation)
 	c, v = splitChord(chord)
 	p = __chord2pos(c, s)
-	return translateChord(__pos2chord(p, d) + v, engScale, scale)
+	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
 	
-def translateChord(chord, sScale=engScale, dScale=engScale):
-	if sScale == dScale:
+def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
+	if sNotation == dNotation:
 		return chord
-	c, a = splitChord(chord, sScale)
+	c, a = splitChord(chord, sNotation)
 	alt = c[-1]
 	if alt == '#' or alt == 'b':
 		c = c[:-1]
 		a = alt + a
-	d = dScale.Ord2Chord(sScale.Chord2Ord(c))
-	b = dScale.AlterationFromStandard(sScale.AlterationToStandard(a))
+	d = dNotation.Ord2Chord(sNotation.Chord2Ord(c))
+	b = dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
 	return d + b
 	
-def transposeChordPro(s, d, text, scale=engScale):
+def transposeChordPro(s, d, text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
 	p = 0
 	b = ''
 	for m in r.finditer(text):
 		b += "%s[%s]" % (
 			text[p:m.start()],
-			transpose(s, d, m.group(1), scale)
+			transpose(s, d, m.group(1), notation)
 		)
 		p = m.end()
 	return b + text[p:]
 
-def translateChordPro(text, sScale=engScale, dScale=engScale):
+def translateChordPro(text, sNotation=enNotation, dNotation=enNotation):
 	r = re.compile('\[([^]]*)\]')
 	p = 0
 	b = ''
 	for m in r.finditer(text):
 		b += "%s[%s]" % (
 			text[p:m.start()],
-			translateChord(m.group(1), sScale, dScale)
+			translateChord(m.group(1), sNotation, dNotation)
 		)
 		p = m.end()
 	return b + text[p:]
