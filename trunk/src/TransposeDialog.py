@@ -37,27 +37,27 @@ class TransposeDialog ( wx.Dialog ):
 		
 		bSizer21 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.label11 = wx.StaticText( self, wx.ID_ANY, u"From scale:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.label11 = wx.StaticText( self, wx.ID_ANY, u"From key:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.label11.Wrap( -1 )
 		bSizer21.Add( self.label11, 0, wx.ALL, 5 )
 		
-		fromScaleChoices = []
-		self.fromScale = wx.Choice( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, fromScaleChoices, 0 )
-		self.fromScale.SetSelection( 0 )
-		bSizer21.Add( self.fromScale, 1, wx.ALL, 5 )
+		fromKeyChoices = []
+		self.fromKey = wx.Choice( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, fromKeyChoices, 0 )
+		self.fromKey.SetSelection( 0 )
+		bSizer21.Add( self.fromKey, 1, wx.ALL, 5 )
 		
 		bSizer1.Add( bSizer21, 1, wx.EXPAND, 5 )
 		
 		bSizer211 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.label111 = wx.StaticText( self, wx.ID_ANY, u"To scale:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.label111 = wx.StaticText( self, wx.ID_ANY, u"To key:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.label111.Wrap( -1 )
 		bSizer211.Add( self.label111, 0, wx.ALL, 5 )
 		
-		toScaleChoices = []
-		self.toScale = wx.Choice( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, toScaleChoices, 0 )
-		self.toScale.SetSelection( 0 )
-		bSizer211.Add( self.toScale, 1, wx.ALL, 5 )
+		toKeyChoices = []
+		self.toKey = wx.Choice( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, toKeyChoices, 0 )
+		self.toKey.SetSelection( 0 )
+		bSizer211.Add( self.toKey, 1, wx.ALL, 5 )
 		
 		bSizer1.Add( bSizer211, 1, wx.EXPAND, 5 )
 		
@@ -72,8 +72,16 @@ class TransposeDialog ( wx.Dialog ):
 		self.SetSizer( bSizer1 )
 		self.Layout()
 		bSizer1.Fit( self )
+		
+		# Connect Events
+		self.notation.Bind( wx.EVT_CHOICE, self.OnNotation )
 	
 	def __del__( self ):
 		pass
+	
+	
+	# Virtual event handlers, overide them in your derived class
+	def OnNotation( self, event ):
+		event.Skip()
 	
 
