@@ -137,6 +137,10 @@
 			</object>
 			<object class="wxMenu" name="tools">
 				<label>_Tools</label>
+				<object class="wxMenuItem" name="transpose">
+					<label>_Transpose...</label>
+					<help>Transpose song or selected text</help>
+				</object>
 				<object class="wxMenuItem" name="options">
 					<label>_Options...</label>
 					<help>Set program options</help>

@@ -20,6 +20,8 @@ from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from PreferencesDialog import PreferencesDialog
+from Transpose import *
+from MyTransposeDialog import *
 from Globals import glb
 import subprocess
 import i18n
@@ -171,6 +173,11 @@ class SongpressFrame(SDIMainFrame):
 		)
 		self.text = Editor(self)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
+		# Music related objects
+		self.notation = None
+		self.key = None
+		self.notations = [enNotation, itNotation]
+		# Other objects
 		self.format = SongFormat()
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
 		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
@@ -292,6 +299,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnFormatFont, 'font')
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
+		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnOptions, 'options')
 		Bind(self.OnGuide, 'guide')
 
@@ -420,6 +428,11 @@ class SongpressFrame(SDIMainFrame):
 		if f.ShowModal() == wx.ID_OK:
 			self.SetFont(f.GetValue())
 			
+	def OnTranspose(self, evt):
+		t = MyTransposeDialog(self.frame, self.notations, self.notation, self.key)
+		if t.ShowModal() == wx.ID_OK:
+			self.text.ReplaceTextOrSelection(t.GetTransposed(self.text.GetTextOrSelection()))
+			
 	def OnOptions(self, evt):
 		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"))
 		if f.ShowModal() == wx.ID_OK:
@@ -438,7 +451,6 @@ class SongpressFrame(SDIMainFrame):
 			self.config.SetPath("/App")
 			self.config.Write("locale", l)
 
-			
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()
 		c = st.find('|')
