@@ -8,6 +8,7 @@
 ##############################################################
 
 from TransposeDialog import *
+from Transpose import *
 
 class MyTransposeDialog(TransposeDialog):
 	def __init__(self, parent, notations, notation=None, key=None):
@@ -20,6 +21,26 @@ class MyTransposeDialog(TransposeDialog):
 			if n == notation:
 				self.notation.SetSelection(i)
 			
+	def OnNotation(self, event):
+		i = self.notation.GetSelection()
+		n = self.notation.GetClientData(i)
+		self.fromKey.Clear()
+		self.toKey.Clear()
+		for k in orderedKeys:
+			kn = "%s / %s" % (
+				translateChord(k, dNotation=n),
+				translateChord(scales[k][1][5] + "m", dNotation=n),
+			)
+			i = self.fromKey.Append(kn)
+			self.fromKey.SetClientData(i, k)
+			i = self.toKey.Append(kn)
+			self.toKey.SetClientData(i, k)
+		event.Skip()
 		
-	def GetTransposed(text):
-		return "pippo"
+	def GetTransposed(self, text):
+		return transposeChordPro(
+			self.fromKey.GetClientData(self.fromKey.GetSelection()),
+			self.toKey.GetClientData(self.toKey.GetSelection()),
+			text,
+			self.notation.GetClientData(self.notation.GetSelection())
+		)

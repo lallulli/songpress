@@ -112,6 +112,7 @@ scales = {
 	'Bb': (10, ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']),
 	'B': (11, ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'])
 }
+orderedKeys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 
 def splitChord(c, locNotation=enNotation):
 	for k in locNotation.chords:
