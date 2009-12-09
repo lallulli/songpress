@@ -10,6 +10,7 @@
 from Globals import *
 import i18n
 import re
+import math
 
 class Notation(object):
 	def __init__(self, desc, chords, repl):
@@ -114,6 +115,10 @@ scales = {
 }
 orderedKeys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 
+vectorModes = ['', 'm', '7', 'm7']
+
+referenceVector = [0.67035503045147282, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1117258384085788, 0.18620973068096466, 0.0, 0.1117258384085788, 0.0, 0.0, 0.0, 0.0, 0.0, 0.18620973068096466, 0.0, 0.0, 0.59587113817908699, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.29793556908954349, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1117258384085788, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
 def splitChord(c, locNotation=enNotation):
 	for k in locNotation.chords:
 		if c.startswith(k):
@@ -133,7 +138,7 @@ def __alteration(chord):
 	else:
 		return (chord[0], -1)
 
-def __chord2pos(chord, key):
+def chord2pos(chord, key="C"):
 	c, a = __alteration(chord)
 	s, b = __alteration(key)
 	return (tone[c] + a - tone[s] - b) % 12
@@ -151,7 +156,7 @@ def __pos2chord(pos, key):
 def transpose(s, d, chord, notation=enNotation):
 	chord = translateChord(chord, notation, enNotation)
 	c, v = splitChord(chord)
-	p = __chord2pos(c, s)
+	p = chord2pos(c, s)
 	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
 	
 def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
@@ -199,3 +204,41 @@ def autodetectNotation(text, notations):
 			if c != "":
 				cnt[i] += 1
 	return notations[cnt.index(max(cnt))]
+	
+def normalize(vector):
+	count = 0
+	for c in vector:
+		count += c**2
+	count = math.sqrt(count)
+	return [x/count for x in vector]
+
+def scalarProduct(v1, v2):
+	count = 0
+	for i in xrange(0, len(v1)):
+		count += v1[i]*v2[i]
+	return count
+	
+def vectorizeChords(text, notation=enNotation):
+	r = re.compile('\[([^]]*)\]')
+	v = [0 for x in xrange(12 * len(vectorModes))]
+	for m in r.finditer(text):
+		chord = translateChord(m.group(1), notation, enNotation)
+		c, a = splitChord(chord)
+		if c != "" and a in vectorModes:
+			v[chord2pos(c, "C") * len(vectorModes) + vectorModes.index(a)] += 1
+	return normalize(v)
+
+def autodetectKey(text, notation=enNotation):
+	v = vectorizeChords(text, notation)
+	r = referenceVector
+	max = 0
+	key = 0
+	n = len(vectorModes)
+	for k in xrange(0, 12):
+		s = scalarProduct(v, r)
+		#print s
+		if s > max:
+			max = s
+			key = k
+		r = r[-n:] + r[:-n]
+	return naturalScale[key]

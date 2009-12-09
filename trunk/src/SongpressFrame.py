@@ -431,9 +431,9 @@ class SongpressFrame(SDIMainFrame):
 			self.SetFont(f.GetValue())
 			
 	def OnTranspose(self, evt):
-		t = MyTransposeDialog(self.frame, self.notations, self.notation, self.key)
+		t = MyTransposeDialog(self.frame, self.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
-			self.text.ReplaceTextOrSelection(t.GetTransposed(self.text.GetTextOrSelection()))
+			self.text.ReplaceTextOrSelection(t.GetTransposed())
 
 	def OnChangeChordNotation(self, evt):
 		t = MyNotationDialog(self.frame, self.notations, self.text.GetTextOrSelection())
