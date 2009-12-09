@@ -1,6 +1,6 @@
 ###############################################################
 # Name:			 MyTransposeDialog.py
-# Purpose:	 Transposing services
+# Purpose:	 Transposing dialog
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-12-02
 # Copyright: Luca Allulli (http://www.skeed.it/songpress.html)

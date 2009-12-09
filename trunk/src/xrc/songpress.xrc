@@ -141,6 +141,10 @@
 					<label>_Transpose...</label>
 					<help>Transpose song or selected text</help>
 				</object>
+				<object class="wxMenuItem" name="changeChordNotation">
+					<label>Change chord _notation...</label>
+					<help>Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection</help>
+				</object>
 				<object class="wxMenuItem" name="options">
 					<label>_Options...</label>
 					<help>Set program options</help>

@@ -22,6 +22,7 @@ from FontFaceDialog import FontFaceDialog
 from PreferencesDialog import PreferencesDialog
 from Transpose import *
 from MyTransposeDialog import *
+from MyNotationDialog import *
 from Globals import glb
 import subprocess
 import i18n
@@ -300,6 +301,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnTranspose, 'transpose')
+		Bind(self.OnChangeChordNotation, 'changeChordNotation')
 		Bind(self.OnOptions, 'options')
 		Bind(self.OnGuide, 'guide')
 
@@ -432,6 +434,11 @@ class SongpressFrame(SDIMainFrame):
 		t = MyTransposeDialog(self.frame, self.notations, self.notation, self.key)
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.GetTransposed(self.text.GetTextOrSelection()))
+
+	def OnChangeChordNotation(self, evt):
+		t = MyNotationDialog(self.frame, self.notations, self.text.GetTextOrSelection())
+		if t.ShowModal() == wx.ID_OK:
+			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
 			
 	def OnOptions(self, evt):
 		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"))

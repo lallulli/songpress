@@ -189,3 +189,13 @@ def translateChordPro(text, sNotation=enNotation, dNotation=enNotation):
 		)
 		p = m.end()
 	return b + text[p:]
+	
+def autodetectNotation(text, notations):
+	r = re.compile('\[([^]]*)\]')
+	cnt = [0 for x in notations]
+	for m in r.finditer(text):
+		for i in xrange(0, len(notations)):
+			c, a = splitChord(m.group(1), notations[i])
+			if c != "":
+				cnt[i] += 1
+	return notations[cnt.index(max(cnt))]
