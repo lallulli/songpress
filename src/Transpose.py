@@ -106,14 +106,14 @@ scales = {
 	'Eb': (3, ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D']),
 	'E': (4, ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']),
 	'F': (5, ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']),
-	'F#': (6, ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#']), # E#?
+	'Gb': (6, ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb']), # E#?
 	'G': (7, ['G', 'A', 'B', 'C', 'D', 'E', 'F#']),
 	'Ab': (8, ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']),
 	'A': (9, ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']),
 	'Bb': (10, ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']),
 	'B': (11, ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'])
 }
-orderedKeys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+orderedKeys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 
 vectorModes = ['', 'm', '7', 'm7']
 
@@ -156,6 +156,8 @@ def __pos2chord(pos, key):
 def transpose(s, d, chord, notation=enNotation):
 	chord = translateChord(chord, notation, enNotation)
 	c, v = splitChord(chord)
+	if c == "":
+		return chord
 	p = chord2pos(c, s)
 	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
 	
@@ -163,6 +165,8 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	if sNotation == dNotation:
 		return chord
 	c, a = splitChord(chord, sNotation)
+	if c == "":
+		return chord
 	alt = c[-1]
 	if alt == '#' or alt == 'b':
 		c = c[:-1]
@@ -210,7 +214,10 @@ def normalize(vector):
 	for c in vector:
 		count += c**2
 	count = math.sqrt(count)
-	return [x/count for x in vector]
+	if count != 0:
+		return [x/count for x in vector]
+	else:
+		return vector
 
 def scalarProduct(v1, v2):
 	count = 0
@@ -236,7 +243,6 @@ def autodetectKey(text, notation=enNotation):
 	n = len(vectorModes)
 	for k in xrange(0, 12):
 		s = scalarProduct(v, r)
-		#print s
 		if s > max:
 			max = s
 			key = k
