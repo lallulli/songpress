@@ -48,6 +48,17 @@ class TransposeDialog ( wx.Dialog ):
 		
 		bSizer1.Add( bSizer21, 1, wx.EXPAND, 5 )
 		
+		bSizer2111 = wx.BoxSizer( wx.HORIZONTAL )
+		
+		self.label1111 = wx.StaticText( self, wx.ID_ANY, u"Semitones:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.label1111.Wrap( -1 )
+		bSizer2111.Add( self.label1111, 0, wx.ALL, 5 )
+		
+		self.semitones = wx.SpinCtrl( self, wx.ID_ANY, u"2", wx.DefaultPosition, wx.DefaultSize, wx.SP_ARROW_KEYS|wx.SP_WRAP, -11, 12, 2 )
+		bSizer2111.Add( self.semitones, 1, wx.ALL, 5 )
+		
+		bSizer1.Add( bSizer2111, 1, wx.EXPAND, 5 )
+		
 		bSizer211 = wx.BoxSizer( wx.HORIZONTAL )
 		
 		self.label111 = wx.StaticText( self, wx.ID_ANY, u"To key:", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -75,6 +86,8 @@ class TransposeDialog ( wx.Dialog ):
 		
 		# Connect Events
 		self.notation.Bind( wx.EVT_CHOICE, self.OnNotation )
+		self.semitones.Bind( wx.EVT_SPINCTRL, self.OnSemitones )
+		self.toKey.Bind( wx.EVT_CHOICE, self.OnToKey )
 	
 	def __del__( self ):
 		pass
@@ -82,6 +95,12 @@ class TransposeDialog ( wx.Dialog ):
 	
 	# Virtual event handlers, overide them in your derived class
 	def OnNotation( self, event ):
+		event.Skip()
+	
+	def OnSemitones( self, event ):
+		event.Skip()
+	
+	def OnToKey( self, event ):
 		event.Skip()
 	
 

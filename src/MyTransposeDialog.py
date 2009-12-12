@@ -40,8 +40,16 @@ class MyTransposeDialog(TransposeDialog):
 				self.fromKey.SetSelection(i)
 			i = self.toKey.Append(kn)
 			self.toKey.SetClientData(i, k)
+		self.UpdateToKey()
 		if event is not None:
 			event.Skip()
+			
+	def UpdateToKey(self):
+		try:
+			s = int(self.semitones.GetValue())
+		except:
+			return
+		self.toKey.SetSelection((self.fromKey.GetSelection() + s) % 12)
 		
 	def GetTransposed(self):
 		return transposeChordPro(
@@ -50,3 +58,14 @@ class MyTransposeDialog(TransposeDialog):
 			self.text,
 			self.notation.GetClientData(self.notation.GetSelection())
 		)
+		
+	def OnSemitones(self, evt):
+		self.UpdateToKey()
+		evt.Skip()
+		
+	def OnToKey(self, evt):
+		g = (self.toKey.GetSelection() - self.fromKey.GetSelection()) % 12
+		if g > 7:
+			g = -12 + g
+		self.semitones.SetValue(g)
+		evt.Skip()
