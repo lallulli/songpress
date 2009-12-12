@@ -86,6 +86,7 @@ class TransposeDialog ( wx.Dialog ):
 		
 		# Connect Events
 		self.notation.Bind( wx.EVT_CHOICE, self.OnNotation )
+		self.fromKey.Bind( wx.EVT_CHOICE, self.OnFromKey )
 		self.semitones.Bind( wx.EVT_SPINCTRL, self.OnSemitones )
 		self.toKey.Bind( wx.EVT_CHOICE, self.OnToKey )
 	
@@ -95,6 +96,9 @@ class TransposeDialog ( wx.Dialog ):
 	
 	# Virtual event handlers, overide them in your derived class
 	def OnNotation( self, event ):
+		event.Skip()
+	
+	def OnFromKey( self, event ):
 		event.Skip()
 	
 	def OnSemitones( self, event ):
