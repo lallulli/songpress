@@ -63,6 +63,10 @@ class MyTransposeDialog(TransposeDialog):
 		self.UpdateToKey()
 		evt.Skip()
 		
+	def OnFromKey(self, evt):
+		self.UpdateToKey()
+		evt.Skip()
+		
 	def OnToKey(self, evt):
 		g = (self.toKey.GetSelection() - self.fromKey.GetSelection()) % 12
 		if g > 7:
