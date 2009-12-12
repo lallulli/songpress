@@ -213,8 +213,8 @@ def normalize(vector):
 	count = 0
 	for c in vector:
 		count += c**2
-	count = math.sqrt(count)
 	if count != 0:
+		count = math.sqrt(count)
 		return [x/count for x in vector]
 	else:
 		return vector
