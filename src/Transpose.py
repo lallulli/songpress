@@ -13,50 +13,46 @@ import re
 import math
 
 class Notation(object):
-	def __init__(self, desc, chords, repl):
+	def __init__(self, desc, chords, repl, replrev):
 		object.__init__(self)
 		self.desc = desc
 		self.chords = chords
-		self.repl = repl
 		self.chordDict = {}
 		i = 0
 		for k in chords:
-			self.chordDict[k] = i
+			self.chordDict[k.upper()] = i
 			i += 1
+		self.repl = [(re.compile(x[0]), x[1]) for x in repl]
+		self.replrev = [(re.compile(x[0]), x[1]) for x in replrev]		
 		
 	def Ord2Chord(self, pos):
 		return self.chords[pos]
 		
 	def Chord2Ord(self, chord):
-		return self.chordDict[chord]
+		return self.chordDict[chord.upper()]
 		
-	def __AlterationStandard(self, a, s, d):
-		i = 0
-		n = len(a)
-		b = ''
-		while i < n:
-			subs = False
-			for k in self.repl:
-				if a[i:].startswith(k[s]):
-					b += k[d]
-					i += len(k[s])
-					subs = True
-					break
-			if not subs:
-				b += a[i]
-				i += 1
-		return b
+	def __AlterationStandard(self, a, rs):
+		for r in rs:
+			p = 0
+			b = ''
+			for m in r[0].finditer(a):
+				b += a[p:m.start()] + r[1]
+				p = m.end()
+			b += a[p:]
+			a = b
+		return a
 	
 	def AlterationFromStandard(self, a):
-		return self.__AlterationStandard(a, 0, 1)
+		return self.__AlterationStandard(a, self.repl)
 	
 	def AlterationToStandard(self, a):
-		return self.__AlterationStandard(a, 1, 0)
+		return self.__AlterationStandard(a, self.replrev)
 		
 
 enNotation = Notation(
 	'C D E...',
 	['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+	[],
 	[]
 )
 
@@ -64,10 +60,15 @@ itNotation = Notation(
 	'Do Re Mi...',
 	['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
 	[
-		('maj7', '7+'),
-		('sus4', '4'),
-		('m', '-')
-	]
+		(r'maj7', '7+'),
+		(r'sus4', '4'),
+		(r'^m', '-')
+	],
+	[
+		(r'7\+', 'maj7'),
+		(r'^4', 'sus4'),
+		(r'^-', 'm')
+	]	
 )
 
 naturalScale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -121,8 +122,8 @@ referenceVector = [0.65713162540630443, 0.0, 0.037841466800806009, 0.0, 0.0, 0.0
 
 def splitChord(c, locNotation=enNotation):
 	for k in locNotation.chords:
-		if c.startswith(k):
-			if c != k:
+		if c.upper().startswith(k.upper()):
+			if len(c) != len(k):
 				d = c[len(k)]
 				if d == "b" or d == "#":
 					return (k+d, c[(len(k) + 1):])
@@ -170,9 +171,10 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	alt = c[-1]
 	if alt == '#' or alt == 'b':
 		c = c[:-1]
-		a = alt + a
+	else:
+		alt = ""
 	d = dNotation.Ord2Chord(sNotation.Chord2Ord(c))
-	b = dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
+	b = alt + dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
 	return d + b
 	
 def transposeChordPro(s, d, text, notation=enNotation):
