@@ -14,6 +14,7 @@ class PreviewCanvas(object):
 	def __init__(self, parent, sf, sd = SongDecorator()):
 		object.__init__(self)
 		self.panel = wx.ScrolledWindow(parent, style=wx.BORDER_DOUBLE)
+		self.panel.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
 		self.pixedScrolled = 10
 		self.panel.SetScrollbars(self.pixedScrolled, self.pixedScrolled, 0, 0)
 		self.panel.Bind(wx.EVT_PAINT, self.OnPaint, self.panel)
@@ -25,8 +26,10 @@ class PreviewCanvas(object):
 
 	def OnPaint(self, e):
 		#print("OnPaint")
-		dc = wx.PaintDC(self.panel)
+		dc = wx.AutoBufferedPaintDC(self.panel)
 		self.panel.DoPrepareDC(dc)
+		dc.SetBackground(wx.WHITE_BRUSH);
+		dc.Clear();
 		w, h = self.renderer.Render(self.text, dc)
 		self.panel.SetVirtualSize(wx.Size(w, h))
 
