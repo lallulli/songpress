@@ -25,6 +25,8 @@ from MyTransposeDialog import *
 from MyNotationDialog import *
 from Globals import glb
 import subprocess
+import os
+import os.path
 import i18n
 
 i18n.register('SongpressFrame')
@@ -283,6 +285,8 @@ class SongpressFrame(SDIMainFrame):
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 			
+		Bind(self.OnExportAsEps, 'exportAsEps')
+		Bind(self.OnExportAsPng, 'exportAsPng')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
 		Bind(self.OnCut, 'cut')
@@ -338,6 +342,88 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvas.Refresh(self.text.GetText())
 		#self.UpdateEverything()
 		
+	def DrawOnDC(self, dc):
+		r = Renderer(self.format, self.decorator)
+		start, end = self.text.GetSelection()
+		if start == end:
+			w, h = r.Render(self.text.GetText(), dc)
+		else:
+			w, h = r.Render(self.text.GetText(), dc, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
+		return w, h
+		
+	def AskExportFileName(self, type, ext):
+		"""Ask the filename (without saving); return None if user cancels, the file name ow"""
+		leave = False;
+		consensus = False;
+		while not leave:
+			dlg = wx.FileDialog(
+				self.frame,
+				"Choose a name for the output file",
+				"",
+				os.path.splitext(self.document)[0],
+				"%s files (*.%s)|*.%s|All files (*.*)|*.*" % (type, ext, ext),
+				wx.FD_SAVE
+			)
+
+			if dlg.ShowModal() == wx.ID_OK:
+
+				fn = dlg.GetPath()
+				if os.path.isfile(fn):
+					msg = "File \"%s\" already exists. Do you want to overwrite it?" % (fn, )
+					d = wx.MessageDialog(
+						self.frame,
+						msg,
+						self.appLongName,
+						wx.YES_NO | wx.CANCEL | wx.ICON_QUESTION
+					)
+					res = d.ShowModal()
+					if res == wx.ID_CANCEL:
+						leave = True
+						consensus = False
+					elif res == wx.ID_NO:
+						leave = False
+						consensus = False
+					else: #wxID_YES
+						leave = True
+						consensus = True
+				else:
+					leave = True
+					consensus = True
+
+			else:
+				leave = True
+				consensus = False
+
+		if consensus:
+			return fn
+		else:
+			return None
+
+	def OnExportAsEps(self, evt):
+		n = self.AskExportFileName(_("EPS image"), "eps")
+		if n is not None:
+			pd = wx.PrintData()
+			pd.SetPaperId(wx.PAPER_NONE)
+			pd.SetPrintMode(wx.PRINT_MODE_FILE)
+			pd.SetFilename(n)
+			dc = wx.PostScriptDC(pd)
+			dc.StartDoc(_("Exporting image as EPS..."))
+			self.DrawOnDC(dc)
+			dc.EndDoc()
+		
+	def OnExportAsPng(self, evt):
+		n = self.AskExportFileName(_("PNG image"), "png")
+		if n is not None:
+			dc = wx.MemoryDC()
+			w, h = self.DrawOnDC(dc)
+			b = wx.EmptyBitmap(w, h)
+			dc = wx.MemoryDC(b)
+			dc.SetBackground(wx.WHITE_BRUSH);
+			dc.Clear();
+			self.DrawOnDC(dc)
+			i = wx.ImageFromBitmap(b)
+			i.SaveFile(n, wx.BITMAP_TYPE_PNG)
+
 	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
 		evt.Skip()
@@ -363,13 +449,8 @@ class SongpressFrame(SDIMainFrame):
 		self.text.Copy()
 
 	def OnCopyAsImage(self, evt):
-		r = Renderer(self.format, self.decorator)
 		dc = wx.MetaFileDC()
-		start, end = self.text.GetSelection()
-		if start == end:
-			r.Render(self.text.GetText(), dc)
-		else:
-			r.Render(self.text.GetText(), dc, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
+		self.DrawOnDC(dc)
 		m = dc.Close()
 		m.SetClipboard(dc.MaxX(), dc.MaxY())
 		

@@ -21,7 +21,7 @@
         <property name="skip_python_events">1</property>
         <property name="use_enum">0</property>
         <property name="use_microsoft_bom">0</property>
-        <object class="Frame" expanded="0">
+        <object class="Frame" expanded="1">
             <property name="bg"></property>
             <property name="center"></property>
             <property name="context_help"></property>
@@ -189,6 +189,41 @@
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="submenu" expanded="1">
+                        <property name="label">E&amp;xport</property>
+                        <property name="name">export</property>
+                        <property name="permission">protected</property>
+                        <object class="wxMenuItem" expanded="1">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help">Export image as Encapsulated PostScript</property>
+                            <property name="id">ID_EXPORT_AS_EPS</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Export as &amp;EPS...</property>
+                            <property name="name">exportAsEps</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection"></event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                        <object class="wxMenuItem" expanded="1">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help">Export image as a raster picture</property>
+                            <property name="id">ID_EXPORT_AS_PNG</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Export as &amp;PNG...</property>
+                            <property name="name">exportAsPng</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection"></event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
                     </object>
                     <object class="wxMenuItem" expanded="1">
                         <property name="bitmap"></property>
