@@ -85,6 +85,23 @@
 					<label>R_eplace...\tCTRL+R</label>
 					<help>Replace some text with some other text</help>
 				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="selectNextChord">
+					<label>_Select next chord\tALT+RIGHT</label>
+					<help>Find next chord and select it</help>
+				</object>
+				<object class="wxMenuItem" name="selectPreviousChord">
+					<label>Selec_t previous chord\tALT+LEFT</label>
+					<help>Find previous chord and select it</help>
+				</object>
+				<object class="wxMenuItem" name="moveChordRight">
+					<label>_Move chord right\tSHIFT+ALT+RIGHT</label>
+					<help>Move chord under cursor one position rightwards</help>
+				</object>
+				<object class="wxMenuItem" name="moveChordLeft">
+					<label>Move chord _left\tSHIFT+ALT+LEFT</label>
+					<help>Move chord under cursor one position leftwards</help>
+				</object>
 			</object>
 			<object class="wxMenu" name="view">
 				<label>_View</label>

@@ -78,7 +78,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxMenuBar" expanded="1">
+            <object class="wxMenuBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="enabled">1</property>
@@ -403,6 +403,70 @@
                         <property name="name">replace</property>
                         <property name="permission">none</property>
                         <property name="shortcut">CTRL+R</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="separator" expanded="1">
+                        <property name="name">m_separator4</property>
+                        <property name="permission">none</property>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Find next chord and select it</property>
+                        <property name="id">ID_SELECT_NEXT_CHORD</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">&amp;Select next chord</property>
+                        <property name="name">selectNextChord</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">ALT+RIGHT</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Find previous chord and select it</property>
+                        <property name="id">ID_SELECT_PREVIOUS_CHORD</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Selec&amp;t previous chord</property>
+                        <property name="name">selectPreviousChord</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">ALT+LEFT</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Move chord under cursor one position rightwards</property>
+                        <property name="id">ID_MOVE_CHORD_RIGHT</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">&amp;Move chord right</property>
+                        <property name="name">moveChordRight</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">SHIFT+ALT+RIGHT</property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Move chord under cursor one position leftwards</property>
+                        <property name="id">ID_MOVE_CHORD_LEFT</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Move chord &amp;left</property>
+                        <property name="name">moveChordLeft</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut">SHIFT+ALT+LEFT</property>
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>

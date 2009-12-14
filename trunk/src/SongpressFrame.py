@@ -297,6 +297,10 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnFindNext, 'findNext')
 		Bind(self.OnFindPrevious, 'findPrevious')
 		Bind(self.OnReplace, 'replace')
+		Bind(self.OnSelectNextChord, 'selectNextChord')
+		Bind(self.OnSelectPreviousChord, 'selectPreviousChord')
+		Bind(self.OnMoveChordRight, 'moveChordRight')
+		Bind(self.OnMoveChordLeft, 'moveChordLeft')
 		Bind(self.OnTitle, 'title')
 		Bind(self.OnChord, 'chord')
 		Bind(self.OnChorus, 'chorus')
@@ -472,6 +476,41 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnReplace(self, evt):
 		self.findReplaceDialog = SongpressFindReplaceDialog(self, True)
+		
+	def OnSelectNextChord(self, evt):
+		self.text.SelectNextChord()
+	
+	def OnSelectPreviousChord(self, evt):
+		self.text.SelectPreviousChord()
+		
+	def OnMoveChordRight(self, evt):
+		r = self.text.GetChordUnderCursor()
+		if r is not None:
+			n = self.text.GetLength()
+			s, e, c = r
+			if e < n:
+				self.text.BeginUndoAction()
+				self.text.SetSelection(e, e + 1)
+				l = self.text.GetTextRange(e, e + 1)
+				self.text.ReplaceSelection('')
+				self.text.SetSelection(s, s)
+				self.text.ReplaceSelection(l)
+				self.text.SetSelection(s + 2, s + 2)
+				self.text.EndUndoAction()
+		
+	def OnMoveChordLeft(self, evt):
+		r = self.text.GetChordUnderCursor()
+		if r is not None:
+			s, e, c = r
+			if s > 0:
+				self.text.BeginUndoAction()
+				self.text.SetSelection(s - 1, s)
+				l = self.text.GetTextRange(s - 1, s)
+				self.text.ReplaceSelection('')
+				self.text.SetSelection(e - 1, e - 1)
+				self.text.ReplaceSelection(l)
+				self.text.SetSelection(s, s)
+				self.text.EndUndoAction()
 	
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
