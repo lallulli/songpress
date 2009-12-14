@@ -26,10 +26,6 @@
 				</object>
 				<object class="wxMenu" name="export">
 					<label>E_xport</label>
-					<object class="wxMenuItem" name="exportAsEps">
-						<label>Export as _EPS...</label>
-						<help>Export image as Encapsulated PostScript</help>
-					</object>
 					<object class="wxMenuItem" name="exportAsPng">
 						<label>Export as _PNG...</label>
 						<help>Export image as a raster picture</help>
@@ -183,6 +179,14 @@
 				<object class="wxMenuItem" name="guide">
 					<label>_Guide\tF1</label>
 					<help>Show user&apos;s manual</help>
+				</object>
+				<object class="wxMenuItem" name="newsAndUpdates">
+					<label>_News and updates (web)</label>
+					<help>Open Songpress web site for news and updates</help>
+				</object>
+				<object class="wxMenuItem" name="donate">
+					<label>_Donate to our scout Group (web)</label>
+					<help>Open Songpress web site for donations</help>
 				</object>
 				<object class="wxMenuItem" name="about">
 					<label>_About...</label>
