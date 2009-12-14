@@ -93,6 +93,65 @@ class Editor(StyledTextCtrl):
 		else:
 			self.ReplaceSelection(text)
 	
+	def GetChordUnderCursor(self):
+		"""Return info about chord under cursor, or None
+		
+		Return a 3-tuple: (begin, end, chord)
+			begin: position before open bracket
+			end: position after close bracket
+			chord: chord, without brackets
+		"""
+		pos, dummy = self.GetSelection()
+		char = ""
+		start = pos - 1
+		while start >= 0 and char != '[' and char != '\n' and char != ']':
+			char = self.GetTextRange(start, start + 1)
+			start -= 1
+		if char == '[':
+			end = pos - 1
+			l = self.GetLength()
+			while end < l and char != ']' and char != '\n':
+				char = self.GetTextRange(end, end + 1)
+				end += 1
+			if char == ']':
+				return (start + 1, end, self.GetTextRange(start + 2, end - 1))
+		return None
+		
+	def SelectNextChord(self):
+		dummy, pos = self.GetSelection()
+		n = self.GetLength()
+		c = ''
+		while pos < n:
+			while pos < n and c != '[':
+				c = self.GetTextRange(pos, pos + 1)
+				pos += 1
+			if c == '[':
+				start = pos
+				while pos < n and c != ']' and c != '\n':
+					c = self.GetTextRange(pos, pos + 1)
+					pos += 1
+				if c == ']':
+					self.SetSelection(start, pos - 1)
+					return True
+		return False
+
+	def SelectPreviousChord(self):
+		pos, dummy = self.GetSelection()
+		pos -= 1
+		c = ''
+		while pos >= 0:
+			while pos >= 0 and c != ']':
+				c = self.GetTextRange(pos, pos + 1)
+				pos -= 1
+			if c == ']':
+				end = pos
+				while pos >= 0 and c != '[' and c != '\n':
+					c = self.GetTextRange(pos, pos + 1)
+					pos -= 1
+				if c == '[':
+					self.SetSelection(pos + 2, end + 1)
+					return True
+		return False
 
 	def OnTextChange(self, evt):
 		#print("OnTextChange")
