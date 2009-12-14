@@ -285,7 +285,6 @@ class SongpressFrame(SDIMainFrame):
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 			
-		Bind(self.OnExportAsEps, 'exportAsEps')
 		Bind(self.OnExportAsPng, 'exportAsPng')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
@@ -312,6 +311,8 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
 		Bind(self.OnOptions, 'options')
 		Bind(self.OnGuide, 'guide')
+		Bind(self.OnNewsAndUpdates, 'newsAndUpdates')
+		Bind(self.OnDonate, 'donate')
 
 	def New(self):
 		self.text.New()
@@ -402,18 +403,6 @@ class SongpressFrame(SDIMainFrame):
 			return fn
 		else:
 			return None
-
-	def OnExportAsEps(self, evt):
-		n = self.AskExportFileName(_("EPS image"), "eps")
-		if n is not None:
-			pd = wx.PrintData()
-			pd.SetPaperId(wx.PAPER_NONE)
-			pd.SetPrintMode(wx.PRINT_MODE_FILE)
-			pd.SetFilename(n)
-			dc = wx.PostScriptDC(pd)
-			dc.StartDoc(_("Exporting image as EPS..."))
-			self.DrawOnDC(dc)
-			dc.EndDoc()
 		
 	def OnExportAsPng(self, evt):
 		n = self.AskExportFileName(_("PNG image"), "png")
@@ -525,6 +514,12 @@ class SongpressFrame(SDIMainFrame):
 		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
 		self.menuBar.Enable(self.pasteMenuId, self.text.CanPaste())
 		evt.Skip()
+		
+	def OnNewsAndUpdates(self, evt):
+		wx.LaunchDefaultBrowser("http://www.skeed.it/songpress.html#News")
+		
+	def OnDonate(self, evt):
+		wx.LaunchDefaultBrowser("http://www.skeed.it/songpress.html#donate")
 		
 	def SetFont(self, font):
 		self.fontChooser.SetValue(font)	
