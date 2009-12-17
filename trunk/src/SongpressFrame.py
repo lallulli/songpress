@@ -179,7 +179,7 @@ class SongpressFrame(SDIMainFrame):
 		# Music related objects
 		self.notation = None
 		self.key = None
-		self.notations = [enNotation, itNotation]
+		self.notations = [enNotation, itNotation, deNotation]
 		# Other objects
 		self.format = SongFormat()
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
@@ -556,7 +556,7 @@ class SongpressFrame(SDIMainFrame):
 			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
 			
 	def OnOptions(self, evt):
-		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"))
+		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.notations)
 		if f.ShowModal() == wx.ID_OK:
 			face, s = f.GetFont()
 			self.text.SetFont(face, s)
@@ -572,6 +572,7 @@ class SongpressFrame(SDIMainFrame):
 				d.ShowModal()
 			self.config.SetPath("/App")
 			self.config.Write("locale", l)
+			self.SetDefaultNotation(f.GetNotation())
 
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()
@@ -622,6 +623,11 @@ class SongpressFrame(SDIMainFrame):
 			self.config.Write('LabelVerses', "0")
 		self.previewCanvas.Refresh(self.text.GetText())
 		
+	def SetDefaultNotation(self, notation):
+		self.notations = [x for x in self.notations if x.id == notation] + [x for x in self.notations if x.id != notation]
+		self.config.SetPath('/Editor')
+		self.config.Write('DefaultNotation', notation)
+		
 	def LoadConfig(self):
 		self.config.SetPath('/Format')
 		l = self.config.Read('ChorusLabel')	
@@ -648,5 +654,12 @@ class SongpressFrame(SDIMainFrame):
 			self.config.Write('Face', f)
 			self.config.Write('Size', s)
 		self.text.SetFont(f, int(s))
-
+		n = self.config.Read('DefaultNotation')
+		if n:
+			self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
+		else:
+			lang = i18n.getLang()
+			if lang in defaultLangNotation:
+				n = defaultLangNotation[lang].id
+				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
 	

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 16:00+0100\n"
+"POT-Creation-Date: 2009-12-17 17:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:18
+#: src\PreferencesDialog.py:30
+msgid "Editor font"
+msgstr ""
+
+#: src\PreferencesDialog.py:40
+msgid "Size"
+msgstr ""
+
+#: src\PreferencesDialog.py:54
+msgid "Preview"
+msgstr ""
+
+#: src\PreferencesDialog.py:60
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -29,26 +41,18 @@ msgid ""
 "{eoc}"
 msgstr ""
 
-#: src\PreferencesDialog.py:32
-msgid "Editor font"
-msgstr ""
-
-#: src\PreferencesDialog.py:42
-msgid "Size"
-msgstr ""
-
-#: src\PreferencesDialog.py:56
-msgid "Preview"
-msgstr ""
-
-#: src\PreferencesDialog.py:70
+#: src\PreferencesDialog.py:69
 msgid "Language"
 msgstr ""
 
-#: src\PreferencesDialog.py:90
+#: src\PreferencesDialog.py:87
+msgid "Default notation"
+msgstr ""
+
+#: src\PreferencesDialog.py:102
 msgid "OK"
 msgstr ""
 
-#: src\PreferencesDialog.py:93
+#: src\PreferencesDialog.py:105
 msgid "Cancel"
 msgstr ""
