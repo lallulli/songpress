@@ -16,7 +16,7 @@ from Globals import glb
 i18n.register('PreferencesDialog')
 
 class PreferencesDialog(wx.Dialog):
-	def __init__(self, parent, id, title):
+	def __init__(self, parent, id, title, notations):
 		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(540, 320))
 		
 		self.config = wx.Config.Get()
@@ -81,6 +81,19 @@ class PreferencesDialog(wx.Dialog):
 			if lang == l:
 				self.langCh.SetSelection(i)
 		hSizer3.Add(self.langCh, 1, wx.EXPAND | wx.ALL, 5)
+
+		# Default notation
+		hSizer4 = wx.BoxSizer(wx.HORIZONTAL)
+		m_staticText4 = wx.StaticText(self, wx.ID_ANY, _("Default notation"))
+		m_staticText4.Wrap(-1);
+		hSizer4.Add(m_staticText4, 0, wx.ALL, 5)
+		
+		self.notationCh = wx.Choice(self, wx.ID_ANY)
+		for n in notations:
+			i = self.notationCh.Append(n.desc)
+			self.notationCh.SetClientData(i, n.id)
+		self.notationCh.SetSelection(0)
+		hSizer4.Add(self.notationCh, 1, wx.EXPAND | wx.ALL, 5)
 		
 		# Buttons
 		hSizerZ = wx.BoxSizer(wx.HORIZONTAL)
@@ -97,6 +110,7 @@ class PreferencesDialog(wx.Dialog):
 		bSizer1.AddSizer(hSizer1, 0, wx.EXPAND, 5)
 		bSizer1.AddSizer(hSizer2, 1, wx.EXPAND, 5)
 		bSizer1.AddSizer(hSizer3, 0, wx.EXPAND, 5)
+		bSizer1.AddSizer(hSizer4, 0, wx.EXPAND, 5)
 		bSizer1.Add(hSizerZ, 0, wx.EXPAND, 5)
 		
 		self.SetSizer(bSizer1)
@@ -119,5 +133,7 @@ class PreferencesDialog(wx.Dialog):
 	def GetLanguage(self):
 		return self.langCh.GetClientData(self.langCh.GetSelection())
 
+	def GetNotation(self):
+		return self.notationCh.GetClientData(self.notationCh.GetSelection())
 
 

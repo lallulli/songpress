@@ -12,9 +12,12 @@ import i18n
 import re
 import math
 
+i18n.register('Transpose')
+
 class Notation(object):
-	def __init__(self, desc, chords, repl, replrev):
+	def __init__(self, id, desc, chords, repl, replrev):
 		object.__init__(self)
+		self.id = id
 		self.desc = desc
 		self.chords = chords
 		self.chordDict = {}
@@ -41,23 +44,31 @@ class Notation(object):
 			b += a[p:]
 			a = b
 		return a
+		
+	def PostprocessingFromStandard(self, c, a):
+		return c, a
+		
+	def PreprocessingToStandard(self, c, a):
+		return c, a
 	
 	def AlterationFromStandard(self, a):
 		return self.__AlterationStandard(a, self.repl)
 	
 	def AlterationToStandard(self, a):
 		return self.__AlterationStandard(a, self.replrev)
-		
+	
 
 enNotation = Notation(
-	'C D E...',
+	"enNotation",
+	_("American (C D E... B)"),
 	['C', 'D', 'E', 'F', 'G', 'A', 'B'],
 	[],
 	[]
 )
 
 itNotation = Notation(
-	'Do Re Mi...',
+	"itNotation",
+	_("Italian (Do Re Mi... Si)"),
 	['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
 	[
 		(r'maj7', '7+'),
@@ -69,6 +80,35 @@ itNotation = Notation(
 		(r'^4', 'sus4'),
 		(r'^-', 'm')
 	]	
+)
+
+defaultLangNotation = {
+	'en': enNotation,
+	'it': itNotation
+}
+
+class GermanNotation(Notation):
+	def PreprocessingToStandard(self, c, a):
+		if c == '' and a != '' and a[0].upper() == 'B':
+			c = 'Hb'
+			a = a[1:]
+		if a != "" and a[0] == 'm':
+			c = c.upper()
+		return c, a
+			
+	def PostprocessingFromStandard(self, c, a):
+		if c == 'Hb':
+			c = 'B'
+		if a != "" and a[0] == 'm':
+			c = c.lower() 
+		return c, a
+
+deNotation = GermanNotation(
+	"deNotation",
+	_("German (C D E... H)"),
+	['C', 'D', 'E', 'F', 'G', 'A', 'H'],
+	[],
+	[]
 )
 
 naturalScale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -166,6 +206,7 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	if sNotation == dNotation:
 		return chord
 	c, a = splitChord(chord, sNotation)
+	c, a = sNotation.PreprocessingToStandard(c, a)
 	if c == "":
 		return chord
 	alt = c[-1]
@@ -173,8 +214,9 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 		c = c[:-1]
 	else:
 		alt = ""
-	d = dNotation.Ord2Chord(sNotation.Chord2Ord(c))
-	b = alt + dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
+	d = dNotation.Ord2Chord(sNotation.Chord2Ord(c)) + alt
+	b = dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
+	d, b = dNotation.PostprocessingFromStandard(d, b)
 	return d + b
 	
 def transposeChordPro(s, d, text, notation=enNotation):
