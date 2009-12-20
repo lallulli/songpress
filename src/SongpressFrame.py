@@ -168,7 +168,7 @@ class SongpressFrame(SDIMainFrame):
 			'crd',
 			_('Songpress - Il Canzonatore'),
 			glb.AddPath('img/songpress.ico'),
-			_("1.0"),
+			_("1.1"),
 			_("http://www.skeed.it/songpress.html"),
 			_("Copyright (c) 2009 Luca Allulli - Skeed"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
@@ -177,8 +177,6 @@ class SongpressFrame(SDIMainFrame):
 		self.text = Editor(self)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		# Music related objects
-		self.notation = None
-		self.key = None
 		self.notations = [enNotation, itNotation, deNotation]
 		# Other objects
 		self.format = SongFormat()
@@ -516,10 +514,10 @@ class SongpressFrame(SDIMainFrame):
 		evt.Skip()
 		
 	def OnNewsAndUpdates(self, evt):
-		wx.LaunchDefaultBrowser("http://www.skeed.it/songpress.html#News")
+		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#News"))
 		
 	def OnDonate(self, evt):
-		wx.LaunchDefaultBrowser("http://www.skeed.it/songpress.html#donate")
+		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#donate"))
 		
 	def SetFont(self, font):
 		self.fontChooser.SetValue(font)	

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-17 17:53+0100\n"
+"POT-Creation-Date: 2009-12-20 18:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "Songpress - Il Canzonatore"
 msgstr ""
 
 #: src\SongpressFrame.py:171
-msgid "1.0"
+msgid "1.1"
 msgstr ""
 
 #: src\SongpressFrame.py:172
@@ -210,6 +210,14 @@ msgstr ""
 
 #: src\SongpressFrame.py:408
 msgid "PNG image"
+msgstr ""
+
+#: src\SongpressFrame.py:519
+msgid "http://www.skeed.it/songpress.html#News"
+msgstr ""
+
+#: src\SongpressFrame.py:522
+msgid "http://www.skeed.it/songpress.html#donate"
 msgstr ""
 
 #: src\SongpressFrame.py:544 src\SongpressFrame.py:571

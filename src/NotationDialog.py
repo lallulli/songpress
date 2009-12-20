@@ -8,6 +8,8 @@
 ###########################################################################
 
 import wx
+import i18n
+i18n.register('NotationDialog')
 
 ###########################################################################
 ## Class NotationDialog
@@ -16,7 +18,7 @@ import wx
 class NotationDialog ( wx.Dialog ):
 	
 	def __init__( self, parent ):
-		wx.Dialog.__init__  ( self, parent, id = wx.ID_ANY, title = u"Change notation", pos = wx.DefaultPosition, size = wx.Size( -1,-1 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
+		wx.Dialog.__init__  ( self, parent, id = wx.ID_ANY, title = _(u"Change notation"), pos = wx.DefaultPosition, size = wx.Size( -1,-1 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -24,7 +26,7 @@ class NotationDialog ( wx.Dialog ):
 		
 		bSizer2 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.label1 = wx.StaticText( self, wx.ID_ANY, u"From notation:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.label1 = wx.StaticText( self, wx.ID_ANY, _(u"From notation:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.label1.Wrap( -1 )
 		bSizer2.Add( self.label1, 0, wx.ALL, 5 )
 		
@@ -37,7 +39,7 @@ class NotationDialog ( wx.Dialog ):
 		
 		bSizer21 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.label11 = wx.StaticText( self, wx.ID_ANY, u"To notation:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.label11 = wx.StaticText( self, wx.ID_ANY, _(u"To notation:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.label11.Wrap( -1 )
 		bSizer21.Add( self.label11, 0, wx.ALL, 5 )
 		
