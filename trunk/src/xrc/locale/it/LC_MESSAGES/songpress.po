@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-17 17:20+0100\n"
-"PO-Revision-Date: 2009-12-17 18:01+0100\n"
+"PO-Revision-Date: 2009-12-20 18:13+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "Sostituisce del testo con dell'altro"
 
 #: src\xrc\songpress.pos:38
 msgid "&Select next chord\tALT+RIGHT"
-msgstr "&Seleziona accordo successivo\tALT+RIGHT"
+msgstr "Seleziona accordo s&uccessivo\tALT+RIGHT"
 
 #: src\xrc\songpress.pos:39
 msgid "Find next chord and select it"
@@ -173,7 +173,7 @@ msgstr "Trova l'accordo successivo e selezionalo"
 
 #: src\xrc\songpress.pos:40
 msgid "Selec&t previous chord\tALT+LEFT"
-msgstr "Sele&ziona accordo precedente\tALT+LEFT"
+msgstr "Seleziona accordo pr&ecedente\tALT+LEFT"
 
 #: src\xrc\songpress.pos:41
 msgid "Find previous chord and select it"
@@ -181,7 +181,7 @@ msgstr "Trova l'accordo precedente e selezionalo"
 
 #: src\xrc\songpress.pos:42
 msgid "&Move chord right\tSHIFT+ALT+RIGHT"
-msgstr "S&posta l'accordo a destra\tSHIFT+ALT+RIGHT"
+msgstr "Sposta l'accordo a &destra\tSHIFT+ALT+RIGHT"
 
 #: src\xrc\songpress.pos:43
 msgid "Move chord under cursor one position rightwards"
@@ -189,7 +189,7 @@ msgstr "Sposta l'accordo sotto il cursore di una posizione verso destra"
 
 #: src\xrc\songpress.pos:44
 msgid "Move chord &left\tSHIFT+ALT+LEFT"
-msgstr "Sp&osta l'accordo a sinistra\tSHIFT+ALT+LEFT"
+msgstr "Sposta l'accordo a si&nistra\tSHIFT+ALT+LEFT"
 
 #: src\xrc\songpress.pos:45
 msgid "Move chord under cursor one position leftwards"

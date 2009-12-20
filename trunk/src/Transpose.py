@@ -18,7 +18,7 @@ class Notation(object):
 	def __init__(self, id, desc, chords, repl, replrev):
 		object.__init__(self)
 		self.id = id
-		self.desc = desc
+		self.descv = desc
 		self.chords = chords
 		self.chordDict = {}
 		i = 0
@@ -26,7 +26,15 @@ class Notation(object):
 			self.chordDict[k.upper()] = i
 			i += 1
 		self.repl = [(re.compile(x[0]), x[1]) for x in repl]
-		self.replrev = [(re.compile(x[0]), x[1]) for x in replrev]		
+		self.replrev = [(re.compile(x[0]), x[1]) for x in replrev]
+
+	def GetDesc(self):
+		return _(self.descv)
+		
+	def SetDesc(self, v):
+		pass
+		
+	desc = property(GetDesc, SetDesc)
 		
 	def Ord2Chord(self, pos):
 		return self.chords[pos]
@@ -60,7 +68,7 @@ class Notation(object):
 
 enNotation = Notation(
 	"enNotation",
-	_("American (C D E... B)"),
+	"American (C D E... B)",
 	['C', 'D', 'E', 'F', 'G', 'A', 'B'],
 	[],
 	[]
@@ -68,7 +76,7 @@ enNotation = Notation(
 
 itNotation = Notation(
 	"itNotation",
-	_("Italian (Do Re Mi... Si)"),
+	"Italian (Do Re Mi... Si)",
 	['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
 	[
 		(r'maj7', '7+'),
@@ -105,7 +113,7 @@ class GermanNotation(Notation):
 
 deNotation = GermanNotation(
 	"deNotation",
-	_("German (C D E... H)"),
+	"German (C D E... H)",
 	['C', 'D', 'E', 'F', 'G', 'A', 'H'],
 	[],
 	[]
