@@ -108,6 +108,22 @@ frNotation = Notation(
 	]	
 )
 
+ptNotation = Notation(
+	"ptNotation",
+	_(u"Portuguese (Dó Ré Mi... Si)"),
+	[u'Dó', u'Ré', 'Mi', u'Fá', 'Sol', u'Lá', 'Si'],
+	[
+		(r'maj7', '7+'),
+		(r'sus4', '4'),
+		(r'^m', '-')
+	],
+	[
+		(r'7\+', 'maj7'),
+		(r'^4', 'sus4'),
+		(r'^-', 'm')
+	]	
+)
+
 defaultLangNotation = {
 	'en': enNotation,
 	'it': itNotation

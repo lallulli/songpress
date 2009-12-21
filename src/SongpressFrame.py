@@ -179,7 +179,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.SetDropTarget(dt)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		# Music related objects
-		self.notations = [enNotation, itNotation, deNotation, frNotation]
+		self.notations = [enNotation, itNotation, deNotation, frNotation, ptNotation]
 		# Other objects
 		self.format = SongFormat()
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
