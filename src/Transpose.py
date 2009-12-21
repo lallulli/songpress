@@ -1,3 +1,5 @@
+# -*- coding: iso-8859-1 -*-
+
 ###############################################################
 # Name:			 Transpose.py
 # Purpose:	 Transposing services
@@ -68,7 +70,7 @@ class Notation(object):
 
 enNotation = Notation(
 	"enNotation",
-	"American (C D E... B)",
+	_("American (C D E... B)"),
 	['C', 'D', 'E', 'F', 'G', 'A', 'B'],
 	[],
 	[]
@@ -76,8 +78,24 @@ enNotation = Notation(
 
 itNotation = Notation(
 	"itNotation",
-	"Italian (Do Re Mi... Si)",
+	_("Italian (Do Re Mi... Si)"),
 	['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
+	[
+		(r'maj7', '7+'),
+		(r'sus4', '4'),
+		(r'^m', '-')
+	],
+	[
+		(r'7\+', 'maj7'),
+		(r'^4', 'sus4'),
+		(r'^-', 'm')
+	]	
+)
+
+frNotation = Notation(
+	"frNotation",
+	_(u"French (Do Ré Mi... Si)"),
+	['Do', u'Ré', 'Mi', 'Fa', 'Sol', 'La', 'Si'],
 	[
 		(r'maj7', '7+'),
 		(r'sus4', '4'),
@@ -113,7 +131,7 @@ class GermanNotation(Notation):
 
 deNotation = GermanNotation(
 	"deNotation",
-	"German (C D E... H)",
+	_("German (C D E... H)"),
 	['C', 'D', 'E', 'F', 'G', 'A', 'H'],
 	[],
 	[]
