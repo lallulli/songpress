@@ -64,7 +64,15 @@ class Renderer(object):
 		self.BeginLine()
 		self.EndLine()
 
-	def AddText(self, text, type = SongText.text):
+	def AddText(self, text, type=SongText.text):
+		if(
+			text.strip() != ''
+			and type != SongText.title
+			and type != SongText.comment
+			and self.currentBlock is not None
+			and self.currentBlock.type == SongBlock.title
+		):
+			self.EndBlock()
 		self.BeginVerse()
 		self.BeginLine()
 		if type == SongText.comment:
@@ -80,7 +88,7 @@ class Renderer(object):
 	def AddTitle(self, title):
 		self.BeginBlock(SongBlock.title)
 		self.AddText(title, SongText.title)
-		self.EndBlock()
+		#self.EndBlock()
 
 	def BeginLine(self):
 		if self.currentLine == None:
@@ -157,7 +165,7 @@ class Renderer(object):
 
 			self.EndLine()
 			if empty:
-				if state == SongBlock.verse:
+				if state == SongBlock.verse or state == SongBlock.title:
 					self.EndBlock()
 				elif state == SongBlock.chorus:
 					self.ChorusVSkip()
