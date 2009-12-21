@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-05 16:00+0100\n"
-"PO-Revision-Date: 2009-09-29 22:02+0100\n"
+"PO-Revision-Date: 2009-12-21 21:09+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,8 @@ msgstr ""
 msgid "Open file"
 msgstr "Apertura file"
 
-#: src\SDIMainFrame.py:122 src\SDIMainFrame.py:239
+#: src\SDIMainFrame.py:122
+#: src\SDIMainFrame.py:239
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr "File %s (*.%s)|*.%s|Tutti i file (*.*)|*.*"
@@ -71,3 +72,4 @@ msgstr "Scegli un nome per il file"
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr "Il file \"%s\" esiste già. Vuoi sovrascriverlo?"
+
