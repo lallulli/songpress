@@ -175,6 +175,8 @@ class SongpressFrame(SDIMainFrame):
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)")
 		)
 		self.text = Editor(self)
+		dt = SDIDropTarget(self)
+		self.text.SetDropTarget(dt)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		# Music related objects
 		self.notations = [enNotation, itNotation, deNotation, frNotation]
