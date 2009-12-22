@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-21 22:24+0100\n"
+"PO-Revision-Date: 2009-12-21 21:09+0100\n"
+"Last-Translator: Luca Allulli\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\SongpressFrame.py:43
+msgid "Replace"
+msgstr "Sostituisci"
+
+#: src\SongpressFrame.py:43
+msgid "Find"
+msgstr "Trova"
+
+#: src\SongpressFrame.py:87
+msgid "beginning"
+msgstr "l'inizio"
+
+#: src\SongpressFrame.py:88
+msgid "Reached the end"
+msgstr "Raggiunta la fine"
+
+#: src\SongpressFrame.py:91
+msgid "end"
+msgstr "la fine"
+
+#: src\SongpressFrame.py:92
+msgid "Reached the beginning"
+msgstr "Raggiunto l'inizio"
+
+#: src\SongpressFrame.py:96
+#, python-format
+msgid "%s of the song, restarting search from the %s"
+msgstr "%s della canzone; la ricerca riprende dal%s"
+
+#: src\SongpressFrame.py:107
+msgid "The specified text was not found"
+msgstr "Il testo immesso non è stato trovato"
+
+#: src\SongpressFrame.py:146
+#, python-format
+msgid "%d text occurrences have been replaced"
+msgstr "Sono state sostituite %d occorrenze del testo"
+
+#: src\SongpressFrame.py:167
+msgid "song"
+msgstr "canzone"
+
+#: src\SongpressFrame.py:169
+msgid "Songpress - Il Canzonatore"
+msgstr "Songpress - Il Canzonatore"
+
+#: src\SongpressFrame.py:171
+msgid "1.1"
+msgstr "1.1"
+
+#: src\SongpressFrame.py:172
+msgid "http://www.skeed.it/songpress.html"
+msgstr "http://www.skeed.it/songpress.html"
+
+#: src\SongpressFrame.py:173
+msgid "Copyright (c) 2009 Luca Allulli - Skeed"
+msgstr "Copyright (c) 2009 Luca Allulli - Skeed"
+
+#: src\SongpressFrame.py:174
+msgid ""
+"Licensed under the terms and conditions of the GNU General Public License, "
+"version 2"
+msgstr ""
+"Concesso in licenza secondo i termini e le condizioni della GNU General "
+"Public License, versione 2"
+
+#: src\SongpressFrame.py:175
+msgid ""
+"Special thanks to:\n"
+"  * The Pyhton programming language (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)"
+msgstr ""
+"Un sentito ringraziamento a:\n"
+"  * Il linguaggio di programmazione Pyhton (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)"
+
+#: src\SongpressFrame.py:185
+msgid "Chorus"
+msgstr "Rit"
+
+#: src\SongpressFrame.py:190 src\SongpressFrame.py:279
+msgid "Preview"
+msgstr "Anteprima"
+
+#: src\SongpressFrame.py:196
+msgid "New"
+msgstr "Nuovo"
+
+#: src\SongpressFrame.py:197
+msgid "Create a new song"
+msgstr "Crea una nuova canzone"
+
+#: src\SongpressFrame.py:200
+msgid "Open"
+msgstr "Apri"
+
+#: src\SongpressFrame.py:201
+msgid "Open an existing song"
+msgstr "Apre una canzone esistente"
+
+#: src\SongpressFrame.py:204
+msgid "Save"
+msgstr "Salva"
+
+#: src\SongpressFrame.py:205
+msgid "Save song with the current filename"
+msgstr "Salva la canzone con il nome del file attuale"
+
+#: src\SongpressFrame.py:210
+msgid "Undo"
+msgstr "Annulla"
+
+#: src\SongpressFrame.py:211
+msgid "Undo last edit"
+msgstr "Annulla l'ultima modifica"
+
+#: src\SongpressFrame.py:215
+msgid "Redo"
+msgstr "Ripeti"
+
+#: src\SongpressFrame.py:216
+msgid "Redo previously undone edit"
+msgstr "Ripete la modifica precedentemente annullata"
+
+#: src\SongpressFrame.py:221
+msgid "Cut"
+msgstr "Taglia"
+
+#: src\SongpressFrame.py:222
+msgid "Move selected text in the clipboard"
+msgstr "Sposta il testo selezionato negli appunti"
+
+#: src\SongpressFrame.py:226
+msgid "Copy"
+msgstr "Copia"
+
+#: src\SongpressFrame.py:227
+msgid "Copy selected text in the clipboard"
+msgstr "Copia il testo selezionato negli appunti"
+
+#: src\SongpressFrame.py:230
+msgid "Copy as Image"
+msgstr "Copia come immagine"
+
+#: src\SongpressFrame.py:231
+msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
+msgstr ""
+"Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
+
+#: src\SongpressFrame.py:235
+msgid "Paste"
+msgstr "Incolla"
+
+#: src\SongpressFrame.py:236
+msgid "Read text from the clipboard and place it at the cursor position"
+msgstr ""
+"Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
+
+#: src\SongpressFrame.py:239 src\SongpressFrame.py:280
+msgid "Standard"
+msgstr "Standard"
+
+#: src\SongpressFrame.py:252
+msgid "Insert title"
+msgstr "Inserisci titolo"
+
+#: src\SongpressFrame.py:253
+msgid "Insert a command to display song title"
+msgstr "Inserisce un comando che mostra il titolo della canzone"
+
+#: src\SongpressFrame.py:256
+msgid "Insert chord"
+msgstr "Inserisci accordo"
+
+#: src\SongpressFrame.py:257
+msgid "Insert square brackets that will host a chord"
+msgstr "Inserisce delle parentesi quadre, che conterranno un accordo"
+
+#: src\SongpressFrame.py:260
+msgid "Insert chorus"
+msgstr "Inserisci ritornello"
+
+#: src\SongpressFrame.py:261
+msgid "Insert a couple of commands that will contain chorus"
+msgstr "Inserisce due comandi, tra i quali scrivere il ritornello"
+
+#: src\SongpressFrame.py:264
+msgid "Insert comment"
+msgstr "Inserisci un commento"
+
+#: src\SongpressFrame.py:265
+msgid "Insert a command to display a comment"
+msgstr "Inserisce un comando per mostrare un commento"
+
+#: src\SongpressFrame.py:269 src\SongpressFrame.py:281
+msgid "Format"
+msgstr "Formattazione"
+
+#: src\SongpressFrame.py:408
+msgid "PNG image"
+msgstr "Immagine PNG"
+
+#: src\SongpressFrame.py:519
+msgid "http://www.skeed.it/songpress.html#News"
+msgstr "http://www.skeed.it/songpress-it.html#News"
+
+#: src\SongpressFrame.py:522
+msgid "http://www.skeed.it/songpress.html#donate"
+msgstr "http://www.skeed.it/songpress-it.html#donate"
+
+#: src\SongpressFrame.py:544 src\SongpressFrame.py:571
+#: src\SongpressFrame.py:606
+msgid "Songpress"
+msgstr "Songpress"
+
+#: src\SongpressFrame.py:559
+msgid "Songpress options"
+msgstr "Opzioni di Songpress"
+
+#: src\SongpressFrame.py:570
+msgid "Language settings will be applied when you restart Songpress."
+msgstr "La lingua selezionata sarà disponibile al prossimo avvio di Songpress."
+
+#: src\SongpressFrame.py:605
+msgid "Please enter a label for chorus"
+msgstr "Etichetta per il ritornello"
+
+#~ msgid "1.0 beta 1 (1.0.b+1)"
+#~ msgstr "1.0 beta 1 (1.0.b+1)"
