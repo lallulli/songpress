@@ -32,18 +32,18 @@ class Notation(object):
 
 	def GetDesc(self):
 		return _(self.descv)
-		
+
 	def SetDesc(self, v):
 		pass
-		
+
 	desc = property(GetDesc, SetDesc)
-		
+
 	def Ord2Chord(self, pos):
 		return self.chords[pos]
-		
+
 	def Chord2Ord(self, chord):
 		return self.chordDict[chord.upper()]
-		
+
 	def __AlterationStandard(self, a, rs):
 		for r in rs:
 			p = 0
@@ -54,19 +54,19 @@ class Notation(object):
 			b += a[p:]
 			a = b
 		return a
-		
+
 	def PostprocessingFromStandard(self, c, a):
 		return c, a
-		
+
 	def PreprocessingToStandard(self, c, a):
 		return c, a
-	
+
 	def AlterationFromStandard(self, a):
 		return self.__AlterationStandard(a, self.repl)
-	
+
 	def AlterationToStandard(self, a):
 		return self.__AlterationStandard(a, self.replrev)
-	
+
 
 enNotation = Notation(
 	"enNotation",
@@ -89,7 +89,7 @@ itNotation = Notation(
 		(r'7\+', 'maj7'),
 		(r'^4', 'sus4'),
 		(r'^-', 'm')
-	]	
+	]
 )
 
 frNotation = Notation(
@@ -105,7 +105,7 @@ frNotation = Notation(
 		(r'7\+', 'maj7'),
 		(r'^4', 'sus4'),
 		(r'^-', 'm')
-	]	
+	]
 )
 
 ptNotation = Notation(
@@ -121,7 +121,7 @@ ptNotation = Notation(
 		(r'7\+', 'maj7'),
 		(r'^4', 'sus4'),
 		(r'^-', 'm')
-	]	
+	]
 )
 
 defaultLangNotation = {
@@ -137,12 +137,12 @@ class GermanNotation(Notation):
 		if a != "" and a[0] == 'm':
 			c = c.upper()
 		return c, a
-			
+
 	def PostprocessingFromStandard(self, c, a):
 		if c == 'Hb':
 			c = 'B'
 		if a != "" and a[0] == 'm':
-			c = c.lower() 
+			c = c.lower()
 		return c, a
 
 deNotation = GermanNotation(
@@ -212,7 +212,7 @@ def splitChord(c, locNotation=enNotation):
 				return (k, c[len(k):])
 			return (c, "")
 	return ("", c)
-	
+
 def __alteration(chord):
 	if len(chord) == 1:
 		return (chord, 0)
@@ -225,7 +225,7 @@ def chord2pos(chord, key="C"):
 	c, a = __alteration(chord)
 	s, b = __alteration(key)
 	return (tone[c] + a - tone[s] - b) % 12
-	
+
 def __pos2chord(pos, key):
 	n, i = interval[pos]
 	# if pos in scale, use it
@@ -234,7 +234,7 @@ def __pos2chord(pos, key):
 	# else use natural scale
 	ref = scales[key][0]
 	diff = (pos + ref) % 12
-	return naturalScale[diff]	
+	return naturalScale[diff]
 
 def transpose(s, d, chord, notation=enNotation):
 	chord = translateChord(chord, notation, enNotation)
@@ -243,7 +243,7 @@ def transpose(s, d, chord, notation=enNotation):
 		return chord
 	p = chord2pos(c, s)
 	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
-	
+
 def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	if sNotation == dNotation:
 		return chord
@@ -260,7 +260,7 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	b = dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
 	d, b = dNotation.PostprocessingFromStandard(d, b)
 	return d + b
-	
+
 def transposeChordPro(s, d, text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
 	p = 0
@@ -284,7 +284,7 @@ def translateChordPro(text, sNotation=enNotation, dNotation=enNotation):
 		)
 		p = m.end()
 	return b + text[p:]
-	
+
 def autodetectNotation(text, notations):
 	r = re.compile('\[([^]]*)\]')
 	cnt = [0 for x in notations]
@@ -294,7 +294,7 @@ def autodetectNotation(text, notations):
 			if c != "":
 				cnt[i] += 1
 	return notations[cnt.index(max(cnt))]
-	
+
 def normalize(vector):
 	count = 0
 	for c in vector:
@@ -310,7 +310,7 @@ def scalarProduct(v1, v2):
 	for i in xrange(0, len(v1)):
 		count += v1[i]*v2[i]
 	return count
-	
+
 def vectorizeChords(text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
 	v = [0 for x in xrange(12 * len(vectorModes))]
@@ -334,3 +334,39 @@ def autodetectKey(text, notation=enNotation):
 			key = k
 		r = r[-n:] + r[:-n]
 	return naturalScale[key]
+
+def integrateChords(chords, text):
+	"""Integrate chord line in text line, as chordpro"""
+	r = re.compile(r'(\S+)')
+	i = r.finditer(chords)
+	l = [x for x in i]
+	l.reverse()
+	if l != []:
+		lc = l[0].start()
+		lt = len(text)
+		for i in xrange(0, lc-lt):
+			text += ' '
+		for m in l:
+			s = m.start()
+			text = text[:s] + '[' + m.group() + ']' + text[s:]
+	return text
+
+def testChordLine(line, notation=enNotation):
+	"""Return True iff line contains only chords"""
+	# First, tokenize line: if a token is not a chord => False
+	r = re.compile(r'(\S+)')
+	l = 0
+	n = 0
+	for m in r.finditer(line):
+		c = m.group()
+		e, a = splitChord(c, notation)
+		e, a = notation.PreprocessingToStandard(e, a)
+		if e == '':
+			return False
+		l += len(translateChord(c, enNotation))
+		n += 1
+	# Looks okay... if a whitespace is occurring twice => True
+	if line.find("  ") != -1:
+		return True
+	# Uhm, weird... are chord tokens "short"? Yes <=> True
+	return l/float(n) <= 2.3
