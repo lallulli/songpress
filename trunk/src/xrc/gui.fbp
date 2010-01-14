@@ -456,6 +456,40 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
+                    <object class="separator" expanded="1">
+                        <property name="name">m_separator5</property>
+                        <property name="permission">none</property>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Integrate chords of current line with text of following line</property>
+                        <property name="id">ID_INTEGRATE_CHORDS</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Inte&amp;grate chords</property>
+                        <property name="name">integrateChords</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label"></property>
+                        <property name="name"></property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">&amp;View</property>
@@ -741,6 +775,16 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
+                </object>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">Convert Tab to Chordpro</property>
+                    <property name="name">convertTabToChordpro</property>
+                    <property name="permission">protected</property>
+                </object>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">Remove spurious empty lines</property>
+                    <property name="name">removeSpuriousEmptyLines</property>
+                    <property name="permission">protected</property>
                 </object>
             </object>
             <object class="wxStatusBar" expanded="1">

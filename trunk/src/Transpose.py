@@ -363,10 +363,88 @@ def testChordLine(line, notation=enNotation):
 		e, a = notation.PreprocessingToStandard(e, a)
 		if e == '':
 			return False
-		l += len(translateChord(c, enNotation))
+		l += len(translateChord(c, notation, enNotation))
 		n += 1
+	# We don't consider an empty line a chord line
+	if n == 0:
+		return False
 	# Looks okay... if a whitespace is occurring twice => True
 	if line.find("  ") != -1:
 		return True
 	# Uhm, weird... are chord tokens "short"? Yes <=> True
 	return l/float(n) <= 2.3
+
+def testTabFormat(text, notations):
+	"""
+	Test whether text is in tab format
+
+	It happens iff at least 3 lines are chord lines.
+	Return the best matching notation, or None
+	notations is a list of notations to be tested
+	"""
+	lines = text.splitlines()
+	max = 0
+	maxn = None
+	for n in notations:
+		nc = 0
+		for l in lines:
+			if testChordLine(l, n):
+				nc += 1
+		if nc > max and nc >= 3:
+			max = nc
+			maxn = n
+	return maxn
+
+def tab2ChordPro(text, notation=enNotation):
+	"""Convert text from tab to chordpro format"""
+	l = text.splitlines()
+	n = len(l)
+	i = 0
+	out = []
+	while i < n:
+		if i + 1 < n and testChordLine(l[i], notation) and not testChordLine(l[i+1], notation):
+			out.append(integrateChords(l[i], l[i+1]))
+			i += 2
+		else:
+			out.append(l[i])
+			i += 1
+	return "\n".join(out)
+
+def testSpuriousLines(text):
+	"""Determine if there are spurious empty lines
+
+	It happens iff at least 1/3 of the lines are empty
+	"""
+	c = 0
+	ll = text.splitlines()
+	for l in ll:
+		if l.strip() == '':
+			c += 1
+	return c >= len(ll)/3.0
+
+def removeSpuriousLines(text):
+	"""
+	Remove spurious empty lines from text
+
+	If an empty line is isolated, remove it
+	If there are several contiguous empty lines, keep only one of them
+	"""
+	out = []
+	ll = text.splitlines()
+	ln = len(ll)
+	i = 0
+	def empty(l):
+		return l.strip() == ''
+	while i < ln:
+		if empty(ll[i]):
+			if i + 1 < ln and empty(ll[i + 1]):
+				out.append('')
+				i += 2
+				while i < ln and empty(ll[i]):
+					i += 1
+			else:
+				i += 1
+		else:
+			out.append(ll[i])
+			i += 1
+	return "\n".join(out)
