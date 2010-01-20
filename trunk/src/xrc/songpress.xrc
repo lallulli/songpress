@@ -98,6 +98,11 @@
 					<label>Move chord _left\tSHIFT+ALT+LEFT</label>
 					<help>Move chord under cursor one position leftwards</help>
 				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="integrateChords">
+					<label>Inte_grate chords</label>
+					<help>Integrate chords of current line with text of following line</help>
+				</object>
 			</object>
 			<object class="wxMenu" name="view">
 				<label>_View</label>
@@ -168,6 +173,14 @@
 				<object class="wxMenuItem" name="changeChordNotation">
 					<label>Change chord _notation...</label>
 					<help>Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection</help>
+				</object>
+				<object class="wxMenuItem" name="convertTabToChordpro">
+					<label>Convert _Tab to Chordpro</label>
+					<help>Convert song from tab notation (chords on separate lines) to ChordPro</help>
+				</object>
+				<object class="wxMenuItem" name="removeSpuriousBlankLines">
+					<label>Remove _spurious blank lines</label>
+					<help>Remove blank lines inside a verse</help>
 				</object>
 				<object class="wxMenuItem" name="options">
 					<label>_Options...</label>
