@@ -424,10 +424,10 @@ def testSpuriousLines(text):
 
 def removeSpuriousLines(text):
 	"""
-	Remove spurious empty lines from text
+	Remove spurious blank lines from text
 
-	If an empty line is isolated, remove it
-	If there are several contiguous empty lines, keep only one of them
+	If a blank line is isolated, remove it
+	If there are several contiguous blank lines, keep only one of them
 	"""
 	out = []
 	ll = text.splitlines()

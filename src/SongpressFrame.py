@@ -75,7 +75,7 @@ class SongpressFindReplaceDialog(object):
 		else:
 			self.owner.text.SetSelection(s, s)
 			fromStart = s == self.owner.text.GetLength()
-		self.owner.text.SearchAnchor()		
+		self.owner.text.SearchAnchor()
 		p = self.search(self.flags, self.st)
 		if p != -1:
 			pass
@@ -109,13 +109,13 @@ class SongpressFindReplaceDialog(object):
 					wx.OK | wx.ICON_INFORMATION
 				)
 				res = d.ShowModal()
-	
+
 	def OnReplace(self, evt):
 		r = evt.GetReplaceString()
 		if self.owner.text.GetSelectedText().lower() == self.st.lower():
 			self.owner.text.ReplaceSelection(r)
 			self.FindNext()
-	
+
 	def OnReplaceAll(self, evt):
 		self.owner.text.BeginUndoAction()
 		s = evt.GetFindString()
@@ -138,9 +138,9 @@ class SongpressFindReplaceDialog(object):
 				self.owner.text.SetTargetEnd(p + len(s))
 				p += self.owner.text.ReplaceTarget(r)
 				c += 1
-				
+
 		self.owner.text.EndUndoAction()
-		
+
 		d = wx.MessageDialog(
 			self.dialog,
 			_("%d text occurrences have been replaced") % (c,),
@@ -148,8 +148,8 @@ class SongpressFindReplaceDialog(object):
 			wx.OK | wx.ICON_INFORMATION
 		)
 		res = d.ShowModal()
-		
-	
+
+
 	def OnClose(self, evt):
 		self.dialog.Destroy()
 		self.dialog = None
@@ -236,13 +236,13 @@ class SongpressFrame(SDIMainFrame):
 			longHelpString = _("Read text from the clipboard and place it at the cursor position")
 		)
 		self.mainToolBar.Realize()
-		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')		
+		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')
 		self.formatToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
 		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.format.face)
 		self.formatToolBar.AddControl(self.fontChooser)
 		self.frame.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontChooser)
-		wx.UpdateUIEvent.SetUpdateInterval(500)		
+		wx.UpdateUIEvent.SetUpdateInterval(500)
 		self.frame.Bind(wx.EVT_UPDATE_UI, self.OnIdle, self.frame)
 		self.frame.Bind(wx.EVT_TEXT_CUT, self.OnTextCutCopy, self.text)
 		self.frame.Bind(wx.EVT_TEXT_COPY, self.OnTextCutCopy, self.text)
@@ -278,13 +278,13 @@ class SongpressFrame(SDIMainFrame):
 		# Reassign caption value to override caption saved in preferences (it could be another language)
 		self.previewCanvasPane.caption = _('Preview')
 		self.mainToolBar.caption = _('Standard')
-		self.formatToolBar.caption = _('Format')	
-		
+		self.formatToolBar.caption = _('Format')
+
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
-			
+
 		Bind(self.OnExportAsPng, 'exportAsPng')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
@@ -300,6 +300,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnSelectPreviousChord, 'selectPreviousChord')
 		Bind(self.OnMoveChordRight, 'moveChordRight')
 		Bind(self.OnMoveChordLeft, 'moveChordLeft')
+		Bind(self.OnIntegrateChords, 'integrateChords')
 		Bind(self.OnTitle, 'title')
 		Bind(self.OnChord, 'chord')
 		Bind(self.OnChorus, 'chorus')
@@ -309,6 +310,8 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
+		Bind(self.OnConvertTabToChordpro, 'convertTabToChordpro')
+		Bind(self.OnRemoveSpuriousBlankLines, 'removeSpuriousBlankLines')
 		Bind(self.OnOptions, 'options')
 		Bind(self.OnGuide, 'guide')
 		Bind(self.OnNewsAndUpdates, 'newsAndUpdates')
@@ -317,19 +320,19 @@ class SongpressFrame(SDIMainFrame):
 	def New(self):
 		self.text.New()
 		self.UpdateEverything()
-		
+
 	def Open(self):
 		self.text.Open()
 		self.UpdateEverything()
-		
+
 	def Save(self):
 		self.text.Save()
 		self.UpdateEverything()
-		
+
 	def UpdateUndoRedo(self):
 		self.mainToolBar.EnableTool(self.undoTool, self.text.CanUndo())
-		self.mainToolBar.EnableTool(self.redoTool, self.text.CanRedo())		
-		
+		self.mainToolBar.EnableTool(self.redoTool, self.text.CanRedo())
+
 	def UpdateCutCopyPaste(self):
 		s, e = self.text.GetSelection()
 		self.mainToolBar.EnableTool(self.cutTool, s != e)
@@ -338,15 +341,15 @@ class SongpressFrame(SDIMainFrame):
 		self.menuBar.Enable(self.copyMenuId, s != e)
 		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
 		self.menuBar.Enable(self.pasteMenuId, self.text.CanPaste())
-		
+
 	def UpdateEverything(self):
 		self.UpdateUndoRedo()
 		self.UpdateCutCopyPaste()
-		
+
 	def TextUpdated(self):
 		self.previewCanvas.Refresh(self.text.GetText())
 		#self.UpdateEverything()
-		
+
 	def DrawOnDC(self, dc):
 		r = Renderer(self.format, self.decorator)
 		start, end = self.text.GetSelection()
@@ -355,7 +358,7 @@ class SongpressFrame(SDIMainFrame):
 		else:
 			w, h = r.Render(self.text.GetText(), dc, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
 		return w, h
-		
+
 	def AskExportFileName(self, type, ext):
 		"""Ask the filename (without saving); return None if user cancels, the file name ow"""
 		leave = False;
@@ -403,7 +406,7 @@ class SongpressFrame(SDIMainFrame):
 			return fn
 		else:
 			return None
-		
+
 	def OnExportAsPng(self, evt):
 		n = self.AskExportFileName(_("PNG image"), "png")
 		if n is not None:
@@ -433,11 +436,11 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnCut(self, evt):
 		self.text.Cut()
-		
+
 	def OnTextCutCopy(self, evt):
 		self.UpdateCutCopyPaste()
 		evt.Skip()
-		
+
 	def OnCopy(self, evt):
 		self.text.Copy()
 
@@ -446,13 +449,13 @@ class SongpressFrame(SDIMainFrame):
 		self.DrawOnDC(dc)
 		m = dc.Close()
 		m.SetClipboard(dc.MaxX(), dc.MaxY())
-		
+
 	def OnPaste(self, evt):
 		self.text.Paste()
-	
+
 	def OnFind(self, evt):
 		self.findReplaceDialog = SongpressFindReplaceDialog(self)
-		
+
 	def OnFindNext(self, evt):
 		if self.findReplaceDialog != None:
 			self.findReplaceDialog.down = True
@@ -465,13 +468,13 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnReplace(self, evt):
 		self.findReplaceDialog = SongpressFindReplaceDialog(self, True)
-		
+
 	def OnSelectNextChord(self, evt):
 		self.text.SelectNextChord()
-	
+
 	def OnSelectPreviousChord(self, evt):
 		self.text.SelectPreviousChord()
-		
+
 	def OnMoveChordRight(self, evt):
 		r = self.text.GetChordUnderCursor()
 		if r is not None:
@@ -486,7 +489,7 @@ class SongpressFrame(SDIMainFrame):
 				self.text.ReplaceSelection(l)
 				self.text.SetSelection(s + 2, s + 2)
 				self.text.EndUndoAction()
-		
+
 	def OnMoveChordLeft(self, evt):
 		r = self.text.GetChordUnderCursor()
 		if r is not None:
@@ -500,29 +503,39 @@ class SongpressFrame(SDIMainFrame):
 				self.text.ReplaceSelection(l)
 				self.text.SetSelection(s, s)
 				self.text.EndUndoAction()
-	
+
+	def OnIntegrateChords(self, evt):
+		ln = self.text.GetCurrentLine()
+		if ln < self.text.GetLineCount() - 1:
+			chords = self.text.GetLine(ln).strip("\r\n")
+			text = self.text.GetLine(ln + 1).strip("\r\n")
+			chordpro = integrateChords(chords, text)
+			self.text.SetSelectionStart(self.text.PositionFromLine(ln))
+			self.text.SetSelectionEnd(self.text.GetLineEndPosition(ln + 1))
+			self.text.ReplaceSelection(chordpro)
+
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
 		self.SetFont(font)
 		evt.Skip()
-		
+
 	def OnGuide(self, evt):
 		helpfile = os.path.join("help", "songpress-%s.chm" % (i18n.getLang(), ))
 		subprocess.Popen("hh " + glb.AddPath(helpfile))
-		
+
 	def OnIdle(self, evt):
 		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
 		self.menuBar.Enable(self.pasteMenuId, self.text.CanPaste())
 		evt.Skip()
-		
+
 	def OnNewsAndUpdates(self, evt):
 		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#News"))
-		
+
 	def OnDonate(self, evt):
 		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#donate"))
-		
+
 	def SetFont(self, font):
-		self.fontChooser.SetValue(font)	
+		self.fontChooser.SetValue(font)
 		self.format.face = font
 		self.format.comment.face = font
 		self.format.chord.face = font
@@ -535,16 +548,16 @@ class SongpressFrame(SDIMainFrame):
 			v.comment.face = font
 		self.format.title.face = font
 		self.decoratorFormat.face = font
-		self.decoratorFormat.chorus.face = font		
+		self.decoratorFormat.chorus.face = font
 		self.previewCanvas.Refresh(self.text.GetText())
 		self.config.SetPath('/Format/Font')
 		self.config.Write('FontFace', font)
-		
+
 	def OnFormatFont(self, evt):
 		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.format, self.decorator, self.decoratorFormat)
 		if f.ShowModal() == wx.ID_OK:
 			self.SetFont(f.GetValue())
-			
+
 	def OnTranspose(self, evt):
 		t = MyTransposeDialog(self.frame, self.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
@@ -554,7 +567,16 @@ class SongpressFrame(SDIMainFrame):
 		t = MyNotationDialog(self.frame, self.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
-			
+
+	def OnConvertTabToChordpro(self, evt):
+		t = self.text.GetTextOrSelection()
+		n = testTabFormat(t, self.notations)
+		if n is not None:
+			self.text.ReplaceTextOrSelection(tab2ChordPro(t, n))
+
+	def OnRemoveSpuriousBlankLines(self, evt):
+		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
+
 	def OnOptions(self, evt):
 		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.notations)
 		if f.ShowModal() == wx.ID_OK:
@@ -563,7 +585,7 @@ class SongpressFrame(SDIMainFrame):
 			self.config.SetPath('/Editor')
 			self.config.Write('Face', face)
 			self.config.Write('Size', str(s))
-			
+
 			l = f.GetLanguage()
 			lang = i18n.getLang()
 			if l != lang:
@@ -583,23 +605,23 @@ class SongpressFrame(SDIMainFrame):
 		else:
 			self.text.ReplaceSelection(st)
 			self.text.SetSelection(s + len(st), s + len(st))
-			
+
 	def OnTitle(self, evt):
 		self.InsertWithCaret("{title:|}\n\n")
-			
+
 	def OnChord(self, evt):
 		self.InsertWithCaret("[|]")
-	
+
 	def OnChorus(self, evt):
 		self.InsertWithCaret("{soc}\n|\n{eoc}\n")
-	
+
 	def OnComment(self, evt):
 		self.InsertWithCaret("{c:|}")
-	
+
 	def OnLabelVerses(self, evt):
 		self.labelVerses = not self.labelVerses
 		self.CheckLabelVerses()
-		
+
 	def OnChorusLabel(self, evt):
 		c = self.decoratorFormat.GetChorusLabel()
 		msg = _("Please enter a label for chorus")
@@ -610,7 +632,7 @@ class SongpressFrame(SDIMainFrame):
 			self.config.Write('ChorusLabel', c)
 			self.decoratorFormat.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
-			
+
 	def CheckLabelVerses(self):
 		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.labelVerses)
 		self.menuBar.Check(self.labelVersesMenuId, self.labelVerses)
@@ -622,15 +644,15 @@ class SongpressFrame(SDIMainFrame):
 			self.previewCanvas.SetDecorator(SongDecorator())
 			self.config.Write('LabelVerses', "0")
 		self.previewCanvas.Refresh(self.text.GetText())
-		
+
 	def SetDefaultNotation(self, notation):
 		self.notations = [x for x in self.notations if x.id == notation] + [x for x in self.notations if x.id != notation]
 		self.config.SetPath('/Editor')
 		self.config.Write('DefaultNotation', notation)
-		
+
 	def LoadConfig(self):
 		self.config.SetPath('/Format')
-		l = self.config.Read('ChorusLabel')	
+		l = self.config.Read('ChorusLabel')
 		if l:
 			self.decoratorFormat.SetChorusLabel(l)
 		self.config.SetPath('/Format/Font')
@@ -662,4 +684,4 @@ class SongpressFrame(SDIMainFrame):
 			if lang in defaultLangNotation:
 				n = defaultLangNotation[lang].id
 				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
-	
+

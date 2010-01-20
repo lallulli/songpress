@@ -475,21 +475,6 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
-                        <property name="bitmap"></property>
-                        <property name="checked">0</property>
-                        <property name="enabled">1</property>
-                        <property name="help"></property>
-                        <property name="id">wxID_ANY</property>
-                        <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label"></property>
-                        <property name="name"></property>
-                        <property name="permission">none</property>
-                        <property name="shortcut"></property>
-                        <property name="unchecked_bitmap"></property>
-                        <event name="OnMenuSelection"></event>
-                        <event name="OnUpdateUI"></event>
-                    </object>
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">&amp;View</property>
@@ -699,6 +684,36 @@
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
+                        <property name="help">Convert song from tab notation (chords on separate lines) to ChordPro</property>
+                        <property name="id">ID_CONVERT_TAB_TO_CHORDPRO</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Convert &amp;Tab to Chordpro</property>
+                        <property name="name">convertTabToChordpro</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Remove blank lines inside a verse</property>
+                        <property name="id">ID_REMOVE_SPURIOUS_BLANK_LINES</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Remove &amp;spurious blank lines</property>
+                        <property name="name">removeSpuriousBlankLines</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection"></event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
                         <property name="help">Set program options</property>
                         <property name="id">ID_OPTIONS</property>
                         <property name="kind">wxITEM_NORMAL</property>
@@ -775,16 +790,6 @@
                         <event name="OnMenuSelection"></event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                </object>
-                <object class="wxMenu" expanded="1">
-                    <property name="label">Convert Tab to Chordpro</property>
-                    <property name="name">convertTabToChordpro</property>
-                    <property name="permission">protected</property>
-                </object>
-                <object class="wxMenu" expanded="1">
-                    <property name="label">Remove spurious empty lines</property>
-                    <property name="name">removeSpuriousEmptyLines</property>
-                    <property name="permission">protected</property>
                 </object>
             </object>
             <object class="wxStatusBar" expanded="1">
