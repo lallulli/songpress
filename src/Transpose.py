@@ -135,7 +135,7 @@ class GermanNotation(Notation):
 			c = 'Hb'
 			a = a[1:]
 		if a != "" and a[0] == 'm':
-			c = c.upper()
+			c = c.capitalize()
 		return c, a
 
 	def PostprocessingFromStandard(self, c, a):
