@@ -15,6 +15,9 @@ from wx.stc import *
 from SDIMainFrame import *
 from SongTokenizer import *
 import sys
+import wx.lib, wx.lib.newevent
+
+EventTextChanged, EVT_TEXT_CHANGED = wx.lib.newevent.NewEvent()
 
 class Editor(StyledTextCtrl):
 
@@ -23,6 +26,8 @@ class Editor(StyledTextCtrl):
 		self.spframe = spframe
 		self.interactive = interactive
 		if self.interactive:
+			self.lastPos = 0
+			self.currentPos = 0
 			self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
 		self.spframe.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
 		self.STC_STYLE_NORMAL = 11
@@ -32,7 +37,7 @@ class Editor(StyledTextCtrl):
 		self.STC_STYLE_CHORUS = 15
 		self.STC_STYLE_COMMENT = 16
 		self.SetFont("Lucida Console", 12)
-		self.SetLexer(STC_LEX_CONTAINER)		
+		self.SetLexer(STC_LEX_CONTAINER)
 		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Color(0, 0, 0))
 		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Color(255, 0, 0))
@@ -70,7 +75,7 @@ class Editor(StyledTextCtrl):
 		#I don't know why, but the following line is necessary in order to make
 		#the font bold
 		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
-		
+
 	def New(self):
 		self.ClearAll();
 
@@ -79,23 +84,23 @@ class Editor(StyledTextCtrl):
 
 	def Save(self):
 		self.SaveFile(self.spframe.document)
-		
+
 	def GetTextOrSelection(self):
 		start, end = self.GetSelection()
 		if start == end:
 			return self.GetText()
 		return self.GetSelectedText()
-		
+
 	def ReplaceTextOrSelection(self, text):
 		start, end = self.GetSelection()
 		if start == end:
 			self.SetText(text)
 		else:
 			self.ReplaceSelection(text)
-	
+
 	def GetChordUnderCursor(self):
 		"""Return info about chord under cursor, or None
-		
+
 		Return a 3-tuple: (begin, end, chord)
 			begin: position before open bracket
 			end: position after close bracket
@@ -116,7 +121,7 @@ class Editor(StyledTextCtrl):
 			if char == ']':
 				return (start + 1, end, self.GetTextRange(start + 2, end - 1))
 		return None
-		
+
 	def SelectNextChord(self):
 		dummy, pos = self.GetSelection()
 		n = self.GetLength()
@@ -156,6 +161,12 @@ class Editor(StyledTextCtrl):
 	def OnTextChange(self, evt):
 		#print("OnTextChange")
 		if self.interactive:
+			self.lastPos = self.currentPos
+			self.currentPos = self.GetCurrentPos()
+			print self.currentPos, self.lastPos
+			if self.currentPos - self.lastPos > 2:
+				evt = EventTextChanged()
+				wx.PostEvent(self.spframe.frame, evt)
 			self.spframe.SetModified()
 			self.spframe.TextUpdated()
 
