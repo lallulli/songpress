@@ -413,14 +413,15 @@ def tab2ChordPro(text, notation=enNotation):
 def testSpuriousLines(text):
 	"""Determine if there are spurious empty lines
 
-	It happens iff at least 1/3 of the lines are empty
+	It happens iff at least 1/3 of the lines are empty,
+	and there are at least 2 non-empty lines
 	"""
 	c = 0
 	ll = text.splitlines()
 	for l in ll:
 		if l.strip() == '':
 			c += 1
-	return c >= len(ll)/3.0
+	return c >= len(ll)/3.0 and len(ll) - c >= 2
 
 def removeSpuriousLines(text):
 	"""

@@ -268,6 +268,7 @@ class SongpressFrame(SDIMainFrame):
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), _('Format'), 'format')
 		self.BindMyMenu()
+		self.frame.Bind(EVT_TEXT_CHANGED, self.OnTextChanged)
 		self.cutMenuId = xrc.XRCID('cut')
 		self.copyMenuId = xrc.XRCID('copy')
 		self.pasteMenuId = xrc.XRCID('paste')
@@ -633,6 +634,22 @@ class SongpressFrame(SDIMainFrame):
 			self.decoratorFormat.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
 
+	def OnTextChanged(self, evt):
+		self.AutoAdjust()
+
+	def AutoAdjust(self):
+		if self.autoAdjustSpuriousLines:
+			t = self.text.GetTextRange(self.text.lastPos, self.text.currentPos)
+			if testSpuriousLines(t):
+				msg = _("It looks like there are spurious blank lines in the song.\n")
+				msg += _("Do you want to try to remove them automatically?")
+				title = _("Remove spurious blank lines")
+				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
+				if d.ShowModal() == wx.ID_YES:
+					self.text.SetSelection(self.text.lastPos, self.text.currentPos)
+					self.text.ReplaceSelection(removeSpuriousLines(t))
+
+
 	def CheckLabelVerses(self):
 		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.labelVerses)
 		self.menuBar.Check(self.labelVersesMenuId, self.labelVerses)
@@ -684,4 +701,14 @@ class SongpressFrame(SDIMainFrame):
 			if lang in defaultLangNotation:
 				n = defaultLangNotation[lang].id
 				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
-
+		self.config.SetPath('/AutoAdjust')
+		spuriousLines = self.config.Read('spuriousLines')
+		if spuriousLines:
+			self.autoAdjustSpuriousLines = bool(int(spuriousLines))
+		else:
+			self.autoAdjustSpuriousLines = True
+		tab2chordpro = self.config.Read('tab2chordpro')
+		if tab2chordpro:
+			self.autoAdjustTab2Chordpro = bool(int(tab2chordpro))
+		else:
+			self.autoAdjustTab2Chordpro = True
