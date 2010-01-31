@@ -653,7 +653,19 @@ class SongpressFrame(SDIMainFrame):
 				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
 				if d.ShowModal() == wx.ID_YES:
 					self.text.SetSelection(lastPos, currentPos)
-					self.text.ReplaceSelection(removeSpuriousLines(t))
+					t = removeSpuriousLines(t)
+					self.text.ReplaceSelection(t)
+					currentPos = self.text.GetCurrentPos()
+		if self.autoAdjustTab2Chordpro:
+			if testTabFormat(t, self.notations):
+				msg = _("It looks like your song is in tab format (i.e., chords are above the text).\n")
+				msg += _("Do you want to convert it to ChordPro automatically?")
+				title = _("Convert to ChordPro")
+				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
+				if d.ShowModal() == wx.ID_YES:
+					self.text.SetSelection(lastPos, currentPos)
+					t = tab2ChordPro(t)
+					self.text.ReplaceSelection(t)
 		self.text.AutoChangeMode(False)
 
 
