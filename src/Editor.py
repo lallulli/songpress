@@ -27,8 +27,9 @@ class Editor(StyledTextCtrl):
 		self.interactive = interactive
 		if self.interactive:
 			self.lastPos = 0
-			self.currentPos = 0
 			self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
+			self.spframe.frame.Bind(EVT_STC_UPDATEUI, self.OnUpdateUI, self)
+			self.autoChangeMode = False
 		self.spframe.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
 		self.STC_STYLE_NORMAL = 11
 		self.STC_STYLE_CHORD = 12
@@ -159,16 +160,22 @@ class Editor(StyledTextCtrl):
 		return False
 
 	def OnTextChange(self, evt):
-		#print("OnTextChange")
 		if self.interactive:
-			self.lastPos = self.currentPos
-			self.currentPos = self.GetCurrentPos()
-			print self.currentPos, self.lastPos
-			if self.currentPos - self.lastPos > 2:
-				evt = EventTextChanged()
-				wx.PostEvent(self.spframe.frame, evt)
 			self.spframe.SetModified()
 			self.spframe.TextUpdated()
+			if not self.autoChangeMode:
+				currentPos = self.GetCurrentPos()
+				if currentPos - self.lastPos > 2:
+					evt = EventTextChanged(lastPos=self.lastPos, currentPos=currentPos)
+					wx.PostEvent(self.spframe.frame, evt)
+
+
+	def OnUpdateUI(self, evt):
+		self.lastPos = self.GetCurrentPos()
+		evt.Skip(False)
+
+	def AutoChangeMode(self, acm):
+		self.autoChangeMode = acm
 
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()
