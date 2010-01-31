@@ -319,12 +319,17 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnDonate, 'donate')
 
 	def New(self):
+		self.text.AutoChangeMode(True)
 		self.text.New()
+		self.text.AutoChangeMode(False)
 		self.UpdateEverything()
 
 	def Open(self):
+		self.text.AutoChangeMode(True)
 		self.text.Open()
+		self.text.AutoChangeMode(False)
 		self.UpdateEverything()
+		self.AutoAdjust(0, self.text.GetLength())
 
 	def Save(self):
 		self.text.Save()
@@ -635,19 +640,21 @@ class SongpressFrame(SDIMainFrame):
 			self.previewCanvas.Refresh(self.text.GetText())
 
 	def OnTextChanged(self, evt):
-		self.AutoAdjust()
+		self.AutoAdjust(evt.lastPos, evt.currentPos)
 
-	def AutoAdjust(self):
+	def AutoAdjust(self, lastPos, currentPos):
+		self.text.AutoChangeMode(True)
 		if self.autoAdjustSpuriousLines:
-			t = self.text.GetTextRange(self.text.lastPos, self.text.currentPos)
+			t = self.text.GetTextRange(lastPos, currentPos)
 			if testSpuriousLines(t):
 				msg = _("It looks like there are spurious blank lines in the song.\n")
 				msg += _("Do you want to try to remove them automatically?")
 				title = _("Remove spurious blank lines")
 				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
 				if d.ShowModal() == wx.ID_YES:
-					self.text.SetSelection(self.text.lastPos, self.text.currentPos)
+					self.text.SetSelection(lastPos, currentPos)
 					self.text.ReplaceSelection(removeSpuriousLines(t))
+		self.text.AutoChangeMode(False)
 
 
 	def CheckLabelVerses(self):
