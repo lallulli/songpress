@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-21 22:24+0100\n"
+"POT-Creation-Date: 2010-01-31 22:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,18 +41,30 @@ msgid ""
 "{eoc}"
 msgstr ""
 
-#: src\PreferencesDialog.py:69
+#: src\PreferencesDialog.py:68
+msgid "Auto adjust"
+msgstr ""
+
+#: src\PreferencesDialog.py:70
+msgid "Offer to remove blank lines"
+msgstr ""
+
+#: src\PreferencesDialog.py:72
+msgid "Offer to convert songs in tab format to ChordPro"
+msgstr ""
+
+#: src\PreferencesDialog.py:77
 msgid "Language"
 msgstr ""
 
-#: src\PreferencesDialog.py:87
+#: src\PreferencesDialog.py:95
 msgid "Default notation"
 msgstr ""
 
-#: src\PreferencesDialog.py:102
+#: src\PreferencesDialog.py:110
 msgid "OK"
 msgstr ""
 
-#: src\PreferencesDialog.py:105
+#: src\PreferencesDialog.py:113
 msgid "Cancel"
 msgstr ""

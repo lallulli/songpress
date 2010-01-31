@@ -13,10 +13,7 @@ from wx import xrc
 from SDIMainFrame import *
 from Editor import *
 from PreviewCanvas import *
-from SongFormat import *
 from Renderer import *
-from decorators import StandardVerseNumbers
-from SongDecorator import SongDecorator
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from PreferencesDialog import PreferencesDialog
@@ -24,6 +21,7 @@ from Transpose import *
 from MyTransposeDialog import *
 from MyNotationDialog import *
 from Globals import glb
+from Preferences import Preferences
 import subprocess
 import os
 import os.path
@@ -174,17 +172,13 @@ class SongpressFrame(SDIMainFrame):
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)")
 		)
+		self.pref = Preferences()
 		self.text = Editor(self)
 		dt = SDIDropTarget(self)
 		self.text.SetDropTarget(dt)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
-		# Music related objects
-		self.notations = [enNotation, itNotation, deNotation, frNotation, ptNotation]
 		# Other objects
-		self.format = SongFormat()
-		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
-		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
-		self.previewCanvas = PreviewCanvas(self.frame, self.format, self.decorator)
+		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.decorator)
 		self.AddMainPane(self.text)
 		self.previewCanvas.panel.SetSize(wx.Size(400, 800))
 		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
@@ -239,7 +233,7 @@ class SongpressFrame(SDIMainFrame):
 		self.mainToolBarPane = self.AddPane(self.mainToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')
 		self.formatToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
-		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.format.face)
+		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.pref.format.face)
 		self.formatToolBar.AddControl(self.fontChooser)
 		self.frame.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontChooser)
 		wx.UpdateUIEvent.SetUpdateInterval(500)
@@ -274,7 +268,9 @@ class SongpressFrame(SDIMainFrame):
 		self.pasteMenuId = xrc.XRCID('paste')
 		self.labelVersesMenuId = xrc.XRCID('labelVerses')
 		self.findReplaceDialog = None
-		self.LoadConfig()
+		self.CheckLabelVerses()
+		self.SetFont()
+		self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
 		self.FinalizePaneInitialization()
 		# Reassign caption value to override caption saved in preferences (it could be another language)
 		self.previewCanvasPane.caption = _('Preview')
@@ -357,7 +353,7 @@ class SongpressFrame(SDIMainFrame):
 		#self.UpdateEverything()
 
 	def DrawOnDC(self, dc):
-		r = Renderer(self.format, self.decorator)
+		r = Renderer(self.pref.format, self.pref.decorator)
 		start, end = self.text.GetSelection()
 		if start == end:
 			w, h = r.Render(self.text.GetText(), dc)
@@ -522,7 +518,8 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
-		self.SetFont(font)
+		self.pref.SetFont(font)
+		self.SetFont()
 		evt.Skip()
 
 	def OnGuide(self, evt):
@@ -540,43 +537,26 @@ class SongpressFrame(SDIMainFrame):
 	def OnDonate(self, evt):
 		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#donate"))
 
-	def SetFont(self, font):
-		self.fontChooser.SetValue(font)
-		self.format.face = font
-		self.format.comment.face = font
-		self.format.chord.face = font
-		self.format.chorus.face = font
-		self.format.chorus.chord.face = font
-		self.format.chorus.comment.face = font
-		for v in self.format.verse:
-			v.face = font
-			v.chord.face = font
-			v.comment.face = font
-		self.format.title.face = font
-		self.decoratorFormat.face = font
-		self.decoratorFormat.chorus.face = font
-		self.previewCanvas.Refresh(self.text.GetText())
-		self.config.SetPath('/Format/Font')
-		self.config.Write('FontFace', font)
-
 	def OnFormatFont(self, evt):
-		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.format, self.decorator, self.decoratorFormat)
+		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.pref.format, self.pref.decorator, self.pref.decoratorFormat)
 		if f.ShowModal() == wx.ID_OK:
-			self.SetFont(f.GetValue())
+			self.pref.SetFont(f.GetValue())
+			self.SetFont()
+			self.previewCanvas.Refresh(self.text.GetText())
 
 	def OnTranspose(self, evt):
-		t = MyTransposeDialog(self.frame, self.notations, self.text.GetTextOrSelection())
+		t = MyTransposeDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.GetTransposed())
 
 	def OnChangeChordNotation(self, evt):
-		t = MyNotationDialog(self.frame, self.notations, self.text.GetTextOrSelection())
+		t = MyNotationDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
 
 	def OnConvertTabToChordpro(self, evt):
 		t = self.text.GetTextOrSelection()
-		n = testTabFormat(t, self.notations)
+		n = testTabFormat(t, self.pref.notations)
 		if n is not None:
 			self.text.ReplaceTextOrSelection(tab2ChordPro(t, n))
 
@@ -584,10 +564,11 @@ class SongpressFrame(SDIMainFrame):
 		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
 
 	def OnOptions(self, evt):
-		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.notations)
+		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref.notations)
 		if f.ShowModal() == wx.ID_OK:
 			face, s = f.GetFont()
 			self.text.SetFont(face, s)
+			self.SetFont()
 			self.config.SetPath('/Editor')
 			self.config.Write('Face', face)
 			self.config.Write('Size', str(s))
@@ -625,18 +606,18 @@ class SongpressFrame(SDIMainFrame):
 		self.InsertWithCaret("{c:|}")
 
 	def OnLabelVerses(self, evt):
-		self.labelVerses = not self.labelVerses
+		self.pref.labelVerses = not self.pref.labelVerses
 		self.CheckLabelVerses()
 
 	def OnChorusLabel(self, evt):
-		c = self.decoratorFormat.GetChorusLabel()
+		c = self.pref.decoratorFormat.GetChorusLabel()
 		msg = _("Please enter a label for chorus")
 		d = wx.TextEntryDialog(self.frame, msg, _("Songpress"), c)
 		if d.ShowModal() == wx.ID_OK:
 			c = d.GetValue()
 			self.config.SetPath('/Format')
 			self.config.Write('ChorusLabel', c)
-			self.decoratorFormat.SetChorusLabel(c)
+			self.pref.decoratorFormat.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
 
 	def OnTextChanged(self, evt):
@@ -644,7 +625,7 @@ class SongpressFrame(SDIMainFrame):
 
 	def AutoAdjust(self, lastPos, currentPos):
 		self.text.AutoChangeMode(True)
-		if self.autoAdjustSpuriousLines:
+		if self.pref.autoAdjustSpuriousLines:
 			t = self.text.GetTextRange(lastPos, currentPos)
 			if testSpuriousLines(t):
 				msg = _("It looks like there are spurious blank lines in the song.\n")
@@ -656,8 +637,8 @@ class SongpressFrame(SDIMainFrame):
 					t = removeSpuriousLines(t)
 					self.text.ReplaceSelection(t)
 					currentPos = self.text.GetCurrentPos()
-		if self.autoAdjustTab2Chordpro:
-			if testTabFormat(t, self.notations):
+		if self.pref.autoAdjustTab2Chordpro:
+			if testTabFormat(t, self.pref.notations):
 				msg = _("It looks like your song is in tab format (i.e., chords are above the text).\n")
 				msg += _("Do you want to convert it to ChordPro automatically?")
 				title = _("Convert to ChordPro")
@@ -668,13 +649,16 @@ class SongpressFrame(SDIMainFrame):
 					self.text.ReplaceSelection(t)
 		self.text.AutoChangeMode(False)
 
+	def SetFont(self):
+		self.fontChooser.SetValue(self.pref.format.face)
+		self.previewCanvas.Refresh(self.text.GetText())
 
 	def CheckLabelVerses(self):
-		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.labelVerses)
-		self.menuBar.Check(self.labelVersesMenuId, self.labelVerses)
+		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.pref.labelVerses)
+		self.menuBar.Check(self.labelVersesMenuId, self.pref.labelVerses)
 		self.config.SetPath('/Format/Style')
-		if self.labelVerses:
-			self.previewCanvas.SetDecorator(self.decorator)
+		if self.pref.labelVerses:
+			self.previewCanvas.SetDecorator(self.pref.decorator)
 			self.config.Write('LabelVerses', "1")
 		else:
 			self.previewCanvas.SetDecorator(SongDecorator())
@@ -682,52 +666,7 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvas.Refresh(self.text.GetText())
 
 	def SetDefaultNotation(self, notation):
-		self.notations = [x for x in self.notations if x.id == notation] + [x for x in self.notations if x.id != notation]
+		self.pref.notations = [x for x in self.pref.notations if x.id == notation] + [x for x in self.pref.notations if x.id != notation]
 		self.config.SetPath('/Editor')
 		self.config.Write('DefaultNotation', notation)
 
-	def LoadConfig(self):
-		self.config.SetPath('/Format')
-		l = self.config.Read('ChorusLabel')
-		if l:
-			self.decoratorFormat.SetChorusLabel(l)
-		self.config.SetPath('/Format/Font')
-		face = self.config.Read('Face')
-		if face:
-			self.SetFont(face)
-		self.config.SetPath('/Format/Style')
-		labelVerses = self.config.Read('LabelVerses')
-		if labelVerses:
-			self.labelVerses = bool(int(labelVerses))
-			self.CheckLabelVerses()
-		else:
-			self.labelVerses = True
-			self.CheckLabelVerses()
-		self.config.SetPath('/Editor')
-		f = self.config.Read('Face')
-		s = self.config.Read('Size')
-		if not f:
-			f = "Lucida Console"
-			s = '12'
-			self.config.Write('Face', f)
-			self.config.Write('Size', s)
-		self.text.SetFont(f, int(s))
-		n = self.config.Read('DefaultNotation')
-		if n:
-			self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
-		else:
-			lang = i18n.getLang()
-			if lang in defaultLangNotation:
-				n = defaultLangNotation[lang].id
-				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
-		self.config.SetPath('/AutoAdjust')
-		spuriousLines = self.config.Read('spuriousLines')
-		if spuriousLines:
-			self.autoAdjustSpuriousLines = bool(int(spuriousLines))
-		else:
-			self.autoAdjustSpuriousLines = True
-		tab2chordpro = self.config.Read('tab2chordpro')
-		if tab2chordpro:
-			self.autoAdjustTab2Chordpro = bool(int(tab2chordpro))
-		else:
-			self.autoAdjustTab2Chordpro = True
