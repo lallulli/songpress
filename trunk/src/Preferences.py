@@ -23,10 +23,14 @@ class Preferences(object):
 		* format
 		* decoratorFormat
 		* decorator
+		* chorusLabel (None or string)
 		* labelVerses
 		* editorFace
 		* editorSize
+		* fontFace
+		* defaultNotation
 		* notations
+		* defaultNotation
 		* autoAdjustSpuriousLines
 		* autoAdjustTab2Chordpro
 	"""
@@ -53,18 +57,22 @@ class Preferences(object):
 		self.format.title.face = font
 		self.decoratorFormat.face = font
 		self.decoratorFormat.chorus.face = font
-		self.config.SetPath('/Format/Font')
-		self.config.Write('FontFace', font)
 
 	def Load(self):
 		self.config.SetPath('/Format')
 		l = self.config.Read('ChorusLabel')
 		if l:
+			self.chorusLabel = l
 			self.decoratorFormat.SetChorusLabel(l)
+		else:
+			self.chorusLabel = None
 		self.config.SetPath('/Format/Font')
 		face = self.config.Read('Face')
 		if face:
-			self.SetFont(face)
+			self.fontFace = face
+		else:
+			self.fontFace = "Arial"
+		self.SetFont(face)
 		self.config.SetPath('/Format/Style')
 		labelVerses = self.config.Read('LabelVerses')
 		if labelVerses:
@@ -81,12 +89,14 @@ class Preferences(object):
 			self.editorSize = int(self.editorSize)
 		n = self.config.Read('DefaultNotation')
 		if n:
+			self.defaultNotation = n
 			self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
 		else:
 			lang = i18n.getLang()
 			if lang in defaultLangNotation:
 				n = defaultLangNotation[lang].id
 				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
+				self.defaultNotation = None
 		self.config.SetPath('/AutoAdjust')
 		spuriousLines = self.config.Read('spuriousLines')
 		if spuriousLines:
@@ -99,3 +109,30 @@ class Preferences(object):
 		else:
 			self.autoAdjustTab2Chordpro = True
 
+	def Bool2String(self, param):
+		return "1" if param else "0"
+
+	def Save(self):
+		self.config.SetPath('/Format')
+		if self.chorusLabel is not None:
+			self.config.Write('ChorusLabel', self.chorusLabel)
+		self.config.SetPath('/Format/Font')
+		face = self.config.Write('Face', self.fontFace)
+		self.config.SetPath('/Format/Style')
+		self.config.Write('LabelVerses', self.Bool2String(self.labelVerses))
+		self.config.SetPath('/Editor')
+		self.config.Write('Face', self.editorFace)
+		self.config.Write('Size', str(self.editorSize))
+		if self.defaultNotation is not None:
+			self.config.Write('DefaultNotation', self.defaultNotation)
+		self.config.SetPath('/AutoAdjust')
+		self.config.Write('spuriousLines', self.Bool2String(self.autoAdjustSpuriousLines))
+		self.config.Write('tab2chordpro', self.Bool2String(self.autoAdjustTab2Chordpro))
+
+	def SetChorusLabel(self, c):
+		self.chorusLabel = c
+		self.decoratorFormat.SetChorusLabel(c)
+
+	def SetDefaultNotation(self, notation):
+		self.defaultNotation = notation
+		self.notations = [x for x in self.pref.notations if x.id == notation] + [x for x in self.pref.notations if x.id != notation]

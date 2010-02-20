@@ -71,7 +71,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
-		wx.Config.Set(self.config)		
+		wx.Config.Set(self.config)
 		self.frame = self.res.LoadFrame(None, frameName)
 		if icon != None:
 			self.frame.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_ICO))
@@ -158,9 +158,9 @@ class SDIMainFrame(wx.FileDropTarget):
 		"""Menu handler for ?->About"""
 		msg = _("%s version %s\n%s\n\n%s\n\n%s\n\n%s") % (
 			self.appLongName,
-			self.version, 
+			self.version,
 			self.url,
-			self.copyright, 
+			self.copyright,
 			self.licensing,
 			self.thanks
 		)
@@ -183,6 +183,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.config.SetPath('/SDIMainFrame')
 			p = self._mgr.SavePerspective()
 			self.config.Write("Perspective", p)
+			self.SavePreferences()
 			self.frame.Destroy()
 		else:
 			evt.Veto()
@@ -299,6 +300,10 @@ class SDIMainFrame(wx.FileDropTarget):
 	def Save(self):
 		"""To be overridden: save a document"""
 		return True
+
+	def SavePreferences(self):
+		"""To be overridden: save preferences to wxConfig object"""
+		pass
 
 	def AddMainPane(self, window):
 		self._mgr.AddPane(window, wx.aui.AuiPaneInfo().CenterPane().Name('_main'))

@@ -16,8 +16,10 @@ from Globals import glb
 i18n.register('PreferencesDialog')
 
 class PreferencesDialog(wx.Dialog):
-	def __init__(self, parent, id, title, notations):
+	def __init__(self, parent, id, title, preferences):
 		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(540, 480))
+
+		self.pref = preferences
 
 		self.config = wx.Config.Get()
 		self.config.SetPath('/Editor')
@@ -97,7 +99,7 @@ class PreferencesDialog(wx.Dialog):
 		hSizer4.Add(m_staticText4, 0, wx.ALL, 5)
 
 		self.notationCh = wx.Choice(self, wx.ID_ANY)
-		for n in notations:
+		for n in self.pref.notations:
 			i = self.notationCh.Append(n.desc)
 			self.notationCh.SetClientData(i, n.id)
 		self.notationCh.SetSelection(0)
