@@ -566,24 +566,9 @@ class SongpressFrame(SDIMainFrame):
 		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
 
 	def OnOptions(self, evt):
-		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref.notations)
+		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref)
 		if f.ShowModal() == wx.ID_OK:
-			face, s = f.GetFont()
-			self.text.SetFont(face, s)
-			self.SetFont()
-			self.config.SetPath('/Editor')
-			self.config.Write('Face', face)
-			self.config.Write('Size', str(s))
-
-			l = f.GetLanguage()
-			lang = i18n.getLang()
-			if l != lang:
-				msg = _("Language settings will be applied when you restart Songpress.")
-				d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.ICON_INFORMATION | wx.OK)
-				d.ShowModal()
-			self.config.SetPath("/App")
-			self.config.Write("locale", l)
-			self.pref.SetDefaultNotation(f.GetNotation())
+			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()

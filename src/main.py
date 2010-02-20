@@ -27,7 +27,7 @@ class SongpressApp(wx.App):
 			i18n.setSystemLang()
 		self.res = xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
 		songpressFrame = SongpressFrame(self.res)
-		
+
 		return True
 
 

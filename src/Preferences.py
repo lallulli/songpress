@@ -33,10 +33,11 @@ class Preferences(object):
 		* defaultNotation
 		* autoAdjustSpuriousLines
 		* autoAdjustTab2Chordpro
+		* locale
 	"""
 	def __init__(self):
 		object.__init__(self)
-		self.config = wx.FileConfig("songpress")
+		self.config = wx.Config.Get()
 		self.format = SongFormat()
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
 		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
@@ -44,6 +45,7 @@ class Preferences(object):
 		self.Load()
 
 	def SetFont(self, font):
+		self.fontFace = font
 		self.format.face = font
 		self.format.comment.face = font
 		self.format.chord.face = font
@@ -84,7 +86,7 @@ class Preferences(object):
 		self.editorSize = self.config.Read('Size')
 		if not self.editorFace:
 			self.editorFace = "Lucida Console"
-			self.editorSize = '12'
+			self.editorSize = 12
 		else:
 			self.editorSize = int(self.editorSize)
 		n = self.config.Read('DefaultNotation')
@@ -108,6 +110,12 @@ class Preferences(object):
 			self.autoAdjustTab2Chordpro = bool(int(tab2chordpro))
 		else:
 			self.autoAdjustTab2Chordpro = True
+		self.config.SetPath('/App')
+		lang = self.config.Read('locale')
+		if not lang:
+			self.locale = None
+		else:
+			self.locale = lang
 
 	def Bool2String(self, param):
 		return "1" if param else "0"
@@ -128,6 +136,9 @@ class Preferences(object):
 		self.config.SetPath('/AutoAdjust')
 		self.config.Write('spuriousLines', self.Bool2String(self.autoAdjustSpuriousLines))
 		self.config.Write('tab2chordpro', self.Bool2String(self.autoAdjustTab2Chordpro))
+		if self.locale is not None:
+			self.config.SetPath('/App')
+			lang = self.config.Write('locale', self.locale)
 
 	def SetChorusLabel(self, c):
 		self.chorusLabel = c
@@ -135,4 +146,4 @@ class Preferences(object):
 
 	def SetDefaultNotation(self, notation):
 		self.defaultNotation = notation
-		self.notations = [x for x in self.pref.notations if x.id == notation] + [x for x in self.pref.notations if x.id != notation]
+		self.notations = [x for x in self.notations if x.id == notation] + [x for x in self.notations if x.id != notation]
