@@ -331,6 +331,9 @@ class SongpressFrame(SDIMainFrame):
 		self.text.Save()
 		self.UpdateEverything()
 
+	def SavePreferences(self):
+		self.pref.Save()
+
 	def UpdateUndoRedo(self):
 		self.mainToolBar.EnableTool(self.undoTool, self.text.CanUndo())
 		self.mainToolBar.EnableTool(self.redoTool, self.text.CanRedo())
@@ -542,7 +545,6 @@ class SongpressFrame(SDIMainFrame):
 		if f.ShowModal() == wx.ID_OK:
 			self.pref.SetFont(f.GetValue())
 			self.SetFont()
-			self.previewCanvas.Refresh(self.text.GetText())
 
 	def OnTranspose(self, evt):
 		t = MyTransposeDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
@@ -581,7 +583,7 @@ class SongpressFrame(SDIMainFrame):
 				d.ShowModal()
 			self.config.SetPath("/App")
 			self.config.Write("locale", l)
-			self.SetDefaultNotation(f.GetNotation())
+			self.pref.SetDefaultNotation(f.GetNotation())
 
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()
@@ -615,9 +617,7 @@ class SongpressFrame(SDIMainFrame):
 		d = wx.TextEntryDialog(self.frame, msg, _("Songpress"), c)
 		if d.ShowModal() == wx.ID_OK:
 			c = d.GetValue()
-			self.config.SetPath('/Format')
-			self.config.Write('ChorusLabel', c)
-			self.pref.decoratorFormat.SetChorusLabel(c)
+			self.pref.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
 
 	def OnTextChanged(self, evt):
@@ -656,17 +656,10 @@ class SongpressFrame(SDIMainFrame):
 	def CheckLabelVerses(self):
 		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.pref.labelVerses)
 		self.menuBar.Check(self.labelVersesMenuId, self.pref.labelVerses)
-		self.config.SetPath('/Format/Style')
 		if self.pref.labelVerses:
 			self.previewCanvas.SetDecorator(self.pref.decorator)
-			self.config.Write('LabelVerses', "1")
 		else:
 			self.previewCanvas.SetDecorator(SongDecorator())
-			self.config.Write('LabelVerses', "0")
 		self.previewCanvas.Refresh(self.text.GetText())
 
-	def SetDefaultNotation(self, notation):
-		self.pref.notations = [x for x in self.pref.notations if x.id == notation] + [x for x in self.pref.notations if x.id != notation]
-		self.config.SetPath('/Editor')
-		self.config.Write('DefaultNotation', notation)
 
