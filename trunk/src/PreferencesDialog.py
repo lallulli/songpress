@@ -21,11 +21,6 @@ class PreferencesDialog(wx.Dialog):
 
 		self.pref = preferences
 
-		self.config = wx.Config.Get()
-		self.config.SetPath('/Editor')
-		font = self.config.Read('Face')
-		size = self.config.Read('Size')
-
 		# Font face and size
 		hSizer1 = wx.BoxSizer(wx.HORIZONTAL)
 
@@ -33,7 +28,7 @@ class PreferencesDialog(wx.Dialog):
 		m_staticText1.Wrap(-1);
 		hSizer1.Add(m_staticText1, 0, wx.ALL, 5)
 
-		self.fontCB = FontComboBox(self, wx.ID_ANY, font)
+		self.fontCB = FontComboBox(self, wx.ID_ANY, self.pref.editorFace)
 		self.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontCB)
 		self.fontCB.Bind(wx.EVT_KILL_FOCUS, self.OnFontSelected, self.fontCB)
 		self.fontCB.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontCB)
@@ -43,7 +38,7 @@ class PreferencesDialog(wx.Dialog):
 		m_staticText3.Wrap(-1);
 		hSizer1.Add(m_staticText3, 0, wx.ALL, 5)
 
-		self.sizeCB = wx.ComboBox(self, wx.ID_ANY, size)
+		self.sizeCB = wx.ComboBox(self, wx.ID_ANY, str(self.pref.editorSize))
 		self.sizeCB.AppendItems([str(x) for x in [7,8,9,10,11,12,13,14,16,18,20]])
 		self.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.sizeCB)
 		self.sizeCB.Bind(wx.EVT_KILL_FOCUS, self.OnFontSelected, self.sizeCB)
@@ -61,7 +56,7 @@ class PreferencesDialog(wx.Dialog):
 		self.editor = Editor.Editor(self, False)
 		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 		self.editor.SetText(previewSong)
-		self.editor.SetFont(font, int(size))
+		self.editor.SetFont(self.pref.editorFace, self.pref.editorSize)
 		self.editor.SetReadOnly(True)
 
 		hSizer2.Add(self.editor, 1, wx.EXPAND | wx.ALL, 5)
@@ -80,10 +75,10 @@ class PreferencesDialog(wx.Dialog):
 		m_staticText1.Wrap(-1);
 		hSizer3.Add(m_staticText1, 0, wx.ALL, 5)
 
-		self.config.SetPath('/App')
-		lang = self.config.Read('locale')
-		if not lang:
+		if not self.pref.locale is None:
 			lang = i18n.getLang()
+		else:
+			lang = self.pref.locale
 		self.langCh = wx.Choice(self, wx.ID_ANY)
 		for l in glb.languages:
 			i = self.langCh.Append(glb.languages[l])
@@ -111,6 +106,7 @@ class PreferencesDialog(wx.Dialog):
 
 		self.ok = wx.Button(self, wx.ID_OK, _("OK"))
 		hSizerZ.Add(self.ok, 0, wx.ALL, 5 )
+		self.ok.Bind(wx.EVT_BUTTON, self.OnOk, self.ok)
 
 		self.cancel = wx.Button(self, wx.ID_CANCEL, _("Cancel"))
 		hSizerZ.Add(self.cancel, 0, wx.ALL, 5)
@@ -147,4 +143,15 @@ class PreferencesDialog(wx.Dialog):
 	def GetNotation(self):
 		return self.notationCh.GetClientData(self.notationCh.GetSelection())
 
+	def OnOk(self, evt):
+		self.pref.editorFace, self.pref.editorSize = self.GetFont()
+		l = self.GetLanguage()
+		lang = i18n.getLang()
+		if l != lang:
+			msg = _("Language settings will be applied when you restart Songpress.")
+			d = wx.MessageDialog(self, msg, _("Songpress"), wx.ICON_INFORMATION | wx.OK)
+			d.ShowModal()
+		self.pref.locale = l
+		self.pref.SetDefaultNotation(self.GetNotation())
+		evt.Skip(True)
 
