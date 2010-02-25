@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 22:14+0100\n"
-"PO-Revision-Date: 2009-12-21 21:09+0100\n"
+"PO-Revision-Date: 2010-02-25 22:08+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,8 +121,7 @@ msgstr "Copia come I&mmagine\tCTRL+D"
 
 #: src\xrc\songpress.pos:27
 msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
-msgstr ""
-"Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
+msgstr "Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
 
 #: src\xrc\songpress.pos:28
 msgid "&Paste\tCTRL+V"
@@ -130,8 +129,7 @@ msgstr "&Incolla\tCTRL+V"
 
 #: src\xrc\songpress.pos:29
 msgid "Read text from the clipboard and place it at the cursor position"
-msgstr ""
-"Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
+msgstr "Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
 
 #: src\xrc\songpress.pos:30
 msgid "&Find...\tCTRL+F"
@@ -199,11 +197,11 @@ msgstr "Sposta l'accordo sotto il cursore di una posizione verso sinistra"
 
 #: src\xrc\songpress.pos:46
 msgid "Inte&grate chords"
-msgstr ""
+msgstr "Inte&gra gli accordi"
 
 #: src\xrc\songpress.pos:47
 msgid "Integrate chords of current line with text of following line"
-msgstr ""
+msgstr "Integra gli accordi della linea corrente con il testo della linea sottostante"
 
 #: src\xrc\songpress.pos:48
 msgid "&View"
@@ -227,8 +225,7 @@ msgstr "&Formattazione"
 
 #: src\xrc\songpress.pos:53
 msgid "Show/hide toolbar with format tools"
-msgstr ""
-"Mostra/nasconde la barra degli strumenti con gli strumenti di formattazione"
+msgstr "Mostra/nasconde la barra degli strumenti con gli strumenti di formattazione"
 
 #: src\xrc\songpress.pos:54
 msgid "&Preview"
@@ -320,25 +317,23 @@ msgstr "Modifica la &notazione degli accordi..."
 
 #: src\xrc\songpress.pos:76
 msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
-msgstr ""
-"Modifica la notazione degli accordi (es. Do Re Mi vs C D E) della canzone o "
-"selezione"
+msgstr "Modifica la notazione degli accordi (es. Do Re Mi vs C D E) della canzone o selezione"
 
 #: src\xrc\songpress.pos:77
 msgid "Convert &Tab to Chordpro"
-msgstr ""
+msgstr "&Converti formato da tab a ChordPro"
 
 #: src\xrc\songpress.pos:78
 msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
-msgstr ""
+msgstr "Converte il formato da tab (accordi su una linea separata) a ChordPro"
 
 #: src\xrc\songpress.pos:79
 msgid "Remove &spurious blank lines"
-msgstr ""
+msgstr "&Rimuovi le linee vuote di troppo"
 
 #: src\xrc\songpress.pos:80
 msgid "Remove blank lines inside a verse"
-msgstr ""
+msgstr "Rimuove le linee vuote dentro le strofe"
 
 #: src\xrc\songpress.pos:81
 msgid "&Options..."
@@ -386,3 +381,4 @@ msgstr "Mostra i crediti"
 
 #~ msgid "&New"
 #~ msgstr "&Nuovo"
+

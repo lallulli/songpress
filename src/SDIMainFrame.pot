@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 22:14+0100\n"
+"POT-Creation-Date: 2010-02-25 21:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Open file"
 msgstr ""
 
-#: src\SDIMainFrame.py:122 src\SDIMainFrame.py:239
+#: src\SDIMainFrame.py:122 src\SDIMainFrame.py:240
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr ""
@@ -47,20 +47,20 @@ msgstr ""
 msgid "About "
 msgstr ""
 
-#: src\SDIMainFrame.py:204
+#: src\SDIMainFrame.py:205
 msgid "Untitled"
 msgstr ""
 
-#: src\SDIMainFrame.py:220
+#: src\SDIMainFrame.py:221
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr ""
 
-#: src\SDIMainFrame.py:236
+#: src\SDIMainFrame.py:237
 msgid "Choose a name for the file"
 msgstr ""
 
-#: src\SDIMainFrame.py:247
+#: src\SDIMainFrame.py:248
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr ""
