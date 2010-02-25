@@ -610,8 +610,8 @@ class SongpressFrame(SDIMainFrame):
 
 	def AutoAdjust(self, lastPos, currentPos):
 		self.text.AutoChangeMode(True)
+		t = self.text.GetTextRange(lastPos, currentPos)
 		if self.pref.autoAdjustSpuriousLines:
-			t = self.text.GetTextRange(lastPos, currentPos)
 			if testSpuriousLines(t):
 				msg = _("It looks like there are spurious blank lines in the song.\n")
 				msg += _("Do you want to try to remove them automatically?")
@@ -623,14 +623,15 @@ class SongpressFrame(SDIMainFrame):
 					self.text.ReplaceSelection(t)
 					currentPos = self.text.GetCurrentPos()
 		if self.pref.autoAdjustTab2Chordpro:
-			if testTabFormat(t, self.pref.notations):
+			n = testTabFormat(t, self.pref.notations)
+			if n is not None:
 				msg = _("It looks like your song is in tab format (i.e., chords are above the text).\n")
 				msg += _("Do you want to convert it to ChordPro automatically?")
 				title = _("Convert to ChordPro")
 				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
 				if d.ShowModal() == wx.ID_YES:
 					self.text.SetSelection(lastPos, currentPos)
-					t = tab2ChordPro(t)
+					t = tab2ChordPro(t, n)
 					self.text.ReplaceSelection(t)
 		self.text.AutoChangeMode(False)
 
