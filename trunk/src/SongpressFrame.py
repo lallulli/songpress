@@ -166,9 +166,9 @@ class SongpressFrame(SDIMainFrame):
 			'crd',
 			_('Songpress - Il Canzonatore'),
 			glb.AddPath('img/songpress.ico'),
-			_("1.1"),
+			_("1.2"),
 			_("http://www.skeed.it/songpress.html"),
-			_("Copyright (c) 2009 Luca Allulli - Skeed"),
+			_("Copyright (c) 2009-2010 Luca Allulli - Skeed"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)")
 		)

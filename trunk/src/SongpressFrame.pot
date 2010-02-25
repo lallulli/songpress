@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 22:14+0100\n"
+"POT-Creation-Date: 2010-02-25 21:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgid ""
 "  * wxPython (http://www.wxpython.org)"
 msgstr ""
 
-#: src\SongpressFrame.py:184 src\SongpressFrame.py:275
+#: src\SongpressFrame.py:184 src\SongpressFrame.py:276
 msgid "Preview"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Read text from the clipboard and place it at the cursor position"
 msgstr ""
 
-#: src\SongpressFrame.py:233 src\SongpressFrame.py:276
+#: src\SongpressFrame.py:233 src\SongpressFrame.py:277
 msgid "Standard"
 msgstr ""
 
@@ -200,60 +200,55 @@ msgstr ""
 msgid "Insert a command to display a comment"
 msgstr ""
 
-#: src\SongpressFrame.py:263 src\SongpressFrame.py:277
+#: src\SongpressFrame.py:263 src\SongpressFrame.py:278
 msgid "Format"
 msgstr ""
 
-#: src\SongpressFrame.py:412
+#: src\SongpressFrame.py:416
 msgid "PNG image"
 msgstr ""
 
-#: src\SongpressFrame.py:534
+#: src\SongpressFrame.py:538
 msgid "http://www.skeed.it/songpress.html#News"
 msgstr ""
 
-#: src\SongpressFrame.py:537
+#: src\SongpressFrame.py:541
 msgid "http://www.skeed.it/songpress.html#donate"
 msgstr ""
 
-#: src\SongpressFrame.py:540 src\SongpressFrame.py:577
-#: src\SongpressFrame.py:612
+#: src\SongpressFrame.py:544 src\SongpressFrame.py:602
 msgid "Songpress"
 msgstr ""
 
-#: src\SongpressFrame.py:565
+#: src\SongpressFrame.py:569
 msgid "Songpress options"
 msgstr ""
 
-#: src\SongpressFrame.py:576
-msgid "Language settings will be applied when you restart Songpress."
-msgstr ""
-
-#: src\SongpressFrame.py:611
+#: src\SongpressFrame.py:601
 msgid "Please enter a label for chorus"
 msgstr ""
 
-#: src\SongpressFrame.py:628
+#: src\SongpressFrame.py:616
 msgid "It looks like there are spurious blank lines in the song.\n"
 msgstr ""
 
-#: src\SongpressFrame.py:629
+#: src\SongpressFrame.py:617
 msgid "Do you want to try to remove them automatically?"
 msgstr ""
 
-#: src\SongpressFrame.py:630
+#: src\SongpressFrame.py:618
 msgid "Remove spurious blank lines"
 msgstr ""
 
-#: src\SongpressFrame.py:639
+#: src\SongpressFrame.py:628
 msgid ""
 "It looks like your song is in tab format (i.e., chords are above the text).\n"
 msgstr ""
 
-#: src\SongpressFrame.py:640
+#: src\SongpressFrame.py:629
 msgid "Do you want to convert it to ChordPro automatically?"
 msgstr ""
 
-#: src\SongpressFrame.py:641
+#: src\SongpressFrame.py:630
 msgid "Convert to ChordPro"
 msgstr ""

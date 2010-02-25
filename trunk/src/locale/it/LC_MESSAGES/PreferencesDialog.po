@@ -7,27 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 22:14+0100\n"
-"PO-Revision-Date: 2009-12-21 21:09+0100\n"
+"POT-Creation-Date: 2010-02-25 21:39+0100\n"
+"PO-Revision-Date: 2010-02-25 21:53+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:30
+#: src\PreferencesDialog.py:27
 msgid "Editor font"
 msgstr "Carattere editor"
 
-#: src\PreferencesDialog.py:40
+#: src\PreferencesDialog.py:37
 msgid "Size"
 msgstr "Dimensione"
 
-#: src\PreferencesDialog.py:54
+#: src\PreferencesDialog.py:51
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src\PreferencesDialog.py:60
+#: src\PreferencesDialog.py:57
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -49,30 +49,39 @@ msgstr ""
 "era goba anche [Do]quela la fa[Sol]miglia dei go[Do]bon.\n"
 "{eoc}"
 
-#: src\PreferencesDialog.py:68
+#: src\PreferencesDialog.py:65
 msgid "Auto adjust"
-msgstr ""
+msgstr "Strumenti automatici"
+
+#: src\PreferencesDialog.py:67
+msgid "Offer to remove blank lines"
+msgstr "Proponi di rimuovere le linee vuote"
 
 #: src\PreferencesDialog.py:70
-msgid "Offer to remove blank lines"
-msgstr ""
-
-#: src\PreferencesDialog.py:72
 msgid "Offer to convert songs in tab format to ChordPro"
-msgstr ""
+msgstr "Proponi di convertire il formato delle canzoni da tab a ChordPro"
 
-#: src\PreferencesDialog.py:77
+#: src\PreferencesDialog.py:76
 msgid "Language"
-msgstr "Lingua"
+msgstr "Language"
 
-#: src\PreferencesDialog.py:95
+#: src\PreferencesDialog.py:94
 msgid "Default notation"
 msgstr "Notazione predefinita"
 
-#: src\PreferencesDialog.py:110
+#: src\PreferencesDialog.py:109
 msgid "OK"
 msgstr "OK"
 
 #: src\PreferencesDialog.py:113
 msgid "Cancel"
 msgstr "Annulla"
+
+#: src\PreferencesDialog.py:153
+msgid "Language settings will be applied when you restart Songpress."
+msgstr "Language settings will be applied when you restart Songpress."
+
+#: src\PreferencesDialog.py:154
+msgid "Songpress"
+msgstr "Songpress"
+
