@@ -65,8 +65,10 @@ class PreferencesDialog(wx.Dialog):
 		staticBox = wx.StaticBox(self, wx.ID_ANY, _("Auto adjust"))
 		self.staticBoxSizer = wx.StaticBoxSizer(staticBox, wx.VERTICAL)
 		self.autoRemoveBlankLines = wx.CheckBox(self, wx.ID_ANY, _("Offer to remove blank lines"))
+		self.autoRemoveBlankLines.SetValue(self.pref.autoAdjustSpuriousLines)
 		self.staticBoxSizer.Add(self.autoRemoveBlankLines)
 		self.autoTab2Chordpro = wx.CheckBox(self, wx.ID_ANY, _("Offer to convert songs in tab format to ChordPro"))
+		self.autoTab2Chordpro.SetValue(self.pref.autoAdjustTab2Chordpro)
 		self.staticBoxSizer.Add(self.autoTab2Chordpro)
 
 		# Language
@@ -153,5 +155,7 @@ class PreferencesDialog(wx.Dialog):
 			d.ShowModal()
 		self.pref.locale = l
 		self.pref.SetDefaultNotation(self.GetNotation())
+		self.pref.autoAdjustSpuriousLines = self.autoRemoveBlankLines.GetValue()
+		self.pref.autoAdjustTab2Chordpro = self.autoTab2Chordpro.GetValue()
 		evt.Skip(True)
 
