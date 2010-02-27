@@ -54,7 +54,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		url="",
 		copyright = "",
 		licensing = "",
-		thanks = ""
+		thanks = "",
+		importFormats = [] # List of tuples: (format name, extension)
 	):
 		self.config = wx.Config.Get()
 		self.res = res
@@ -71,6 +72,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.document = ''
 		self.docType = docType
 		self.docExt = docExt
+		self.importFormats = importFormats
 		wx.Config.Set(self.config)
 		self.frame = self.res.LoadFrame(None, frameName)
 		if icon != None:
@@ -119,7 +121,12 @@ class SDIMainFrame(wx.FileDropTarget):
 				_("Open file"),
 				"",
 				"",
-				_("%s files (*.%s)|*.%s|All files (*.*)|*.*") % (self.docExt, self.docExt, self.docExt),
+				_("%s files (*.%s)|*.%s|%sAll files (*.*)|*.*") % (
+						self.docExt,
+						self.docExt,
+						self.docExt,
+						"".join(["%s (*.%s)|*.%s|" % (x[0], x[1], x[1]) for x in self.importFormats])
+					),
 				wx.FD_OPEN
 			)
 
@@ -237,7 +244,11 @@ class SDIMainFrame(wx.FileDropTarget):
 				_("Choose a name for the file"),
 				"",
 				"",
-				_("%s files (*.%s)|*.%s|All files (*.*)|*.*") % (self.docExt, self.docExt, self.docExt),
+				_("%s files (*.%s)|*.%s|All files (*.*)|*.*") % (
+						self.docExt,
+						self.docExt,
+						self.docExt,
+					),
 				wx.FD_SAVE
 			)
 
