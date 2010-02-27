@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 21:39+0100\n"
+"POT-Creation-Date: 2010-02-27 19:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,21 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\SDIMainFrame.py:119
+#: src\SDIMainFrame.py:121
 msgid "Open file"
 msgstr ""
 
-#: src\SDIMainFrame.py:122 src\SDIMainFrame.py:240
+#: src\SDIMainFrame.py:124
 #, python-format
-msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
+msgid "%s files (*.%s)|*.%s|%sAll files (*.*)|*.*"
 msgstr ""
 
-#: src\SDIMainFrame.py:135
+#: src\SDIMainFrame.py:142
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr ""
 
-#: src\SDIMainFrame.py:159
+#: src\SDIMainFrame.py:166
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -43,24 +43,29 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src\SDIMainFrame.py:167
+#: src\SDIMainFrame.py:174
 msgid "About "
 msgstr ""
 
-#: src\SDIMainFrame.py:205
+#: src\SDIMainFrame.py:212
 msgid "Untitled"
 msgstr ""
 
-#: src\SDIMainFrame.py:221
+#: src\SDIMainFrame.py:228
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr ""
 
-#: src\SDIMainFrame.py:237
+#: src\SDIMainFrame.py:244
 msgid "Choose a name for the file"
 msgstr ""
 
-#: src\SDIMainFrame.py:248
+#: src\SDIMainFrame.py:247
+#, python-format
+msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
+msgstr ""
+
+#: src\SDIMainFrame.py:259
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr ""
