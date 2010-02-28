@@ -170,8 +170,12 @@ class SongpressFrame(SDIMainFrame):
 			_("http://www.skeed.it/songpress.html"),
 			_("Copyright (c) 2009-2010 Luca Allulli - Skeed"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
-			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)"),
-			[(_("Tab files"), "tab"), (_("Chordpro CHO files"), "cho")]
+			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
+			[
+				(_("All supported files"), ["crd", "cho", "chordpro", "chopro", "tab"]),
+				(_("Chordpro files (*.crd, *.cho, *.chordpro, *.chopro)"), ["crd", "cho", "chordpro", "chopro"]),
+				(_("Tab files (*.tab)"), ["tab"]),
+			]
 		)
 		self.pref = Preferences()
 		self.text = Editor(self)

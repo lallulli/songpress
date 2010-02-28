@@ -7,11 +7,12 @@
 # License:	 GNU GPL v2
 ##############################################################
 
+from SongpressFrame import *
 import wx
 from wx import xrc
-from SongpressFrame import *
 from Globals import glb
 import i18n
+import dev_tool
 
 class SongpressApp(wx.App):
 
@@ -32,5 +33,6 @@ class SongpressApp(wx.App):
 
 
 if __name__ == '__main__':
+	sys.excepthook = dev_tool.ExceptionHook
 	songpressApp = SongpressApp()
 	songpressApp.MainLoop()
