@@ -297,11 +297,10 @@ class SDIMainFrame(wx.FileDropTarget):
 		if self.document == '':
 			if not self.AskSaveFilename():
 				return False
-		if self.modified:
-			self.Save()
-			self.UpdateRecentFileList(self.document)
-			self.modified = False
-			self.UpdateTitle()
+		self.Save()
+		self.UpdateRecentFileList(self.document)
+		self.modified = False
+		self.UpdateTitle()
 		return True
 
 	def New(self):
