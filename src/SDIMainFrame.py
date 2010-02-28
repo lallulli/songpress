@@ -55,7 +55,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		copyright = "",
 		licensing = "",
 		thanks = "",
-		importFormats = [] # List of tuples: (format name, extension)
+		importFormats = [] # List of tuples: (format name, [extensions])
 	):
 		self.config = wx.Config.Get()
 		self.res = res
@@ -116,17 +116,21 @@ class SDIMainFrame(wx.FileDropTarget):
 	def OnOpen(self, evt):
 		"""Menu handler for File->Open"""
 		if self.AskSaveModified():
+			if self.importFormats == []:
+				filter = _("%s files (*.%s)|%s") % (
+						self.docExt,
+						self.docExt,
+						self.docExt,
+					)
+			else:
+				filter = "|".join(["%s | %s" % (x[0], ";".join(["*." + y for y in x[1]])) for x in self.importFormats])
+			filter += _("|All files (*.*)|*.*")
 			dlg = wx.FileDialog(
 				self.frame,
 				_("Open file"),
 				"",
 				"",
-				_("%s files (*.%s)|*.%s|%sAll files (*.*)|*.*") % (
-						self.docExt,
-						self.docExt,
-						self.docExt,
-						"".join(["%s (*.%s)|*.%s|" % (x[0], x[1], x[1]) for x in self.importFormats])
-					),
+				filter,
 				wx.FD_OPEN
 			)
 
