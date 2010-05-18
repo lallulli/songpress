@@ -33,7 +33,7 @@ class HtmlExporter(object):
 						if not new_line:
 							tc += "</td><td>"
 							tt += "</td><td>"
-						td += t.text
+						tc += t.text
 					else:
 						tt += t.text
 					new_line = False

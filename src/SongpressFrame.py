@@ -443,7 +443,7 @@ class SongpressFrame(SDIMainFrame):
 			else:
 				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
 			f = open(n, "w")
-			f.write(r.out)
+			f.write(h.getHtml().encode('utf-8'))
 			f.close()
 
 	def OnUpdateUI(self, evt):
