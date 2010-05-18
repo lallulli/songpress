@@ -17,6 +17,7 @@ from Renderer import *
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from PreferencesDialog import PreferencesDialog
+from HTML import HtmlExporter
 from Transpose import *
 from MyTransposeDialog import *
 from MyNotationDialog import *
@@ -288,6 +289,7 @@ class SongpressFrame(SDIMainFrame):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 
 		Bind(self.OnExportAsPng, 'exportAsPng')
+		Bind(self.OnExportAsHtml, 'exportAsHtml')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
 		Bind(self.OnCut, 'cut')
@@ -429,6 +431,20 @@ class SongpressFrame(SDIMainFrame):
 			self.DrawOnDC(dc)
 			i = wx.ImageFromBitmap(b)
 			i.SaveFile(n, wx.BITMAP_TYPE_PNG)
+
+	def OnExportAsHtml(self, evt):
+		n = self.AskExportFileName(_("HTML file"), "html")
+		if n is not None:
+			h = HtmlExporter(self.pref.format)
+			r = Renderer(self.pref.format, h)
+			start, end = self.text.GetSelection()
+			if start == end:
+				r.Render(self.text.GetText(), None)
+			else:
+				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
+			f = open(n, "w")
+			f.write(r.out)
+			f.close()
 
 	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
