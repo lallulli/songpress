@@ -30,6 +30,10 @@
 						<label>Export as _PNG...</label>
 						<help>Export image as a raster picture</help>
 					</object>
+					<object class="wxMenuItem" name="exportAsHtml">
+						<label>Export as _HTML</label>
+						<help>Export formatted song as web page</help>
+					</object>
 				</object>
 				<object class="wxMenuItem" name="exit">
 					<label>_Exit</label>
