@@ -43,6 +43,7 @@ class Preferences(object):
 		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
 		self.notations = [enNotation, itNotation, deNotation, frNotation, ptNotation]
 		self.Load()
+		self.easiestKeyFav = {'C': 1, 'D': 1, 'Dm': 1, 'D7': 1, 'Eb': -1, 'E': 1, 'Em': 1, 'E7': 0.8, 'F': 0.4, 'G': 1, 'G7': 1, 'A': 1, 'Am': 1, 'A7': 1, 'B7': 0.4}
 
 	def SetFont(self, font):
 		self.fontFace = font
@@ -110,6 +111,11 @@ class Preferences(object):
 			self.autoAdjustTab2Chordpro = bool(int(tab2chordpro))
 		else:
 			self.autoAdjustTab2Chordpro = True
+		easiestKey = self.config.Read('easiestKey')
+		if easiestKey:
+			self.autoAdjustEasiestKey = bool(int(easiestKey))
+		else:
+			self.autoAdjustEasiestKey = False
 		self.config.SetPath('/App')
 		lang = self.config.Read('locale')
 		if not lang:
@@ -136,6 +142,7 @@ class Preferences(object):
 		self.config.SetPath('/AutoAdjust')
 		self.config.Write('spuriousLines', self.Bool2String(self.autoAdjustSpuriousLines))
 		self.config.Write('tab2chordpro', self.Bool2String(self.autoAdjustTab2Chordpro))
+		self.config.Write('easiestKey', self.Bool2String(self.autoAdjustEasiestKey))
 		if self.locale is not None:
 			self.config.SetPath('/App')
 			lang = self.config.Write('locale', self.locale)

@@ -31,7 +31,7 @@
 						<help>Export image as a raster picture</help>
 					</object>
 					<object class="wxMenuItem" name="exportAsHtml">
-						<label>Export as _HTML</label>
+						<label>Export as _HTML...</label>
 						<help>Export formatted song as web page</help>
 					</object>
 				</object>

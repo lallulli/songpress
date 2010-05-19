@@ -654,6 +654,18 @@ class SongpressFrame(SDIMainFrame):
 					self.text.SetSelection(lastPos, currentPos)
 					t = tab2ChordPro(t, n)
 					self.text.ReplaceSelection(t)
+		if True or self.pref.autoAdjustEasiestKey:
+			notation = autodetectNotation(t, self.pref.notations)
+			c, e = findEasiestKey(t, self.pref.easiestKeyFav, notation)
+			if c != e:
+				msg = _("The key of your song, %s, is not the easiest to play.\n" % c)
+				msg += _("Do you want to transpose the key %s, which is the easiest one?" % e)
+				title = _("Simplify chords")
+				d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
+				if d.ShowModal() == wx.ID_YES:
+					self.text.SetSelection(lastPos, currentPos)
+					t = transposeChordPro(translateChord(c, notation), translateChord(e, notation), t, notation)
+					self.text.ReplaceSelection(t)
 		self.text.AutoChangeMode(False)
 
 	def SetFont(self):
