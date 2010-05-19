@@ -449,3 +449,31 @@ def removeSpuriousLines(text):
 			out.append(ll[i])
 			i += 1
 	return "\n".join(out)
+
+def findEasiestKey(text, fav, notation=enNotation):
+	"""
+	Find easiest key for song. Return (current_key, easiest_key)
+
+		text: song text
+		fav: dictionary of (s)favourite chords, with the form {chord: weight}
+		     (chords in fav are expressed using enNotation)
+	"""
+	current_key = autodetectKey(text, notation)
+	ws = dict([(k, 0) for k in scales])
+	r = re.compile('\[([^]]*)\]')
+	for m in r.finditer(text):
+		chord = translateChord(m.group(1), notation)
+		for k in ws:
+			c = transpose(current_key, k, chord)
+			if c in fav:
+				ws[k] += fav[c]
+	easiest_key = current_key
+	m = ws[easiest_key]
+	for k in ws:
+		if m is None or ws[k] > m:
+			easiest_key = k
+			m = ws[k]
+	return (
+			translateChord(current_key, enNotation, notation),
+			translateChord(easiest_key, enNotation, notation)
+		)
