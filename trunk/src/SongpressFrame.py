@@ -28,6 +28,9 @@ import os
 import os.path
 import i18n
 
+#todo: remove
+from MyDecoSlider import MyDecoSlider
+
 i18n.register('SongpressFrame')
 
 class SongpressFindReplaceDialog(object):
@@ -178,6 +181,9 @@ class SongpressFrame(SDIMainFrame):
 				(_("Tab files (*.tab)"), ["tab"]),
 			]
 		)
+		self.decoSliderFrame = wx.Frame(self.frame)
+		self.decoSlider = MyDecoSlider(self.decoSliderFrame)
+		self.decoSliderFrame.Show()
 		self.pref = Preferences()
 		self.text = Editor(self)
 		dt = SDIDropTarget(self)
