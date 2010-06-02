@@ -8,7 +8,7 @@
 ##############################################################
 
 from SongDecorator import *
-from SongFormat import * 
+from SongFormat import *
 import i18n
 import wx
 
@@ -34,10 +34,10 @@ class Format(FontFormat):
 		self.chorus.underline = sf.chorus.underline
 		config = wx.Config.Get()
 		self.chorus.label = chorusLabel
-		
+
 	def SetChorusLabel(self, label):
 		self.chorus.label = label
-		
+
 	def GetChorusLabel(self):
 		return self.chorus.label
 
@@ -46,11 +46,11 @@ class Decorator(SongDecorator):
 	def __init__(self, format):
 		SongDecorator.__init__(self)
 		self.format = format
-		
+
 	wxBlack = wx.Colour(0, 0, 0)
 	wxWhite = wx.Colour(255, 255, 255)
 	wxGrey = wx.Colour(200, 200, 200)
-		
+
 	def InitDraw(self):
 		self.dc.SetFont(self.format.wxFont)
 		self.baseWidth, self.baseHeight = self.dc.GetTextExtent("0")
@@ -70,7 +70,7 @@ class Decorator(SongDecorator):
 		else:
 			w = self.chorusTotalWidth
 		block.SetMargin(0, 0, 0, w)
-		
+
 	def PreDrawBlock(self, block, bx, by):
 		if block.type != block.title and len(block.boxes) > 0:
 			if block.type == block.verse:
@@ -107,4 +107,3 @@ class Decorator(SongDecorator):
 			self.dc.SetBackgroundMode(wx.TRANSPARENT)
 			self.dc.DrawText(text, tx, ty)
 			self.dc.SetTextForeground(self.wxBlack)
-		
