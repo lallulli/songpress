@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version Aug 25 2009)
+## Python code generated with wxFormBuilder (version May  4 2010)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO "NOT" EDIT THIS FILE!
 ###########################################################################
 
 import wx
+
+import gettext
+_ = gettext.gettext
 
 ###########################################################################
 ## Class DecoSlider
@@ -16,14 +19,17 @@ import wx
 class DecoSlider ( wx.Panel ):
 
 	def __init__( self, parent ):
-		wx.Panel.__init__  ( self, parent, id = wx.ID_ANY, pos = wx.DefaultPosition, size = wx.Size( 501,325 ), style = wx.TAB_TRAVERSAL )
+		wx.Panel.__init__ ( self, parent, id = wx.ID_ANY, pos = wx.DefaultPosition, size = wx.Size( 501,325 ), style = wx.TAB_TRAVERSAL )
+
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 
 		bSizer9 = wx.BoxSizer( wx.VERTICAL )
 
-		self.slider = wx.Slider( self, wx.ID_ANY, 0, 0, 4, wx.DefaultPosition, wx.DefaultSize, wx.SL_HORIZONTAL )
+		self.slider = wx.Slider( self, wx.ID_ANY, 0, 0, 4, wx.DefaultPosition, wx.DefaultSize, wx.SL_AUTOTICKS|wx.SL_HORIZONTAL )
 		bSizer9.Add( self.slider, 0, wx.ALL|wx.EXPAND, 5 )
 
 		self.panel = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.panel.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 		self.panel.SetMinSize( wx.Size( -1,30 ) )
 
 		bSizer9.Add( self.panel, 1, wx.EXPAND |wx.ALL, 5 )

@@ -13,15 +13,18 @@ import i18n
 import Editor
 from Globals import glb
 from PreferencesDialog import PreferencesDialog
+from MyDecoSlider import MyDecoSlider
 
 #i18n.register('MyPreferencesDialog')
 _ = lambda x: x
 
 class MyPreferencesDialog(PreferencesDialog):
-	def __init__(self, parent, id, title, preferences):
+	def __init__(self, parent, id, title, preferences, easyChords):
 		self.pref = preferences
 		self.frame = self
 		PreferencesDialog.__init__(self, parent)
+
+		self.easyChords = easyChords
 
 		self.fontCB.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontCB)
 		self.fontCB.Bind(wx.EVT_COMBOBOX, self.OnFontSelected, self.fontCB)
@@ -47,6 +50,20 @@ class MyPreferencesDialog(PreferencesDialog):
 			i = self.notationCh.Append(n.desc)
 			self.notationCh.SetClientData(i, n.id)
 		self.notationCh.SetSelection(0)
+
+		# Easy chords
+		simplifyGrid = wx.FlexGridSizer(len(easyChords), 2, 0, 0)
+		simplifyGrid.AddGrowableCol(1, 1)
+		self.simplifyPanel.SetSizer(simplifyGrid)
+		self.simplifyPanel.Layout()
+
+		for k in easyChords:
+			simplifyGrid.Add(wx.StaticText(self.simplifyPanel, wx.ID_ANY, k[0], wx.DefaultPosition, wx.DefaultSize, 0), 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
+			simplifyGrid.Add(MyDecoSlider(self.simplifyPanel), 1, wx.EXPAND, 5)
+
+		simplifyGrid.FitInside(self.simplifyPanel)
+
+		#self.simplifyPanel.Refresh()
 
 	def OnFontSelected(self, evt):
 		f, s = self.GetFont()

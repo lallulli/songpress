@@ -2,7 +2,6 @@
 
 import i18n
 i18n.register('PreferencesDialog')
-# -*- coding: utf-8 -*-
 
 ###########################################################################
 ## Python code generated with wxFormBuilder (version May  4 2010)
@@ -104,6 +103,12 @@ class PreferencesDialog ( wx.Dialog ):
 		self.autoEasiestKey = wx.CheckBox( self.autoAdjust, wx.ID_ANY, _("Offer to transpose songs to simplify chords"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer18.Add( self.autoEasiestKey, 0, wx.ALL, 5 )
 
+		self.simplifyPanel = wx.ScrolledWindow( self.autoAdjust, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.HSCROLL|wx.SUNKEN_BORDER|wx.VSCROLL )
+		self.simplifyPanel.SetScrollRate( 5, 5 )
+		self.simplifyPanel.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
+
+		bSizer18.Add( self.simplifyPanel, 1, wx.EXPAND |wx.ALL, 5 )
+
 		self.autoAdjust.SetSizer( bSizer18 )
 		self.autoAdjust.Layout()
 		bSizer18.Fit( self.autoAdjust )
@@ -117,7 +122,7 @@ class PreferencesDialog ( wx.Dialog ):
 		self.m_sdbSizer3Cancel = wx.Button( self, wx.ID_CANCEL )
 		m_sdbSizer3.AddButton( self.m_sdbSizer3Cancel )
 		m_sdbSizer3.Realize();
-		bSizer10.Add( m_sdbSizer3, 0, wx.EXPAND, 5 )
+		bSizer10.Add( m_sdbSizer3, 0, wx.ALL|wx.EXPAND, 5 )
 
 		self.SetSizer( bSizer10 )
 		self.Layout()
