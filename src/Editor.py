@@ -21,16 +21,17 @@ EventTextChanged, EVT_TEXT_CHANGED = wx.lib.newevent.NewEvent()
 
 class Editor(StyledTextCtrl):
 
-	def __init__(self, spframe, interactive=True):
-		StyledTextCtrl.__init__(self, spframe.frame if interactive else spframe)
+	def __init__(self, spframe, interactive=True, frame=None):
+		self.frame = spframe.frame if frame is None else frame
+		StyledTextCtrl.__init__(self, self.frame)
 		self.spframe = spframe
 		self.interactive = interactive
 		if self.interactive:
 			self.lastPos = 0
-			self.spframe.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
-			self.spframe.frame.Bind(EVT_STC_UPDATEUI, self.OnUpdateUI, self)
+			self.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
+			self.frame.Bind(EVT_STC_UPDATEUI, self.OnUpdateUI, self)
 			self.autoChangeMode = False
-		self.spframe.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
+		self.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
 		self.STC_STYLE_NORMAL = 11
 		self.STC_STYLE_CHORD = 12
 		self.STC_STYLE_COMMAND = 13
@@ -170,7 +171,7 @@ class Editor(StyledTextCtrl):
 				currentPos = self.GetCurrentPos()
 				if currentPos - self.lastPos > 2:
 					evt = EventTextChanged(lastPos=self.lastPos, currentPos=currentPos)
-					wx.PostEvent(self.spframe.frame, evt)
+					wx.PostEvent(self.frame, evt)
 
 
 	def OnUpdateUI(self, evt):
