@@ -16,7 +16,7 @@ from PreviewCanvas import *
 from Renderer import *
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
-from PreferencesDialog import PreferencesDialog
+from MyPreferencesDialog import MyPreferencesDialog
 from HTML import HtmlExporter
 from Transpose import *
 from MyTransposeDialog import *
@@ -592,7 +592,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
 
 	def OnOptions(self, evt):
-		f = PreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref)
+		f = MyPreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref)
 		if f.ShowModal() == wx.ID_OK:
 			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 
