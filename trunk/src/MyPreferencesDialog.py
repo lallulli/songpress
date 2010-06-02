@@ -13,9 +13,9 @@ import i18n
 import Editor
 from Globals import glb
 
-i18n.register('PreferencesDialog')
+i18n.register('MyPreferencesDialog')
 
-class PreferencesDialog(wx.Dialog):
+class MyPreferencesDialog(wx.Dialog):
 	def __init__(self, parent, id, title, preferences):
 		wx.Dialog.__init__(self, parent, id, title, size=wx.Size(540, 480))
 
