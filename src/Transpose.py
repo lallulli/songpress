@@ -333,7 +333,7 @@ def autodetectKey(text, notation=enNotation):
 			max = s
 			key = k
 		r = r[-n:] + r[:-n]
-	return naturalScale[key]
+	return orderedKeys[key]
 
 def integrateChords(chords, text):
 	"""Integrate chord line in text line, as chordpro"""
