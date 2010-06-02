@@ -109,18 +109,21 @@ class Editor(StyledTextCtrl):
 		"""
 		pos, dummy = self.GetSelection()
 		char = ""
-		start = pos - 1
+		start = self.PositionBefore(pos)
 		while start >= 0 and char != '[' and char != '\n' and char != ']':
-			char = self.GetTextRange(start, start + 1)
-			start -= 1
+			char = self.GetTextRange(start, self.PositionAfter(start))
+			if start == 0:
+				start = -1
+			else:
+				start = self.PositionBefore(start)
 		if char == '[':
-			end = pos - 1
+			end = self.PositionBefore(pos)
 			l = self.GetLength()
 			while end < l and char != ']' and char != '\n':
-				char = self.GetTextRange(end, end + 1)
-				end += 1
+				char = self.GetTextRange(end, self.PositionAfter(end))
+				end = self.PositionAfter(end)
 			if char == ']':
-				return (start + 1, end, self.GetTextRange(start + 2, end - 1))
+				return (self.PositionAfter(start), end, self.GetTextRange(self.PositionAfter(self.PositionAfter(start)), self.PositionBefore(end)))
 		return None
 
 	def SelectNextChord(self):
@@ -129,33 +132,33 @@ class Editor(StyledTextCtrl):
 		c = ''
 		while pos < n:
 			while pos < n and c != '[':
-				c = self.GetTextRange(pos, pos + 1)
-				pos += 1
+				c = self.GetTextRange(pos, self.PositionAfter(pos))
+				pos = self.PositionAfter(pos)
 			if c == '[':
 				start = pos
 				while pos < n and c != ']' and c != '\n':
-					c = self.GetTextRange(pos, pos + 1)
-					pos += 1
+					c = self.GetTextRange(pos, self.PositionAfter(pos))
+					pos = self.PositionAfter(pos)
 				if c == ']':
-					self.SetSelection(start, pos - 1)
+					self.SetSelection(start, self.PositionBefore(pos))
 					return True
 		return False
 
 	def SelectPreviousChord(self):
 		pos, dummy = self.GetSelection()
-		pos -= 1
+		pos = self.PositionBefore(pos)
 		c = ''
 		while pos >= 0:
 			while pos >= 0 and c != ']':
-				c = self.GetTextRange(pos, pos + 1)
-				pos -= 1
+				c = self.GetTextRange(pos, self.PositionAfter(pos))
+				pos = self.PositionBefore(pos)
 			if c == ']':
 				end = pos
 				while pos >= 0 and c != '[' and c != '\n':
-					c = self.GetTextRange(pos, pos + 1)
-					pos -= 1
+					c = self.GetTextRange(pos, self.PositionAfter(pos))
+					pos = self.PositionBefore(pos)
 				if c == '[':
-					self.SetSelection(pos + 2, end + 1)
+					self.SetSelection(self.PositionAfter(self.PositionAfter(pos)), self.PositionAfter(end))
 					return True
 		return False
 
