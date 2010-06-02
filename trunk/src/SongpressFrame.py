@@ -28,9 +28,6 @@ import os
 import os.path
 import i18n
 
-#todo: remove
-from MyDecoSlider import MyDecoSlider
-
 i18n.register('SongpressFrame')
 
 class SongpressFindReplaceDialog(object):
@@ -181,9 +178,6 @@ class SongpressFrame(SDIMainFrame):
 				(_("Tab files (*.tab)"), ["tab"]),
 			]
 		)
-		self.decoSliderFrame = wx.Frame(self.frame)
-		self.decoSlider = MyDecoSlider(self.decoSliderFrame)
-		self.decoSliderFrame.Show()
 		self.pref = Preferences()
 		self.text = Editor(self)
 		dt = SDIDropTarget(self)
@@ -514,12 +508,14 @@ class SongpressFrame(SDIMainFrame):
 			s, e, c = r
 			if e < n:
 				self.text.BeginUndoAction()
-				self.text.SetSelection(e, e + 1)
-				l = self.text.GetTextRange(e, e + 1)
+				e1 = self.text.PositionAfter(e)
+				self.text.SetSelection(e, e1)
+				l = self.text.GetTextRange(e, e1)
 				self.text.ReplaceSelection('')
 				self.text.SetSelection(s, s)
 				self.text.ReplaceSelection(l)
-				self.text.SetSelection(s + 2, s + 2)
+				s2 = self.text.PositionAfter(self.text.PositionAfter(s))
+				self.text.SetSelection(s2, s2)
 				self.text.EndUndoAction()
 
 	def OnMoveChordLeft(self, evt):
@@ -528,11 +524,14 @@ class SongpressFrame(SDIMainFrame):
 			s, e, c = r
 			if s > 0:
 				self.text.BeginUndoAction()
-				self.text.SetSelection(s - 1, s)
-				l = self.text.GetTextRange(s - 1, s)
-				self.text.ReplaceSelection('')
-				self.text.SetSelection(e - 1, e - 1)
+				s1 = self.text.PositionBefore(s)
+				e1 = self.text.PositionBefore(e)
+				l = self.text.GetTextRange(s1, s)
+				self.text.SetSelection(e, e)
 				self.text.ReplaceSelection(l)
+				self.text.SetSelection(s1, s)
+				self.text.ReplaceSelection('')
+				s = self.text.PositionAfter(s1)
 				self.text.SetSelection(s, s)
 				self.text.EndUndoAction()
 
