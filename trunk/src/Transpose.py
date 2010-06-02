@@ -129,6 +129,18 @@ defaultLangNotation = {
 	'it': itNotation
 }
 
+easyChords = [
+	(_("Basic chords (A, E, D)"), ["A", "E", "D"]),
+	(_("50s progr. in C (C, Am, Dm, G7)"), ["C", "Am", "Dm", "G7"]),
+	(_("F chord"), ["F"]),
+	(_("50s progr. in G (G, Em, Am, D7)"), ["G", "Em", "Am", "D7"]),
+	(_("50s progr. in D (D, Bm, Em, A7)"), ["D", "Bm", "Em", "A7"]),
+	(_("50s progr. in A (A, F#m, Bm, E7)"), ["A", "F#m", "Bm", "E7"]),
+	(_("C#m chord"), ["C#m"]),
+	(_("50s progr. in F (F, Dm, Gm, C7)"), ["F", "Dm", "Gm", "C7"]),
+	(_("B and B7 chords"), ["B", "B7"]),
+]
+
 class GermanNotation(Notation):
 	def PreprocessingToStandard(self, c, a):
 		if c == '' and a != '' and a[0].upper() == 'B':

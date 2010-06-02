@@ -592,7 +592,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
 
 	def OnOptions(self, evt):
-		f = MyPreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref)
+		f = MyPreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref, easyChords)
 		if f.ShowModal() == wx.ID_OK:
 			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 
