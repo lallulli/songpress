@@ -28,8 +28,8 @@ class PreviewCanvas(object):
 		#print("OnPaint")
 		dc = wx.AutoBufferedPaintDC(self.panel)
 		self.panel.DoPrepareDC(dc)
-		dc.SetBackground(wx.WHITE_BRUSH);
-		dc.Clear();
+		dc.SetBackground(wx.WHITE_BRUSH)
+		dc.Clear()
 		w, h = self.renderer.Render(self.text, dc)
 		self.panel.SetVirtualSize(wx.Size(w, h))
 
