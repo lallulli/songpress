@@ -14,12 +14,13 @@ import Editor
 from Globals import glb
 from PreferencesDialog import PreferencesDialog
 from MyDecoSlider import MyDecoSlider
+from Transpose import *
 
 #i18n.register('MyPreferencesDialog')
 _ = lambda x: x
 
 class MyPreferencesDialog(PreferencesDialog):
-	def __init__(self, parent, id, title, preferences, easyChords):
+	def __init__(self, parent, preferences, easyChords):
 		self.pref = preferences
 		self.frame = self
 		PreferencesDialog.__init__(self, parent)
@@ -35,6 +36,7 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.editor.SetReadOnly(True)
 		self.autoRemoveBlankLines.SetValue(self.pref.autoAdjustSpuriousLines)
 		self.autoTab2Chordpro.SetValue(self.pref.autoAdjustTab2Chordpro)
+		self.autoAdjustEasyKey.SetValue(self.pref.autoAdjustEasyKey)
 		if not self.pref.locale is None:
 			lang = i18n.getLang()
 		else:
@@ -57,9 +59,13 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.simplifyPanel.SetSizer(simplifyGrid)
 		self.simplifyPanel.Layout()
 
-		for k in easyChords:
-			simplifyGrid.Add(wx.StaticText(self.simplifyPanel, wx.ID_ANY, k[0], wx.DefaultPosition, wx.DefaultSize, 0), 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
-			simplifyGrid.Add(MyDecoSlider(self.simplifyPanel), 1, wx.EXPAND, 5)
+		self.decoSliders = {}
+		for k in easyChordsOrder:
+			simplifyGrid.Add(wx.StaticText(self.simplifyPanel, wx.ID_ANY, easyChords[k][0], wx.DefaultPosition, wx.DefaultSize, 0), 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
+			ds = MyDecoSlider(self.simplifyPanel)
+			self.decoSliders[k] = ds
+			ds.slider.SetValue(self.pref.GetEasyChordsGroup(k))
+			simplifyGrid.Add(ds, 1, wx.EXPAND, 5)
 
 		simplifyGrid.FitInside(self.simplifyPanel)
 
@@ -96,5 +102,8 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.pref.SetDefaultNotation(self.GetNotation())
 		self.pref.autoAdjustSpuriousLines = self.autoRemoveBlankLines.GetValue()
 		self.pref.autoAdjustTab2Chordpro = self.autoTab2Chordpro.GetValue()
+		self.pref.autoAdjustEasyKey = self.autoAdjustEasyKey.GetValue()
+		for k in self.decoSliders:
+			self.pref.SetEasyChordsGroup(k, self.decoSliders[k].slider.GetValue())
 		evt.Skip(True)
 

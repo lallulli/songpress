@@ -282,6 +282,19 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvasPane.caption = _('Preview')
 		self.mainToolBar.caption = _('Standard')
 		self.formatToolBar.caption = _('Format')
+		if 'firstTimeEasyKey' in self.pref.notices:
+			msg = _("You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n\nDo you want to turn this option on?")
+			d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.YES_NO | wx.ICON_QUESTION)
+			if d.ShowModal() == wx.ID_YES:
+				self.pref.autoAdjustEasyKey = True
+				msg = _("Please take a minute to set up your skill as a guitarist. For each group of chords, tell Songpress how much you like them.")
+				d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.OK)
+				d.ShowModal()
+				f = MyPreferencesDialog(self.frame, self.pref, easyChords)
+				f.notebook.SetSelection(1)
+				if f.ShowModal() == wx.ID_OK:
+					self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
+
 
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""
@@ -592,7 +605,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.ReplaceTextOrSelection(removeSpuriousLines(self.text.GetTextOrSelection()))
 
 	def OnOptions(self, evt):
-		f = MyPreferencesDialog(self.frame, wx.ID_ANY, _("Songpress options"), self.pref, easyChords)
+		f = MyPreferencesDialog(self.frame, self.pref, easyChords)
 		if f.ShowModal() == wx.ID_OK:
 			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 
@@ -659,10 +672,9 @@ class SongpressFrame(SDIMainFrame):
 					self.text.SetSelection(lastPos, currentPos)
 					t = tab2ChordPro(t, n)
 					self.text.ReplaceSelection(t)
-		# todo: remove True!
-		if True or self.pref.autoAdjustEasiestKey:
+		if self.pref.autoAdjustEasyKey:
 			notation = autodetectNotation(t, self.pref.notations)
-			count, c, dc, e, de = findEasiestKey(t, self.pref.easiestKeyFav, notation)
+			count, c, dc, e, de = findEasiestKey(t, self.pref.GetEasyChords(), notation)
 			if count > 6 and dc != de:
 				msg = _("The key of your song, %s, is not the easiest to play (difficulty: %.1f/5.0).\n" % (c, 5 * dc))
 				msg += _("Do you want to transpose the key %s, which is the easiest one (difficulty: %.1f/5.0)?" % (e, 5 * de))
