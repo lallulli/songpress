@@ -100,8 +100,8 @@ class PreferencesDialog ( wx.Dialog ):
 		self.autoTab2Chordpro = wx.CheckBox( self.autoAdjust, wx.ID_ANY, _("Offer to convert songs in tab"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer18.Add( self.autoTab2Chordpro, 0, wx.ALL, 5 )
 
-		self.autoEasiestKey = wx.CheckBox( self.autoAdjust, wx.ID_ANY, _("Offer to transpose songs to simplify chords"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer18.Add( self.autoEasiestKey, 0, wx.ALL, 5 )
+		self.autoAdjustEasyKey = wx.CheckBox( self.autoAdjust, wx.ID_ANY, _("Offer to transpose songs to simplify chords"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer18.Add( self.autoAdjustEasyKey, 0, wx.ALL, 5 )
 
 		self.simplifyPanel = wx.ScrolledWindow( self.autoAdjust, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.HSCROLL|wx.SUNKEN_BORDER|wx.VSCROLL )
 		self.simplifyPanel.SetScrollRate( 5, 5 )

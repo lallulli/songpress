@@ -33,7 +33,10 @@ class Preferences(object):
 		* defaultNotation
 		* autoAdjustSpuriousLines
 		* autoAdjustTab2Chordpro
+		* autoAdjustEasyKey
 		* locale
+		* Set/GetEasyChordsGroup
+		* GetEasyChords
 	"""
 	def __init__(self):
 		object.__init__(self)
@@ -42,8 +45,8 @@ class Preferences(object):
 		self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
 		self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
 		self.notations = [enNotation, itNotation, deNotation, frNotation, ptNotation]
+		self.easyChordsGroup = {}
 		self.Load()
-		self.easiestKeyFav = {'C': 1, 'D': 1, 'Dm': 1, 'D7': 1, 'Eb': -1, 'E': 1, 'Em': 1, 'E7': 0.8, 'F': 0.4, 'G': 1, 'G7': 1, 'A': 1, 'Am': 1, 'A7': 1, 'B7': 0.4}
 
 	def SetFont(self, font):
 		self.fontFace = font
@@ -62,6 +65,7 @@ class Preferences(object):
 		self.decoratorFormat.chorus.face = font
 
 	def Load(self):
+		self.notices = {}
 		self.config.SetPath('/Format')
 		l = self.config.Read('ChorusLabel')
 		if l:
@@ -111,11 +115,20 @@ class Preferences(object):
 			self.autoAdjustTab2Chordpro = bool(int(tab2chordpro))
 		else:
 			self.autoAdjustTab2Chordpro = True
-		easiestKey = self.config.Read('easiestKey')
-		if easiestKey:
-			self.autoAdjustEasiestKey = bool(int(easiestKey))
+		easyKey = self.config.Read('easyKey')
+		if easyKey:
+			self.autoAdjustEasyKey = bool(int(easyKey))
 		else:
-			self.autoAdjustEasiestKey = False
+			self.autoAdjustEasyKey = False
+			self.notices['firstTimeEasyKey'] = True
+		self.config.SetPath('/AutoAdjust/EasyChordsGroups')
+		for k in easyChordsOrder:
+			l = self.config.Read(k)
+			if l:
+				l = int(l)
+			else:
+				l = easyChords[k][2]
+			self.SetEasyChordsGroup(k, l)
 		self.config.SetPath('/App')
 		lang = self.config.Read('locale')
 		if not lang:
@@ -142,7 +155,10 @@ class Preferences(object):
 		self.config.SetPath('/AutoAdjust')
 		self.config.Write('spuriousLines', self.Bool2String(self.autoAdjustSpuriousLines))
 		self.config.Write('tab2chordpro', self.Bool2String(self.autoAdjustTab2Chordpro))
-		self.config.Write('easiestKey', self.Bool2String(self.autoAdjustEasiestKey))
+		self.config.Write('easyKey', self.Bool2String(self.autoAdjustEasyKey))
+		self.config.SetPath('/AutoAdjust/EasyChordsGroups')
+		for k in easyChordsOrder:
+			self.config.Write(k, str(self.GetEasyChordsGroup(k)))
 		if self.locale is not None:
 			self.config.SetPath('/App')
 			lang = self.config.Write('locale', self.locale)
@@ -154,3 +170,24 @@ class Preferences(object):
 	def SetDefaultNotation(self, notation):
 		self.defaultNotation = notation
 		self.notations = [x for x in self.notations if x.id == notation] + [x for x in self.notations if x.id != notation]
+
+	def SetEasyChordsGroup(self, group, level):
+		self.easyChordsGroup[group] = level
+		self.easyChords = None
+
+	def GetEasyChordsGroup(self, group):
+		return self.easyChordsGroup[group]
+
+	def GetEasyChords(self):
+		if self.easyChords is None:
+			self.easyChords = {'Eb': -1}
+			for k in easyChords:
+				chords = easyChords[k][1]
+				l = self.easyChordsGroup[k] / 4.0
+				for c in chords:
+					if c in self.easyChords:
+						self.easyChords[c] = max(self.easyChords[c], l)
+					else:
+						self.easyChords[c] = l
+
+		return self.easyChords

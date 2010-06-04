@@ -129,17 +129,19 @@ defaultLangNotation = {
 	'it': itNotation
 }
 
-easyChords = [
-	(_("Basic chords (A, E, D)"), ["A", "E", "D"]),
-	(_("50s progr. in C (C, Am, Dm, G7)"), ["C", "Am", "Dm", "G7"]),
-	(_("F chord"), ["F"]),
-	(_("50s progr. in G (G, Em, Am, D7)"), ["G", "Em", "Am", "D7"]),
-	(_("50s progr. in D (D, Bm, Em, A7)"), ["D", "Bm", "Em", "A7"]),
-	(_("50s progr. in A (A, F#m, Bm, E7)"), ["A", "F#m", "Bm", "E7"]),
-	(_("C#m chord"), ["C#m"]),
-	(_("50s progr. in F (F, Dm, Gm, C7)"), ["F", "Dm", "Gm", "C7"]),
-	(_("B and B7 chords"), ["B", "B7"]),
-]
+easyChords = {
+	'basic': (_("Basic chords (A, E, D)"), ["A", "E", "D"], 4),
+	'Cprog': (_("50s progr. in C (C, Am, Dm, G7)"), ["C", "Am", "Dm", "G7"], 4),
+	'F': (_("F chord"), ["F"], 2),
+	'Gprog': (_("50s progr. in G (G, Em, Am, D7)"), ["G", "Em", "Am", "D7"], 4),
+	'Dprog': (_("50s progr. in D (D, Bm, Em, A7)"), ["D", "Bm", "Em", "A7"], 1),
+	'Aprog': (_("50s progr. in A (A, F#m, Bm, E7)"), ["A", "F#m", "Bm", "E7"], 1),
+	'C#(m)(7)': (_("C#, C#m, C#7 chords"), ["C#", "C#m", "C#7"], 0),
+	'Fprog': (_("50s progr. in F (F, Dm, Gm, C7)"), ["F", "Dm", "Gm", "C7"], 0),
+	'BB7': (_("B and B7 chords"), ["B", "B7"], 0),
+}
+
+easyChordsOrder = ['basic', 'Cprog', 'F', 'Gprog', 'Dprog', 'Aprog', 'C#(m)(7)', 'Fprog', 'BB7']
 
 class GermanNotation(Notation):
 	def PreprocessingToStandard(self, c, a):
