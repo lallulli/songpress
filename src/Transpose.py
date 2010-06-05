@@ -251,6 +251,9 @@ def __pos2chord(pos, key):
 	return naturalScale[diff]
 
 def transpose(s, d, chord, notation=enNotation):
+	sl = chord.find("/")
+	if sl > -1:
+		return "%s/%s" % (transpose(s, d, chord[:sl], notation), transpose(s, d, chord[sl + 1:], notation))
 	chord = translateChord(chord, notation, enNotation)
 	c, v = splitChord(chord)
 	if c == "":
@@ -261,6 +264,9 @@ def transpose(s, d, chord, notation=enNotation):
 def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	if sNotation == dNotation:
 		return chord
+	sl = chord.find("/")
+	if sl > -1:
+		return "%s/%s" % (translateChord(chord[:sl], sNotation, dNotation), translateChord(chord[sl + 1:], sNotation, dNotation))
 	c, a = splitChord(chord, sNotation)
 	c, a = sNotation.PreprocessingToStandard(c, a)
 	if c == "":
