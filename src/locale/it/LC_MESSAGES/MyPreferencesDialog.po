@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-09 16:54+0200\n"
+"PO-Revision-Date: 2010-06-09 17:12+0100\n"
+"Last-Translator: Luca Allulli\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\MyPreferencesDialog.py:33
+msgid ""
+"{t:My Bonnie}\n"
+"\n"
+"My [D]Bonnie lies [G]over the [D]ocean\n"
+"oh [G]bring back my [A]Bonnie to [D]me!\n"
+"\n"
+"{soc}\n"
+"[D]Bring back, [E-]bring back,\n"
+"[A]bring back my Bonnie to [D]me!\n"
+"{eoc}"
+msgstr ""
+"{t:La Fameja Dei Gobon }\n"
+"\n"
+"Un [Do]gobo ed una goba a l'età di novant'[Fa]anni\n"
+"per por fine ai loro af[Do]fanni si de[Sol]cisero a spo[Do]sar.\n"
+"\n"
+"{soc}\n"
+"Gobo so [Do]pare, goba sa mare goba la fja de so so[Fa]rela\n"
+"era goba anche [Do]quela la fa[Sol]miglia dei go[Do]bon.\n"
+"{eoc}"
+
+#: src\MyPreferencesDialog.py:98
+msgid "Language settings will be applied when you restart Songpress."
+msgstr "Language settings will be applied when you restart Songpress."
+
+#: src\MyPreferencesDialog.py:99
+msgid "Songpress"
+msgstr "Songpress"
+
