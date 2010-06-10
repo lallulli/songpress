@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 16:48+0100\n"
+"POT-Creation-Date: 2010-06-09 17:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,19 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:27
-msgid "Editor font"
-msgstr ""
-
-#: src\PreferencesDialog.py:37
-msgid "Size"
-msgstr ""
-
-#: src\PreferencesDialog.py:51
-msgid "Preview"
-msgstr ""
-
-#: src\PreferencesDialog.py:57
+#: src\MyPreferencesDialog.py:33
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -41,38 +29,10 @@ msgid ""
 "{eoc}"
 msgstr ""
 
-#: src\PreferencesDialog.py:65
-msgid "Auto adjust"
-msgstr ""
-
-#: src\PreferencesDialog.py:67
-msgid "Offer to remove blank lines"
-msgstr ""
-
-#: src\PreferencesDialog.py:70
-msgid "Offer to convert songs in tab format to ChordPro"
-msgstr ""
-
-#: src\PreferencesDialog.py:76
-msgid "Language"
-msgstr ""
-
-#: src\PreferencesDialog.py:94
-msgid "Default notation"
-msgstr ""
-
-#: src\PreferencesDialog.py:109
-msgid "OK"
-msgstr ""
-
-#: src\PreferencesDialog.py:113
-msgid "Cancel"
-msgstr ""
-
-#: src\PreferencesDialog.py:153
+#: src\MyPreferencesDialog.py:98
 msgid "Language settings will be applied when you restart Songpress."
 msgstr ""
 
-#: src\PreferencesDialog.py:154
+#: src\MyPreferencesDialog.py:99
 msgid "Songpress"
 msgstr ""
