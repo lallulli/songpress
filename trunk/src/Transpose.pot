@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 16:48+0100\n"
+"POT-Creation-Date: 2010-06-09 17:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,42 @@ msgstr ""
 msgid "Portuguese (Dó Ré Mi... Si)"
 msgstr ""
 
-#: src\Transpose.py:150
+#: src\Transpose.py:133
+msgid "Basic chords (A, E, D)"
+msgstr ""
+
+#: src\Transpose.py:134
+msgid "50s progr. in C (C, Am, Dm, G7)"
+msgstr ""
+
+#: src\Transpose.py:135
+msgid "F chord"
+msgstr ""
+
+#: src\Transpose.py:136
+msgid "50s progr. in G (G, Em, Am, D7)"
+msgstr ""
+
+#: src\Transpose.py:137
+msgid "50s progr. in D (D, Bm, Em, A7)"
+msgstr ""
+
+#: src\Transpose.py:138
+msgid "50s progr. in A (A, F#m, Bm, E7)"
+msgstr ""
+
+#: src\Transpose.py:139
+msgid "C#, C#m, C#7 chords"
+msgstr ""
+
+#: src\Transpose.py:140
+msgid "50s progr. in F (F, Dm, Gm, C7)"
+msgstr ""
+
+#: src\Transpose.py:141
+msgid "B and B7 chords"
+msgstr ""
+
+#: src\Transpose.py:164
 msgid "German (C D E... H)"
 msgstr ""

@@ -16,8 +16,7 @@ from PreferencesDialog import PreferencesDialog
 from MyDecoSlider import MyDecoSlider
 from Transpose import *
 
-#i18n.register('MyPreferencesDialog')
-_ = lambda x: x
+i18n.register('MyPreferencesDialog')
 
 class MyPreferencesDialog(PreferencesDialog):
 	def __init__(self, parent, preferences, easyChords):
@@ -61,7 +60,7 @@ class MyPreferencesDialog(PreferencesDialog):
 
 		self.decoSliders = {}
 		for k in easyChordsOrder:
-			simplifyGrid.Add(wx.StaticText(self.simplifyPanel, wx.ID_ANY, easyChords[k][0], wx.DefaultPosition, wx.DefaultSize, 0), 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
+			simplifyGrid.Add(wx.StaticText(self.simplifyPanel, wx.ID_ANY, getEasyChordsDescription(easyChords[k]), wx.DefaultPosition, wx.DefaultSize, 0), 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
 			ds = MyDecoSlider(self.simplifyPanel)
 			self.decoSliders[k] = ds
 			ds.slider.SetValue(self.pref.GetEasyChordsGroup(k))

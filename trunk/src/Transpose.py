@@ -141,6 +141,9 @@ easyChords = {
 	'BB7': (_("B and B7 chords"), ["B", "B7"], 0),
 }
 
+def getEasyChordsDescription(e):
+	return _(e[0])
+
 easyChordsOrder = ['basic', 'Cprog', 'F', 'Gprog', 'Dprog', 'Aprog', 'C#(m)(7)', 'Fprog', 'BB7']
 
 class GermanNotation(Notation):
