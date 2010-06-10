@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-09 17:14+0200\n"
+"POT-Creation-Date: 2010-06-10 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "Songpress - Il Canzonatore"
 msgstr ""
 
 #: src\SongpressFrame.py:170
-msgid "1.2"
+msgid "1.3"
 msgstr ""
 
 #: src\SongpressFrame.py:171
