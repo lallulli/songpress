@@ -36,7 +36,7 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.autoRemoveBlankLines.SetValue(self.pref.autoAdjustSpuriousLines)
 		self.autoTab2Chordpro.SetValue(self.pref.autoAdjustTab2Chordpro)
 		self.autoAdjustEasyKey.SetValue(self.pref.autoAdjustEasyKey)
-		if not self.pref.locale is None:
+		if self.pref.locale is None:
 			lang = i18n.getLang()
 		else:
 			lang = self.pref.locale
@@ -93,7 +93,7 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.pref.editorFace, self.pref.editorSize = self.GetFont()
 		l = self.GetLanguage()
 		lang = i18n.getLang()
-		if l != lang:
+		if l is not None and l != lang:
 			msg = _("Language settings will be applied when you restart Songpress.")
 			d = wx.MessageDialog(self, msg, _("Songpress"), wx.ICON_INFORMATION | wx.OK)
 			d.ShowModal()
