@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-10 22:25+0200\n"
+"POT-Creation-Date: 2010-06-11 22:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,7 +229,7 @@ msgid ""
 msgstr ""
 
 #: src\SongpressFrame.py:287 src\SongpressFrame.py:291
-#: src\SongpressFrame.py:583 src\SongpressFrame.py:641
+#: src\SongpressFrame.py:584 src\SongpressFrame.py:664
 msgid "Songpress"
 msgstr ""
 
@@ -239,65 +239,76 @@ msgid ""
 "chords, tell Songpress how much you like them."
 msgstr ""
 
-#: src\SongpressFrame.py:436
+#: src\SongpressFrame.py:437
 msgid "PNG image"
 msgstr ""
 
-#: src\SongpressFrame.py:449
+#: src\SongpressFrame.py:450
 msgid "HTML file"
 msgstr ""
 
-#: src\SongpressFrame.py:577
+#: src\SongpressFrame.py:578
 msgid "http://www.skeed.it/songpress.html#News"
 msgstr ""
 
-#: src\SongpressFrame.py:580
+#: src\SongpressFrame.py:581
 msgid "http://www.skeed.it/songpress.html#donate"
 msgstr ""
 
-#: src\SongpressFrame.py:640
-msgid "Please enter a label for chorus"
+#: src\SongpressFrame.py:599 src\SongpressFrame.py:704
+msgid "Simplify chords"
 msgstr ""
 
-#: src\SongpressFrame.py:655
-msgid "It looks like there are spurious blank lines in the song.\n"
-msgstr ""
-
-#: src\SongpressFrame.py:656
-msgid "Do you want to try to remove them automatically?"
-msgstr ""
-
-#: src\SongpressFrame.py:657
-msgid "Remove spurious blank lines"
-msgstr ""
-
-#: src\SongpressFrame.py:667
-msgid ""
-"It looks like your song is in tab format (i.e., chords are above the text).\n"
-msgstr ""
-
-#: src\SongpressFrame.py:668
-msgid "Do you want to convert it to ChordPro automatically?"
-msgstr ""
-
-#: src\SongpressFrame.py:669
-msgid "Convert to ChordPro"
-msgstr ""
-
-#: src\SongpressFrame.py:679
+#: src\SongpressFrame.py:601 src\SongpressFrame.py:702
 #, python-format
 msgid ""
 "The key of your song, %s, is not the easiest to play (difficulty: "
 "%.1f/5.0).\n"
 msgstr ""
 
-#: src\SongpressFrame.py:680
+#: src\SongpressFrame.py:602 src\SongpressFrame.py:703
 #, python-format
 msgid ""
 "Do you want to transpose the key %s, which is the easiest one (difficulty: "
 "%.1f/5.0)?"
 msgstr ""
 
-#: src\SongpressFrame.py:681
-msgid "Simplify chords"
+#: src\SongpressFrame.py:609
+#, python-format
+msgid ""
+"The key of your song, %s, is already the easiest to play (difficulty: "
+"%.1f/5.0).\n"
+msgstr ""
+
+#: src\SongpressFrame.py:611
+msgid "Your song or current selection does not contain any chords."
+msgstr ""
+
+#: src\SongpressFrame.py:663
+msgid "Please enter a label for chorus"
+msgstr ""
+
+#: src\SongpressFrame.py:678
+msgid "It looks like there are spurious blank lines in the song.\n"
+msgstr ""
+
+#: src\SongpressFrame.py:679
+msgid "Do you want to try to remove them automatically?"
+msgstr ""
+
+#: src\SongpressFrame.py:680
+msgid "Remove spurious blank lines"
+msgstr ""
+
+#: src\SongpressFrame.py:690
+msgid ""
+"It looks like your song is in tab format (i.e., chords are above the text).\n"
+msgstr ""
+
+#: src\SongpressFrame.py:691
+msgid "Do you want to convert it to ChordPro automatically?"
+msgstr ""
+
+#: src\SongpressFrame.py:692
+msgid "Convert to ChordPro"
 msgstr ""
