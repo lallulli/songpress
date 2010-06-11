@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-10 22:25+0200\n"
+"POT-Creation-Date: 2010-06-11 22:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -321,137 +321,77 @@ msgid "Transpose song or selected text"
 msgstr ""
 
 #: src\xrc\songpress.pos:77
-msgid "Change chord &notation..."
+msgid "S&implify chords..."
 msgstr ""
 
 #: src\xrc\songpress.pos:78
-msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
+msgid "Transpose chords to the easiest key"
 msgstr ""
 
 #: src\xrc\songpress.pos:79
-msgid "Convert &Tab to Chordpro"
+msgid "Change chord &notation..."
 msgstr ""
 
 #: src\xrc\songpress.pos:80
-msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
+msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
 msgstr ""
 
 #: src\xrc\songpress.pos:81
-msgid "Remove &spurious blank lines"
+msgid "Convert &Tab to Chordpro"
 msgstr ""
 
 #: src\xrc\songpress.pos:82
-msgid "Remove blank lines inside a verse"
+msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
 msgstr ""
 
 #: src\xrc\songpress.pos:83
-msgid "&Options..."
+msgid "Remove &spurious blank lines"
 msgstr ""
 
 #: src\xrc\songpress.pos:84
-msgid "Set program options"
+msgid "Remove blank lines inside a verse"
 msgstr ""
 
 #: src\xrc\songpress.pos:85
-msgid "&?"
+msgid "&Options..."
 msgstr ""
 
 #: src\xrc\songpress.pos:86
-msgid "&Guide\tF1"
+msgid "Set program options"
 msgstr ""
 
 #: src\xrc\songpress.pos:87
-msgid "Show user's manual"
+msgid "&?"
 msgstr ""
 
 #: src\xrc\songpress.pos:88
-msgid "&News and updates (web)"
+msgid "&Guide\tF1"
 msgstr ""
 
 #: src\xrc\songpress.pos:89
-msgid "Open Songpress web site for news and updates"
+msgid "Show user's manual"
 msgstr ""
 
 #: src\xrc\songpress.pos:90
-msgid "&Donate to our scout Group (web)"
+msgid "&News and updates (web)"
 msgstr ""
 
 #: src\xrc\songpress.pos:91
-msgid "Open Songpress web site for donations"
+msgid "Open Songpress web site for news and updates"
 msgstr ""
 
 #: src\xrc\songpress.pos:92
-msgid "&About..."
+msgid "&Donate to our scout Group (web)"
 msgstr ""
 
 #: src\xrc\songpress.pos:93
-msgid "Show credits"
+msgid "Open Songpress web site for donations"
 msgstr ""
 
 #: src\xrc\songpress.pos:94
-msgid "Transpose"
+msgid "&About..."
 msgstr ""
 
 #: src\xrc\songpress.pos:95
-msgid "Chord notation:"
-msgstr ""
-
-#: src\xrc\songpress.pos:96
-msgid "From key:"
-msgstr ""
-
-#: src\xrc\songpress.pos:97
-msgid "Semitones:"
-msgstr ""
-
-#: src\xrc\songpress.pos:98
-msgid "To key:"
-msgstr ""
-
-#: src\xrc\songpress.pos:99 src\xrc\songpress.pos:104
-msgid "&OK"
-msgstr ""
-
-#: src\xrc\songpress.pos:100 src\xrc\songpress.pos:105
-msgid "&Cancel"
-msgstr ""
-
-#: src\xrc\songpress.pos:101
-msgid "Change notation"
-msgstr ""
-
-#: src\xrc\songpress.pos:102
-msgid "From notation:"
-msgstr ""
-
-#: src\xrc\songpress.pos:103
-msgid "To notation:"
-msgstr ""
-
-#: src\xrc\songpress.pos:106 src\xrc\songpress.pos:113
-msgid "a page"
-msgstr ""
-
-#: src\xrc\songpress.pos:107
-msgid "Editor font"
-msgstr ""
-
-#: src\xrc\songpress.pos:108
-msgid "Size"
-msgstr ""
-
-#: src\xrc\songpress.pos:109
-msgid "Combo!"
-msgstr ""
-
-#: src\xrc\songpress.pos:110
-msgid "Preview"
-msgstr ""
-
-#: src\xrc\songpress.pos:111
-msgid "Language"
-msgstr ""
-
-#: src\xrc\songpress.pos:112
-msgid "Default notation"
+msgid "Show credits"
 msgstr ""

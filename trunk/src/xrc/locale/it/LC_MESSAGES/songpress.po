@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-09 16:54+0200\n"
-"PO-Revision-Date: 2010-06-09 17:09+0100\n"
+"POT-Creation-Date: 2010-06-11 22:49+0200\n"
+"PO-Revision-Date: 2010-06-11 22:52+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -320,144 +320,115 @@ msgid "Transpose song or selected text"
 msgstr "Traspone la canzone o il testo selezionato"
 
 #: src\xrc\songpress.pos:77
+msgid "S&implify chords..."
+msgstr "&Semplifica gli accordi..."
+
+#: src\xrc\songpress.pos:78
+msgid "Transpose chords to the easiest key"
+msgstr "Traspone gli accordi nella tonalità più facile"
+
+#: src\xrc\songpress.pos:79
 msgid "Change chord &notation..."
 msgstr "Modifica la &notazione degli accordi..."
 
-#: src\xrc\songpress.pos:78
+#: src\xrc\songpress.pos:80
 msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
 msgstr "Modifica la notazione degli accordi (es. Do Re Mi vs C D E) della canzone o selezione"
 
-#: src\xrc\songpress.pos:79
+#: src\xrc\songpress.pos:81
 msgid "Convert &Tab to Chordpro"
 msgstr "&Converti formato da tab a ChordPro"
 
-#: src\xrc\songpress.pos:80
+#: src\xrc\songpress.pos:82
 msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
 msgstr "Converte il formato da tab (accordi su una linea separata) a ChordPro"
 
-#: src\xrc\songpress.pos:81
+#: src\xrc\songpress.pos:83
 msgid "Remove &spurious blank lines"
 msgstr "&Rimuovi le linee vuote di troppo"
 
-#: src\xrc\songpress.pos:82
+#: src\xrc\songpress.pos:84
 msgid "Remove blank lines inside a verse"
 msgstr "Rimuove le linee vuote dentro le strofe"
 
-#: src\xrc\songpress.pos:83
+#: src\xrc\songpress.pos:85
 msgid "&Options..."
 msgstr "&Opzioni..."
 
-#: src\xrc\songpress.pos:84
+#: src\xrc\songpress.pos:86
 msgid "Set program options"
 msgstr "Imposta le opzioni del programma"
 
-#: src\xrc\songpress.pos:85
+#: src\xrc\songpress.pos:87
 msgid "&?"
 msgstr "&?"
 
-#: src\xrc\songpress.pos:86
+#: src\xrc\songpress.pos:88
 msgid "&Guide\tF1"
 msgstr "&Guida\tF1"
 
-#: src\xrc\songpress.pos:87
+#: src\xrc\songpress.pos:89
 msgid "Show user's manual"
 msgstr "Mostra il manuale utente"
 
-#: src\xrc\songpress.pos:88
+#: src\xrc\songpress.pos:90
 msgid "&News and updates (web)"
 msgstr "&Novità e aggiornamenti (web)"
 
-#: src\xrc\songpress.pos:89
+#: src\xrc\songpress.pos:91
 msgid "Open Songpress web site for news and updates"
 msgstr "Apre il sito di Songpress per novità e aggiornamenti"
 
-#: src\xrc\songpress.pos:90
+#: src\xrc\songpress.pos:92
 msgid "&Donate to our scout Group (web)"
 msgstr "&Dona al nostro Gruppo Scout (web)"
 
-#: src\xrc\songpress.pos:91
+#: src\xrc\songpress.pos:93
 msgid "Open Songpress web site for donations"
 msgstr "Apre il sito di Songpress per donazioni"
 
-#: src\xrc\songpress.pos:92
+#: src\xrc\songpress.pos:94
 msgid "&About..."
 msgstr "&Informazioni su..."
 
-#: src\xrc\songpress.pos:93
+#: src\xrc\songpress.pos:95
 msgid "Show credits"
 msgstr "Mostra i crediti"
 
-#: src\xrc\songpress.pos:94
-msgid "Transpose"
-msgstr "&Trasponi..."
-
-#: src\xrc\songpress.pos:95
-msgid "Chord notation:"
-msgstr "Notazione degli accordi:"
-
-#: src\xrc\songpress.pos:96
-msgid "From key:"
-msgstr "Dalla tonalità:"
-
-#: src\xrc\songpress.pos:97
-msgid "Semitones:"
-msgstr "Semitoni:"
-
-#: src\xrc\songpress.pos:98
-msgid "To key:"
-msgstr "Alla tonalità:"
-
-#: src\xrc\songpress.pos:99
-#: src\xrc\songpress.pos:104
-msgid "&OK"
-msgstr "&OK"
-
-#: src\xrc\songpress.pos:100
-#: src\xrc\songpress.pos:105
-msgid "&Cancel"
-msgstr "&Annulla"
-
-#: src\xrc\songpress.pos:101
-msgid "Change notation"
-msgstr "Modifica la &notazione degli accordi..."
-
-#: src\xrc\songpress.pos:102
-msgid "From notation:"
-msgstr "Dalla notazione:"
-
-#: src\xrc\songpress.pos:103
-msgid "To notation:"
-msgstr "Alla notazione:"
-
-#: src\xrc\songpress.pos:106
-#: src\xrc\songpress.pos:113
-msgid "a page"
-msgstr "una pagina"
-
-#: src\xrc\songpress.pos:107
-msgid "Editor font"
-msgstr "Tipo di carattere dell'editor"
-
-#: src\xrc\songpress.pos:108
-msgid "Size"
-msgstr "Dimensione"
-
-#: src\xrc\songpress.pos:109
-msgid "Combo!"
-msgstr "Combo!"
-
-#: src\xrc\songpress.pos:110
-msgid "Preview"
-msgstr "&Anteprima"
-
-#: src\xrc\songpress.pos:111
-msgid "Language"
-msgstr "Lingua"
-
-#: src\xrc\songpress.pos:112
-msgid "Default notation"
-msgstr "Notazione predefinita"
-
+#~ msgid "Transpose"
+#~ msgstr "&Trasponi..."
+#~ msgid "Chord notation:"
+#~ msgstr "Notazione degli accordi:"
+#~ msgid "From key:"
+#~ msgstr "Dalla tonalità:"
+#~ msgid "Semitones:"
+#~ msgstr "Semitoni:"
+#~ msgid "To key:"
+#~ msgstr "Alla tonalità:"
+#~ msgid "&OK"
+#~ msgstr "&OK"
+#~ msgid "&Cancel"
+#~ msgstr "&Annulla"
+#~ msgid "Change notation"
+#~ msgstr "Modifica la &notazione degli accordi..."
+#~ msgid "From notation:"
+#~ msgstr "Dalla notazione:"
+#~ msgid "To notation:"
+#~ msgstr "Alla notazione:"
+#~ msgid "a page"
+#~ msgstr "una pagina"
+#~ msgid "Editor font"
+#~ msgstr "Tipo di carattere dell'editor"
+#~ msgid "Size"
+#~ msgstr "Dimensione"
+#~ msgid "Combo!"
+#~ msgstr "Combo!"
+#~ msgid "Preview"
+#~ msgstr "&Anteprima"
+#~ msgid "Language"
+#~ msgstr "Lingua"
+#~ msgid "Default notation"
+#~ msgstr "Notazione predefinita"
 #~ msgid "&New"
 #~ msgstr "&Nuovo"
 
