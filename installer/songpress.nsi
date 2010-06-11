@@ -10,10 +10,12 @@
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
+RequestExecutionLevel admin
 SetCompressor lzma
 
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
+!include "FileAssociation.nsh"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
@@ -33,11 +35,13 @@ SetCompressor lzma
 !insertmacro MUI_PAGE_DIRECTORY
 ; Start menu page
 var ICONS_GROUP
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Songpress - Il Canzonatore"
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Songpress"
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_KEY "${PRODUCT_UNINST_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "${PRODUCT_STARTMENU_REGVAL}"
 !insertmacro MUI_PAGE_STARTMENU Application $ICONS_GROUP
+; Components
+!insertmacro MUI_PAGE_COMPONENTS
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -67,84 +71,43 @@ Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
-Section "Songpress" SEC01
+LangString SongpressSectionNameLS ${LANG_ENGLISH} "Songpress"
+LangString SongpressSectionNameLS ${LANG_ITALIAN} "Songpress"
+LangString DesktopSectionNameLS ${LANG_ENGLISH} "Desktop shortcut"
+LangString DesktopSectionNameLS ${LANG_ITALIAN} "Icona sul Desktop"
+LangString CrdSectionNameLS ${LANG_ENGLISH} "Associate CRD files"
+LangString CrdSectionNameLS ${LANG_ITALIAN} "Associa i file CRD"
+LangString ChoSectionNameLS ${LANG_ENGLISH} "Associate CHO files"
+LangString ChoSectionNameLS ${LANG_ITALIAN} "Associa i file CHO"
+LangString ChordproSectionNameLS ${LANG_ENGLISH} "Associate Chordpro files"
+LangString ChordproSectionNameLS ${LANG_ITALIAN} "Associa i file Chordpro"
+LangString ChoproSectionNameLS ${LANG_ENGLISH} "Associate Chopro files"
+LangString ChoproSectionNameLS ${LANG_ITALIAN} "Associa i file Chopro"
+LangString TabSectionNameLS ${LANG_ENGLISH} "Associate TAB files"
+LangString TabSectionNameLS ${LANG_ITALIAN} "Associa i file TAB"
+LangString FileAssociationSG ${LANG_ENGLISH} "File type association"
+LangString FileAssociationSG ${LANG_ITALIAN} "Associa tipi di file"
+
+Section $(SongpressSectionNameLS) SongpressSection
+  SetShellVarContext all
+  SectionIn RO
   SetOutPath "$INSTDIR"
   SetOverwrite try
   File "..\src\dist\bz2.pyd"
-  SetOutPath "$INSTDIR\help"
-  File "..\src\dist\help\songpress-en.chm"
-  File "..\src\dist\help\songpress-it.chm"
-  SetOutPath "$INSTDIR\img"
-  File "..\src\dist\img\chord.png"
-  File "..\src\dist\img\chorus.png"
-  File "..\src\dist\img\copy.png"
-  File "..\src\dist\img\copyAsImage.png"
-  File "..\src\dist\img\copyAsImage2.png"
-  File "..\src\dist\img\cut.png"
-  File "..\src\dist\img\labelVerses.png"
-  File "..\src\dist\img\new.png"
-  File "..\src\dist\img\open.png"
-  File "..\src\dist\img\paste.png"
-  File "..\src\dist\img\redo.png"
-  File "..\src\dist\img\save.png"
-  File "..\src\dist\img\songpress.ico"
-  File "..\src\dist\img\title.png"
-  File "..\src\dist\img\undo.png"
   SetOutPath "$INSTDIR"
-  File "..\src\dist\license.txt"
-  SetOutPath "$INSTDIR\locale\it\LC_MESSAGES"
-  File "..\src\dist\locale\it\LC_MESSAGES\FontFaceDialog.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\MyPreferencesDialog.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\NotationDialog.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\Preferences.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\PreferencesDialog.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\SDIMainFrame.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\SongpressFrame.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\Transpose.mo"
-  File "..\src\dist\locale\it\LC_MESSAGES\TransposeDialog.mo"
-  SetOutPath "$INSTDIR"
-  File "..\src\dist\msvcp71.dll"
-  File "..\src\dist\MSVCR71.dll"
-  File "..\src\dist\python25.dll"
-  File "..\src\dist\pywintypes25.dll"
-  File "..\src\dist\select.pyd"
-  File "..\src\dist\songpress.exe"
-  File "..\src\dist\unicodedata.pyd"
-  File "..\src\dist\w9xpopen.exe"
-  File "..\src\dist\win32api.pyd"
-  File "..\src\dist\win32pipe.pyd"
-  File "..\src\dist\wx._aui.pyd"
-  File "..\src\dist\wx._controls_.pyd"
-  File "..\src\dist\wx._core_.pyd"
-  File "..\src\dist\wx._gdi_.pyd"
-  File "..\src\dist\wx._misc_.pyd"
-  File "..\src\dist\wx._stc.pyd"
-  File "..\src\dist\wx._windows_.pyd"
-  File "..\src\dist\wx._xrc.pyd"
-  File "..\src\dist\wxbase28uh_net_vc.dll"
-  File "..\src\dist\wxbase28uh_vc.dll"
-  File "..\src\dist\wxbase28uh_xml_vc.dll"
-  File "..\src\dist\wxmsw28uh_adv_vc.dll"
-  File "..\src\dist\wxmsw28uh_aui_vc.dll"
-  File "..\src\dist\wxmsw28uh_core_vc.dll"
-  File "..\src\dist\wxmsw28uh_html_vc.dll"
-  File "..\src\dist\wxmsw28uh_stc_vc.dll"
-  File "..\src\dist\wxmsw28uh_xrc_vc.dll"
-  SetOutPath "$INSTDIR\xrc\locale\it\LC_MESSAGES"
-  File "..\src\dist\xrc\locale\it\LC_MESSAGES\songpress.mo"
-  SetOutPath "$INSTDIR\xrc"
-  File "..\src\dist\xrc\songpress.xrc"
-  SetOutPath "$INSTDIR"
-  File "..\src\dist\_ctypes.pyd"
-  File "..\src\dist\_hashlib.pyd"
-  File "..\src\dist\_socket.pyd"
-  File "..\src\dist\_ssl.pyd"
+  File /r "..\src\dist\*.*"
 
 ; Shortcuts
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$ICONS_GROUP"
-  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress - Il Canzonatore.lnk" "$INSTDIR\songpress.exe"
-  CreateShortCut "$DESKTOP\Songpress - Il Canzonatore.lnk" "$INSTDIR\songpress.exe"
+  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$INSTDIR\songpress.exe"
+  !insertmacro MUI_STARTMENU_WRITE_END
+SectionEnd
+
+Section $(DesktopSectionNameLS) DesktopSection
+  SetShellVarContext all
+  !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+  CreateShortCut "$DESKTOP\Songpress.lnk" "$INSTDIR\songpress.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
@@ -153,6 +116,25 @@ Section -AdditionalIcons
   CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk" "$INSTDIR\uninst.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
+
+SectionGroup $(FileAssociationSG)
+Section $(CrdSectionNameLS) CrdSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".crd" "ChordPro file"
+SectionEnd
+Section $(ChoSectionNameLS) ChoSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".cho" "ChordPro file"
+SectionEnd
+Section $(ChordproSectionNameLS) ChordproSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".chordpro" "ChordPro file"
+SectionEnd
+Section $(ChoproSectionNameLS) ChoproSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".chopro" "ChordPro file"
+SectionEnd
+Section $(TabSectionNameLS) TabSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".tab" "TAB chord file"
+SectionEnd
+SectionGroupEnd
+
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
@@ -166,95 +148,71 @@ Section -Post
 SectionEnd
 
 
+;--------------------------------
+;Descriptions
+
+  ;USE A LANGUAGE STRING IF YOU WANT YOUR DESCRIPTIONS TO BE LANGAUGE SPECIFIC
+
+  ;Assign descriptions to sections
+  LangString SongpressSectionLS ${LANG_ENGLISH} "Songpress program files"
+  LangString SongpressSectionLS ${LANG_ITALIAN} "File eseguibili di Songpress"
+  LangString DesktopSectionLS ${LANG_ENGLISH} "Create a shortcut on the Desktop"
+  LangString DesktopSectionLS ${LANG_ITALIAN} "Crea un'icona di Songpress sul Desktop"
+  LangString CrdSectionLS ${LANG_ENGLISH} "Open .crd files with Songpress"
+  LangString CrdSectionLS ${LANG_ITALIAN} "Apre i file .crd con Songpress"
+  LangString ChoSectionLS ${LANG_ENGLISH} "Open .cho files with Songpress"
+  LangString ChoSectionLS ${LANG_ITALIAN} "Apre i file .cho con Songpress"
+  LangString ChordproSectionLS ${LANG_ENGLISH} "Open .chordpro files with Songpress"
+  LangString ChordproSectionLS ${LANG_ITALIAN} "Apre i file .chordpro con Songpress"
+  LangString ChoproSectionLS ${LANG_ENGLISH} "Open .chopro files with Songpress"
+  LangString ChoproSectionLS ${LANG_ITALIAN} "Apre i file .chopro con Songpress"
+  LangString TabSectionLS ${LANG_ENGLISH} "Open .tab files with Songpress"
+  LangString TabSectionLS ${LANG_ITALIAN} "Apre i file .tab con Songpress"
+  
+  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+    !insertmacro MUI_DESCRIPTION_TEXT ${SongpressSection} $(SongpressSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${DesktopSection} $(DesktopSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${CrdSection} $(CrdSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${ChoSection} $(ChoSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${ChordproSection} $(ChordproSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${ChoproSection} $(ChoproSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${TabSection} $(TabSectionLS)
+  !insertmacro MUI_FUNCTION_DESCRIPTION_END
+
+LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
+LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) è stato disinstallato con successo."
+
 Function un.onUninstSuccess
   HideWindow
-  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) has been successfully removed from your computer."
+  MessageBox MB_ICONINFORMATION|MB_OK $(UninstallComplete)
 FunctionEnd
 
+LangString UninstallConfirm ${LANG_ENGLISH} "Are you sure to completely remove $(^Name)?"
+LangString UninstallConfirm ${LANG_ITALIAN} "Sei sicuro di voler rimuovere $(^Name)?"
+
 Function un.onInit
-!insertmacro MUI_UNGETLANGUAGE
-  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "Are you sure to completely remove $(^Name)?" IDYES +2
+  !insertmacro MUI_UNGETLANGUAGE
+  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 $(UninstallConfirm) IDYES +2
   Abort
 FunctionEnd
 
 Section Uninstall
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
-  Delete "$INSTDIR\uninst.exe"
-  Delete "$INSTDIR\_ssl.pyd"
-  Delete "$INSTDIR\_socket.pyd"
-  Delete "$INSTDIR\_hashlib.pyd"
-  Delete "$INSTDIR\_ctypes.pyd"
-  Delete "$INSTDIR\xrc\songpress.xrc"
-  Delete "$INSTDIR\xrc\locale\it\LC_MESSAGES\songpress.mo"
-  Delete "$INSTDIR\wxmsw28uh_xrc_vc.dll"
-  Delete "$INSTDIR\wxmsw28uh_stc_vc.dll"
-  Delete "$INSTDIR\wxmsw28uh_html_vc.dll"
-  Delete "$INSTDIR\wxmsw28uh_core_vc.dll"
-  Delete "$INSTDIR\wxmsw28uh_aui_vc.dll"
-  Delete "$INSTDIR\wxmsw28uh_adv_vc.dll"
-  Delete "$INSTDIR\wxbase28uh_xml_vc.dll"
-  Delete "$INSTDIR\wxbase28uh_vc.dll"
-  Delete "$INSTDIR\wxbase28uh_net_vc.dll"
-  Delete "$INSTDIR\wx._xrc.pyd"
-  Delete "$INSTDIR\wx._windows_.pyd"
-  Delete "$INSTDIR\wx._stc.pyd"
-  Delete "$INSTDIR\wx._misc_.pyd"
-  Delete "$INSTDIR\wx._gdi_.pyd"
-  Delete "$INSTDIR\wx._core_.pyd"
-  Delete "$INSTDIR\wx._controls_.pyd"
-  Delete "$INSTDIR\wx._aui.pyd"
-  Delete "$INSTDIR\win32pipe.pyd"
-  Delete "$INSTDIR\win32api.pyd"
-  Delete "$INSTDIR\w9xpopen.exe"
-  Delete "$INSTDIR\unicodedata.pyd"
-  Delete "$INSTDIR\songpress.exe"
-  Delete "$INSTDIR\select.pyd"
-  Delete "$INSTDIR\pywintypes25.dll"
-  Delete "$INSTDIR\python25.dll"
-  Delete "$INSTDIR\MSVCR71.dll"
-  Delete "$INSTDIR\msvcp71.dll"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\TransposeDialog.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\Transpose.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\SongpressFrame.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\SDIMainFrame.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\PreferencesDialog.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\Preferences.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\NotationDialog.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\MyPreferencesDialog.mo"
-  Delete "$INSTDIR\locale\it\LC_MESSAGES\FontFaceDialog.mo"
-  Delete "$INSTDIR\license.txt"
-  Delete "$INSTDIR\img\undo.png"
-  Delete "$INSTDIR\img\title.png"
-  Delete "$INSTDIR\img\songpress.ico"
-  Delete "$INSTDIR\img\save.png"
-  Delete "$INSTDIR\img\redo.png"
-  Delete "$INSTDIR\img\paste.png"
-  Delete "$INSTDIR\img\open.png"
-  Delete "$INSTDIR\img\new.png"
-  Delete "$INSTDIR\img\labelVerses.png"
-  Delete "$INSTDIR\img\cut.png"
-  Delete "$INSTDIR\img\copyAsImage2.png"
-  Delete "$INSTDIR\img\copyAsImage.png"
-  Delete "$INSTDIR\img\copy.png"
-  Delete "$INSTDIR\img\chorus.png"
-  Delete "$INSTDIR\img\chord.png"
-  Delete "$INSTDIR\help\songpress-it.chm"
-  Delete "$INSTDIR\help\songpress-en.chm"
-  Delete "$INSTDIR\bz2.pyd"
-
+  SetShellVarContext all
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
-  Delete "$DESKTOP\Songpress - Il Canzonatore.lnk"
-  Delete "$SMPROGRAMS\$ICONS_GROUP\Songpress - Il Canzonatore.lnk"
+  Delete "$DESKTOP\Songpress.lnk"
+  Delete "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk"
 
   RMDir "$SMPROGRAMS\$ICONS_GROUP"
-  RMDir "$INSTDIR\xrc\locale\it\LC_MESSAGES"
-  RMDir "$INSTDIR\xrc"
-  RMDir "$INSTDIR\locale\it\LC_MESSAGES"
-  RMDir "$INSTDIR\img"
-  RMDir "$INSTDIR\help"
-  RMDir "$INSTDIR"
+  RMDir /r "$INSTDIR"
+
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
+  ${unregisterExtension} ".crd" "ChordPro file"
+  ${unregisterExtension} ".cho" "ChordPro file"
+  ${unregisterExtension} ".chordpro" "ChordPro file"
+  ${unregisterExtension} ".chopro" "ChordPro file"
+  ${unregisterExtension} ".tab" "TAB chord file"
   SetAutoClose true
 SectionEnd
