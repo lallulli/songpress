@@ -326,6 +326,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnTranspose, 'transpose')
+		Bind(self.OnSimplifyChords, 'simplifyChords')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
 		Bind(self.OnConvertTabToChordpro, 'convertTabToChordpro')
 		Bind(self.OnRemoveSpuriousBlankLines, 'removeSpuriousBlankLines')
@@ -590,6 +591,28 @@ class SongpressFrame(SDIMainFrame):
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.GetTransposed())
 
+	def OnSimplifyChords(self, evt):
+		self.text.AutoChangeMode(True)
+		t = self.text.GetTextOrSelection()
+		notation = autodetectNotation(t, self.pref.notations)
+		count, c, dc, e, de = findEasiestKey(t, self.pref.GetEasyChords(), notation)
+		title = _("Simplify chords")
+		if count > 0 and dc != de:
+			msg = _("The key of your song, %s, is not the easiest to play (difficulty: %.1f/5.0).\n") % (c, 5 * dc)
+			msg += _("Do you want to transpose the key %s, which is the easiest one (difficulty: %.1f/5.0)?") % (e, 5 * de)
+			d = wx.MessageDialog(self.frame, msg, title, wx.YES_NO | wx.ICON_QUESTION)
+			if d.ShowModal() == wx.ID_YES:
+				t = transposeChordPro(translateChord(c, notation), translateChord(e, notation), t, notation)
+				self.text.ReplaceTextOrSelection(t)
+		else:
+			if count > 0:
+				msg = _("The key of your song, %s, is already the easiest to play (difficulty: %.1f/5.0).\n") % (c, 5 * dc)
+			else:
+				msg = _("Your song or current selection does not contain any chords.")
+			d = wx.MessageDialog(self.frame, msg, title, wx.OK | wx.ICON_INFORMATION)
+			d.ShowModal()
+		self.text.AutoChangeMode(False)
+
 	def OnChangeChordNotation(self, evt):
 		t = MyNotationDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
@@ -675,7 +698,7 @@ class SongpressFrame(SDIMainFrame):
 		if self.pref.autoAdjustEasyKey:
 			notation = autodetectNotation(t, self.pref.notations)
 			count, c, dc, e, de = findEasiestKey(t, self.pref.GetEasyChords(), notation)
-			if count > 6 and dc != de:
+			if count > 10 and dc != de:
 				msg = _("The key of your song, %s, is not the easiest to play (difficulty: %.1f/5.0).\n") % (c, 5 * dc)
 				msg += _("Do you want to transpose the key %s, which is the easiest one (difficulty: %.1f/5.0)?") % (e, 5 * de)
 				title = _("Simplify chords")
