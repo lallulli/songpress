@@ -13,6 +13,20 @@
 RequestExecutionLevel admin
 SetCompressor lzma
 
+Function UninstallOld
+  ; $R0 should contain the GUID of the application, i.e. Songpress
+  push $R1
+  ReadRegStr $R1 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\$R0" "UninstallString"
+  StrCmp $R1 "" UninstallMSI_nomsi
+    MessageBox MB_YESNOCANCEL|MB_ICONQUESTION  $(UninstallAsk) IDNO UninstallMSI_nomsi IDYES UninstallMSI_yesmsi
+      Abort
+UninstallMSI_yesmsi:
+    ExecWait $R1
+    MessageBox MB_OK|MB_ICONINFORMATION $(UninstallPressOk)
+UninstallMSI_nomsi:
+  pop $R1
+FunctionEnd
+
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
 !include "FileAssociation.nsh"
@@ -55,6 +69,12 @@ var ICONS_GROUP
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Italian"
 
+LangString UninstallAsk ${LANG_ENGLISH} "A previous version of Songpress was found. It is recommended that you uninstall it first. Do you want to do that now?"
+LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
+LangString UninstallPressOk ${LANG_ENGLISH} "Press OK to continue upgrading your version of Songpress"
+LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornamento di Songpress"
+
+
 ; Reserve files
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
@@ -89,6 +109,12 @@ LangString FileAssociationSG ${LANG_ENGLISH} "File type association"
 LangString FileAssociationSG ${LANG_ITALIAN} "Associa tipi di file"
 
 Section $(SongpressSectionNameLS) SongpressSection
+
+  push $R0
+    StrCpy $R0 "Songpress";  the ProductID of my package
+    Call UninstallOld
+  pop $R0
+
   SetShellVarContext all
   SectionIn RO
   SetOutPath "$INSTDIR"
@@ -113,6 +139,7 @@ SectionEnd
 
 Section -AdditionalIcons
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+  nsExec::Exec "del $SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
   CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk" "$INSTDIR\uninst.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
