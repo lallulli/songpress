@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 16:48+0100\n"
-"PO-Revision-Date: 2010-02-28 16:48+0100\n"
+"PO-Revision-Date: 2010-06-18 22:16+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: src\SDIMainFrame.py:178
 msgid "About "
-msgstr "Informazioni su"
+msgstr "Informazioni su "
 
 #: src\SDIMainFrame.py:216
 msgid "Untitled"

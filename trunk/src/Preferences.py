@@ -79,7 +79,7 @@ class Preferences(object):
 			self.fontFace = face
 		else:
 			self.fontFace = "Arial"
-		self.SetFont(face)
+		self.SetFont(self.fontFace)
 		self.config.SetPath('/Format/Style')
 		labelVerses = self.config.Read('LabelVerses')
 		if labelVerses:
