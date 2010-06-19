@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-28 16:48+0100\n"
+"PO-Revision-Date: 2010-06-18 22:16+0100\n"
+"Last-Translator: Luca Allulli\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\SDIMainFrame.py:120
+#, python-format
+msgid "%s files (*.%s)|%s"
+msgstr "File %s (*.%s)|%s"
+
+#: src\SDIMainFrame.py:127
+msgid "|All files (*.*)|*.*"
+msgstr "|Tutti i file (*.*)|*.*"
+
+#: src\SDIMainFrame.py:130
+msgid "Open file"
+msgstr "Apertura file"
+
+#: src\SDIMainFrame.py:146
+#, python-format
+msgid "File \"%s\" does not exist."
+msgstr "Il file \"%s\" non esiste."
+
+#: src\SDIMainFrame.py:170
+#, python-format
+msgid ""
+"%s version %s\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s"
+msgstr ""
+"%s versione %s\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s"
+
+#: src\SDIMainFrame.py:178
+msgid "About "
+msgstr "Informazioni su "
+
+#: src\SDIMainFrame.py:216
+msgid "Untitled"
+msgstr "Senza titolo"
+
+#: src\SDIMainFrame.py:232
+#, python-format
+msgid "Your %s has been modified. Do you want to save it?"
+msgstr "La tua %s è stata modificata. Vuoi salvarla?"
+
+#: src\SDIMainFrame.py:248
+msgid "Choose a name for the file"
+msgstr "Scegli un nome per il file"
+
+#: src\SDIMainFrame.py:251
+#, python-format
+msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
+msgstr "File %s (*.%s)|*.%s|Tutti i file (*.*)|*.*"
+
+#: src\SDIMainFrame.py:263
+#, python-format
+msgid "File \"%s\" already exists. Do you want to overwrite it?"
+msgstr "Il file \"%s\" esiste già. Vuoi sovrascriverlo?"
+
+#~ msgid "%s files (*.%s)|*.%s|%sAll files (*.*)|*.*"
+#~ msgstr "File %s (*.%s)|*.%s|%sTutti i file (*.*)|*.*"
+

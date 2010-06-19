@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="MainFrame">
+		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
+		<size>611,477</size>
+		<title>Songpress</title>
+		<object class="wxMenuBar" name="menuBar">
+			<label>MyMenuBar</label>
+			<object class="wxMenu" name="file">
+				<label>_File</label>
+				<object class="wxMenuItem" name="new">
+					<label>_New\tCTRL+N</label>
+					<help>Create a new song</help>
+				</object>
+				<object class="wxMenuItem" name="open">
+					<label>_Open...\tCTRL+O</label>
+					<help>Open an existing song</help>
+				</object>
+				<object class="wxMenuItem" name="save">
+					<label>_Save\tSHIFT+F12</label>
+					<help>Save song with the current filename</help>
+				</object>
+				<object class="wxMenuItem" name="saveAs">
+					<label>Save _as...</label>
+					<help>Ask a filename for the song and save it</help>
+				</object>
+				<object class="wxMenu" name="export">
+					<label>E_xport</label>
+					<object class="wxMenuItem" name="exportAsPng">
+						<label>Export as _PNG...</label>
+						<help>Export image as a raster picture</help>
+					</object>
+					<object class="wxMenuItem" name="exportAsHtml">
+						<label>Export as _HTML...</label>
+						<help>Export formatted song as web page</help>
+					</object>
+				</object>
+				<object class="wxMenuItem" name="exit">
+					<label>_Exit</label>
+					<help>Quit Songpress</help>
+				</object>
+				<object class="separator" />
+			</object>
+			<object class="wxMenu" name="edit">
+				<label>_Edit</label>
+				<object class="wxMenuItem" name="undo">
+					<label>_Undo\tCTRL+Z</label>
+					<help>Undo last edit</help>
+				</object>
+				<object class="wxMenuItem" name="redo">
+					<label>_Redo\tCTRL+Y</label>
+					<help>Redo previously undone edit</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="cut">
+					<label>_Cut\tCTRL+X</label>
+					<help>Move selected text in the clipboard</help>
+				</object>
+				<object class="wxMenuItem" name="copy">
+					<label>C_opy\tCTRL+C</label>
+					<help>Copy selected text in the clipboard</help>
+				</object>
+				<object class="wxMenuItem" name="copyAsImage">
+					<label>Copy as _Image\tCTRL+D</label>
+					<help>Copy the whole FORMATTED song (or selected verses) to the clipboard</help>
+				</object>
+				<object class="wxMenuItem" name="paste">
+					<label>_Paste\tCTRL+V</label>
+					<help>Read text from the clipboard and place it at the cursor position</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="find">
+					<label>_Find...\tCTRL+F</label>
+					<help>Search some text</help>
+				</object>
+				<object class="wxMenuItem" name="findNext">
+					<label>Find _Next\tF3</label>
+					<help>Search for the next occurrence of text</help>
+				</object>
+				<object class="wxMenuItem" name="findPrevious">
+					<label>Find Pre_vious\tSHIFT+F3</label>
+					<help>Search for the previous occurrence of text</help>
+				</object>
+				<object class="wxMenuItem" name="replace">
+					<label>R_eplace...\tCTRL+R</label>
+					<help>Replace some text with some other text</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="selectNextChord">
+					<label>_Select next chord\tALT+RIGHT</label>
+					<help>Find next chord and select it</help>
+				</object>
+				<object class="wxMenuItem" name="selectPreviousChord">
+					<label>Selec_t previous chord\tALT+LEFT</label>
+					<help>Find previous chord and select it</help>
+				</object>
+				<object class="wxMenuItem" name="moveChordRight">
+					<label>_Move chord right\tSHIFT+ALT+RIGHT</label>
+					<help>Move chord under cursor one position rightwards</help>
+				</object>
+				<object class="wxMenuItem" name="moveChordLeft">
+					<label>Move chord _left\tSHIFT+ALT+LEFT</label>
+					<help>Move chord under cursor one position leftwards</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="integrateChords">
+					<label>Inte_grate chords</label>
+					<help>Integrate chords of current line with text of following line</help>
+				</object>
+			</object>
+			<object class="wxMenu" name="view">
+				<label>_View</label>
+				<object class="wxMenu" name="toolbars">
+					<label>_Toolbars</label>
+					<object class="wxMenuItem" name="standard">
+						<label>_Standard</label>
+						<help>Show/hide toolbar with file and common buttons</help>
+						<checked>1</checked>
+						<checkable>1</checkable>
+					</object>
+					<object class="wxMenuItem" name="format">
+						<label>_Format</label>
+						<help>Show/hide toolbar with format tools</help>
+						<checked>1</checked>
+						<checkable>1</checkable>
+					</object>
+				</object>
+				<object class="wxMenuItem" name="preview">
+					<label>_Preview</label>
+					<help>Show/hide preview pane</help>
+					<checked>1</checked>
+					<checkable>1</checkable>
+				</object>
+			</object>
+			<object class="wxMenu" name="insert">
+				<label>_Insert</label>
+				<object class="wxMenuItem" name="title">
+					<label>_Title\tCTRL+T</label>
+					<help>Insert a command to display song title</help>
+				</object>
+				<object class="wxMenuItem" name="chord">
+					<label>C_hord\tCTRL+H</label>
+					<help>Insert square brackets that will host a chord</help>
+				</object>
+				<object class="wxMenuItem" name="chorus">
+					<label>Cho_rus\tCTRL+U</label>
+					<help>Insert a couple of commands that will contain chorus</help>
+				</object>
+				<object class="wxMenuItem" name="comment">
+					<label>Co_mment\tCTRL+M</label>
+					<help>Insert a command to display a comment</help>
+				</object>
+			</object>
+			<object class="wxMenu" name="formatMenu">
+				<label>F_ormat</label>
+				<object class="wxMenuItem" name="font">
+					<label>_Font...</label>
+					<help>Select song font</help>
+				</object>
+				<object class="wxMenuItem" name="labelVerses">
+					<label>_Label verses</label>
+					<help>Show/hide labels at the beginning of verses and chorus</help>
+					<checked>1</checked>
+					<checkable>1</checkable>
+				</object>
+				<object class="wxMenuItem" name="chorusLabel">
+					<label>_Chorus label...</label>
+					<help>Set label for chorus</help>
+				</object>
+			</object>
+			<object class="wxMenu" name="tools">
+				<label>_Tools</label>
+				<object class="wxMenuItem" name="transpose">
+					<label>_Transpose...</label>
+					<help>Transpose song or selected text</help>
+				</object>
+				<object class="wxMenuItem" name="simplifyChords">
+					<label>S_implify chords...</label>
+					<help>Transpose chords to the easiest key</help>
+				</object>
+				<object class="wxMenuItem" name="changeChordNotation">
+					<label>Change chord _notation...</label>
+					<help>Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="convertTabToChordpro">
+					<label>Convert _Tab to Chordpro</label>
+					<help>Convert song from tab notation (chords on separate lines) to ChordPro</help>
+				</object>
+				<object class="wxMenuItem" name="removeSpuriousBlankLines">
+					<label>Remove _spurious blank lines</label>
+					<help>Remove blank lines inside a verse</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="options">
+					<label>_Options...</label>
+					<help>Set program options</help>
+				</object>
+			</object>
+			<object class="wxMenu">
+				<label>_?</label>
+				<object class="wxMenuItem" name="guide">
+					<label>_Guide\tF1</label>
+					<help>Show user&apos;s manual</help>
+				</object>
+				<object class="wxMenuItem" name="newsAndUpdates">
+					<label>_News and updates (web)</label>
+					<help>Open Songpress web site for news and updates</help>
+				</object>
+				<object class="wxMenuItem" name="donate">
+					<label>_Donate to our scout Group (web)</label>
+					<help>Open Songpress web site for donations</help>
+				</object>
+				<object class="wxMenuItem" name="about">
+					<label>_About...</label>
+					<help>Show credits</help>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="m_statusBar1">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+</resource>
