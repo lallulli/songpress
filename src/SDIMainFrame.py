@@ -217,7 +217,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			doc = os.path.basename(self.document)
 			(doc, ext) = os.path.splitext(doc)
-		self.frame.SetTitle("%s%s - %s" % (mod, doc, self.appLongName))
+		self.frame.SetTitle(u"%s%s - %s" % (mod, doc, self.appLongName))
 
 	def AskSaveModified(self, canCancel = True):
 		"""If file has been modified, propose to save changes. Return False if cancelled, True otherwise"""
@@ -400,5 +400,5 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			self._mgr.Update()
 		if len(sys.argv) > 1:
-			self.OnDropFiles([sys.argv[1]])
+			self.OnDropFiles([sys.argv[1].decode(sys.getfilesystemencoding())])
 		self.frame.Show()

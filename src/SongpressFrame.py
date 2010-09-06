@@ -167,7 +167,7 @@ class SongpressFrame(SDIMainFrame):
 			'crd',
 			_('Songpress - Il Canzonatore'),
 			glb.AddPath('img/songpress.ico'),
-			_("1.3"),
+			_("1.4"),
 			_("http://www.skeed.it/songpress.html"),
 			_("Copyright (c) 2009-2010 Luca Allulli - Skeed"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
@@ -272,6 +272,7 @@ class SongpressFrame(SDIMainFrame):
 		self.cutMenuId = xrc.XRCID('cut')
 		self.copyMenuId = xrc.XRCID('copy')
 		self.pasteMenuId = xrc.XRCID('paste')
+		self.removeChordsMenuId = xrc.XRCID('removeChords')
 		self.labelVersesMenuId = xrc.XRCID('labelVerses')
 		self.findReplaceDialog = None
 		self.CheckLabelVerses()
@@ -317,6 +318,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnSelectPreviousChord, 'selectPreviousChord')
 		Bind(self.OnMoveChordRight, 'moveChordRight')
 		Bind(self.OnMoveChordLeft, 'moveChordLeft')
+		Bind(self.OnRemoveChords, 'removeChords')
 		Bind(self.OnIntegrateChords, 'integrateChords')
 		Bind(self.OnTitle, 'title')
 		Bind(self.OnChord, 'chord')
@@ -367,6 +369,7 @@ class SongpressFrame(SDIMainFrame):
 		self.menuBar.Enable(self.copyMenuId, s != e)
 		self.mainToolBar.EnableTool(self.pasteTool, self.text.CanPaste())
 		self.menuBar.Enable(self.pasteMenuId, self.text.CanPaste())
+		self.menuBar.Enable(self.removeChordsMenuId, s != e)
 
 	def UpdateEverything(self):
 		self.UpdateUndoRedo()
@@ -548,6 +551,9 @@ class SongpressFrame(SDIMainFrame):
 				s = self.text.PositionAfter(s1)
 				self.text.SetSelection(s, s)
 				self.text.EndUndoAction()
+
+	def OnRemoveChords(self, evt):
+		self.text.RemoveChordsInSelection()
 
 	def OnIntegrateChords(self, evt):
 		ln = self.text.GetCurrentLine()

@@ -103,6 +103,10 @@
 					<help>Move chord under cursor one position leftwards</help>
 				</object>
 				<object class="separator" />
+				<object class="wxMenuItem" name="removeChords">
+					<label>Remove c_hords</label>
+					<help>Remove all chords in current selection</help>
+				</object>
 				<object class="wxMenuItem" name="integrateChords">
 					<label>Inte_grate chords</label>
 					<help>Integrate chords of current line with text of following line</help>
