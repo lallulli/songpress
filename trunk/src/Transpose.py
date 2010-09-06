@@ -509,3 +509,12 @@ def findEasiestKey(text, fav, notation=enNotation):
 				difficulty(m),
 			)
 	return (0, current_key, 0, current_key, 0)
+
+def removeChords(text):
+	"""
+	Remove all chords in (ChordPro) text.
+
+		text: song text
+		return: text without chords
+	"""
+	return re.sub('\[([^]]*)\]', "", text)

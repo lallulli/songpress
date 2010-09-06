@@ -16,6 +16,7 @@ from SDIMainFrame import *
 from SongTokenizer import *
 import sys
 import wx.lib, wx.lib.newevent
+import Transpose
 
 EventTextChanged, EVT_TEXT_CHANGED = wx.lib.newevent.NewEvent()
 
@@ -30,6 +31,8 @@ class Editor(StyledTextCtrl):
 			self.lastPos = 0
 			self.frame.Bind(EVT_STC_CHANGE, self.OnTextChange, self)
 			self.frame.Bind(EVT_STC_UPDATEUI, self.OnUpdateUI, self)
+			self.Bind(EVT_STC_DOUBLECLICK, self.OnDoubleClick, self)
+			self.Bind(wx.EVT_CHAR, self.OnChar, self)
 			self.autoChangeMode = False
 		self.frame.Bind(EVT_STC_STYLENEEDED, self.OnStyleNeeded, self)
 		self.STC_STYLE_NORMAL = 11
@@ -110,13 +113,25 @@ class Editor(StyledTextCtrl):
 		"""
 		pos, dummy = self.GetSelection()
 		char = ""
-		start = self.PositionBefore(pos)
-		while start >= 0 and char != '[' and char != '\n' and char != ']':
-			char = self.GetTextRange(start, self.PositionAfter(start))
-			if start == 0:
-				start = -1
+		if self.GetSelectedText().find('[') != -1:
+			start = pos
+			while char != '[':
+				next = self.PositionAfter(start)
+				char = self.GetTextRange(start, next)
+				start = next
+			start = self.PositionBefore(start)
+		else:
+			start = self.PositionBefore(pos)
+			while start >= 0 and char != '[' and char != '\n' and char != ']':
+				char = self.GetTextRange(start, self.PositionAfter(start))
+				if start == 0:
+					start = -1
+				else:
+					start = self.PositionBefore(start)
+			if start >= 0:
+				start = self.PositionAfter(start)
 			else:
-				start = self.PositionBefore(start)
+				start = 0
 		if char == '[':
 			end = self.PositionBefore(pos)
 			l = self.GetLength()
@@ -124,7 +139,7 @@ class Editor(StyledTextCtrl):
 				char = self.GetTextRange(end, self.PositionAfter(end))
 				end = self.PositionAfter(end)
 			if char == ']':
-				return (self.PositionAfter(start), end, self.GetTextRange(self.PositionAfter(self.PositionAfter(start)), self.PositionBefore(end)))
+				return (start, end, self.GetTextRange(self.PositionAfter(start), self.PositionBefore(end)))
 		return None
 
 	def SelectNextChord(self):
@@ -141,27 +156,41 @@ class Editor(StyledTextCtrl):
 					c = self.GetTextRange(pos, self.PositionAfter(pos))
 					pos = self.PositionAfter(pos)
 				if c == ']':
-					self.SetSelection(start, self.PositionBefore(pos))
+					self.SetSelection(self.PositionBefore(start), pos)
 					return True
 		return False
 
 	def SelectPreviousChord(self):
 		pos, dummy = self.GetSelection()
-		pos = self.PositionBefore(pos)
 		c = ''
-		while pos >= 0:
-			while pos >= 0 and c != ']':
+		done = False
+		while not done:
+			while not done and c != ']':
 				c = self.GetTextRange(pos, self.PositionAfter(pos))
-				pos = self.PositionBefore(pos)
+				if pos <= 0:
+					done = True
+				else:
+					pos = self.PositionBefore(pos)
 			if c == ']':
 				end = pos
-				while pos >= 0 and c != '[' and c != '\n':
+				while not done and c != '[' and c != '\n':
 					c = self.GetTextRange(pos, self.PositionAfter(pos))
-					pos = self.PositionBefore(pos)
+					if pos <= 0:
+						pos = -1
+						done = True
+					else:
+						pos = self.PositionBefore(pos)
+				if pos == -1:
+					pos = 0
+				else:
+					pos = self.PositionAfter(pos)
 				if c == '[':
-					self.SetSelection(self.PositionAfter(self.PositionAfter(pos)), self.PositionAfter(end))
+					self.SetSelection(pos, self.PositionAfter(self.PositionAfter(end)))
 					return True
 		return False
+
+	def RemoveChordsInSelection(self):
+		self.ReplaceSelection(Transpose.removeChords(self.GetSelectedText()))
 
 	def OnTextChange(self, evt):
 		if self.interactive:
@@ -173,10 +202,24 @@ class Editor(StyledTextCtrl):
 					evt = EventTextChanged(lastPos=self.lastPos, currentPos=currentPos)
 					wx.PostEvent(self.frame, evt)
 
-
 	def OnUpdateUI(self, evt):
 		self.lastPos = self.GetCurrentPos()
 		evt.Skip(False)
+
+	def OnDoubleClick(self, evt):
+		t = self.GetChordUnderCursor()
+		if t is not None:
+			self.SetSelection(t[0], t[1])
+		evt.Skip()
+
+	def OnChar(self, evt):
+		t = self.GetSelectedText()
+		if t != '' and t[0] == '[' and t[-1] == ']':
+			c = evt.GetKeyCode()
+			if (c >= 65 and c <= 90) or (c >= 97 and c <= 122):
+				s, e = self.GetSelection()
+				self.SetSelection(self.PositionAfter(s), self.PositionBefore(e))
+		evt.Skip()
 
 	def AutoChangeMode(self, acm):
 		self.autoChangeMode = acm
