@@ -1,7 +1,7 @@
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(1, 4, 0, 0),
-    prodvers=(1, 4, 0, 0),
+    filevers=(1, 4, 2, 0),
+    prodvers=(1, 4, 2, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -15,11 +15,11 @@ VSVersionInfo(
       StringTable(
         '040904B0', 
         [StringStruct('CompanyName', 'Skeed'),
-        StringStruct('FileVersion', '1.4'),
+        StringStruct('FileVersion', '1.4.2'),
         StringStruct('LegalCopyright', 'Copyright 2011 Luca Allulli'),
         StringStruct('OriginalFilename', 'songpress.exe'),
         StringStruct('ProductName', 'Songpress - Il Canzonatore'),
-        StringStruct('ProductVersion', '1.4')])
+        StringStruct('ProductVersion', '1.4.2')])
       ]), 
     VarFileInfo([VarStruct('Translation', [1033, 1200])])
   ]

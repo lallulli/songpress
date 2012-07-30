@@ -67,6 +67,18 @@ class FontFaceDialog(wx.Dialog):
 		
 	def SetFont(self, font):
 		self.format.face = font
+		self.format.chord.face = font
+		self.format.comment.face = font
+		self.format.chorus.face = font
+		self.format.chorus.chord.face = font
+		self.format.chorus.comment.face = font
+		for v in self.format.verse:
+			v.face = font
+			v.chord.face = font
+			v.comment.face = font
+		self.format.title.face = font
+		self.decoratorFormat.face = font
+		self.decoratorFormat.chorus.face = font
 		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")		
 		self.previewCanvas.Refresh(previewSong)	
 		

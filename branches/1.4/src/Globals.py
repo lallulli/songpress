@@ -1,3 +1,5 @@
+# coding: utf-8
+
 ###############################################################
 # Name:			 Globals.py
 # Purpose:	 Hold global settings
@@ -21,13 +23,14 @@ class Globals(object):
 
 	languages = {
 		'en': "English",
-		'it': "Italiano"
+		'it': "Italiano",
+		'fr': u"Français",
 	}
 
 	default_language = 'en'
 
 	PROG_NAME = 'Songpress'
-	VERSION = '2.0'
+	VERSION = '1.4.2'
 	BUG_REPORT_ADDRESS = 'luca@skeed.it'
 
 glb = Globals()

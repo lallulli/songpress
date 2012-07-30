@@ -17,7 +17,6 @@ from Renderer import *
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from MyPreferencesDialog import MyPreferencesDialog
-from FormatPanel import FormatPanel
 from HTML import HtmlExporter
 from Transpose import *
 from MyTransposeDialog import *
@@ -30,8 +29,6 @@ import os
 import os.path
 import i18n
 import platform
-import Pref #TEST
-import MySimplePropertyPanel as mspp #TEST
 
 i18n.register('SongpressFrame')
 
@@ -41,6 +38,7 @@ class SongpressFindReplaceDialog(object):
 		self.data = wx.FindReplaceData(wx.FR_DOWN)
 		self.owner = owner
 		self.searchString = ""
+		self.flags = 0
 		self.dialog = wx.FindReplaceDialog(
 			owner.frame,
 			self.data,
@@ -116,6 +114,7 @@ class SongpressFindReplaceDialog(object):
 
 	def OnReplace(self, evt):
 		r = self.data.GetReplaceString()
+		self.st = self.data.GetFindString()
 		if self.owner.text.GetSelectedText().lower() == self.st.lower():
 			self.owner.text.ReplaceSelection(r)
 			self.FindNext()
@@ -176,12 +175,6 @@ else:
 		(_("Tab files (*.tab)"), ["tab"]),
 	]
 
-
-#TEST
-testw = Pref.Prototype()
-testw.size = {'widget': mspp.ComboIntWidgetFactory([9, 10, 11, 12])}
-#END_TEST
-
 class SongpressFrame(SDIMainFrame):
 
 	def __init__(self, res):
@@ -197,7 +190,7 @@ class SongpressFrame(SDIMainFrame):
 			glb.AddPath('img/songpress.ico'),
 			glb.VERSION,
 			_("http://www.skeed.it/songpress.html"),
-			_("Copyright (c) 2009-2011 Luca Allulli - Skeed"),
+			_("Copyright (c) 2009-2012 Luca Allulli - Skeed\nFrench translation by Raoul Schmitt"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
 			_import_formats,
@@ -208,18 +201,11 @@ class SongpressFrame(SDIMainFrame):
 		self.text.SetDropTarget(dt)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		# Other objects
-		self.AddMainPane(self.text)
 		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.decorator)
+		self.AddMainPane(self.text)
 		self.previewCanvas.panel.SetSize(wx.Size(400, 800))
 		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
 		self.previewCanvasPane.BestSize(wx.Size(400,800))
-	
-		self.formatPanel = FormatPanel(self, self.pref.format, testw)
-		self.formatPanel.SetSize(wx.Size(400, 800))
-		self.formatPanelPane = self.AddPane(self.formatPanel, wx.aui.AuiPaneInfo().Right(), _('Format'), 'formatPane')
-		self.formatPanelPane.BestSize(wx.Size(400,800))	
-		self.pref.format.AddHandler(self.OnFormatModified)
-			
 		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
@@ -435,7 +421,8 @@ class SongpressFrame(SDIMainFrame):
 		#self.UpdateEverything()
 
 	def DrawOnDC(self, dc):
-		r = Renderer(self.pref.format, self.pref.decorator)
+		decorator = self.pref.decorator if self.pref.labelVerses else SongDecorator()
+		r = Renderer(self.pref.format, decorator)
 		start, end = self.text.GetSelection()
 		if start == end:
 			w, h = r.Render(self.text.GetText(), dc)
@@ -572,42 +559,7 @@ class SongpressFrame(SDIMainFrame):
 		evt.Skip()
 
 	def OnCopy(self, evt):
-		"""
-		do = wx.DataObjectComposite()
-		if wx.TheClipboard.Open():
-			# Determine image size
-			dc = wx.MemoryDC(wx.EmptyBitmap(1, 1))
-			w, h = self.DrawOnDC(dc)
-			# Text
-			wx.do.Add(wx.TextDataObject(self.text.GetSelectedText()))
-			# Metafile
-			dc = wx.MetaFileDC("", w, h)
-			self.DrawOnDC(dc)
-			m = dc.Close() # Get the wx.MetaFile from the wx.MetaFileDC
-			mdo = wx.MetafileDataObject()
-			mdo.SetMetafile(m)
-			do.Add(mdo)
-			# Set clipboard data
-			wx.TheClipboard.SetData(do)
-			wx.TheClipboard.Close()
-	"""
-		if wx.TheClipboard.Open():
-			# Draw on Metafile
-			dc = wx.MetaFileDC("", 10, 10)
-			dc.DrawCircle(5, 5, 5)
-			m = dc.Close() # Get a wx.MetaFile from the wx.MetaFileDC
-			mdo = wx.MetafileDataObject()
-			mdo.SetMetafile(m)
-			
-			# (1) Set Metafile on clipboard directly
-			wx.TheClipboard.AddData(mdo)
-			
-			# (2) Set Metafile on a DataObjectComposite instead
-			#do = wx.DataObjectComposite()
-			#do.Add(mdo)
-			#wx.TheClipboard.AddData(do)
-						
-			wx.TheClipboard.Close()
+		self.text.Copy()
 
 	def OnCopyAsImage(self, evt):
 		dc = wx.MetaFileDC()
@@ -693,8 +645,10 @@ class SongpressFrame(SDIMainFrame):
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
 		self.pref.SetFont(font)
-		self.SetFont()
+		self.SetFont(False)
 		evt.Skip()
+
+
 
 	def OnGuide(self, evt):
 		if platform.system() == 'Windows':
@@ -846,8 +800,9 @@ class SongpressFrame(SDIMainFrame):
 					self.text.ReplaceSelection(t)
 		self.text.AutoChangeMode(False)
 
-	def SetFont(self):
-		self.fontChooser.SetValue(self.pref.format.face)
+	def SetFont(self, updateFontChooser=True):
+		if updateFontChooser:
+			self.fontChooser.SetValue(self.pref.format.face)
 		self.previewCanvas.Refresh(self.text.GetText())
 
 	def CheckLabelVerses(self):
@@ -859,7 +814,4 @@ class SongpressFrame(SDIMainFrame):
 			self.previewCanvas.SetDecorator(SongDecorator())
 		self.previewCanvas.Refresh(self.text.GetText())
 
-	def OnFormatModified(self, format, name, value):
-		self.fontChooser.SetValue(self.pref.format.face)
-		self.previewCanvas.Refresh(self.text.GetText())
-		
+

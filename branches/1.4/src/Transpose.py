@@ -99,12 +99,10 @@ frNotation = Notation(
 	[
 		(r'maj7', '7+'),
 		(r'sus4', '4'),
-		(r'^m', '-')
 	],
 	[
 		(r'7\+', 'maj7'),
 		(r'^4', 'sus4'),
-		(r'^-', 'm')
 	]
 )
 
@@ -126,7 +124,8 @@ ptNotation = Notation(
 
 defaultLangNotation = {
 	'en': enNotation,
-	'it': itNotation
+	'it': itNotation,
+	'fr': frNotation,
 }
 
 easyChords = {
