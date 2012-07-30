@@ -147,12 +147,6 @@
 					<checked>1</checked>
 					<checkable>1</checkable>
 				</object>
-				<object class="wxMenuItem" name="formatPane">
-					<label>_Format</label>
-					<help>Show/hide format pane</help>
-					<checked>1</checked>
-					<checkable>1</checkable>
-				</object>
 			</object>
 			<object class="wxMenu" name="insert">
 				<label>_Insert</label>

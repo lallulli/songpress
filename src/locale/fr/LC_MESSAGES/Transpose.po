@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-29 22:28+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-06-28 14:58+0200\n"
+"PO-Revision-Date: 2012-06-20 19:02+0100\n"
+"Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,56 +17,56 @@ msgstr ""
 
 #: src\Transpose.py:73
 msgid "American (C D E... B)"
-msgstr ""
+msgstr "Américain (C D E... B)"
 
 #: src\Transpose.py:81
 msgid "Italian (Do Re Mi... Si)"
-msgstr ""
+msgstr "Italien (Do Re Mi... Si)"
 
 #: src\Transpose.py:97
 msgid "French (Do Ré Mi... Si)"
-msgstr ""
+msgstr "Français (Do Ré Mi... Si)"
 
 #: src\Transpose.py:111
 msgid "Portuguese (Dó Ré Mi... Si)"
-msgstr ""
+msgstr "Portugais (Dó Ré Mi... Si)"
 
 #: src\Transpose.py:132
 msgid "Basic chords (A, E, D)"
-msgstr ""
+msgstr "Accords basiques (A, E, D)"
 
 #: src\Transpose.py:133
 msgid "50s progr. in C (C, Am, Dm, G7)"
-msgstr ""
+msgstr "50ème progression en Do (Do, Lam, Rém, Sol7)"
 
 #: src\Transpose.py:134
 msgid "F chord"
-msgstr ""
+msgstr "Accord de Fa"
 
 #: src\Transpose.py:135
 msgid "50s progr. in G (G, Em, Am, D7)"
-msgstr ""
+msgstr "50ème progression en Sol (Sol, Mim, Lam, Ré7)"
 
 #: src\Transpose.py:136
 msgid "50s progr. in D (D, Bm, Em, A7)"
-msgstr ""
+msgstr "50ème progression en Ré (Ré, Sim, Mim, La7)"
 
 #: src\Transpose.py:137
 msgid "50s progr. in A (A, F#m, Bm, E7)"
-msgstr ""
+msgstr "50ème progression en La (La, Fa#m, Sim, Mi7)"
 
 #: src\Transpose.py:138
 msgid "C#, C#m, C#7 chords"
-msgstr ""
+msgstr "Accords de Do#, Do#m, Do#7 "
 
 #: src\Transpose.py:139
 msgid "50s progr. in F (F, Dm, Gm, C7)"
-msgstr ""
+msgstr "50ème progression en Fa (Fa, Rém, Solm, Do7)"
 
 #: src\Transpose.py:140
 msgid "B and B7 chords"
-msgstr ""
+msgstr "Accords de Si et Si7"
 
 #: src\Transpose.py:166
 msgid "German (C D E... H)"
-msgstr ""
+msgstr "Allemand (C D E ... H)"
