@@ -12,10 +12,19 @@ from decorators import StandardVerseNumbers
 from SongDecorator import SongDecorator
 from Transpose import *
 import i18n
+import datetime
 
 i18n.register('Preferences')
 
-
+def get_update_frequencies():
+	return {
+		0: _("Never"),
+		7: _("Week"),
+		14: _("Two weeks"),
+		30: _("Month"),
+		60: _("Two months"),
+	}
+	
 class Preferences(object):
 	"""
 		Available preferences
@@ -35,6 +44,10 @@ class Preferences(object):
 		* autoAdjustTab2Chordpro
 		* autoAdjustEasyKey
 		* locale
+		* updateFrequency (days, or 0 for never)
+		* ignoredUpdates
+		* updateUrl
+		* updateLastCheck
 		* Set/GetEasyChordsGroup
 		* GetEasyChords
 	"""
@@ -51,18 +64,6 @@ class Preferences(object):
 	def SetFont(self, font):
 		self.fontFace = font
 		self.format.face = font
-		self.format.comment.face = font
-		self.format.chord.face = font
-		self.format.chorus.face = font
-		self.format.chorus.chord.face = font
-		self.format.chorus.comment.face = font
-		for v in self.format.verse:
-			v.face = font
-			v.chord.face = font
-			v.comment.face = font
-		self.format.title.face = font
-		self.decoratorFormat.face = font
-		self.decoratorFormat.chorus.face = font
 
 	def Load(self):
 		self.notices = {}
@@ -135,6 +136,28 @@ class Preferences(object):
 			self.locale = None
 		else:
 			self.locale = lang
+		self.config.SetPath('/AutoUpdate')
+		f = self.config.Read('frequency')
+		if not f:
+			self.updateFrequency = 7
+		else:
+			self.updateFrequency = int(f)
+		i = self.config.Read('ignored')
+		if not i:
+			self.ignoredUpdates = set()
+		else:
+			self.ignoredUpdates = set(i.split(','))
+		u = self.config.Read('url')
+		if not u:
+			self.updateUrl = 'http://songpress.skeed.it/xmlrpc'
+		else:
+			self.updateUrl = u
+		d = self.config.Read('lastCheck')
+		if not d:
+			self.updateLastCheck = None
+		else:
+			self.updateLastCheck = datetime.datetime.fromordinal(int(d))
+		
 
 	def Bool2String(self, param):
 		return "1" if param else "0"
@@ -162,6 +185,12 @@ class Preferences(object):
 		if self.locale is not None:
 			self.config.SetPath('/App')
 			lang = self.config.Write('locale', self.locale)
+		self.config.SetPath('/AutoUpdate')
+		self.config.Write('frequency', str(self.updateFrequency))
+		self.config.Write('ignored', ",".join(self.ignoredUpdates))
+		self.config.Write('url', self.updateUrl)
+		if self.updateLastCheck is not None:
+			self.config.Write('lastCheck', str(self.updateLastCheck.toordinal()))
 
 	def SetChorusLabel(self, c):
 		self.chorusLabel = c

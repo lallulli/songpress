@@ -27,7 +27,7 @@ class PreviewCanvas(object):
 	def OnPaint(self, e):
 		#print("OnPaint")
 		dc = wx.AutoBufferedPaintDC(self.panel)
-		self.panel.DoPrepareDC(dc)
+		self.panel.PrepareDC(dc)
 		dc.SetBackground(wx.WHITE_BRUSH)
 		dc.Clear()
 		w, h = self.renderer.Render(self.text, dc)

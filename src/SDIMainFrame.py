@@ -26,6 +26,7 @@ import os
 import os.path
 import sys
 import i18n
+import platform
 
 i18n.register('SDIMainFrame')
 
@@ -123,7 +124,7 @@ class SDIMainFrame(wx.FileDropTarget):
 						self.docExt,
 					)
 			else:
-				filter = "|".join(["%s | %s" % (x[0], ";".join(["*." + y for y in x[1]])) for x in self.importFormats])
+				filter = "|".join(["%s|%s" % (x[0], ";".join(["*." + y for y in x[1]])) for x in self.importFormats])
 			filter += _("|All files (*.*)|*.*")
 			dlg = wx.FileDialog(
 				self.frame,
@@ -286,6 +287,12 @@ class SDIMainFrame(wx.FileDropTarget):
 				consensus = False
 
 		if consensus:
+			if platform.system() == 'Linux':
+				# Since wxPython file dialog in Linux does not add default extension
+				# when it has not been specified by user, we add it ourselves
+				pref, ext = os.path.splitext(fn)
+				if ext == '':
+					fn = '%s.%s' % (fn, self.docExt)
 			self.document = fn
 			self.UpdateTitle()
 			return wx.ID_OK

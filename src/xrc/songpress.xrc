@@ -26,6 +26,14 @@
 				</object>
 				<object class="wxMenu" name="export">
 					<label>E_xport</label>
+					<object class="wxMenuItem" name="exportAsSvg">
+						<label>Export as _SVG...</label>
+						<help>Export image as a vector image</help>
+					</object>
+					<object class="wxMenuItem" name="exportAsEmf">
+						<label>Export as _Enhanced Metafile...</label>
+						<help>Export image as a Windows Metafile vector image</help>
+					</object>
 					<object class="wxMenuItem" name="exportAsPng">
 						<label>Export as _PNG...</label>
 						<help>Export image as a raster picture</help>
@@ -67,6 +75,10 @@
 				<object class="wxMenuItem" name="paste">
 					<label>_Paste\tCTRL+V</label>
 					<help>Read text from the clipboard and place it at the cursor position</help>
+				</object>
+				<object class="wxMenuItem" name="pasteChords">
+					<label>P_aste Chords</label>
+					<help>Integrate chords of copied text into current selection</help>
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="find">
@@ -132,6 +144,12 @@
 				<object class="wxMenuItem" name="preview">
 					<label>_Preview</label>
 					<help>Show/hide preview pane</help>
+					<checked>1</checked>
+					<checkable>1</checkable>
+				</object>
+				<object class="wxMenuItem" name="formatPane">
+					<label>_Format</label>
+					<help>Show/hide format pane</help>
 					<checked>1</checked>
 					<checkable>1</checkable>
 				</object>
@@ -208,7 +226,7 @@
 					<help>Show user&apos;s manual</help>
 				</object>
 				<object class="wxMenuItem" name="newsAndUpdates">
-					<label>_News and updates (web)</label>
+					<label>_Check for updates</label>
 					<help>Open Songpress web site for news and updates</help>
 				</object>
 				<object class="wxMenuItem" name="donate">

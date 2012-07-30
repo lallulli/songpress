@@ -17,8 +17,22 @@ from SongTokenizer import *
 import sys
 import wx.lib, wx.lib.newevent
 import Transpose
+import codecs
 
 EventTextChanged, EVT_TEXT_CHANGED = wx.lib.newevent.NewEvent()
+
+def get_text_from_clipboard():
+	"""
+	Return text in clipboard, or None
+	"""
+	if wx.TheClipboard.IsOpened():
+		return None
+	wx.TheClipboard.Open()
+	do = wx.TextDataObject()
+	if not wx.TheClipboard.GetData(do):
+		return None
+	wx.TheClipboard.Close()
+	return do.GetText()
 
 class Editor(StyledTextCtrl):
 
@@ -43,12 +57,12 @@ class Editor(StyledTextCtrl):
 		self.STC_STYLE_COMMENT = 16
 		self.SetFont("Lucida Console", 12)
 		self.SetLexer(STC_LEX_CONTAINER)
-		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Color(0, 0, 0))
-		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Color(0, 0, 0))
-		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Color(255, 0, 0))
-		self.StyleSetForeground(self.STC_STYLE_COMMAND, wx.Color(0, 0, 255))
-		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Color(0, 128, 0))
-		self.StyleSetForeground(self.STC_STYLE_COMMENT, wx.Color(128, 128, 128))
+		self.StyleSetForeground(self.STC_STYLE_NORMAL, wx.Colour(0, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_CHORUS, wx.Colour(0, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_CHORD, wx.Colour(255, 0, 0))
+		self.StyleSetForeground(self.STC_STYLE_COMMAND, wx.Colour(0, 0, 255))
+		self.StyleSetForeground(self.STC_STYLE_ATTR, wx.Colour(0, 128, 0))
+		self.StyleSetForeground(self.STC_STYLE_COMMENT, wx.Colour(128, 128, 128))
 		self.StyleSetBold(self.STC_STYLE_CHORUS, True)
 		#Dummy "token": we artificially replace every normalToken into a chorusToken when we are
 		#inside chorus.  Then, we can associate the chorus style in self.tokenStyle dictionary.
@@ -82,13 +96,19 @@ class Editor(StyledTextCtrl):
 		self.StyleSetFont(self.STC_STYLE_CHORUS, font)
 
 	def New(self):
-		self.ClearAll();
+		self.ClearAll()
 
 	def Open(self):
+		self.ClearAll()
 		self.LoadFile(self.spframe.document)
 
 	def Save(self):
-		self.SaveFile(self.spframe.document)
+		#self.SaveFile(self.spframe.document)
+		t = self.GetText()
+		f = codecs.open(self.spframe.document, 'w', 'utf-8')
+		f.write(t)
+		f.close()
+		
 
 	def GetTextOrSelection(self):
 		start, end = self.GetSelection()
@@ -223,6 +243,28 @@ class Editor(StyledTextCtrl):
 
 	def AutoChangeMode(self, acm):
 		self.autoChangeMode = acm
+		
+	def PasteChords(self):
+		src = get_text_from_clipboard()
+		if src is None:
+			return
+		self.BeginUndoAction()
+		start, end = self.GetSelection()
+		if start == end:
+			l = self.LineFromPosition(start)
+			end = self.PositionFromLine(l + len(src.splitlines()))
+			if end == -1:
+				end = self.GetLength()
+			else:
+				end = self.PositionBefore(end)
+		prev = self.PositionBefore(end)
+		while end > start and self.GetCharAt(prev) in [10, 13]:
+			end = prev
+			prev = self.PositionBefore(end)
+		self.SetSelection(start, end)
+		self.ReplaceSelection(Transpose.pasteChords(src, self.GetSelectedText()))
+		self.EndUndoAction()
+		
 
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()

@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Songpress"
-!define PRODUCT_VERSION "1.3"
+!define PRODUCT_VERSION "1.4"
 !define PRODUCT_PUBLISHER "Luca Allulli - Skeed"
 !define PRODUCT_WEB_SITE "http://www.skeed.it"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\songpress.exe"

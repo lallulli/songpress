@@ -8,59 +8,33 @@
 ##############################################################
 
 import wx
-
-class AttributeMonitor(object):
-	def __init__(self, handlers):
-		object.__init__(self)
-		self.am_started = False
-		self.am_handlers = handlers
-
-	def __setattr__(self, name, value):
-		object.__setattr__(self, name, value)
-		if name != 'am_started' and self.am_started:
-			for h in self.am_handlers:
-				if name in h.names:
-					#print name
-					h.OnSetAttr(self, name, value)
-
-	def Am_Start(self):
-		self.am_started = True
-
-class FontChangeHandler(object):
-	names = set(("face", "size", "bold", "italic", "underline"))
-	@staticmethod
-	def OnSetAttr(format, name, value):
-		format.UpdateWxFont()
-
-class FontFormat(AttributeMonitor):
+from Pref import Prototype
+		
+class FontFormat(Prototype):
 	def __init__(self, ff=None):
-		AttributeMonitor.__init__(self, (FontChangeHandler, ))
-		# Definable by user
-		if ff == None:
+		Prototype.__init__(self, ff)
+		if ff is None:
+			self.size = 12
+			self.bold = False
+			self.italic = False
+			self.underline = False
+			self.wxFont = None
 			self.face = "Arial"
-		else:
-			self.face = ff.face
-		self.size = 12
-		self.bold = False
-		self.italic = False
-		self.underline = False
-		# Auto set
-		self.wxFont = None
-		self.UpdateWxFont()
-		# Start monitor
-		self.Am_Start()
+		self.AddHandler(self.onFontChanged)
+		self.onFontChanged(self, '', '')
 
-	def UpdateWxFont(self):
-		#print("Font Updated, face = " + self.face)
-		if self.italic:
-			style = wx.FONTSTYLE_ITALIC
-		else:
-			style = wx.FONTSTYLE_NORMAL
-		if self.bold:
-			weight = wx.FONTWEIGHT_BOLD
-		else:
-			weight = wx.FONTWEIGHT_NORMAL
-		self.wxFont = wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
+	def onFontChanged(self, obj, name, value):
+		if name in ['face', 'size', 'bold', 'italic', 'underline']:
+			if obj.italic:
+				style = wx.FONTSTYLE_ITALIC
+			else:
+				style = wx.FONTSTYLE_NORMAL
+			if obj.bold:
+				weight = wx.FONTWEIGHT_BOLD
+			else:
+				weight = wx.FONTWEIGHT_NORMAL
+			obj.wxFont = wx.Font(obj.size, wx.FONTFAMILY_DEFAULT, style, weight, obj.underline, obj.face)
+
 
 class ParagraphFormat(FontFormat):
 	def __init__(self, ff=None):
@@ -71,20 +45,20 @@ class ParagraphFormat(FontFormat):
 		self.chordSpacing = 0.8
 		self.textSpacing = 1
 		self.vskip = 1
-		self.chord = FontFormat(ff)
+		self.chord = FontFormat(self)
 		self.chord.size = self.size * 0.9
 		self.chord.italic = True
-		self.comment = FontFormat(ff)
+		self.comment = FontFormat(self)
 		self.comment.italic = True
 
 class SongFormat(ParagraphFormat):
 	def __init__(self, ff=None):
 		ParagraphFormat.__init__(self, ff)
 		self.verse = []
-		self.chorus = ParagraphFormat(ff)
+		self.chorus = ParagraphFormat(self)
 		self.chorus.bold = True
 		self.chorus.underline = False
-		self.title = ParagraphFormat(ff)
+		self.title = ParagraphFormat(self)
 		self.title.bold = True
 		self.title.underline = True
 		self.blockSpacing = 1
