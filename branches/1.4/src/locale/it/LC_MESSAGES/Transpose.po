@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-27 15:10+0100\n"
+"PO-Revision-Date: 2010-06-09 17:06+0100\n"
+"Last-Translator: Luca Allulli\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\Transpose.py:73
+msgid "American (C D E... B)"
+msgstr "Americana (C D E... B)"
+
+#: src\Transpose.py:81
+msgid "Italian (Do Re Mi... Si)"
+msgstr "Italiana (Do Re Mi... Si)"
+
+#: src\Transpose.py:97
+msgid "French (Do Ré Mi... Si)"
+msgstr "Francese (Do Ré Mi... Si)"
+
+#: src\Transpose.py:113
+msgid "Portuguese (Dó Ré Mi... Si)"
+msgstr "Portoghese (Dó Ré Mi... Si)"
+
+#: src\Transpose.py:133
+msgid "Basic chords (A, E, D)"
+msgstr "Accordi di base (La, Mi, Re)"
+
+#: src\Transpose.py:134
+msgid "50s progr. in C (C, Am, Dm, G7)"
+msgstr "Giro di Do (Do, La-, Re-, Sol7)"
+
+#: src\Transpose.py:135
+msgid "F chord"
+msgstr "Accordo Fa"
+
+#: src\Transpose.py:136
+msgid "50s progr. in G (G, Em, Am, D7)"
+msgstr "Giro di Sol (Sol, Mi-, La-, Re7)"
+
+#: src\Transpose.py:137
+msgid "50s progr. in D (D, Bm, Em, A7)"
+msgstr "Giro di Re (Re, Si-, Mi-, La7)"
+
+#: src\Transpose.py:138
+msgid "50s progr. in A (A, F#m, Bm, E7)"
+msgstr "Giro di La (La, Fa#-, Si-, Mi7)"
+
+#: src\Transpose.py:139
+msgid "C#, C#m, C#7 chords"
+msgstr "Accordi Do#, Do#-, Do#7"
+
+#: src\Transpose.py:140
+msgid "50s progr. in F (F, Dm, Gm, C7)"
+msgstr "Giro di Fa (Fa, Re-, Sol-, Do7)"
+
+#: src\Transpose.py:141
+msgid "B and B7 chords"
+msgstr "Accordi Si e Si7"
+
+#: src\Transpose.py:167
+msgid "German (C D E... H)"
+msgstr "Tedesca (C D E... H)"

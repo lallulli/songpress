@@ -1,0 +1,375 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-22 18:06+0200\n"
+"PO-Revision-Date: 2011-05-22 18:06+0100\n"
+"Last-Translator: Luca Allulli <luca@skeed.it>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src\SongpressFrame.py:44
+msgid "Replace"
+msgstr "Sostituisci"
+
+#: src\SongpressFrame.py:44
+msgid "Find"
+msgstr "Trova"
+
+#: src\SongpressFrame.py:88
+msgid "beginning"
+msgstr "l'inizio"
+
+#: src\SongpressFrame.py:89
+msgid "Reached the end"
+msgstr "Raggiunta la fine"
+
+#: src\SongpressFrame.py:92
+msgid "end"
+msgstr "la fine"
+
+#: src\SongpressFrame.py:93
+msgid "Reached the beginning"
+msgstr "Raggiunto l'inizio"
+
+#: src\SongpressFrame.py:97
+#, python-format
+msgid "%s of the song, restarting search from the %s"
+msgstr "%s della canzone; la ricerca riprende dal%s"
+
+#: src\SongpressFrame.py:108
+msgid "The specified text was not found"
+msgstr "Il testo immesso non è stato trovato"
+
+#: src\SongpressFrame.py:147
+#, python-format
+msgid "%d text occurrences have been replaced"
+msgstr "Sono state sostituite %d occorrenze del testo"
+
+#: src\SongpressFrame.py:163
+msgid "Chordpro files (*.crd)"
+msgstr "File ChordPro (*.crd)"
+
+#: src\SongpressFrame.py:164
+#: src\SongpressFrame.py:173
+msgid "Tab files (*.tab)"
+msgstr "File in formato tab (*.tab)"
+
+#: src\SongpressFrame.py:165
+msgid "Chordpro files (*.cho)"
+msgstr "File ChordPro (*.cho)"
+
+#: src\SongpressFrame.py:166
+msgid "Chordpro files (*.chordpro)"
+msgstr "File ChordPro (*.chordpro)"
+
+#: src\SongpressFrame.py:167
+msgid "Chordpro files (*.chopro)"
+msgstr "File ChordPro (*.chopro)"
+
+#: src\SongpressFrame.py:171
+msgid "All supported files"
+msgstr "Tutti i file supportati"
+
+#: src\SongpressFrame.py:172
+msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro)"
+msgstr "File ChordPro (*.crd, *.cho, *.chordpro, *.chopro)"
+
+#: src\SongpressFrame.py:185
+msgid "song"
+msgstr "canzone"
+
+#: src\SongpressFrame.py:187
+msgid "Songpress - Il Canzonatore"
+msgstr "Songpress - Il Canzonatore"
+
+#: src\SongpressFrame.py:190
+msgid "http://www.skeed.it/songpress.html"
+msgstr "http://www.skeed.it/songpress.html"
+
+#: src\SongpressFrame.py:191
+msgid "Copyright (c) 2009-2011 Luca Allulli - Skeed"
+msgstr "Copyright (c) 2009-2011 Luca Allulli - Skeed"
+
+#: src\SongpressFrame.py:192
+msgid "Licensed under the terms and conditions of the GNU General Public License, version 2"
+msgstr "Concesso in licenza secondo i termini e le condizioni della GNU General Public License, versione 2"
+
+#: src\SongpressFrame.py:193
+msgid ""
+"Special thanks to:\n"
+"  * The Pyhton programming language (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)\n"
+"  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"
+msgstr ""
+"Un sentito ringraziamento a:\n"
+"  * Il linguaggio di programmazione Pyhton (http://www.python.org)\n"
+"  * wxWidgets (http://www.wxwidgets.org)\n"
+"  * wxPython (http://www.wxpython.org)\n"
+"  * Editra (http://editra.org/) (per la finestra di segnalazione errori e... per l'editor in quanto tale!)"
+
+#: src\SongpressFrame.py:205
+#: src\SongpressFrame.py:311
+msgid "Preview"
+msgstr "Anteprima"
+
+#: src\SongpressFrame.py:211
+msgid "New"
+msgstr "Nuovo"
+
+#: src\SongpressFrame.py:212
+msgid "Create a new song"
+msgstr "Crea una nuova canzone"
+
+#: src\SongpressFrame.py:215
+msgid "Open"
+msgstr "Apri"
+
+#: src\SongpressFrame.py:216
+msgid "Open an existing song"
+msgstr "Apre una canzone esistente"
+
+#: src\SongpressFrame.py:219
+msgid "Save"
+msgstr "Salva"
+
+#: src\SongpressFrame.py:220
+msgid "Save song with the current filename"
+msgstr "Salva la canzone con il nome del file attuale"
+
+#: src\SongpressFrame.py:225
+msgid "Undo"
+msgstr "Annulla"
+
+#: src\SongpressFrame.py:226
+msgid "Undo last edit"
+msgstr "Annulla l'ultima modifica"
+
+#: src\SongpressFrame.py:230
+msgid "Redo"
+msgstr "Ripeti"
+
+#: src\SongpressFrame.py:231
+msgid "Redo previously undone edit"
+msgstr "Ripete la modifica precedentemente annullata"
+
+#: src\SongpressFrame.py:236
+msgid "Cut"
+msgstr "Taglia"
+
+#: src\SongpressFrame.py:237
+msgid "Move selected text in the clipboard"
+msgstr "Sposta il testo selezionato negli appunti"
+
+#: src\SongpressFrame.py:241
+msgid "Copy"
+msgstr "Copia"
+
+#: src\SongpressFrame.py:242
+msgid "Copy selected text in the clipboard"
+msgstr "Copia il testo selezionato negli appunti"
+
+#: src\SongpressFrame.py:246
+msgid "Copy as Image"
+msgstr "Copia come immagine"
+
+#: src\SongpressFrame.py:247
+msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
+msgstr "Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
+
+#: src\SongpressFrame.py:251
+msgid "Paste"
+msgstr "Incolla"
+
+#: src\SongpressFrame.py:252
+msgid "Read text from the clipboard and place it at the cursor position"
+msgstr "Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
+
+#: src\SongpressFrame.py:256
+msgid "PasteChords"
+msgstr "Incolla Accordi"
+
+#: src\SongpressFrame.py:257
+msgid "Integrate chords of copied text into current selection"
+msgstr "Integra gli accordi del testo copiato nella selezione corrente"
+
+#: src\SongpressFrame.py:260
+#: src\SongpressFrame.py:312
+msgid "Standard"
+msgstr "Standard"
+
+#: src\SongpressFrame.py:273
+msgid "Insert title"
+msgstr "Inserisci titolo"
+
+#: src\SongpressFrame.py:274
+msgid "Insert a command to display song title"
+msgstr "Inserisce un comando che mostra il titolo della canzone"
+
+#: src\SongpressFrame.py:277
+msgid "Insert chord"
+msgstr "Inserisci accordo"
+
+#: src\SongpressFrame.py:278
+msgid "Insert square brackets that will host a chord"
+msgstr "Inserisce delle parentesi quadre, che conterranno un accordo"
+
+#: src\SongpressFrame.py:281
+msgid "Insert chorus"
+msgstr "Inserisci ritornello"
+
+#: src\SongpressFrame.py:282
+msgid "Insert a couple of commands that will contain chorus"
+msgstr "Inserisce due comandi, tra i quali scrivere il ritornello"
+
+#: src\SongpressFrame.py:285
+msgid "Insert comment"
+msgstr "Inserisci un commento"
+
+#: src\SongpressFrame.py:286
+msgid "Insert a command to display a comment"
+msgstr "Inserisce un comando per mostrare un commento"
+
+#: src\SongpressFrame.py:290
+#: src\SongpressFrame.py:313
+msgid "Format"
+msgstr "Formattazione"
+
+#: src\SongpressFrame.py:315
+msgid ""
+"You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n"
+"\n"
+"Do you want to turn this option on?"
+msgstr ""
+"Non sei un chitarrista esperto? Songpress ti può aiutare: quando apri una canzone, può determinare se gli accordi sono difficili. In tal caso Songpress ti avvertirà e si offrirà di trasporre la canzone nella tonalità più facile, automaticamente.\n"
+"\n"
+"Vuoi attivare questa funzionalità?"
+
+#: src\SongpressFrame.py:316
+#: src\SongpressFrame.py:320
+#: src\SongpressFrame.py:504
+#: src\SongpressFrame.py:666
+#: src\SongpressFrame.py:746
+msgid "Songpress"
+msgstr "Songpress"
+
+#: src\SongpressFrame.py:319
+msgid "Please take a minute to set up your skill as a guitarist. For each group of chords, tell Songpress how much you like them."
+msgstr "Ora dedica un minuto ad impostare il tuo livello di abilità come chitarrista. Esprimi il tuo grado di preferenza per ciascuno dei gruppi di accordi che ti verranno presentati."
+
+#: src\SongpressFrame.py:475
+msgid "PNG image"
+msgstr "Immagine PNG"
+
+#: src\SongpressFrame.py:488
+msgid "HTML file"
+msgstr "File HTML..."
+
+#: src\SongpressFrame.py:503
+msgid "SVG export requires wxPython 2.9.1.2 or higher"
+msgstr "L'esportazione in formato SVG richiede wxPython 2.9.1.2 o superiore"
+
+#: src\SongpressFrame.py:507
+msgid "SVG image"
+msgstr "Immagine SVG"
+
+#: src\SongpressFrame.py:515
+msgid "Enhanced Metafile"
+msgstr "Metafile avanzato"
+
+#: src\SongpressFrame.py:522
+msgid "EPS image"
+msgstr "Immagine EPS"
+
+#: src\SongpressFrame.py:529
+msgid "Exporting image as EPS..."
+msgstr "Esportazione in formato EPS..."
+
+#: src\SongpressFrame.py:649
+msgid "http://www.skeed.it/songpress-manual.html"
+msgstr "http://www.skeed.it/songpress-manuale.html"
+
+#: src\SongpressFrame.py:663
+msgid "http://www.skeed.it/songpress.html#donate"
+msgstr "http://www.skeed.it/songpress-it.html#donate"
+
+#: src\SongpressFrame.py:681
+#: src\SongpressFrame.py:786
+msgid "Simplify chords"
+msgstr "Semplifica gli accordi"
+
+#: src\SongpressFrame.py:683
+#: src\SongpressFrame.py:784
+#, python-format
+msgid "The key of your song, %s, is not the easiest to play (difficulty: %.1f/5.0).\n"
+msgstr "La canzone è in %s. Questa non è la tonalità più facile da suonare (difficoltà %.1f/5.0).\n"
+
+#: src\SongpressFrame.py:684
+#: src\SongpressFrame.py:785
+#, python-format
+msgid "Do you want to transpose the key %s, which is the easiest one (difficulty: %.1f/5.0)?"
+msgstr "Vuoi trasporla in %s, che è la tonalità più semplice (difficoltà: %.1f/5.0)?"
+
+#: src\SongpressFrame.py:691
+#, python-format
+msgid "The key of your song, %s, is already the easiest to play (difficulty: %.1f/5.0).\n"
+msgstr "La canzone è già nella tonalità più facile da suonare, il %s (difficoltà %.1f/5.0).\n"
+
+#: src\SongpressFrame.py:693
+msgid "Your song or current selection does not contain any chords."
+msgstr "La canzone o la selezione corrente non contiene accordi."
+
+#: src\SongpressFrame.py:745
+msgid "Please enter a label for chorus"
+msgstr "Etichetta per il ritornello"
+
+#: src\SongpressFrame.py:760
+msgid "It looks like there are spurious blank lines in the song.\n"
+msgstr "A quanto pare la canzone contiene troppe linee vuote.\n"
+
+#: src\SongpressFrame.py:761
+msgid "Do you want to try to remove them automatically?"
+msgstr "Vuoi provare a rimuoverle automaticamente?"
+
+#: src\SongpressFrame.py:762
+msgid "Remove spurious blank lines"
+msgstr "Rimuovi le linee vuote di troppo"
+
+#: src\SongpressFrame.py:772
+msgid "It looks like your song is in tab format (i.e., chords are above the text).\n"
+msgstr "A quanto pare la canzone è nel formato tab (cioè gli accordi si trovano sopra il testo).\n"
+
+#: src\SongpressFrame.py:773
+msgid "Do you want to convert it to ChordPro automatically?"
+msgstr "Vuoi convertirla automaticamente al formato ChordPro?"
+
+#: src\SongpressFrame.py:774
+msgid "Convert to ChordPro"
+msgstr "Converti a ChordPro"
+
+#~ msgid "http://www.skeed.it/songpress.html#News"
+#~ msgstr "http://www.skeed.it/songpress-it.html#News"
+
+#~ msgid "1.3"
+#~ msgstr "1.3"
+
+#~ msgid "Songpress options"
+#~ msgstr "Opzioni di Songpress"
+
+#~ msgid "Language settings will be applied when you restart Songpress."
+#~ msgstr ""
+#~ "La lingua selezionata sarà disponibile al prossimo avvio di Songpress."
+
+#~ msgid "Chorus"
+#~ msgstr "Rit"
+
+#~ msgid "1.0 beta 1 (1.0.b+1)"
+#~ msgstr "1.0 beta 1 (1.0.b+1)"
