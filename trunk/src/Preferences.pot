@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-05 10:12+0200\n"
+"POT-Creation-Date: 2011-05-22 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\Preferences.py:45
+#: src\Preferences.py:21
+msgid "Never"
+msgstr ""
+
+#: src\Preferences.py:22
+msgid "Week"
+msgstr ""
+
+#: src\Preferences.py:23
+msgid "Two weeks"
+msgstr ""
+
+#: src\Preferences.py:24
+msgid "Month"
+msgstr ""
+
+#: src\Preferences.py:25
+msgid "Two months"
+msgstr ""
+
+#: src\Preferences.py:58
 msgid "Chorus"
 msgstr ""

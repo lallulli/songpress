@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-05 10:12+0200\n"
+"POT-Creation-Date: 2011-02-11 16:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,341 +65,365 @@ msgid "E&xport"
 msgstr ""
 
 #: src\xrc\songpress.pos:13
-msgid "Export as &PNG..."
+msgid "Export as &SVG..."
 msgstr ""
 
 #: src\xrc\songpress.pos:14
-msgid "Export image as a raster picture"
+msgid "Export image as a vector image"
 msgstr ""
 
 #: src\xrc\songpress.pos:15
-msgid "Export as &HTML..."
+msgid "Export as &Enhanced Metafile..."
 msgstr ""
 
 #: src\xrc\songpress.pos:16
-msgid "Export formatted song as web page"
+msgid "Export image as a Windows Metafile vector image"
 msgstr ""
 
 #: src\xrc\songpress.pos:17
-msgid "&Exit"
+msgid "Export as &PNG..."
 msgstr ""
 
 #: src\xrc\songpress.pos:18
-msgid "Quit Songpress"
+msgid "Export image as a raster picture"
 msgstr ""
 
 #: src\xrc\songpress.pos:19
-msgid "&Edit"
+msgid "Export as &HTML..."
 msgstr ""
 
 #: src\xrc\songpress.pos:20
-msgid "&Undo\tCTRL+Z"
+msgid "Export formatted song as web page"
 msgstr ""
 
 #: src\xrc\songpress.pos:21
-msgid "Undo last edit"
+msgid "&Exit"
 msgstr ""
 
 #: src\xrc\songpress.pos:22
-msgid "&Redo\tCTRL+Y"
+msgid "Quit Songpress"
 msgstr ""
 
 #: src\xrc\songpress.pos:23
-msgid "Redo previously undone edit"
+msgid "&Edit"
 msgstr ""
 
 #: src\xrc\songpress.pos:24
-msgid "&Cut\tCTRL+X"
+msgid "&Undo\tCTRL+Z"
 msgstr ""
 
 #: src\xrc\songpress.pos:25
-msgid "Move selected text in the clipboard"
+msgid "Undo last edit"
 msgstr ""
 
 #: src\xrc\songpress.pos:26
-msgid "C&opy\tCTRL+C"
+msgid "&Redo\tCTRL+Y"
 msgstr ""
 
 #: src\xrc\songpress.pos:27
-msgid "Copy selected text in the clipboard"
+msgid "Redo previously undone edit"
 msgstr ""
 
 #: src\xrc\songpress.pos:28
-msgid "Copy as &Image\tCTRL+D"
+msgid "&Cut\tCTRL+X"
 msgstr ""
 
 #: src\xrc\songpress.pos:29
-msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
+msgid "Move selected text in the clipboard"
 msgstr ""
 
 #: src\xrc\songpress.pos:30
-msgid "&Paste\tCTRL+V"
+msgid "C&opy\tCTRL+C"
 msgstr ""
 
 #: src\xrc\songpress.pos:31
-msgid "Read text from the clipboard and place it at the cursor position"
+msgid "Copy selected text in the clipboard"
 msgstr ""
 
 #: src\xrc\songpress.pos:32
-msgid "&Find...\tCTRL+F"
+msgid "Copy as &Image\tCTRL+D"
 msgstr ""
 
 #: src\xrc\songpress.pos:33
-msgid "Search some text"
+msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
 msgstr ""
 
 #: src\xrc\songpress.pos:34
-msgid "Find &Next\tF3"
+msgid "&Paste\tCTRL+V"
 msgstr ""
 
 #: src\xrc\songpress.pos:35
-msgid "Search for the next occurrence of text"
+msgid "Read text from the clipboard and place it at the cursor position"
 msgstr ""
 
 #: src\xrc\songpress.pos:36
-msgid "Find Pre&vious\tSHIFT+F3"
+msgid "P&aste Chords"
 msgstr ""
 
 #: src\xrc\songpress.pos:37
-msgid "Search for the previous occurrence of text"
+msgid "Integrate chords of copied text into current selection"
 msgstr ""
 
 #: src\xrc\songpress.pos:38
-msgid "R&eplace...\tCTRL+R"
+msgid "&Find...\tCTRL+F"
 msgstr ""
 
 #: src\xrc\songpress.pos:39
-msgid "Replace some text with some other text"
+msgid "Search some text"
 msgstr ""
 
 #: src\xrc\songpress.pos:40
-msgid "&Select next chord\tALT+RIGHT"
+msgid "Find &Next\tF3"
 msgstr ""
 
 #: src\xrc\songpress.pos:41
-msgid "Find next chord and select it"
+msgid "Search for the next occurrence of text"
 msgstr ""
 
 #: src\xrc\songpress.pos:42
-msgid "Selec&t previous chord\tALT+LEFT"
+msgid "Find Pre&vious\tSHIFT+F3"
 msgstr ""
 
 #: src\xrc\songpress.pos:43
-msgid "Find previous chord and select it"
+msgid "Search for the previous occurrence of text"
 msgstr ""
 
 #: src\xrc\songpress.pos:44
-msgid "&Move chord right\tSHIFT+ALT+RIGHT"
+msgid "R&eplace...\tCTRL+R"
 msgstr ""
 
 #: src\xrc\songpress.pos:45
-msgid "Move chord under cursor one position rightwards"
+msgid "Replace some text with some other text"
 msgstr ""
 
 #: src\xrc\songpress.pos:46
-msgid "Move chord &left\tSHIFT+ALT+LEFT"
+msgid "&Select next chord\tALT+RIGHT"
 msgstr ""
 
 #: src\xrc\songpress.pos:47
-msgid "Move chord under cursor one position leftwards"
+msgid "Find next chord and select it"
 msgstr ""
 
 #: src\xrc\songpress.pos:48
-msgid "Remove c&hords"
+msgid "Selec&t previous chord\tALT+LEFT"
 msgstr ""
 
 #: src\xrc\songpress.pos:49
-msgid "Remove all chords in current selection"
+msgid "Find previous chord and select it"
 msgstr ""
 
 #: src\xrc\songpress.pos:50
-msgid "Inte&grate chords"
+msgid "&Move chord right\tSHIFT+ALT+RIGHT"
 msgstr ""
 
 #: src\xrc\songpress.pos:51
-msgid "Integrate chords of current line with text of following line"
+msgid "Move chord under cursor one position rightwards"
 msgstr ""
 
 #: src\xrc\songpress.pos:52
-msgid "&View"
+msgid "Move chord &left\tSHIFT+ALT+LEFT"
 msgstr ""
 
 #: src\xrc\songpress.pos:53
-msgid "&Toolbars"
+msgid "Move chord under cursor one position leftwards"
 msgstr ""
 
 #: src\xrc\songpress.pos:54
-msgid "&Standard"
+msgid "Remove c&hords"
 msgstr ""
 
 #: src\xrc\songpress.pos:55
-msgid "Show/hide toolbar with file and common buttons"
+msgid "Remove all chords in current selection"
 msgstr ""
 
 #: src\xrc\songpress.pos:56
-msgid "&Format"
+msgid "Inte&grate chords"
 msgstr ""
 
 #: src\xrc\songpress.pos:57
-msgid "Show/hide toolbar with format tools"
+msgid "Integrate chords of current line with text of following line"
 msgstr ""
 
 #: src\xrc\songpress.pos:58
-msgid "&Preview"
+msgid "&View"
 msgstr ""
 
 #: src\xrc\songpress.pos:59
-msgid "Show/hide preview pane"
+msgid "&Toolbars"
 msgstr ""
 
 #: src\xrc\songpress.pos:60
-msgid "&Insert"
+msgid "&Standard"
 msgstr ""
 
 #: src\xrc\songpress.pos:61
-msgid "&Title\tCTRL+T"
+msgid "Show/hide toolbar with file and common buttons"
 msgstr ""
 
 #: src\xrc\songpress.pos:62
-msgid "Insert a command to display song title"
+msgid "&Format"
 msgstr ""
 
 #: src\xrc\songpress.pos:63
-msgid "C&hord\tCTRL+H"
+msgid "Show/hide toolbar with format tools"
 msgstr ""
 
 #: src\xrc\songpress.pos:64
-msgid "Insert square brackets that will host a chord"
+msgid "&Preview"
 msgstr ""
 
 #: src\xrc\songpress.pos:65
-msgid "Cho&rus\tCTRL+U"
+msgid "Show/hide preview pane"
 msgstr ""
 
 #: src\xrc\songpress.pos:66
-msgid "Insert a couple of commands that will contain chorus"
+msgid "&Insert"
 msgstr ""
 
 #: src\xrc\songpress.pos:67
-msgid "Co&mment\tCTRL+M"
+msgid "&Title\tCTRL+T"
 msgstr ""
 
 #: src\xrc\songpress.pos:68
-msgid "Insert a command to display a comment"
+msgid "Insert a command to display song title"
 msgstr ""
 
 #: src\xrc\songpress.pos:69
-msgid "F&ormat"
+msgid "C&hord\tCTRL+H"
 msgstr ""
 
 #: src\xrc\songpress.pos:70
-msgid "&Font..."
+msgid "Insert square brackets that will host a chord"
 msgstr ""
 
 #: src\xrc\songpress.pos:71
-msgid "Select song font"
+msgid "Cho&rus\tCTRL+U"
 msgstr ""
 
 #: src\xrc\songpress.pos:72
-msgid "&Label verses"
+msgid "Insert a couple of commands that will contain chorus"
 msgstr ""
 
 #: src\xrc\songpress.pos:73
-msgid "Show/hide labels at the beginning of verses and chorus"
+msgid "Co&mment\tCTRL+M"
 msgstr ""
 
 #: src\xrc\songpress.pos:74
-msgid "&Chorus label..."
+msgid "Insert a command to display a comment"
 msgstr ""
 
 #: src\xrc\songpress.pos:75
-msgid "Set label for chorus"
+msgid "F&ormat"
 msgstr ""
 
 #: src\xrc\songpress.pos:76
-msgid "&Tools"
+msgid "&Font..."
 msgstr ""
 
 #: src\xrc\songpress.pos:77
-msgid "&Transpose..."
+msgid "Select song font"
 msgstr ""
 
 #: src\xrc\songpress.pos:78
-msgid "Transpose song or selected text"
+msgid "&Label verses"
 msgstr ""
 
 #: src\xrc\songpress.pos:79
-msgid "S&implify chords..."
+msgid "Show/hide labels at the beginning of verses and chorus"
 msgstr ""
 
 #: src\xrc\songpress.pos:80
-msgid "Transpose chords to the easiest key"
+msgid "&Chorus label..."
 msgstr ""
 
 #: src\xrc\songpress.pos:81
-msgid "Change chord &notation..."
+msgid "Set label for chorus"
 msgstr ""
 
 #: src\xrc\songpress.pos:82
-msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
+msgid "&Tools"
 msgstr ""
 
 #: src\xrc\songpress.pos:83
-msgid "Convert &Tab to Chordpro"
+msgid "&Transpose..."
 msgstr ""
 
 #: src\xrc\songpress.pos:84
-msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
+msgid "Transpose song or selected text"
 msgstr ""
 
 #: src\xrc\songpress.pos:85
-msgid "Remove &spurious blank lines"
+msgid "S&implify chords..."
 msgstr ""
 
 #: src\xrc\songpress.pos:86
-msgid "Remove blank lines inside a verse"
+msgid "Transpose chords to the easiest key"
 msgstr ""
 
 #: src\xrc\songpress.pos:87
-msgid "&Options..."
+msgid "Change chord &notation..."
 msgstr ""
 
 #: src\xrc\songpress.pos:88
-msgid "Set program options"
+msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
 msgstr ""
 
 #: src\xrc\songpress.pos:89
-msgid "&?"
+msgid "Convert &Tab to Chordpro"
 msgstr ""
 
 #: src\xrc\songpress.pos:90
-msgid "&Guide\tF1"
+msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
 msgstr ""
 
 #: src\xrc\songpress.pos:91
-msgid "Show user's manual"
+msgid "Remove &spurious blank lines"
 msgstr ""
 
 #: src\xrc\songpress.pos:92
-msgid "&News and updates (web)"
+msgid "Remove blank lines inside a verse"
 msgstr ""
 
 #: src\xrc\songpress.pos:93
-msgid "Open Songpress web site for news and updates"
+msgid "&Options..."
 msgstr ""
 
 #: src\xrc\songpress.pos:94
-msgid "&Donate to our scout Group (web)"
+msgid "Set program options"
 msgstr ""
 
 #: src\xrc\songpress.pos:95
-msgid "Open Songpress web site for donations"
+msgid "&?"
 msgstr ""
 
 #: src\xrc\songpress.pos:96
-msgid "&About..."
+msgid "&Guide\tF1"
 msgstr ""
 
 #: src\xrc\songpress.pos:97
+msgid "Show user's manual"
+msgstr ""
+
+#: src\xrc\songpress.pos:98
+msgid "&Check for updates"
+msgstr ""
+
+#: src\xrc\songpress.pos:99
+msgid "Open Songpress web site for news and updates"
+msgstr ""
+
+#: src\xrc\songpress.pos:100
+msgid "&Donate to our scout Group (web)"
+msgstr ""
+
+#: src\xrc\songpress.pos:101
+msgid "Open Songpress web site for donations"
+msgstr ""
+
+#: src\xrc\songpress.pos:102
+msgid "&About..."
+msgstr ""
+
+#: src\xrc\songpress.pos:103
 msgid "Show credits"
 msgstr ""

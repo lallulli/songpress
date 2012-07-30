@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-17 17:20+0100\n"
+"POT-Creation-Date: 2011-01-27 15:10+0100\n"
 "PO-Revision-Date: 2009-12-21 21:09+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,7 @@ msgstr "Carattere"
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src\FontFaceDialog.py:46
-#: src\FontFaceDialog.py:82
+#: src\FontFaceDialog.py:46 src\FontFaceDialog.py:82
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -53,4 +52,3 @@ msgstr "OK"
 #: src\FontFaceDialog.py:59
 msgid "Cancel"
 msgstr "Annulla"
-

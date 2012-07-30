@@ -3,7 +3,7 @@ import os.path
 import shutil
 #from optparse import OptionParser
 
-dir = "..\\src\\dist"
+dir = "..\\src\\dist\\Songpress"
 source = "songpress.nsi.tpl"
 dest = "songpress.nsi"
 

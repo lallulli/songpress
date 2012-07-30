@@ -15,6 +15,7 @@ from Globals import glb
 from PreferencesDialog import PreferencesDialog
 from MyDecoSlider import MyDecoSlider
 from Transpose import *
+from Preferences import get_update_frequencies
 
 i18n.register('MyPreferencesDialog')
 
@@ -45,12 +46,22 @@ class MyPreferencesDialog(PreferencesDialog):
 			self.langCh.SetClientData(i, l)
 			if lang == l:
 				self.langCh.SetSelection(i)
-
+				
 		# Default notation
 		for n in self.pref.notations:
 			i = self.notationCh.Append(n.desc)
 			self.notationCh.SetClientData(i, n.id)
-		self.notationCh.SetSelection(0)
+		self.notationCh.SetSelection(0)		
+
+		# Update frequency
+		sel = 0
+		uf = get_update_frequencies()
+		for k in uf:
+			i = self.frequency.Append(uf[k])
+			self.frequency.SetClientData(i, k)
+			if k == self.pref.updateFrequency:
+				sel = i
+		self.frequency.SetSelection(sel)
 
 		# Easy chords
 		simplifyGrid = wx.FlexGridSizer(len(easyChords), 2, 0, 0)
@@ -89,8 +100,12 @@ class MyPreferencesDialog(PreferencesDialog):
 	def GetNotation(self):
 		return self.notationCh.GetClientData(self.notationCh.GetSelection())
 
+	def GetUpdateFrequency(self):
+		return self.frequency.GetClientData(self.frequency.GetSelection())
+
 	def OnOk(self, evt):
 		self.pref.editorFace, self.pref.editorSize = self.GetFont()
+		self.pref.updateFrequency = self.GetUpdateFrequency()
 		l = self.GetLanguage()
 		lang = i18n.getLang()
 		if l is not None and l != lang:

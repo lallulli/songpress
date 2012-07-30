@@ -18,7 +18,7 @@ class MyDecoSlider(DecoSlider):
 		dc = wx.PaintDC(self.panel)
 		w, h = dc.GetSize()
 		dc.Clear()
-		green =	wx.Color(0, 255, 0)
+		green =	wx.Colour(0, 255, 0)
 		brush = wx.Brush(green, wx.SOLID)
 		dc.SetBrush(brush)
 		dc.DrawPolygon([wx.Point(0, 0), wx.Point(w - 1, 0), wx.Point(w - 1, h - 1)])

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-05 10:12+0200\n"
+"POT-Creation-Date: 2011-05-22 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,90 +16,94 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:24
+#: src\PreferencesDialog.py:26
 msgid "Songpress options"
 msgstr ""
 
-#: src\PreferencesDialog.py:36
+#: src\PreferencesDialog.py:38
 msgid "Editor font"
 msgstr ""
 
-#: src\PreferencesDialog.py:43
+#: src\PreferencesDialog.py:45
 msgid "Size"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "7"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "8"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "9"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "10"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "11"
 msgstr ""
 
-#: src\PreferencesDialog.py:47 src\PreferencesDialog.py:48
+#: src\PreferencesDialog.py:49 src\PreferencesDialog.py:50
 msgid "12"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "13"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "14"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "16"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "18"
 msgstr ""
 
-#: src\PreferencesDialog.py:47
+#: src\PreferencesDialog.py:49
 msgid "20"
 msgstr ""
 
-#: src\PreferencesDialog.py:55
+#: src\PreferencesDialog.py:57
 msgid "Preview"
 msgstr ""
 
-#: src\PreferencesDialog.py:66
-msgid "Language"
-msgstr ""
-
-#: src\PreferencesDialog.py:79
+#: src\PreferencesDialog.py:68
 msgid "Default notation"
 msgstr ""
 
-#: src\PreferencesDialog.py:93
+#: src\PreferencesDialog.py:81
+msgid "Check for updates every"
+msgstr ""
+
+#: src\PreferencesDialog.py:94
+msgid "Language"
+msgstr ""
+
+#: src\PreferencesDialog.py:108
 msgid "General"
 msgstr ""
 
-#: src\PreferencesDialog.py:97
+#: src\PreferencesDialog.py:112
 msgid "Offer to remove blank lines"
 msgstr ""
 
-#: src\PreferencesDialog.py:100
+#: src\PreferencesDialog.py:115
 msgid "Offer to convert songs in tab"
 msgstr ""
 
-#: src\PreferencesDialog.py:103
+#: src\PreferencesDialog.py:118
 msgid "Offer to transpose songs to simplify chords"
 msgstr ""
 
-#: src\PreferencesDialog.py:115
+#: src\PreferencesDialog.py:130
 msgid "AutoAdjust"
 msgstr ""

@@ -241,7 +241,7 @@ def __alteration(chord):
 def chord2pos(chord, key="C"):
 	c, a = __alteration(chord)
 	s, b = __alteration(key)
-	return (tone[c] + a - tone[s] - b) % 12
+	return (tone[c.upper()] + a - tone[s.upper()] - b) % 12
 
 def __pos2chord(pos, key):
 	n, i = interval[pos]
@@ -518,3 +518,29 @@ def removeChords(text):
 		return: text without chords
 	"""
 	return re.sub('\[([^]]*)\]', "", text)
+
+def pasteChords(src, dest):
+	"""
+	Paste chords from src to dest
+
+	Remove any existing chords in lines in the first k lines of dest,
+	if there are k lines in src.
+		src: source chordpro text
+		dest: destination text
+	"""
+	ss = src.splitlines()
+	sd = dest.splitlines()
+	out = []
+	m = min(len(ss), len(sd))
+	r = re.compile('\[([^]]*)\]')
+	for i in xrange(0, m):
+		cd = r.sub("", sd[i])
+		for x in r.finditer(ss[i]):
+			s = x.start()
+			if len(cd) < s:
+				cd += "".join([" " for y in xrange(len(cd), s)])
+			cd = cd[:s] + x.group(0) + cd[s:]
+		out.append(cd)
+	for i in xrange(m, len(sd)):
+		out.append(r.sub("", sd[i]))
+	return "\n".join(out)

@@ -102,7 +102,8 @@ class Decorator(SongDecorator):
 			self.dc.DrawRectangle(rx, ry,
 				w + self.baseWidth * (self.format.leftPadding + self.format.rightPadding),
 				h + self.baseHeight * (self.format.topPadding + self.format.bottomPadding))
-			self.dc.SetBrush(wx.NullBrush)
+			brush = wx.Brush(foreground, wx.SOLID)
+			self.dc.SetBrush(brush)
 			self.dc.SetTextForeground(foreground)
 			self.dc.SetBackgroundMode(wx.TRANSPARENT)
 			self.dc.DrawText(text, tx, ty)
