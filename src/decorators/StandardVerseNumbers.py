@@ -59,16 +59,31 @@ class Decorator(SongDecorator):
 				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
 			) + self.verseWidth
 		self.dc.SetFont(self.format.chorus.wxFont)
-		self.chorusWidth, self.chorusHeight = self.dc.GetTextExtent(self.format.chorus.label)
-		self.chorusTotalWidth = self.baseWidth * (
-				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
-			) + self.chorusWidth
-
+		#self.chorusWidth, self.chorusHeight = self.dc.GetTextExtent(self.format.chorus.label)
+		#self.chorusTotalWidth = self.baseWidth * (
+		#		self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
+		#	) + self.chorusWidth
+		
 	def SetMarginBlock(self, block):
 		if block.type == block.verse or block.type == block.title:
-			w = self.verseTotalWidth
+			if block.label is not None:
+				text = block.label
+				w, h = self.dc.GetTextExtent(text)
+				w += self.baseWidth * (
+					self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
+				)
+			else:
+				w = self.verseTotalWidth
 		else:
-			w = self.chorusTotalWidth
+			if block.label is not None:
+				text = block.label
+			else:
+				text = self.format.chorus.label
+			font = self.format.chorus.wxFont
+			w, h = self.dc.GetTextExtent(text)
+			w += self.baseWidth * (
+				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
+			)
 		block.SetMargin(0, 0, 0, w)
 
 	def PreDrawBlock(self, block, bx, by):
@@ -76,18 +91,26 @@ class Decorator(SongDecorator):
 			if block.type == block.verse:
 				background = self.wxGrey
 				foreground = self.wxBlack
-				text = str(block.verseNumber)
+				if block.label is not None:
+					text = block.label
+					w, h = self.dc.GetTextExtent(text)
+				else:
+					text = str(block.verseNumber)
+					w = self.verseWidth
+					h = self.verseHeight
 				font = self.format.wxFont
-				w = self.verseWidth
-				h = self.verseHeight
+				self.dc.SetFont(font)
+
 			else:
 				background = self.wxBlack
 				foreground = self.wxWhite
-				text = self.format.chorus.label
+				if block.label is not None:
+					text = block.label
+				else:
+					text = self.format.chorus.label
 				font = self.format.chorus.wxFont
-				w = self.chorusWidth
-				h = self.chorusHeight
-			self.dc.SetFont(font)
+				self.dc.SetFont(font)
+				w, h = self.dc.GetTextExtent(text)
 			realW, realH = self.dc.GetTextExtent(text)
 			# rx, ry: top-left corner of rectangle
 			# tx, ty: top-left corner of text

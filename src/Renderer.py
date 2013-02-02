@@ -30,10 +30,11 @@ class Renderer(object):
 		self.currentLine = None
 		self.song = None
 
-	def BeginBlock(self, type):
+	def BeginBlock(self, type, label=None):
 		self.EndBlock()
 		if type == SongBlock.verse:
-			self.song.verseCount += 1
+			if label is None:
+				self.song.verseCount += 1
 			self.sf.StubSetVerseCount(self.song.verseCount)
 			self.format = self.sf.verse[self.song.verseCount-1]
 		elif type == SongBlock.chorus:
@@ -41,6 +42,7 @@ class Renderer(object):
 		else:
 			self.format = self.sf.title
 		self.currentBlock = SongBlock(type, self.format)
+		self.currentBlock.label = label
 		self.currentBlock.verseNumber = self.song.verseCount
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont
@@ -52,12 +54,13 @@ class Renderer(object):
 			self.song.AddBox(self.currentBlock)
 			self.currentBlock = None
 
-	def BeginVerse(self):
+	def BeginVerse(self, label=None):
 		if self.currentBlock == None:
-			self.BeginBlock(SongBlock.verse)
+			self.BeginBlock(SongBlock.verse, label)
+			self.label = label
 
-	def BeginChorus(self):
-		self.BeginBlock(SongBlock.chorus)
+	def BeginChorus(self, label=None):
+		self.BeginBlock(SongBlock.chorus, label)
 
 	def ChorusVSkip(self):
 		self.EndLine()
@@ -151,7 +154,8 @@ class Renderer(object):
 				elif t == SongTokenizer.commandToken:
 					cmd = tok.content.lower()
 					if cmd == 'soc' or cmd == 'start_of_chorus':
-						self.BeginChorus()
+						a = self.GetAttribute()
+						self.BeginChorus(a)
 					elif (cmd == 'eoc' or cmd == 'end_of_chorus') and state == SongBlock.chorus:
 						self.EndBlock()
 					elif cmd == 'c' or cmd == 'comment':
@@ -162,6 +166,8 @@ class Renderer(object):
 						a = self.GetAttribute()
 						if a != None:
 							self.AddTitle(a)
+					elif cmd == 'verse':
+						self.BeginVerse(self.GetAttribute())
 
 			self.EndLine()
 			if empty:
