@@ -64,6 +64,7 @@ class SongBlock(SongBox):
 		self.verseNumber = 0
 		self.format = format
 		self.drawBlock = False
+		self.label = None
 			
 class SongLine(SongBox):
 	def __init__(self):
