@@ -190,7 +190,7 @@ class SongpressFrame(SDIMainFrame):
 			glb.AddPath('img/songpress.ico'),
 			glb.VERSION,
 			_("http://www.skeed.it/songpress.html"),
-			_("Copyright (c) 2009-2012 Luca Allulli - Skeed\nFrench translation by Raoul Schmitt"),
+			_("Copyright (c) 2009-2013 Luca Allulli - Skeed\nFrench translation by Raoul Schmitt"),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
 			_import_formats,
@@ -283,6 +283,10 @@ class SongpressFrame(SDIMainFrame):
 			shortHelpString = _("Insert chorus"),
 			longHelpString = _("Insert a couple of commands that will contain chorus")
 		)
+		self.formatToolBar.AddTool(wx.xrc.XRCID('verseWithCustomLabelOrWithoutLabel'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/verse.png"))),
+			shortHelpString = _("Insert verse with custom label or without label"),
+			longHelpString = _("Insert a commands that will display a verse with a custom label")
+		)
 		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/labelVerses.png"))), isToggle=True,
 			shortHelpString = _("Insert comment"),
 			longHelpString = _("Insert a command to display a comment")
@@ -293,6 +297,7 @@ class SongpressFrame(SDIMainFrame):
 		self.BindMyMenu()
 		self.frame.Bind(EVT_TEXT_CHANGED, self.OnTextChanged)
 		self.exportMenuId = xrc.XRCID('export')
+		self.exportToClipboardAsAVectorImage = xrc.XRCID('exportToClipboardAsAVectorImage')
 		self.exportAsEmfMenuId = xrc.XRCID('exportAsEmf')
 		self.cutMenuId = xrc.XRCID('cut')
 		self.copyMenuId = xrc.XRCID('copy')
@@ -302,6 +307,7 @@ class SongpressFrame(SDIMainFrame):
 		self.removeChordsMenuId = xrc.XRCID('removeChords')
 		self.labelVersesMenuId = xrc.XRCID('labelVerses')
 		if platform.system() != 'Windows':
+			self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportToClipboardAsAVectorImage)
 			self.menuBar.GetMenu(1).Delete(self.copyAsImageMenuId)
 			self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportAsEmfMenuId)
 		self.findReplaceDialog = None
@@ -333,6 +339,7 @@ class SongpressFrame(SDIMainFrame):
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 
+		Bind(self.OnCopyAsImage, 'exportToClipboardAsAVectorImage')
 		Bind(self.OnExportAsSvg, 'exportAsSvg')
 		Bind(self.OnExportAsEmf, 'exportAsEmf')
 		Bind(self.OnExportAsPng, 'exportAsPng')
@@ -357,6 +364,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnTitle, 'title')
 		Bind(self.OnChord, 'chord')
 		Bind(self.OnChorus, 'chorus')
+		Bind(self.OnVerse, 'verseWithCustomLabelOrWithoutLabel')
 		Bind(self.OnComment, 'comment')
 		Bind(self.OnFormatFont, 'font')
 		Bind(self.OnLabelVerses, 'labelVerses')
@@ -738,9 +746,28 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnChord(self, evt):
 		self.InsertWithCaret("[|]")
+		
+	def OnVerse(self, evt):
+		label = wx.GetTextFromUser(
+			_("Insert a label for verse, or press Cancel if you want to omit label."),
+			_("Verse label"),
+			"",
+			self.frame,
+		)
+		self.InsertWithCaret("{Verse:%s}|" % label)
 
 	def OnChorus(self, evt):
-		self.InsertWithCaret("{soc}\n|\n{eoc}\n")
+		default = self.pref.decoratorFormat.GetChorusLabel()
+		label = wx.GetTextFromUser(
+			_("Insert a label for chorus, or press Cancel if you want to omit label."),
+			_("Chorus label"),
+			default,
+			self.frame,
+		)
+		if label == default:
+			self.InsertWithCaret("{soc}\n|\n{eoc}\n")
+		else:
+			self.InsertWithCaret("{soc:%s}\n|\n{eoc}\n" % label)
 
 	def OnComment(self, evt):
 		self.InsertWithCaret("{c:|}")

@@ -33,8 +33,9 @@ class Renderer(object):
 	def BeginBlock(self, type, label=None):
 		self.EndBlock()
 		if type == SongBlock.verse:
+			self.song.verseCount += 1
 			if label is None:
-				self.song.verseCount += 1
+				self.song.labelCount += 1
 			self.sf.StubSetVerseCount(self.song.verseCount)
 			self.format = self.sf.verse[self.song.verseCount-1]
 		elif type == SongBlock.chorus:
@@ -44,6 +45,7 @@ class Renderer(object):
 		self.currentBlock = SongBlock(type, self.format)
 		self.currentBlock.label = label
 		self.currentBlock.verseNumber = self.song.verseCount
+		self.currentBlock.verseLabelNumber = self.song.labelCount
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont
 		self.commentFont = self.format.comment.wxFont
@@ -114,7 +116,7 @@ class Renderer(object):
 			tok = self.tkz.next()
 			if tok.token != SongTokenizer.attrToken:
 				self.tkz.Repeat()
-				return None
+				return ''
 			return tok.content
 		except StopIteration:
 			#print("No attribute")

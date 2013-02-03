@@ -46,19 +46,29 @@ class SongDecorator(object):
 		chordMaxTH = 0
 		textMaxH = 0
 		textMaxTH = 0
+		chordsOnly = True
 		for t in line.boxes:
 			self.dc.SetFont(t.font)
-			t.w, t.h = self.dc.GetTextExtent(t.text)
+			text = t.text
+			t.w, t.h = self.dc.GetTextExtent(text)
 			if t.type == SongText.chord:
 				self.SetMarginChord(t)
 				chordMaxH = max(chordMaxH, t.h)
 				chordMaxTH = max(chordMaxTH, t.GetTotalHeight())
 			else:
+				if text.strip() != '':
+					chordsOnly = False
 				self.SetMarginText(t)
 				textMaxH = max(textMaxH, t.h)
 				textMaxTH = max(textMaxTH, t.GetTotalHeight())
+		if chordsOnly:
+			textMaxH = 0
+			textMaxTH = 0
+			line.textBaseline = chordMaxTH
+		else:
+			line.textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
 		line.chordBaseline = chordMaxTH
-		line.textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
+		
 		line.h = line.textBaseline + textMaxH * (line.parent.format.textSpacing - 1)
 		# Pass 2: set layout
 		x = 0
@@ -72,8 +82,11 @@ class SongDecorator(object):
 				t.y = line.chordBaseline - t.GetTotalHeight()
 			else:
 				t.x = x
+				x_chord = max(x, chordX)
 				x = t.x + t.GetTotalWidth()
 				t.y = line.textBaseline - t.GetTotalHeight()
+				if t.text.strip() == '':
+					chordX = x_chord + t.GetTotalWidth()
 			line.RelocateBox(t)
 		self.SetMarginLine(line)
 		

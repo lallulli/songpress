@@ -50,6 +50,7 @@ class SongSong(SongBox):
 		SongBox.__init__(self, 0, 0, 0, 0)
 		self.format = format
 		self.verseCount = 0
+		self.labelCount = 0
 		self.drawWholeSong = False
 		
 class SongBlock(SongBox):
