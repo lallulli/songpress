@@ -54,7 +54,7 @@ class Decorator(SongDecorator):
 	def InitDraw(self):
 		self.dc.SetFont(self.format.wxFont)
 		self.baseWidth, self.baseHeight = self.dc.GetTextExtent("0")
-		self.verseWidth, self.verseHeight = self.dc.GetTextExtent(str(self.s.verseCount))
+		self.verseWidth, self.verseHeight = self.dc.GetTextExtent(str(self.s.labelCount))
 		self.verseTotalWidth = self.baseWidth * (
 				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
 			) + self.verseWidth
@@ -65,15 +65,23 @@ class Decorator(SongDecorator):
 		#	) + self.chorusWidth
 		
 	def SetMarginBlock(self, block):
-		if block.type == block.verse or block.type == block.title:
+		if block.type == block.verse:
+			font = self.format.wxFont
+			self.dc.SetFont(font)
 			if block.label is not None:
 				text = block.label
-				w, h = self.dc.GetTextExtent(text)
+				if text == '':
+					w = self.verseWidth
+					h = self.verseHeight
+				else:
+					w, h = self.dc.GetTextExtent(text)
 				w += self.baseWidth * (
 					self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
 				)
 			else:
 				w = self.verseTotalWidth
+		elif block.type == block.title:
+			w = 0
 		else:
 			if block.label is not None:
 				text = block.label
@@ -89,18 +97,22 @@ class Decorator(SongDecorator):
 	def PreDrawBlock(self, block, bx, by):
 		if block.type != block.title and len(block.boxes) > 0:
 			if block.type == block.verse:
+				font = self.format.wxFont
+				self.dc.SetFont(font)
 				background = self.wxGrey
 				foreground = self.wxBlack
 				if block.label is not None:
 					text = block.label
-					w, h = self.dc.GetTextExtent(text)
+					if text == '':
+						w = self.verseWidth
+						h = self.verseHeight
+					else:
+						w, h = self.dc.GetTextExtent(text)
 				else:
-					text = str(block.verseNumber)
+					text = str(block.verseLabelNumber)
 					w = self.verseWidth
 					h = self.verseHeight
-				font = self.format.wxFont
-				self.dc.SetFont(font)
-
+					
 			else:
 				background = self.wxBlack
 				foreground = self.wxWhite
@@ -111,23 +123,24 @@ class Decorator(SongDecorator):
 				font = self.format.chorus.wxFont
 				self.dc.SetFont(font)
 				w, h = self.dc.GetTextExtent(text)
-			realW, realH = self.dc.GetTextExtent(text)
-			# rx, ry: top-left corner of rectangle
-			# tx, ty: top-left corner of text
-			rx = bx + self.format.leftMargin * self.baseWidth
-			tx = (rx
-				+ self.baseWidth * self.format.leftPadding
-				+ 0.5 * (w - realW))
-			ty = by + block.boxes[0].textBaseline + block.marginTop - h
-			ry = ty - self.format.topPadding * self.baseHeight
-			brush = wx.Brush(background, wx.SOLID)
-			self.dc.SetBrush(brush)
-			self.dc.DrawRectangle(rx, ry,
-				w + self.baseWidth * (self.format.leftPadding + self.format.rightPadding),
-				h + self.baseHeight * (self.format.topPadding + self.format.bottomPadding))
-			brush = wx.Brush(foreground, wx.SOLID)
-			self.dc.SetBrush(brush)
-			self.dc.SetTextForeground(foreground)
-			self.dc.SetBackgroundMode(wx.TRANSPARENT)
-			self.dc.DrawText(text, tx, ty)
-			self.dc.SetTextForeground(self.wxBlack)
+			if text != '':
+				realW, realH = self.dc.GetTextExtent(text)
+				# rx, ry: top-left corner of rectangle
+				# tx, ty: top-left corner of text
+				rx = bx + self.format.leftMargin * self.baseWidth
+				tx = (rx
+					+ self.baseWidth * self.format.leftPadding
+					+ 0.5 * (w - realW))
+				ty = by + block.boxes[0].textBaseline + block.marginTop - h
+				ry = ty - self.format.topPadding * self.baseHeight
+				brush = wx.Brush(background, wx.SOLID)
+				self.dc.SetBrush(brush)
+				self.dc.DrawRectangle(rx, ry,
+					w + self.baseWidth * (self.format.leftPadding + self.format.rightPadding),
+					h + self.baseHeight * (self.format.topPadding + self.format.bottomPadding))
+				brush = wx.Brush(foreground, wx.SOLID)
+				self.dc.SetBrush(brush)
+				self.dc.SetTextForeground(foreground)
+				self.dc.SetBackgroundMode(wx.TRANSPARENT)
+				self.dc.DrawText(text, tx, ty)
+				self.dc.SetTextForeground(self.wxBlack)

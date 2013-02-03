@@ -193,6 +193,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		"""Handler for windows close event"""
 		if self.AskSaveModified(evt.CanVeto()):
 			self.config.SetPath('/SDIMainFrame')
+			self.config.Write("Version", self.version)
 			p = self._mgr.SavePerspective()
 			self.config.Write("Perspective", p)
 			self.SavePreferences()
@@ -398,7 +399,12 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def FinalizePaneInitialization(self):
 		self.config.SetPath('/SDIMainFrame')
-		p = self.config.Read("Perspective")
+		v = self.config.Read("Version", "0.0")
+		vs = v.split('.')
+		svs = self.version.split('.')
+		p = False
+		if vs[:1] == svs[:1]:
+			p = self.config.Read("Perspective")
 		#print "Config: " + str(p)
 		if p:
 			self._mgr.LoadPerspective(p)
