@@ -119,5 +119,6 @@ class MyPreferencesDialog(PreferencesDialog):
 		self.pref.autoAdjustEasyKey = self.autoAdjustEasyKey.GetValue()
 		for k in self.decoSliders:
 			self.pref.SetEasyChordsGroup(k, self.decoSliders[k].slider.GetValue())
+		self.pref.defaultExtension = self.extension.GetString(self.extension.GetSelection())
 		evt.Skip(True)
 

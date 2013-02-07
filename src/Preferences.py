@@ -143,6 +143,11 @@ class Preferences(object):
 				l = easyChords[k][2]
 			self.SetEasyChordsGroup(k, l)
 		self.config.SetPath('/App')
+		ext = self.config.Read('defaultExtension')
+		if not ext:
+			self.defaultExtension = 'crd'
+		else:
+			self.defaultExtension = ext
 		lang = self.config.Read('locale')
 		if not lang:
 			self.locale = None
@@ -194,8 +199,9 @@ class Preferences(object):
 		self.config.SetPath('/AutoAdjust/EasyChordsGroups')
 		for k in easyChordsOrder:
 			self.config.Write(k, str(self.GetEasyChordsGroup(k)))
+		self.config.SetPath('/App')
+		self.config.Write('defaultExtension', self.defaultExtension)
 		if self.locale is not None:
-			self.config.SetPath('/App')
 			lang = self.config.Write('locale', self.locale)
 		self.config.SetPath('/AutoUpdate')
 		self.config.Write('frequency', str(self.updateFrequency))

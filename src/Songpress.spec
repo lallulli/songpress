@@ -1,10 +1,10 @@
 # -*- mode: python -*-
 
 """
-	How to compile:
+	How to compile with PyInstaller 2.0:
 	cd to the directory of this file (i.e., src)
 	delete 'dist' subdir, if it exists
-	python <PathToPyInstaller>\Build.py Songpress.spec
+	python <PathToPyInstaller>\pyinstaller.py Songpress.spec
 """
 
 import os, os.path

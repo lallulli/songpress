@@ -167,11 +167,12 @@ if platform.system() == 'Linux':
 		(_("Chordpro files (*.cho)"), ["cho"]),
 		(_("Chordpro files (*.chordpro)"), ["chordpro"]),
 		(_("Chordpro files (*.chopro)"), ["chopro"]),
+		(_("Chordpro files (*.pro)"), ["pro"]),
 	]
 else:
 	_import_formats = [
-		(_("All supported files"), ["crd", "cho", "chordpro", "chopro", "tab"]),
-		(_("Chordpro files (*.crd, *.cho, *.chordpro, *.chopro)"), ["crd", "cho", "chordpro", "chopro"]),
+		(_("All supported files"), ["crd", "cho", "chordpro", "chopro", "pro", "tab"]),
+		(_("Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"), ["crd", "cho", "chordpro", "chopro", "pro"]),
 		(_("Tab files (*.tab)"), ["tab"]),
 	]
 
@@ -196,6 +197,7 @@ class SongpressFrame(SDIMainFrame):
 			_import_formats,
 		)
 		self.pref = Preferences()
+		self.SetDefaultExtension(self.pref.defaultExtension)
 		self.text = Editor(self)
 		dt = SDIDropTarget(self)
 		self.text.SetDropTarget(dt)
@@ -288,8 +290,8 @@ class SongpressFrame(SDIMainFrame):
 			longHelpString = _("Insert a commands that will display a verse with a custom label")
 		)
 		labelVersesTool = self.formatToolBar.AddTool(wx.xrc.XRCID('labelVerses'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/labelVerses.png"))), isToggle=True,
-			shortHelpString = _("Insert comment"),
-			longHelpString = _("Insert a command to display a comment")
+			shortHelpString = _("Show verse labels"),
+			longHelpString = _("Show or hide verse and chorus labels")
 		)
 		self.labelVersesToolId = labelVersesTool.GetId()
 		self.formatToolBar.Realize()
@@ -331,6 +333,7 @@ class SongpressFrame(SDIMainFrame):
 				f.notebook.SetSelection(1)
 				if f.ShowModal() == wx.ID_OK:
 					self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
+					self.SetDefaultExtension(self.pref.defaultExtension)
 		MyUpdateDialog.check_and_update(self.frame, self.pref)
 
 
@@ -730,6 +733,7 @@ class SongpressFrame(SDIMainFrame):
 		f = MyPreferencesDialog(self.frame, self.pref, easyChords)
 		if f.ShowModal() == wx.ID_OK:
 			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
+			self.SetDefaultExtension(self.pref.defaultExtension)
 
 	def InsertWithCaret(self, st):
 		s, e = self.text.GetSelection()
