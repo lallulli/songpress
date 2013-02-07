@@ -29,7 +29,7 @@
 					<label>E_xport</label>
 					<object class="wxMenuItem" name="exportToClipboardAsAVectorImage">
 						<label>Export to _clipboard as a vector image\tCTRL+D</label>
-						<help>Copy formatted song to clipboard, so that it can be pasted into any image</help>
+						<help>Copy formatted song to clipboard, so that it can be pasted into any program</help>
 					</object>
 					<object class="wxMenuItem" name="exportAsSvg">
 						<label>Export as _SVG...</label>

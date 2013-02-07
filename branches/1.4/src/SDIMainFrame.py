@@ -105,6 +105,9 @@ class SDIMainFrame(wx.FileDropTarget):
 		Bind(self.OnSaveAs, 'saveAs')
 		Bind(self.OnExit, 'exit')
 		Bind(self.OnAbout, 'about')
+		
+	def SetDefaultExtension(self, ext):
+		self.docExt = ext
 
 	def OnNew(self, evt):
 		"""Menu handler for File->New"""

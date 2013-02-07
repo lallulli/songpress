@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-29 22:28+0200\n"
+"POT-Creation-Date: 2013-02-03 21:04+0100\n"
 "PO-Revision-Date: 2012-07-29 22:27+0100\n"
 "Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr "%d occurences ont été remplacées"
 msgid "Chordpro files (*.crd)"
 msgstr "Fichiers chordpro (*.crd)"
 
-#: src\SongpressFrame.py:166 src\SongpressFrame.py:175
+#: src\SongpressFrame.py:166 src\SongpressFrame.py:176
 msgid "Tab files (*.tab)"
 msgstr "Fichiers tab (*.tab)"
 
@@ -73,44 +73,51 @@ msgstr "Fichiers chordpro (*.chordpro)"
 msgid "Chordpro files (*.chopro)"
 msgstr "Fichiers chordpro (*.chopro)"
 
-#: src\SongpressFrame.py:173
+#: src\SongpressFrame.py:170
+#, fuzzy
+msgid "Chordpro files (*.pro)"
+msgstr "Fichiers chordpro (*.chopro)"
+
+#: src\SongpressFrame.py:174
 msgid "All supported files"
 msgstr "Tous les fichiers supportés"
 
-#: src\SongpressFrame.py:174
-msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro)"
+#: src\SongpressFrame.py:175
+#, fuzzy
+msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
 msgstr "Fichiers chordpro (*.crd, *.cho, *.chordpro, *.chopro)"
 
-#: src\SongpressFrame.py:187
+#: src\SongpressFrame.py:188
 msgid "song"
 msgstr "chant"
 
-#: src\SongpressFrame.py:189
+#: src\SongpressFrame.py:190
 msgid "Songpress - Il Canzonatore"
 msgstr "Songpress - Il Canzonatore"
 
-#: src\SongpressFrame.py:192
+#: src\SongpressFrame.py:193
 msgid "http://www.skeed.it/songpress.html"
 msgstr "http://www.skeed.it/songpress.html"
 
-#: src\SongpressFrame.py:193
+#: src\SongpressFrame.py:194
+#, fuzzy
 msgid ""
-"Copyright (c) 2009-2012 Luca Allulli - Skeed\n"
+"Copyright (c) 2009-2013 Luca Allulli - Skeed\n"
 "French translation by Raoul Schmitt"
 msgstr ""
 "Copyright (c) 2009-2012 Luca Allulli - Skeed\n"
 "Traduction française par Raoul Schmitt"
 
-#: src\SongpressFrame.py:194
-msgid ""
-"Licensed under the terms and conditions of the GNU General Public License, "
-"version 2"
-msgstr ""
-"Licensed under the terms and conditions of the GNU General Public License, "
-"version 2"
-
 #: src\SongpressFrame.py:195
 msgid ""
+"Licensed under the terms and conditions of the GNU General Public License, "
+"version 2"
+msgstr ""
+"Licensed under the terms and conditions of the GNU General Public License, "
+"version 2"
+
+#: src\SongpressFrame.py:196
+msgid ""
 "Special thanks to:\n"
 "  * The Pyhton programming language (http://www.python.org)\n"
 "  * wxWidgets (http://www.wxwidgets.org)\n"
@@ -125,133 +132,142 @@ msgstr ""
 "  * Editra (http://editra.org/) (for the error reporting dialog and... the "
 "editor itself!)"
 
-#: src\SongpressFrame.py:207 src\SongpressFrame.py:313
+#: src\SongpressFrame.py:208 src\SongpressFrame.py:320
 msgid "Preview"
 msgstr "Prévisualisation"
 
-#: src\SongpressFrame.py:213
+#: src\SongpressFrame.py:214
 msgid "New"
 msgstr "Nouveau"
 
-#: src\SongpressFrame.py:214
+#: src\SongpressFrame.py:215
 msgid "Create a new song"
 msgstr "Créer un nouveau chant"
 
-#: src\SongpressFrame.py:217
+#: src\SongpressFrame.py:218
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src\SongpressFrame.py:218
+#: src\SongpressFrame.py:219
 msgid "Open an existing song"
 msgstr "Ouvrir un chant existant"
 
-#: src\SongpressFrame.py:221
+#: src\SongpressFrame.py:222
 msgid "Save"
 msgstr "Enregistrer"
 
-#: src\SongpressFrame.py:222
+#: src\SongpressFrame.py:223
 msgid "Save song with the current filename"
 msgstr "Enregistrer le chant avec le nom de fichier actuel"
 
-#: src\SongpressFrame.py:227
+#: src\SongpressFrame.py:228
 msgid "Undo"
 msgstr "Annuler"
 
-#: src\SongpressFrame.py:228
+#: src\SongpressFrame.py:229
 msgid "Undo last edit"
 msgstr "Annuler dernière édition"
 
-#: src\SongpressFrame.py:232
+#: src\SongpressFrame.py:233
 msgid "Redo"
 msgstr "Rétablir"
 
-#: src\SongpressFrame.py:233
+#: src\SongpressFrame.py:234
 msgid "Redo previously undone edit"
 msgstr "Rétablir la dernière édition"
 
-#: src\SongpressFrame.py:238
+#: src\SongpressFrame.py:239
 msgid "Cut"
 msgstr "Couper"
 
-#: src\SongpressFrame.py:239
+#: src\SongpressFrame.py:240
 msgid "Move selected text in the clipboard"
 msgstr "Déplacer le texte sélectionné dans le presse-papier"
 
-#: src\SongpressFrame.py:243
+#: src\SongpressFrame.py:244
 msgid "Copy"
 msgstr "Copier"
 
-#: src\SongpressFrame.py:244
+#: src\SongpressFrame.py:245
 msgid "Copy selected text in the clipboard"
 msgstr "Copier le texte sélectionné dans le presse-papier"
 
-#: src\SongpressFrame.py:248
+#: src\SongpressFrame.py:249
 msgid "Copy as Image"
 msgstr "Copier comme image"
 
-#: src\SongpressFrame.py:249
+#: src\SongpressFrame.py:250
 msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
 msgstr ""
 "Copier tout le chant FORMATE (ou les strophes sélectionnées) dans le presse-"
 "papier"
 
-#: src\SongpressFrame.py:253
+#: src\SongpressFrame.py:254
 msgid "Paste"
 msgstr "Coller"
 
-#: src\SongpressFrame.py:254
+#: src\SongpressFrame.py:255
 msgid "Read text from the clipboard and place it at the cursor position"
 msgstr "Lire le texte du presse-papier et le placer à la position du curseur"
 
-#: src\SongpressFrame.py:258
+#: src\SongpressFrame.py:259
 msgid "PasteChords"
 msgstr "Coller les accords"
 
-#: src\SongpressFrame.py:259
+#: src\SongpressFrame.py:260
 msgid "Integrate chords of copied text into current selection"
 msgstr "Intégrer les accords du texte copié dans la sélection courante"
 
-#: src\SongpressFrame.py:262 src\SongpressFrame.py:314
+#: src\SongpressFrame.py:263 src\SongpressFrame.py:321
 msgid "Standard"
 msgstr "Standard"
 
-#: src\SongpressFrame.py:275
+#: src\SongpressFrame.py:276
 msgid "Insert title"
 msgstr "Insérer le titre"
 
-#: src\SongpressFrame.py:276
+#: src\SongpressFrame.py:277
 msgid "Insert a command to display song title"
 msgstr "Insérer une commande pour afficher le titre du chant"
 
-#: src\SongpressFrame.py:279
+#: src\SongpressFrame.py:280
 msgid "Insert chord"
 msgstr "Insérer un accord"
 
-#: src\SongpressFrame.py:280
+#: src\SongpressFrame.py:281
 msgid "Insert square brackets that will host a chord"
 msgstr "Insérer des crochets qui contiendront l'accord"
 
-#: src\SongpressFrame.py:283
+#: src\SongpressFrame.py:284
 msgid "Insert chorus"
 msgstr "Insérer les choeurs"
 
-#: src\SongpressFrame.py:284
+#: src\SongpressFrame.py:285
 msgid "Insert a couple of commands that will contain chorus"
 msgstr "Insérer les commandes qui contiendront les choeurs"
 
-#: src\SongpressFrame.py:287
-msgid "Insert comment"
-msgstr "Insérer des commentaires"
-
 #: src\SongpressFrame.py:288
-msgid "Insert a command to display a comment"
+msgid "Insert verse with custom label or without label"
+msgstr ""
+
+#: src\SongpressFrame.py:289
+#, fuzzy
+msgid "Insert a commands that will display a verse with a custom label"
 msgstr "Insérer une commande pour afficher les commentaires"
 
-#: src\SongpressFrame.py:292 src\SongpressFrame.py:315
+#: src\SongpressFrame.py:292
+msgid "Show verse labels"
+msgstr ""
+
+#: src\SongpressFrame.py:293
+msgid "Show or hide verse and chorus labels"
+msgstr ""
+
+#: src\SongpressFrame.py:297 src\SongpressFrame.py:322
 msgid "Format"
 msgstr "Formater"
 
-#: src\SongpressFrame.py:317
+#: src\SongpressFrame.py:324
 msgid ""
 "You are not a skilled guitarist? Songpress can help you: when you open a "
 "song, it can detect if chords are difficult. If this is the case, Songpress "
@@ -267,13 +283,13 @@ msgstr ""
 "\n"
 "Veux-tu activer cette option?"
 
-#: src\SongpressFrame.py:318 src\SongpressFrame.py:322
-#: src\SongpressFrame.py:511 src\SongpressFrame.py:675
-#: src\SongpressFrame.py:755
+#: src\SongpressFrame.py:325 src\SongpressFrame.py:329
+#: src\SongpressFrame.py:520 src\SongpressFrame.py:684
+#: src\SongpressFrame.py:783
 msgid "Songpress"
 msgstr "Songpress"
 
-#: src\SongpressFrame.py:321
+#: src\SongpressFrame.py:328
 msgid ""
 "Please take a minute to set up your skill as a guitarist. For each group of "
 "chords, tell Songpress how much you like them."
@@ -281,47 +297,47 @@ msgstr ""
 "Merci de prendre le temps de configurer ton niveau de guitariste. Pour "
 "chaque groupe d'accords, indique à Songpress ton degré d'appréciation."
 
-#: src\SongpressFrame.py:482
+#: src\SongpressFrame.py:491
 msgid "PNG image"
 msgstr "Image PNG"
 
-#: src\SongpressFrame.py:495
+#: src\SongpressFrame.py:504
 msgid "HTML file"
 msgstr "Fichier HTML"
 
-#: src\SongpressFrame.py:510
+#: src\SongpressFrame.py:519
 msgid "SVG export requires wxPython 2.9.1.2 or higher"
 msgstr "L'exportation SVG requiert wxPython 2.9.1.2 ou supérieur"
 
-#: src\SongpressFrame.py:514
+#: src\SongpressFrame.py:523
 msgid "SVG image"
 msgstr "Image SVG"
 
-#: src\SongpressFrame.py:522
+#: src\SongpressFrame.py:531
 msgid "Enhanced Metafile"
 msgstr "Activer les Metafiles"
 
-#: src\SongpressFrame.py:529
+#: src\SongpressFrame.py:538
 msgid "EPS image"
 msgstr "Image EPS"
 
-#: src\SongpressFrame.py:536
+#: src\SongpressFrame.py:545
 msgid "Exporting image as EPS..."
 msgstr "Exporter comme image EPS..."
 
-#: src\SongpressFrame.py:658
+#: src\SongpressFrame.py:667
 msgid "http://www.skeed.it/songpress-manual.html"
 msgstr "http://www.skeed.it/songpress-manual.html"
 
-#: src\SongpressFrame.py:672
+#: src\SongpressFrame.py:681
 msgid "http://www.skeed.it/songpress.html#donate"
 msgstr "http://www.skeed.it/songpress.html#donate"
 
-#: src\SongpressFrame.py:690 src\SongpressFrame.py:795
+#: src\SongpressFrame.py:699 src\SongpressFrame.py:823
 msgid "Simplify chords"
 msgstr "Simplifier les accords"
 
-#: src\SongpressFrame.py:692 src\SongpressFrame.py:793
+#: src\SongpressFrame.py:701 src\SongpressFrame.py:821
 #, python-format
 msgid ""
 "The key of your song, %s, is not the easiest to play (difficulty: "
@@ -330,7 +346,7 @@ msgstr ""
 "La tonalité de ton chant, %s, n'est pas la plus facile à jouer (difficulté: "
 "%.1f/5.0).\n"
 
-#: src\SongpressFrame.py:693 src\SongpressFrame.py:794
+#: src\SongpressFrame.py:702 src\SongpressFrame.py:822
 #, python-format
 msgid ""
 "Do you want to transpose the key %s, which is the easiest one (difficulty: "
@@ -339,7 +355,7 @@ msgstr ""
 "Souhaites tu transposer la tonalité %s, qui est la plus facile(difficulté: "
 "%.1f/5.0)?"
 
-#: src\SongpressFrame.py:700
+#: src\SongpressFrame.py:709
 #, python-format
 msgid ""
 "The key of your song, %s, is already the easiest to play (difficulty: "
@@ -348,38 +364,60 @@ msgstr ""
 "La tonalité de ton chant, %s, est déjà la plus facile à jouer (difficulté: "
 "%.1f/5.0).\n"
 
-#: src\SongpressFrame.py:702
+#: src\SongpressFrame.py:711
 msgid "Your song or current selection does not contain any chords."
 msgstr "Ton chant ou la sélection actuelle ne contient aucun accords."
 
+#: src\SongpressFrame.py:753
+msgid "Insert a label for verse, or press Cancel if you want to omit label."
+msgstr ""
+
 #: src\SongpressFrame.py:754
+msgid "Verse label"
+msgstr ""
+
+#: src\SongpressFrame.py:763
+msgid "Insert a label for chorus, or press Cancel if you want to omit label."
+msgstr ""
+
+#: src\SongpressFrame.py:764
+msgid "Chorus label"
+msgstr ""
+
+#: src\SongpressFrame.py:782
 msgid "Please enter a label for chorus"
 msgstr "Merci de saisir un label pour les refrains"
 
-#: src\SongpressFrame.py:769
+#: src\SongpressFrame.py:797
 msgid "It looks like there are spurious blank lines in the song.\n"
 msgstr ""
 "Il semblerait qu'il y ait des lignes blanches non désirées dans le chant.\n"
 
-#: src\SongpressFrame.py:770
+#: src\SongpressFrame.py:798
 msgid "Do you want to try to remove them automatically?"
 msgstr "Souhaitez vous tenter de les supprimer automatiquement?"
 
-#: src\SongpressFrame.py:771
+#: src\SongpressFrame.py:799
 msgid "Remove spurious blank lines"
 msgstr "Suppression des lignes blanches"
 
-#: src\SongpressFrame.py:781
+#: src\SongpressFrame.py:809
 msgid ""
 "It looks like your song is in tab format (i.e., chords are above the text).\n"
 msgstr ""
 "Il semblerait que votre chant soit au format tab (par exemple, les accords "
 "sont audessus du texte).\n"
 
-#: src\SongpressFrame.py:782
+#: src\SongpressFrame.py:810
 msgid "Do you want to convert it to ChordPro automatically?"
 msgstr "Souhaitez vous les convertir automatiquement au format ChordPro"
 
-#: src\SongpressFrame.py:783
+#: src\SongpressFrame.py:811
 msgid "Convert to ChordPro"
 msgstr "Conversion au format ChorPro"
+
+#~ msgid "Insert comment"
+#~ msgstr "Insérer des commentaires"
+
+#~ msgid "Insert a command to display a comment"
+#~ msgstr "Insérer une commande pour afficher les commentaires"

@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Songpress"
-!define PRODUCT_VERSION "1.4.2"
+!define PRODUCT_VERSION "1.5"
 !define PRODUCT_PUBLISHER "Luca Allulli - Skeed"
 !define PRODUCT_WEB_SITE "http://www.skeed.it"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\songpress.exe"
@@ -103,6 +103,8 @@ LangString ChordproSectionNameLS ${LANG_ENGLISH} "Associate Chordpro files"
 LangString ChordproSectionNameLS ${LANG_ITALIAN} "Associa i file Chordpro"
 LangString ChoproSectionNameLS ${LANG_ENGLISH} "Associate Chopro files"
 LangString ChoproSectionNameLS ${LANG_ITALIAN} "Associa i file Chopro"
+LangString ProSectionNameLS ${LANG_ENGLISH} "Associate PRO files"
+LangString ProSectionNameLS ${LANG_ITALIAN} "Associa i file PRO"
 LangString TabSectionNameLS ${LANG_ENGLISH} "Associate TAB files"
 LangString TabSectionNameLS ${LANG_ITALIAN} "Associa i file TAB"
 LangString FileAssociationSG ${LANG_ENGLISH} "File type association"
@@ -158,6 +160,9 @@ SectionEnd
 Section $(TabSectionNameLS) TabSection
   ${registerExtension} "$INSTDIR\songpress.exe" ".tab" "TAB chord file"
 SectionEnd
+Section $(ProSectionNameLS) ProSection
+  ${registerExtension} "$INSTDIR\songpress.exe" ".pro" "PRO chord file"
+SectionEnd
 SectionGroupEnd
 
 
@@ -193,6 +198,8 @@ SectionEnd
   LangString ChoproSectionLS ${LANG_ITALIAN} "Apre i file .chopro con Songpress"
   LangString TabSectionLS ${LANG_ENGLISH} "Open .tab files with Songpress"
   LangString TabSectionLS ${LANG_ITALIAN} "Apre i file .tab con Songpress"
+  LangString ProSectionLS ${LANG_ENGLISH} "Open .pro files with Songpress"
+  LangString ProSectionLS ${LANG_ITALIAN} "Apre i file .pro con Songpress"
   
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
     !insertmacro MUI_DESCRIPTION_TEXT ${SongpressSection} $(SongpressSectionLS)
@@ -202,6 +209,7 @@ SectionEnd
     !insertmacro MUI_DESCRIPTION_TEXT ${ChordproSection} $(ChordproSectionLS)
     !insertmacro MUI_DESCRIPTION_TEXT ${ChoproSection} $(ChoproSectionLS)
     !insertmacro MUI_DESCRIPTION_TEXT ${TabSection} $(TabSectionLS)
+    !insertmacro MUI_DESCRIPTION_TEXT ${ProSection} $(ProSectionLS)
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
@@ -239,5 +247,6 @@ Section Uninstall
   ${unregisterExtension} ".chordpro" "ChordPro file"
   ${unregisterExtension} ".chopro" "ChordPro file"
   ${unregisterExtension} ".tab" "TAB chord file"
+  ${unregisterExtension} ".tab" "PRO chord file"
   SetAutoClose true
 SectionEnd
