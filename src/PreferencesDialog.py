@@ -100,7 +100,7 @@ class PreferencesDialog ( wx.Dialog ):
 		self.m_staticText1012.Wrap( -1 )
 		bSizer1412.Add( self.m_staticText1012, 0, wx.ALL, 5 )
 		
-		extensionChoices = [ _(u"crd"), _(u"pro"), _(u"chopro"), _(u"chordpro"), _(u"cho") ]
+		extensionChoices = []
 		self.extension = wx.Choice( self.general, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, extensionChoices, 0 )
 		self.extension.SetSelection( 0 )
 		bSizer1412.Add( self.extension, 1, wx.ALL, 5 )
@@ -189,4 +189,5 @@ class PreferencesDialog ( wx.Dialog ):
 	def OnOk( self, event ):
 		event.Skip()
 	
+
 
