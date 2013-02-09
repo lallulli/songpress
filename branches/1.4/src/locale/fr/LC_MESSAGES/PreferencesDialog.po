@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 16:34+0100\n"
+"POT-Creation-Date: 2013-02-09 19:49+0100\n"
 "PO-Revision-Date: 2012-06-20 17:13+0100\n"
 "Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,96 +15,99 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:26
+#: src\PreferencesDialog.py:30
 msgid "Songpress options"
 msgstr "Options Songpress"
 
-#: src\PreferencesDialog.py:38
+#: src\PreferencesDialog.py:42
 msgid "Editor font"
 msgstr "Police de l'éditeur"
 
-#: src\PreferencesDialog.py:45
+#: src\PreferencesDialog.py:49
 msgid "Size"
 msgstr "Taille"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "7"
 msgstr "7"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "8"
 msgstr "8"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "9"
 msgstr "9"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "10"
 msgstr "10"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "11"
 msgstr "11"
 
-#: src\PreferencesDialog.py:49
-#: src\PreferencesDialog.py:50
+#: src\PreferencesDialog.py:53 src\PreferencesDialog.py:54
 msgid "12"
 msgstr "12"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "13"
 msgstr "13"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "14"
 msgstr "14"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "16"
 msgstr "16"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "18"
 msgstr "18"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "20"
 msgstr "20"
 
-#: src\PreferencesDialog.py:57
+#: src\PreferencesDialog.py:62
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: src\PreferencesDialog.py:68
+#: src\PreferencesDialog.py:74
 msgid "Default notation"
 msgstr "Tonalité par défaut"
 
-#: src\PreferencesDialog.py:81
+#: src\PreferencesDialog.py:88
 msgid "Check for updates every"
 msgstr "Vérifier les mises-à-jour tous les"
 
-#: src\PreferencesDialog.py:94
+#: src\PreferencesDialog.py:102
+#, fuzzy
+msgid "Default file extension"
+msgstr "Tonalité par défaut"
+
+#: src\PreferencesDialog.py:116
 msgid "Language"
 msgstr "Langue"
 
-#: src\PreferencesDialog.py:108
+#: src\PreferencesDialog.py:132
 msgid "General"
 msgstr "Général"
 
-#: src\PreferencesDialog.py:112
+#: src\PreferencesDialog.py:136
 msgid "Offer to remove blank lines"
 msgstr "Proposer de supprimer les lignes vides"
 
-#: src\PreferencesDialog.py:115
+#: src\PreferencesDialog.py:139
 msgid "Offer to convert songs in tab"
 msgstr "Proposer de convertir les chants en tablatures"
 
-#: src\PreferencesDialog.py:118
+#: src\PreferencesDialog.py:142
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proposer de transposer les chants en accords simplifiés"
 
-#: src\PreferencesDialog.py:130
+#: src\PreferencesDialog.py:155
 msgid "AutoAdjust"
 msgstr "Ajustement automatique"
-

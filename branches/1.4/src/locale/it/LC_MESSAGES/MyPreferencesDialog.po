@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-22 18:06+0200\n"
+"POT-Creation-Date: 2013-02-09 19:49+0100\n"
 "PO-Revision-Date: 2010-06-09 17:12+0100\n"
 "Last-Translator: Luca Allulli\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,10 +37,10 @@ msgstr ""
 "era goba anche [Do]quela la fa[Sol]miglia dei go[Do]bon.\n"
 "{eoc}"
 
-#: src\MyPreferencesDialog.py:112
+#: src\MyPreferencesDialog.py:119
 msgid "Language settings will be applied when you restart Songpress."
 msgstr "Language settings will be applied when you restart Songpress."
 
-#: src\MyPreferencesDialog.py:113
+#: src\MyPreferencesDialog.py:120
 msgid "Songpress"
 msgstr "Songpress"

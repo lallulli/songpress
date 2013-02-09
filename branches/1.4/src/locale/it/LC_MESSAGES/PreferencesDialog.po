@@ -7,104 +7,108 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 15:10+0100\n"
-"PO-Revision-Date: 2011-01-27 15:13+0100\n"
-"Last-Translator: Atac mobile <atacmobile@atac.roma.it>\n"
+"POT-Creation-Date: 2013-02-09 19:49+0100\n"
+"PO-Revision-Date: 2013-02-09 19:50+0100\n"
+"Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: src\PreferencesDialog.py:26
+#: src\PreferencesDialog.py:30
 msgid "Songpress options"
 msgstr "Opzioni di Songpress"
 
-#: src\PreferencesDialog.py:38
+#: src\PreferencesDialog.py:42
 msgid "Editor font"
 msgstr "Carattere editor"
 
-#: src\PreferencesDialog.py:45
+#: src\PreferencesDialog.py:49
 msgid "Size"
 msgstr "Dimensione"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "7"
 msgstr "7"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "8"
 msgstr "8"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "9"
 msgstr "9"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "10"
 msgstr "10"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "11"
 msgstr "11"
 
-#: src\PreferencesDialog.py:49
-#: src\PreferencesDialog.py:50
+#: src\PreferencesDialog.py:53 src\PreferencesDialog.py:54
 msgid "12"
 msgstr "12"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "13"
 msgstr "13"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "14"
 msgstr "14"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "16"
 msgstr "16"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "18"
 msgstr "18"
 
-#: src\PreferencesDialog.py:49
+#: src\PreferencesDialog.py:53
 msgid "20"
 msgstr "20"
 
-#: src\PreferencesDialog.py:57
+#: src\PreferencesDialog.py:62
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src\PreferencesDialog.py:68
+#: src\PreferencesDialog.py:74
 msgid "Default notation"
 msgstr "Notazione predefinita"
 
-#: src\PreferencesDialog.py:81
+#: src\PreferencesDialog.py:88
 msgid "Check for updates every"
 msgstr "Verifica disponibilità di aggiornamenti ogni"
 
-#: src\PreferencesDialog.py:94
+#: src\PreferencesDialog.py:102
+msgid "Default file extension"
+msgstr "Estensione dei file predefinita"
+
+#: src\PreferencesDialog.py:116
 msgid "Language"
 msgstr "Language"
 
-#: src\PreferencesDialog.py:108
+#: src\PreferencesDialog.py:132
 msgid "General"
 msgstr "Generale"
 
-#: src\PreferencesDialog.py:112
+#: src\PreferencesDialog.py:136
 msgid "Offer to remove blank lines"
 msgstr "Proponi di rimuovere le linee vuote"
 
-#: src\PreferencesDialog.py:115
+#: src\PreferencesDialog.py:139
 msgid "Offer to convert songs in tab"
 msgstr "Proponi di convertire il formato delle canzoni da tab a ChordPro"
 
-#: src\PreferencesDialog.py:118
+#: src\PreferencesDialog.py:142
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proponi di trasporre le canzoni per semplificare gli accordi"
 
-#: src\PreferencesDialog.py:130
+#: src\PreferencesDialog.py:155
 msgid "AutoAdjust"
 msgstr "Strumenti automatici"
 
@@ -128,10 +132,12 @@ msgstr "Strumenti automatici"
 #~ "Gobo so [Do]pare, goba sa mare goba la fja de so so[Fa]rela\n"
 #~ "era goba anche [Do]quela la fa[Sol]miglia dei go[Do]bon.\n"
 #~ "{eoc}"
+
 #~ msgid "OK"
 #~ msgstr "OK"
+
 #~ msgid "Cancel"
 #~ msgstr "Annulla"
+
 #~ msgid "Language settings will be applied when you restart Songpress."
 #~ msgstr "Language settings will be applied when you restart Songpress."
-

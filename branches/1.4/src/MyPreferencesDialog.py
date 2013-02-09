@@ -46,6 +46,13 @@ class MyPreferencesDialog(PreferencesDialog):
 			self.langCh.SetClientData(i, l)
 			if lang == l:
 				self.langCh.SetSelection(i)
+		exts = ["crd", "pro", "chopro", "chordpro", "cho"]
+		i = 0
+		for e in exts:
+			self.extension.Append(e)
+			if e == self.pref.defaultExtension:
+				self.extension.SetSelection(i)
+			i += 1
 				
 		# Default notation
 		for n in self.pref.notations:
