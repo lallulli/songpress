@@ -88,6 +88,7 @@ class Decorator(SongDecorator):
 			else:
 				text = self.format.chorus.label
 			font = self.format.chorus.wxFont
+			self.dc.SetFont(font)
 			w, h = self.dc.GetTextExtent(text)
 			w += self.baseWidth * (
 				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
