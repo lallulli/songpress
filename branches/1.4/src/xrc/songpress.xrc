@@ -73,6 +73,10 @@
 					<label>C_opy\tCTRL+C</label>
 					<help>Copy selected text in the clipboard</help>
 				</object>
+				<object class="wxMenuItem" name="copyOnlyText">
+					<label>Copy only Te_xt</label>
+					<help>Copy selected text in the clipboard, ignoring chords and ChordPro tags</help>
+				</object>
 				<object class="wxMenuItem" name="copyAsImage">
 					<label>Copy as _Image\tCTRL+D</label>
 					<help>Copy the whole FORMATTED song (or selected verses) to the clipboard</help>
