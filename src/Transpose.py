@@ -518,6 +518,16 @@ def removeChords(text):
 	"""
 	return re.sub('\[([^]]*)\]', "", text)
 
+def removeChordPro(text):
+	"""
+	Remove every ChordPro tag, including chords, from text.
+
+		text: song text
+		return: text without ChordPro stuff and chords
+	"""
+	return removeSpuriousLines(re.sub('(\[([^]]*)\]|{[^}]*})', "", text))
+
+
 def pasteChords(src, dest):
 	"""
 	Paste chords from src to dest

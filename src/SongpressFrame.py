@@ -245,6 +245,7 @@ class SongpressFrame(SDIMainFrame):
 			shortHelpString = _("Copy"),
 			longHelpString = _("Copy selected text in the clipboard")
 		)
+		self.copyOnlyTextTool = wx.xrc.XRCID('copyOnlyText')
 		if platform.system() == 'Windows':
 			self.mainToolBar.AddTool(wx.xrc.XRCID('copyAsImage'), wx.BitmapFromImage(wx.Image(glb.AddPath("img/copyAsImage2.png"))),
 				shortHelpString = _("Copy as Image"),
@@ -352,6 +353,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnCut, 'cut')
 		Bind(self.OnCopy, 'copy')
 		Bind(self.OnCopyAsImage, 'copyAsImage')
+		Bind(self.OnCopyOnlyText, 'copyOnlyText')
 		Bind(self.OnPaste, 'paste')
 		Bind(self.OnPasteChords, 'pasteChords')
 		Bind(self.OnFind, 'find')
@@ -411,6 +413,7 @@ class SongpressFrame(SDIMainFrame):
 		self.mainToolBar.EnableTool(self.cutTool, s != e)
 		self.menuBar.Enable(self.cutMenuId, s != e)
 		self.mainToolBar.EnableTool(self.copyTool, s != e)
+		self.menuBar.Enable(self.copyOnlyTextTool, s != e)
 		self.menuBar.Enable(self.copyMenuId, s != e)
 		if platform.system() == 'Windows':
 			cp = self.text.CanPaste()
@@ -571,6 +574,9 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnCopy(self, evt):
 		self.text.Copy()
+		
+	def OnCopyOnlyText(self, evt):
+		self.text.CopyOnlyText()
 
 	def OnCopyAsImage(self, evt):
 		dc = wx.MetaFileDC()

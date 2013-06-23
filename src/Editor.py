@@ -211,6 +211,14 @@ class Editor(StyledTextCtrl):
 
 	def RemoveChordsInSelection(self):
 		self.ReplaceSelection(Transpose.removeChords(self.GetSelectedText()))
+		
+	def CopyOnlyText(self):
+		text = Transpose.removeChordPro(self.GetSelectedText())
+		c = wx.TheClipboard
+		if c.Open():
+			c.SetData(wx.TextDataObject(text))
+			c.Close()
+		
 
 	def OnTextChange(self, evt):
 		if self.interactive:
