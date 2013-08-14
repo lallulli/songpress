@@ -11,7 +11,7 @@ import wx
 from Renderer import *
 
 class PreviewCanvas(object):
-	def __init__(self, parent, sf, sd = SongDecorator()):
+	def __init__(self, parent, sf, notations, sd=SongDecorator()):
 		object.__init__(self)
 		self.panel = wx.ScrolledWindow(parent, style=wx.BORDER_DOUBLE)
 		self.panel.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
@@ -22,7 +22,7 @@ class PreviewCanvas(object):
 		self.text = ""
 		self.panel.Show()
 		#SongFormat
-		self.renderer = Renderer(sf, sd)
+		self.renderer = Renderer(sf, sd, notations)
 
 	def OnPaint(self, e):
 		#print("OnPaint")

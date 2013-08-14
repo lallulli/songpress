@@ -200,17 +200,17 @@
 					<label>_Show chords for</label>
 					<object class="wxMenuItem" name="noChords">
 						<label>_No chords</label>
-						<help></help>
+						<help>Do not render chords at all</help>
 						<radio>1</radio>
 					</object>
-					<object class="wxMenuItem" name="firstVersechorusOnly">
-						<label>_First verse/chorus only</label>
-						<help></help>
+					<object class="wxMenuItem" name="oneVerseForEachChordPattern">
+						<label>_One verse for each chord pattern</label>
+						<help>When a verse with a new chord pattern occurs, render chords</help>
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="wholeSong">
 						<label>_Whole song</label>
-						<help></help>
+						<help>Render chords for whole song</help>
 						<radio>1</radio>
 					</object>
 				</object>
@@ -229,14 +229,18 @@
 					<label>Change chord _notation...</label>
 					<help>Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection</help>
 				</object>
+				<object class="wxMenuItem" name="normalizeChords">
+					<label>_Normalize chords...</label>
+					<help>Cleanup chord notation</help>
+				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="convertTabToChordpro">
 					<label>Convert _Tab to Chordpro</label>
 					<help>Convert song from tab notation (chords on separate lines) to ChordPro</help>
 				</object>
-				<object class="wxMenuItem" name="removeSpuriousBlankLines">
-					<label>Remove _spurious blank lines</label>
-					<help>Remove blank lines inside a verse</help>
+				<object class="wxMenuItem" name="cleanupChords">
+					<label>_Cleanup chords...</label>
+					<help>Normalize chords according to current notation</help>
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="options">

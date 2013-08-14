@@ -264,8 +264,8 @@ def transpose(s, d, chord, notation=enNotation):
 	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
 
 def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
-	if sNotation == dNotation:
-		return chord
+	#if sNotation == dNotation:
+	#	return chord
 	sl = chord.find("/")
 	if sl > -1:
 		return "%s/%s" % (translateChord(chord[:sl], sNotation, dNotation), translateChord(chord[sl + 1:], sNotation, dNotation))
