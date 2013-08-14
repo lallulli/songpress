@@ -21,6 +21,7 @@ from HTML import HtmlExporter
 from Transpose import *
 from MyTransposeDialog import *
 from MyNotationDialog import *
+from MyNormalizeDialog import *
 import MyUpdateDialog
 from Globals import glb
 from Preferences import Preferences
@@ -203,7 +204,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.SetDropTarget(dt)
 		self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
 		# Other objects
-		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.decorator)
+		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
 		self.AddMainPane(self.text)
 		self.previewCanvas.panel.SetSize(wx.Size(400, 800))
 		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
@@ -297,7 +298,7 @@ class SongpressFrame(SDIMainFrame):
 		self.labelVersesToolId = labelVersesTool.GetId()
 		self.showChordsChooser = wx.Choice(self.formatToolBar, -1, choices=[
 			_("No chords"),
-			_("First verse/chorus only"),
+			_("Verses with different chords"),
 			_("All chords"),
 		])
 		self.frame.Bind(wx.EVT_CHOICE, self.OnFontSelected, self.showChordsChooser)
@@ -384,6 +385,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnSimplifyChords, 'simplifyChords')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
+		Bind(self.OnNormalizeChords, 'normalizeChords')
 		Bind(self.OnConvertTabToChordpro, 'convertTabToChordpro')
 		Bind(self.OnRemoveSpuriousBlankLines, 'removeSpuriousBlankLines')
 		Bind(self.OnOptions, 'options')
@@ -443,7 +445,7 @@ class SongpressFrame(SDIMainFrame):
 
 	def DrawOnDC(self, dc):
 		decorator = self.pref.decorator if self.pref.labelVerses else SongDecorator()
-		r = Renderer(self.pref.format, decorator)
+		r = Renderer(self.pref.format, decorator, self.pref.notations)
 		start, end = self.text.GetSelection()
 		if start == end:
 			w, h = r.Render(self.text.GetText(), dc)
@@ -516,7 +518,7 @@ class SongpressFrame(SDIMainFrame):
 		n = self.AskExportFileName(_("HTML file"), "html")
 		if n is not None:
 			h = HtmlExporter(self.pref.format)
-			r = Renderer(self.pref.format, h)
+			r = Renderer(self.pref.format, h, self.pref.notations)
 			start, end = self.text.GetSelection()
 			if start == end:
 				r.Render(self.text.GetText(), None)
@@ -733,6 +735,11 @@ class SongpressFrame(SDIMainFrame):
 		t = MyNotationDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
+			
+	def OnNormalizeChords(self, evt):
+		t = MyNormalizeDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
+		if t.ShowModal() == wx.ID_OK:
+			self.text.ReplaceTextOrSelection(t.NormalizeChords())
 
 	def OnConvertTabToChordpro(self, evt):
 		t = self.text.GetTextOrSelection()

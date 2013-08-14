@@ -12,10 +12,11 @@ from SongDecorator import *
 from SongTokenizer import *
 from SongFormat import *
 from SongBoxes import *
+from Transpose import translateChord, autodetectNotation
+from EditDistance import minEditDist
 
 class Renderer(object):
-
-	def __init__(self, sf, sd = SongDecorator()):
+	def __init__(self, sf, sd=SongDecorator(), notations=[]):
 		object.__init__(self)
 		self.text = ""
 		self.sd = sd
@@ -29,6 +30,9 @@ class Renderer(object):
 		self.currentBlock = None
 		self.currentLine = None
 		self.song = None
+		self.notation = None
+		self.notations = notations
+		self.chordPatterns = []
 
 	def BeginBlock(self, type, label=None):
 		self.EndBlock()
@@ -54,7 +58,18 @@ class Renderer(object):
 	def EndBlock(self):
 		if self.currentBlock != None:
 			self.EndLine()
-			self.song.AddBox(self.currentBlock)
+			if self.sf.showChords == 1:
+				current = self.currentBlock.chords
+				found = False
+				for p in self.chordPatterns:
+					if minEditDist(p, current) < 4:
+						found = True
+						break
+				if not found:
+					self.chordPatterns.append(current)
+				else:
+					self.currentBlock.RemoveChordBoxes()		
+			self.song.AddBox(self.currentBlock)			
 			self.currentBlock = None
 
 	def BeginVerse(self, label=None):
@@ -86,22 +101,12 @@ class Renderer(object):
 			font = self.commentFont
 		elif type == SongText.chord:
 			font = self.chordFont
+			if self.sf.showChords == 1:
+				self.currentBlock.chords.append(translateChord(text, self.notation, self.notation))
 		else:
 			font = self.textFont
 		t = SongText(text, font, type)
-		if not type == SongText.chord or ( 
-			self.sf.showChords == 2
-			or (
-				self.sf.showChords == 1
-				and self.currentBlock.type == SongBlock.verse
-				and (self.currentBlock.label is not None or self.song.labelCount == 1)
-			)
-			or (
-				self.sf.showChords == 1
-				and self.currentBlock.type == SongBlock.chorus
-				and self.song.chorusCount == 1
-			)
-		):
+		if not type == SongText.chord or self.sf.showChords > 0:
 			self.currentLine.AddBox(t)
 
 	def AddTitle(self, title):
@@ -153,6 +158,9 @@ class Renderer(object):
 		self.lineCount = -1
 		self.fromLine = fromLine
 		self.toLine = toLine
+		if self.sf.showChords == 1:
+			self.notation = autodetectNotation(text, self.notations)
+			self.chordPatterns = []
 
 		for l in self.text.splitlines():
 			self.lineCount += 1

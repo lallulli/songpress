@@ -67,6 +67,12 @@ class SongBlock(SongBox):
 		self.format = format
 		self.drawBlock = False
 		self.label = None
+		self.chords = []
+		
+	def RemoveChordBoxes(self):
+		for l in self.boxes:
+			l.RemoveChordBoxes()
+
 			
 class SongLine(SongBox):
 	def __init__(self):
@@ -79,6 +85,10 @@ class SongLine(SongBox):
 		if text.type == text.chord:
 			self.hasChords = True
 		SongBox.AddBox(self, text)
+		
+	def RemoveChordBoxes(self):
+		self.boxes = [b for b in self.boxes if b.type != b.chord]
+		
 	
 class SongText(SongBox):
 	text = 1
