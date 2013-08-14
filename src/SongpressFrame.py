@@ -385,7 +385,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnSimplifyChords, 'simplifyChords')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
-		Bind(self.OnNormalizeChords, 'normalizeChords')
+		Bind(self.OnNormalizeChords, 'cleanupChords')
 		Bind(self.OnConvertTabToChordpro, 'convertTabToChordpro')
 		Bind(self.OnRemoveSpuriousBlankLines, 'removeSpuriousBlankLines')
 		Bind(self.OnOptions, 'options')
