@@ -10,6 +10,7 @@
 import wx
 import i18n
 i18n.register('NormalizeDialog')
+# -*- coding: utf-8 -*- 
 
 
 ###########################################################################
@@ -19,7 +20,7 @@ i18n.register('NormalizeDialog')
 class NormalizeDialog ( wx.Dialog ):
 	
 	def __init__( self, parent ):
-		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Normalize Notation"), pos = wx.DefaultPosition, size = wx.Size( -1,-1 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Cleanup Chords"), pos = wx.DefaultPosition, size = wx.Size( -1,-1 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -64,6 +65,4 @@ class NormalizeDialog ( wx.Dialog ):
 	def OnFromNotation( self, event ):
 		event.Skip()
 	
-
-
 
