@@ -196,6 +196,24 @@
 					<label>_Chorus label...</label>
 					<help>Set label for chorus</help>
 				</object>
+				<object class="wxMenu" name="showChordsFor">
+					<label>_Show chords for</label>
+					<object class="wxMenuItem" name="noChords">
+						<label>_No chords</label>
+						<help></help>
+						<radio>1</radio>
+					</object>
+					<object class="wxMenuItem" name="firstVersechorusOnly">
+						<label>_First verse/chorus only</label>
+						<help></help>
+						<radio>1</radio>
+					</object>
+					<object class="wxMenuItem" name="wholeSong">
+						<label>_Whole song</label>
+						<help></help>
+						<radio>1</radio>
+					</object>
+				</object>
 			</object>
 			<object class="wxMenu" name="tools">
 				<label>_Tools</label>

@@ -40,6 +40,7 @@ class Renderer(object):
 			self.format = self.sf.verse[self.song.verseCount-1]
 		elif type == SongBlock.chorus:
 			self.format = self.sf.chorus
+			self.song.chorusCount += 1
 		else:
 			self.format = self.sf.title
 		self.currentBlock = SongBlock(type, self.format)
@@ -88,7 +89,20 @@ class Renderer(object):
 		else:
 			font = self.textFont
 		t = SongText(text, font, type)
-		self.currentLine.AddBox(t)
+		if not type == SongText.chord or ( 
+			self.sf.showChords == 2
+			or (
+				self.sf.showChords == 1
+				and self.currentBlock.type == SongBlock.verse
+				and (self.currentBlock.label is not None or self.song.labelCount == 1)
+			)
+			or (
+				self.sf.showChords == 1
+				and self.currentBlock.type == SongBlock.chorus
+				and self.song.chorusCount == 1
+			)
+		):
+			self.currentLine.AddBox(t)
 
 	def AddTitle(self, title):
 		self.BeginBlock(SongBlock.title)

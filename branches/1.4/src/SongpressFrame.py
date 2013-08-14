@@ -295,6 +295,13 @@ class SongpressFrame(SDIMainFrame):
 			longHelpString = _("Show or hide verse and chorus labels")
 		)
 		self.labelVersesToolId = labelVersesTool.GetId()
+		self.showChordsChooser = wx.Choice(self.formatToolBar, -1, choices=[
+			_("No chords"),
+			_("First verse/chorus only"),
+			_("All chords"),
+		])
+		self.frame.Bind(wx.EVT_CHOICE, self.OnFontSelected, self.showChordsChooser)
+		self.formatToolBar.AddControl(self.showChordsChooser)
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), _('Format'), 'format')
 		self.BindMyMenu()
@@ -661,7 +668,8 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
-		self.pref.SetFont(font)
+		showChords = self.showChordsChooser.GetSelection()
+		self.pref.SetFont(font, showChords)
 		self.SetFont(False)
 		evt.Skip()
 
@@ -840,6 +848,7 @@ class SongpressFrame(SDIMainFrame):
 	def SetFont(self, updateFontChooser=True):
 		if updateFontChooser:
 			self.fontChooser.SetValue(self.pref.format.face)
+			self.showChordsChooser.SetSelection(self.pref.format.showChords)
 		self.previewCanvas.Refresh(self.text.GetText())
 
 	def CheckLabelVerses(self):

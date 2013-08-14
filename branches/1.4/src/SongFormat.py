@@ -88,6 +88,11 @@ class SongFormat(ParagraphFormat):
 		self.title.bold = True
 		self.title.underline = True
 		self.blockSpacing = 1
+		# showChords:
+		# 0. None
+		# 1. First verse and chorus
+		# 2. Entire song
+		self.showChords = 1#2
 
 	def StubSetVerseCount(self, n):
 		i = len(self.verse)

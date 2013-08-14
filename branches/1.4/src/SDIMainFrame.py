@@ -405,8 +405,10 @@ class SDIMainFrame(wx.FileDropTarget):
 		v = self.config.Read("Version", "0.0")
 		vs = v.split('.')
 		svs = self.version.split('.')
+		print vs
+		print svs
 		p = False
-		if vs[:1] == svs[:1]:
+		if vs[:2] == svs[:2]:
 			p = self.config.Read("Perspective")
 		#print "Config: " + str(p)
 		if p:
