@@ -47,11 +47,13 @@ class SongDecorator(object):
 		textMaxH = 0
 		textMaxTH = 0
 		chordsOnly = True
+		hasChords = False
 		for t in line.boxes:
 			self.dc.SetFont(t.font)
 			text = t.text
 			t.w, t.h = self.dc.GetTextExtent(text)
 			if t.type == SongText.chord:
+				hasChords = True
 				self.SetMarginChord(t)
 				chordMaxH = max(chordMaxH, t.h)
 				chordMaxTH = max(chordMaxTH, t.GetTotalHeight())
@@ -61,7 +63,7 @@ class SongDecorator(object):
 				self.SetMarginText(t)
 				textMaxH = max(textMaxH, t.h)
 				textMaxTH = max(textMaxTH, t.GetTotalHeight())
-		if chordsOnly:
+		if chordsOnly and hasChords:
 			textMaxH = 0
 			textMaxTH = 0
 			line.textBaseline = chordMaxTH

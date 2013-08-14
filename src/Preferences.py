@@ -61,7 +61,7 @@ class Preferences(object):
 		self.easyChordsGroup = {}
 		self.Load()
 
-	def SetFont(self, font):
+	def SetFont(self, font, showChords=None):
 		self.fontFace = font
 		self.format.face = font
 		self.format.comment.face = font
@@ -76,6 +76,8 @@ class Preferences(object):
 		self.format.title.face = font
 		self.decoratorFormat.face = font
 		self.decoratorFormat.chorus.face = font
+		if showChords is not None:
+			self.format.showChords = showChords
 
 	def Load(self):
 		self.notices = {}
@@ -86,13 +88,14 @@ class Preferences(object):
 			self.decoratorFormat.SetChorusLabel(l)
 		else:
 			self.chorusLabel = None
+		showChords = int(self.config.Read('ShowChords', "2"))
 		self.config.SetPath('/Format/Font')
 		face = self.config.Read('Face')
 		if face:
 			self.fontFace = face
 		else:
 			self.fontFace = "Arial"
-		self.SetFont(self.fontFace)
+		self.SetFont(self.fontFace, showChords)
 		self.config.SetPath('/Format/Style')
 		labelVerses = self.config.Read('LabelVerses')
 		if labelVerses:
@@ -183,6 +186,7 @@ class Preferences(object):
 		self.config.SetPath('/Format')
 		if self.chorusLabel is not None:
 			self.config.Write('ChorusLabel', self.chorusLabel)
+		self.config.Write('ShowChords', str(self.format.showChords))
 		self.config.SetPath('/Format/Font')
 		face = self.config.Write('Face', self.fontFace)
 		self.config.SetPath('/Format/Style')
