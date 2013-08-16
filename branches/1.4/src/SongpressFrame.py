@@ -296,13 +296,18 @@ class SongpressFrame(SDIMainFrame):
 			longHelpString = _("Show or hide verse and chorus labels")
 		)
 		self.labelVersesToolId = labelVersesTool.GetId()
-		self.showChordsChooser = wx.Choice(self.formatToolBar, -1, choices=[
-			_("No chords"),
-			_("Verses with different chords"),
-			_("All chords"),
-		])
-		self.frame.Bind(wx.EVT_CHOICE, self.OnFontSelected, self.showChordsChooser)
-		self.formatToolBar.AddControl(self.showChordsChooser)
+		showChordsIcon = wx.StaticBitmap(self.formatToolBar, -1, wx.Bitmap('img/showChords.png'))
+		self.formatToolBar.AddControl(showChordsIcon)
+		self.showChordsChooser = wx.Slider(self.formatToolBar, -1, 0, 0, 2, wx.DefaultPosition, wx.DefaultSize, wx.SL_AUTOTICKS|wx.SL_HORIZONTAL)
+		tt1 = wx.ToolTip(_("Hide or show chords in formatted song"))
+		tt2 = wx.ToolTip(_("Hide or show chords in formatted song"))
+		self.showChordsChooser.SetToolTip(tt1)
+		showChordsIcon.SetToolTip(tt2)
+		self.frame.Bind(wx.EVT_SCROLL, self.OnFontSelected, self.showChordsChooser)
+		self.formatToolBar.AddControl(
+			self.showChordsChooser,
+			"pippo"
+		)
 		self.formatToolBar.Realize()
 		self.formatToolBarPane = self.AddPane(self.formatToolBar, wx.aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), _('Format'), 'format')
 		self.BindMyMenu()
@@ -317,6 +322,9 @@ class SongpressFrame(SDIMainFrame):
 		self.pasteChordsMenuId = xrc.XRCID('pasteChords')
 		self.removeChordsMenuId = xrc.XRCID('removeChords')
 		self.labelVersesMenuId = xrc.XRCID('labelVerses')
+		self.noChordsMenuId = xrc.XRCID('noChords')
+		self.oneVerseForEachChordPatternMenuId = xrc.XRCID('oneVerseForEachChordPattern')
+		self.wholeSongMenuId = xrc.XRCID('wholeSong')
 		if platform.system() != 'Windows':
 			self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportToClipboardAsAVectorImage)
 			self.menuBar.GetMenu(1).Delete(self.copyAsImageMenuId)
@@ -382,6 +390,9 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnFormatFont, 'font')
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
+		Bind(self.OnNoChords, 'noChords')
+		Bind(self.OnOneVerseForEachChordPattern, 'oneVerseForEachChordPattern')
+		Bind(self.OnWholeSong, 'wholeSong') 	
 		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnSimplifyChords, 'simplifyChords')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
@@ -670,9 +681,9 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnFontSelected(self, evt):
 		font = self.fontChooser.GetValue()
-		showChords = self.showChordsChooser.GetSelection()
+		showChords = self.showChordsChooser.GetValue()
 		self.pref.SetFont(font, showChords)
-		self.SetFont(False)
+		self.SetFont(True)
 		evt.Skip()
 
 
@@ -809,7 +820,19 @@ class SongpressFrame(SDIMainFrame):
 			c = d.GetValue()
 			self.pref.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
-
+			
+	def OnNoChords(self, evt):
+		self.pref.format.showChords = 0
+		self.SetFont(True)
+		
+	def OnOneVerseForEachChordPattern(self, evt):
+		self.pref.format.showChords = 1
+		self.SetFont(True)
+		
+	def OnWholeSong(self, evt):
+		self.pref.format.showChords = 2
+		self.SetFont(True)
+			
 	def OnTextChanged(self, evt):
 		self.AutoAdjust(evt.lastPos, evt.currentPos)
 
@@ -855,7 +878,10 @@ class SongpressFrame(SDIMainFrame):
 	def SetFont(self, updateFontChooser=True):
 		if updateFontChooser:
 			self.fontChooser.SetValue(self.pref.format.face)
-			self.showChordsChooser.SetSelection(self.pref.format.showChords)
+			self.showChordsChooser.SetValue(self.pref.format.showChords)
+			ids = [self.noChordsMenuId, self.oneVerseForEachChordPatternMenuId, self.wholeSongMenuId]
+			self.menuBar.Check(ids[self.pref.format.showChords], True)
+			
 		self.previewCanvas.Refresh(self.text.GetText())
 
 	def CheckLabelVerses(self):
