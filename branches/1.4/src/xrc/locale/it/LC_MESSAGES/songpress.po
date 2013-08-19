@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 22:01+0200\n"
-"PO-Revision-Date: 2013-02-03 21:08+0100\n"
+"POT-Creation-Date: 2013-08-19 19:55+0200\n"
+"PO-Revision-Date: 2013-08-19 20:09+0100\n"
 "Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -153,12 +153,13 @@ msgstr "Copia il testo selezionato negli appunti"
 
 #: src\xrc\songpress.pos:34
 msgid "Copy only Te&xt"
-msgstr ""
+msgstr "Copia solo &Testo"
 
 #: src\xrc\songpress.pos:35
-#, fuzzy
 msgid "Copy selected text in the clipboard, ignoring chords and ChordPro tags"
-msgstr "Copia il testo selezionato negli appunti"
+msgstr ""
+"Copia il testo selezionato negli appunti, ignorando gli accordi e i tag "
+"ChordPro"
 
 #: src\xrc\songpress.pos:36
 msgid "Copy as &Image\tCTRL+D"
@@ -373,34 +374,34 @@ msgid "Set label for chorus"
 msgstr "Imposta l'etichetta dei ritornelli"
 
 #: src\xrc\songpress.pos:88
-#, fuzzy
 msgid "&Show chords for"
-msgstr "Mostra i crediti"
+msgstr "&Formatta gli accordi per"
 
 #: src\xrc\songpress.pos:89
-#, fuzzy
 msgid "&No chords"
-msgstr "Rimuovi g&li accordi"
+msgstr "&Nessun accordo"
 
 #: src\xrc\songpress.pos:90
 msgid "Do not render chords at all"
-msgstr ""
+msgstr "Non formatta gli accordi"
 
 #: src\xrc\songpress.pos:91
 msgid "&One verse for each chord pattern"
-msgstr ""
+msgstr "&Una strofa per ogni tipologia di accordi"
 
 #: src\xrc\songpress.pos:92
 msgid "When a verse with a new chord pattern occurs, render chords"
 msgstr ""
+"Quando trova una strofa con una nuova tipologia di accordi, formatta gli "
+"accordi"
 
 #: src\xrc\songpress.pos:93
 msgid "&Whole song"
-msgstr ""
+msgstr "&Intera canzone"
 
 #: src\xrc\songpress.pos:94
 msgid "Render chords for whole song"
-msgstr ""
+msgstr "Formatta gli accordi dell'intera canzone"
 
 #: src\xrc\songpress.pos:95
 msgid "&Tools"
@@ -433,14 +434,12 @@ msgstr ""
 "selezione"
 
 #: src\xrc\songpress.pos:102
-#, fuzzy
-msgid "&Normalize chords"
-msgstr "Inte&gra gli accordi"
+msgid "&Cleanup chords..."
+msgstr "&Pulisci gli accordi"
 
 #: src\xrc\songpress.pos:103
-#, fuzzy
-msgid "Cleanup chord notation"
-msgstr "Modifica la &notazione degli accordi..."
+msgid "Normalize chords according to current notation"
+msgstr "Normalizza gli accordi secondo la notazione usata"
 
 #: src\xrc\songpress.pos:104
 msgid "Convert &Tab to Chordpro"
@@ -501,6 +500,10 @@ msgstr "&Informazioni su..."
 #: src\xrc\songpress.pos:118
 msgid "Show credits"
 msgstr "Mostra i crediti"
+
+#, fuzzy
+#~ msgid "&Normalize chords"
+#~ msgstr "Inte&gra gli accordi"
 
 #~ msgid "&News and updates (web)"
 #~ msgstr "&Novità e aggiornamenti (web)"
