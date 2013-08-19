@@ -62,7 +62,9 @@ class Renderer(object):
 				current = self.currentBlock.chords
 				found = False
 				for p in self.chordPatterns:
-					if minEditDist(p, current) < 4:
+					led = len(p)
+					med = minEditDist(p, current)
+					if med < led and med < 4:
 						found = True
 						break
 				if not found:

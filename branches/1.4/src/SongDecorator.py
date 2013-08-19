@@ -67,6 +67,11 @@ class SongDecorator(object):
 			textMaxH = 0
 			textMaxTH = 0
 			line.textBaseline = chordMaxTH
+		elif chordsOnly: # Block without text or chords
+			w, h = self.dc.GetTextExtent(' ')
+			textMaxH = h
+			textMaxTH = h
+			line.textBaseline = h
 		else:
 			line.textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
 		line.chordBaseline = chordMaxTH

@@ -10,7 +10,7 @@
 
 def substCost(x,y):
 	if x == y: return 0
-	else: return 2
+	else: return 1
 	
 def insertCost(x):
 	return 1
