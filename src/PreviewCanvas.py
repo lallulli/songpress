@@ -10,19 +10,29 @@
 import wx
 from Renderer import *
 
+import i18n
+i18n.register('PreviewCanvas')
+
 class PreviewCanvas(object):
 	def __init__(self, parent, sf, notations, sd=SongDecorator()):
 		object.__init__(self)
-		self.panel = wx.ScrolledWindow(parent, style=wx.BORDER_DOUBLE)
+		self.main_panel = wx.Window(parent)
+		bSizer = wx.BoxSizer(wx.VERTICAL)
+		self.link = wx.HyperlinkCtrl(self.main_panel, 0, _('Copy formatted song to clipboard'), '')
+		bSizer.Add(self.link, 0, wx.EXPAND)
+		self.panel = wx.ScrolledWindow(self.main_panel, style=wx.BORDER_DOUBLE)
 		self.panel.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
 		self.pixedScrolled = 10
 		self.panel.SetScrollbars(self.pixedScrolled, self.pixedScrolled, 0, 0)
 		self.panel.Bind(wx.EVT_PAINT, self.OnPaint, self.panel)
 		self.panel.SetBackgroundColour(wx.WHITE)
 		self.text = ""
-		self.panel.Show()
+		bSizer.Add(self.panel, 1, wx.EXPAND)
 		#SongFormat
 		self.renderer = Renderer(sf, sd, notations)
+		self.main_panel.SetSizer(bSizer)
+		self.main_panel.Layout()
+
 
 	def OnPaint(self, e):
 		#print("OnPaint")
@@ -32,6 +42,7 @@ class PreviewCanvas(object):
 		dc.Clear()
 		w, h = self.renderer.Render(self.text, dc)
 		self.panel.SetVirtualSize(wx.Size(w, h))
+		
 
 	def Refresh(self, text):
 		self.text = text

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 22:02+0200\n"
+"POT-Creation-Date: 2013-08-19 20:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,11 +422,11 @@ msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
 msgstr ""
 
 #: src\xrc\songpress.pos:102
-msgid "&Normalize chords"
+msgid "&Cleanup chords..."
 msgstr ""
 
 #: src\xrc\songpress.pos:103
-msgid "Cleanup chord notation"
+msgid "Normalize chords according to current notation"
 msgstr ""
 
 #: src\xrc\songpress.pos:104

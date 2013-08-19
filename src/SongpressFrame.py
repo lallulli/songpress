@@ -206,9 +206,10 @@ class SongpressFrame(SDIMainFrame):
 		# Other objects
 		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
 		self.AddMainPane(self.text)
-		self.previewCanvas.panel.SetSize(wx.Size(400, 800))
-		self.previewCanvasPane = self.AddPane(self.previewCanvas.panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
-		self.previewCanvasPane.BestSize(wx.Size(400,800))
+		#self.previewCanvas.main_panel.SetSize(wx.Size(400, 800))
+		self.previewCanvasPane = self.AddPane(self.previewCanvas.main_panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
+		self.previewCanvas.main_panel.Bind(wx.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
+		#self.previewCanvasPane.BestSize(wx.Size(400,800))
 		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
 			wx.TB_FLAT | wx.TB_NODIVIDER)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))

@@ -16,31 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\FontFaceDialog.py:28
-msgid "Font"
-msgstr ""
-
-#: src\FontFaceDialog.py:40
-msgid "Preview"
-msgstr ""
-
-#: src\FontFaceDialog.py:46 src\FontFaceDialog.py:82
-msgid ""
-"{t:My Bonnie}\n"
-"\n"
-"My [D]Bonnie lies [G]over the [D]ocean\n"
-"oh [G]bring back my [A]Bonnie to [D]me!\n"
-"\n"
-"{soc}\n"
-"[D]Bring back, [E-]bring back,\n"
-"[A]bring back my Bonnie to [D]me!\n"
-"{eoc}"
-msgstr ""
-
-#: src\FontFaceDialog.py:56
-msgid "OK"
-msgstr ""
-
-#: src\FontFaceDialog.py:59
-msgid "Cancel"
+#: src\CompositePropertyPanel.py:31
+msgid "label"
 msgstr ""
