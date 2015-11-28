@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Songpress"
-!define PRODUCT_VERSION "1.5"
+!define PRODUCT_VERSION "{{Version}}"
 !define PRODUCT_PUBLISHER "Luca Allulli - Skeed"
 !define PRODUCT_WEB_SITE "http://www.skeed.it"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\songpress.exe"
@@ -29,7 +29,7 @@ FunctionEnd
 
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
-!include "FileAssociation.nsh"
+!include "Installer\FileAssociation.nsh"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
@@ -44,7 +44,7 @@ FunctionEnd
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-!insertmacro MUI_PAGE_LICENSE "..\license.txt"
+!insertmacro MUI_PAGE_LICENSE "license.txt"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Start menu page
@@ -122,6 +122,7 @@ Section $(SongpressSectionNameLS) SongpressSection
   SetOutPath "$INSTDIR"
   SetOverwrite try
 {{Installation}}
+SetOutPath "$INSTDIR"
 
 ; Shortcuts
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
