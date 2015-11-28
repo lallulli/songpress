@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 16:34+0100\n"
+"POT-Creation-Date: 2015-11-28 11:13+0100\n"
 "PO-Revision-Date: 2012-06-20 17:24+0100\n"
 "Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\UpdateDialog.py:24
+#: src/UpdateDialog.py:24
 msgid "New updates are available"
 msgstr "De nouvelles mises-à-jour sont disponibles"
 
-#: src\UpdateDialog.py:34
+#: src/UpdateDialog.py:34
 msgid ">> Donate now! <<"
 msgstr ">> Donner maintenant!<<"
-

@@ -191,8 +191,8 @@ class SongpressFrame(SDIMainFrame):
 			_('Songpress - Il Canzonatore'),
 			glb.AddPath('img/songpress.ico'),
 			glb.VERSION,
-			_("http://www.skeed.it/songpress.html"),
-			_("Copyright (c) 2009-2013 Luca Allulli - Skeed\nFrench translation by Raoul Schmitt"),
+			_("http://www.skeed.it/songpress"),
+			(_("Copyright (c) 2009-{year} Luca Allulli - Skeed\nFrench translation by Raoul Schmitt")).format(year=glb.YEAR),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
 			_import_formats,
@@ -708,7 +708,7 @@ class SongpressFrame(SDIMainFrame):
 		MyUpdateDialog.check_and_update(self.frame, self.pref, True)
 
 	def OnDonate(self, evt):
-		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#donate"))
+		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress#donate"))
 
 	def OnFormatFont(self, evt):
 		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.pref.format, self.pref.decorator, self.pref.decoratorFormat)

@@ -2,20 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 19:49+0100\n"
+"POT-Creation-Date: 2015-11-28 11:13+0100\n"
 "PO-Revision-Date: 2012-06-20 13:16+0100\n"
 "Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\MyPreferencesDialog.py:33
+#: src/MyPreferencesDialog.py:33
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -37,11 +38,11 @@ msgstr ""
 "[A]bring back my Bonnie to [D]me!\n"
 "{eoc}"
 
-#: src\MyPreferencesDialog.py:119
+#: src/MyPreferencesDialog.py:119
 msgid "Language settings will be applied when you restart Songpress."
 msgstr ""
 "Les paramètres de langues seront appliqués après redémarrage de Songpress."
 
-#: src\MyPreferencesDialog.py:120
+#: src/MyPreferencesDialog.py:120
 msgid "Songpress"
 msgstr "Songpress"

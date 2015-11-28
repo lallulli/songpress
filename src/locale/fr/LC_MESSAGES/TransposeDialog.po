@@ -7,31 +7,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 16:34+0100\n"
+"POT-Creation-Date: 2015-11-28 11:13+0100\n"
 "PO-Revision-Date: 2012-06-20 17:22+0100\n"
 "Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\TransposeDialog.py:21
+#: src/TransposeDialog.py:21
 msgid "Transpose"
 msgstr "Transposer"
 
-#: src\TransposeDialog.py:29
+#: src/TransposeDialog.py:29
 msgid "Chord notation:"
 msgstr "Type de notation d'accords:"
 
-#: src\TransposeDialog.py:42
+#: src/TransposeDialog.py:42
 msgid "From key:"
 msgstr "De la tonalité de:"
 
-#: src\TransposeDialog.py:55
+#: src/TransposeDialog.py:55
 msgid "Semitones:"
 msgstr "Demi-tons:"
 
-#: src\TransposeDialog.py:66
+#: src/TransposeDialog.py:66
 msgid "To key:"
 msgstr "A la tonalité de:"
-

@@ -1,4 +1,3 @@
-from datetime import date, time, datetime, timedelta
 import pynsis
 from src import Globals
 import sys
@@ -26,7 +25,7 @@ class cd:
 def prepare_license():
 	with open(license_template) as f:
 		c = f.read()
-	c = c.replace('{{Year}}', str(date.today().year))
+	c = c.replace('{{Year}}', Globals.glb.YEAR)
 	with open(license_dest, 'w') as f:
 		f.write(c)
 
@@ -42,5 +41,3 @@ def create_installer():
 
 if __name__ == '__main__':
 	create_installer()
-
-	

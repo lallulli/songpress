@@ -2,112 +2,113 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 20:12+0200\n"
+"POT-Creation-Date: 2015-11-28 11:13+0100\n"
 "PO-Revision-Date: 2012-06-20 17:13+0100\n"
 "Last-Translator: Raoul Schmitt <raoul.schmitt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\PreferencesDialog.py:27
+#: src/PreferencesDialog.py:27
 msgid "Songpress options"
 msgstr "Options Songpress"
 
-#: src\PreferencesDialog.py:39
+#: src/PreferencesDialog.py:39
 msgid "Editor font"
 msgstr "Police de l'éditeur"
 
-#: src\PreferencesDialog.py:46
+#: src/PreferencesDialog.py:46
 msgid "Size"
 msgstr "Taille"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "7"
 msgstr "7"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "8"
 msgstr "8"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "9"
 msgstr "9"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "10"
 msgstr "10"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "11"
 msgstr "11"
 
-#: src\PreferencesDialog.py:50 src\PreferencesDialog.py:51
+#: src/PreferencesDialog.py:50 src/PreferencesDialog.py:51
 msgid "12"
 msgstr "12"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "13"
 msgstr "13"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "14"
 msgstr "14"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "16"
 msgstr "16"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "18"
 msgstr "18"
 
-#: src\PreferencesDialog.py:50
+#: src/PreferencesDialog.py:50
 msgid "20"
 msgstr "20"
 
-#: src\PreferencesDialog.py:59
+#: src/PreferencesDialog.py:59
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: src\PreferencesDialog.py:71
+#: src/PreferencesDialog.py:71
 msgid "Default notation"
 msgstr "Tonalité par défaut"
 
-#: src\PreferencesDialog.py:85
+#: src/PreferencesDialog.py:85
 msgid "Check for updates every"
 msgstr "Vérifier les mises-à-jour tous les"
 
-#: src\PreferencesDialog.py:99
+#: src/PreferencesDialog.py:99
 #, fuzzy
 msgid "Default file extension"
 msgstr "Tonalité par défaut"
 
-#: src\PreferencesDialog.py:113
+#: src/PreferencesDialog.py:113
 msgid "Language"
 msgstr "Langue"
 
-#: src\PreferencesDialog.py:129
+#: src/PreferencesDialog.py:129
 msgid "General"
 msgstr "Général"
 
-#: src\PreferencesDialog.py:133
+#: src/PreferencesDialog.py:133
 msgid "Offer to remove blank lines"
 msgstr "Proposer de supprimer les lignes vides"
 
-#: src\PreferencesDialog.py:136
+#: src/PreferencesDialog.py:136
 msgid "Offer to convert songs in tab"
 msgstr "Proposer de convertir les chants en tablatures"
 
-#: src\PreferencesDialog.py:139
+#: src/PreferencesDialog.py:139
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proposer de transposer les chants en accords simplifiés"
 
-#: src\PreferencesDialog.py:152
+#: src/PreferencesDialog.py:152
 msgid "AutoAdjust"
 msgstr "Ajustement automatique"

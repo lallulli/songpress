@@ -8,32 +8,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 20:12+0200\n"
+"POT-Creation-Date: 2015-11-28 11:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\MyUpdateDialog.py:79
+#: src/MyUpdateDialog.py:79
 msgid "Your version of Songpress is up to date."
 msgstr ""
 
-#: src\MyUpdateDialog.py:80
+#: src/MyUpdateDialog.py:80
 msgid "Songpress"
 msgstr ""
 
-#: src\MyUpdateDialog.py:89
+#: src/MyUpdateDialog.py:89
 msgid ""
 "There was an error while checking for updates.\n"
 "Please try again later."
 msgstr ""
 
-#: src\MyUpdateDialog.py:90
+#: src/MyUpdateDialog.py:90
 msgid "Update error"
 msgstr ""
 
-#: src\MyUpdateDialog.py:119
+#: src/MyUpdateDialog.py:119
 msgid "http://www.skeed.it/songpress.html#donate"
 msgstr ""
