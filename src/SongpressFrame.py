@@ -299,7 +299,7 @@ class SongpressFrame(SDIMainFrame):
 		self.labelVersesToolId = labelVersesTool.GetId()
 		showChordsIcon = wx.StaticBitmap(self.formatToolBar, -1, wx.Bitmap('img/showChords.png'))
 		self.formatToolBar.AddControl(showChordsIcon)
-		self.showChordsChooser = wx.Slider(self.formatToolBar, -1, 0, 0, 2, wx.DefaultPosition, wx.DefaultSize, wx.SL_AUTOTICKS|wx.SL_HORIZONTAL)
+		self.showChordsChooser = wx.Slider(self.formatToolBar, -1, 0, 0, 2, wx.DefaultPosition, (100, -1), wx.SL_AUTOTICKS|wx.SL_HORIZONTAL)
 		tt1 = wx.ToolTip(_("Hide or show chords in formatted song"))
 		tt2 = wx.ToolTip(_("Hide or show chords in formatted song"))
 		self.showChordsChooser.SetToolTip(tt1)
@@ -694,7 +694,7 @@ class SongpressFrame(SDIMainFrame):
 			helpfile = os.path.join("help", "songpress-%s.chm" % (i18n.getLang(), ))
 			subprocess.Popen("hh " + glb.AddPath(helpfile))
 		else:
-			wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual.html"))
+			wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual"))
 
 	def OnIdle(self, evt):
 		cp = self.text.CanPaste()

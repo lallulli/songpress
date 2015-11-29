@@ -8,6 +8,8 @@
 ##############################################################
 
 import wx
+import platform
+
 from Renderer import *
 
 import i18n
@@ -21,7 +23,8 @@ class PreviewCanvas(object):
 		self.link = wx.HyperlinkCtrl(self.main_panel, 0, _("Copy formatted song to clipboard"), '')
 		tt = wx.ToolTip(_("Copy formatted song to clipboard, so that it can be pasted in any program and printed"))
 		self.link.SetToolTip(tt)
-		bSizer.Add(self.link, 0, wx.EXPAND)
+		if platform.system() != 'Linux':
+			bSizer.Add(self.link, 0, wx.EXPAND)
 		self.panel = wx.ScrolledWindow(self.main_panel, style=wx.BORDER_DOUBLE)
 		self.panel.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
 		self.pixedScrolled = 10

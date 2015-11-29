@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 11:22+0100\n"
-"PO-Revision-Date: 2015-11-28 11:26+0100\n"
+"POT-Creation-Date: 2015-11-29 15:41+0100\n"
+"PO-Revision-Date: 2015-11-29 15:43+0100\n"
 "Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -332,8 +332,8 @@ msgid "Exporting image as EPS..."
 msgstr "Esportazione in formato EPS..."
 
 #: src/SongpressFrame.py:697
-msgid "http://www.skeed.it/songpress-manual.html"
-msgstr "http://www.skeed.it/songpress-manuale.html"
+msgid "http://www.skeed.it/songpress-manual"
+msgstr "http://www.skeed.it/songpress-manuale"
 
 #: src/SongpressFrame.py:711
 msgid "http://www.skeed.it/songpress#donate"

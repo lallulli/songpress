@@ -3,9 +3,11 @@
 import sys
 from cx_Freeze import setup, Executable
 import os, os.path
+import platform
 
 # Dependencies are automatically detected, but it might need fine tuning.
 build_exe_options = {"packages": ["os"], "excludes": ["tkinter"]}
+
 
 # GUI applications require a different base on Windows (the default is for a
 # console application).
@@ -24,6 +26,7 @@ def _get_files(d):
 			out.append(os.path.join(base, f))
 	return out
 
+
 def get_files(dirs):
 	"""
 	Get list of file paths included in dirs.
@@ -40,11 +43,14 @@ def get_files(dirs):
 
 include_files = [(x, x) for x in get_files(['help', 'img', 'locale', 'xrc'])]
 
+
 options = {
-    'build_exe': {
-        'include_files': include_files,
-    }
+	'build_exe': {
+		'include_files': include_files,
+		'include_msvcr': True,
+	}
 }
+
 
 def build(version):
 	setup(
@@ -55,7 +61,7 @@ def build(version):
 		executables=[Executable(
 			"main.py",
 			base=base,
-			targetName='Songpress.exe',
+			targetName='Songpress' if platform.system() == 'Linux' else "Songpress.exe",
 			icon='img/songpress.ico',
 		)]
 	)

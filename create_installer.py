@@ -3,10 +3,12 @@ from src import Globals
 import sys
 import os, os.path
 import subprocess
+import platform
+import shutil
 
 license_template = "license.txt.tpl"
 license_dest = "license.txt"
-python2_command = 'python'
+python2_command = 'python2'
 
 
 class cd:
@@ -33,10 +35,16 @@ def prepare_license():
 def create_installer():
 	version = Globals.glb.VERSION
 	with cd('src'):
-		subprocess.call('%s setup.py build' % python2_command)
+		subprocess.call([python2_command, 'setup.py', 'build'])
+		pass
 	prepare_license()
-	pynsis.prepare_nsis_file(version)
-	pynsis.call_nsis()
+	if platform.system() == 'Linux':
+		print "Compressing..."
+		zip_dir = os.path.join(os.getcwd(), 'src/build/exe.linux-x86_64-2.7')
+		shutil.make_archive('Songpress-%s-x86_64' % version, 'gztar', zip_dir)
+	else:
+		pynsis.prepare_nsis_file(version)
+		pynsis.call_nsis()
 	
 
 if __name__ == '__main__':

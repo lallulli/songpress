@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 11:13+0100\n"
+"POT-Creation-Date: 2015-11-29 15:41+0100\n"
 "PO-Revision-Date: 2013-08-19 20:13+0100\n"
 "Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: src/PreviewCanvas.py:21
+#: src/PreviewCanvas.py:23
 msgid "Copy formatted song to clipboard"
 msgstr ""
 
-#: src/PreviewCanvas.py:22
+#: src/PreviewCanvas.py:24
 msgid ""
 "Copy formatted song to clipboard, so that it can be pasted in any program "
 "and printed"

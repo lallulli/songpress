@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 11:22+0100\n"
-"PO-Revision-Date: 2015-11-28 11:15+0100\n"
+"POT-Creation-Date: 2015-11-29 15:41+0100\n"
+"PO-Revision-Date: 2015-11-29 15:43+0100\n"
 "Last-Translator: Luca Allulli <luca@skeed.it>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -76,18 +76,16 @@ msgid "Chordpro files (*.chopro)"
 msgstr "Fichiers chordpro (*.chopro)"
 
 #: src/SongpressFrame.py:171
-#, fuzzy
 msgid "Chordpro files (*.pro)"
-msgstr "Fichiers chordpro (*.chopro)"
+msgstr "Fichiers chordpro (*.pro)"
 
 #: src/SongpressFrame.py:175
 msgid "All supported files"
 msgstr "Tous les fichiers supportés"
 
 #: src/SongpressFrame.py:176
-#, fuzzy
 msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
-msgstr "Fichiers chordpro (*.crd, *.cho, *.chordpro, *.chopro)"
+msgstr "Fichiers chordpro (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
 
 #: src/SongpressFrame.py:189
 msgid "song"
@@ -98,9 +96,8 @@ msgid "Songpress - Il Canzonatore"
 msgstr "Songpress - Il Canzonatore"
 
 #: src/SongpressFrame.py:194
-#, fuzzy
 msgid "http://www.skeed.it/songpress"
-msgstr "http://www.skeed.it/songpress.html"
+msgstr "http://www.skeed.it/songpress"
 
 #: src/SongpressFrame.py:195
 #, python-brace-format
@@ -333,13 +330,12 @@ msgid "Exporting image as EPS..."
 msgstr "Exporter comme image EPS..."
 
 #: src/SongpressFrame.py:697
-msgid "http://www.skeed.it/songpress-manual.html"
-msgstr "http://www.skeed.it/songpress-manual.html"
+msgid "http://www.skeed.it/songpress-manual"
+msgstr "http://www.skeed.it/songpress-manual"
 
 #: src/SongpressFrame.py:711
-#, fuzzy
 msgid "http://www.skeed.it/songpress#donate"
-msgstr "http://www.skeed.it/songpress.html#donate"
+msgstr "http://www.skeed.it/songpress#donate"
 
 #: src/SongpressFrame.py:729 src/SongpressFrame.py:871
 msgid "Simplify chords"
