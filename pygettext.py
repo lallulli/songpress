@@ -75,8 +75,30 @@ def execute(path, relpath, xrc=False, lang=[], tx=None):
 					shutil.copy(fo, fn)
 	return tx_out
 
+def tx_push(dir):
+	pwd = os.getcwd()
+	os.chdir(dir)
+	os.system('tx push -s -t --skip')
+	os.chdir(pwd)
+
+def tx_pull(dir):
+	pwd = os.getcwd()
+	os.chdir(dir)
+	os.system('tx pull')
+	os.chdir(pwd)
+
+
+
 if __name__ == '__main__':
 	parser = OptionParser()
+	parser.add_option("-P", "--push",
+										action="store_true", dest="push", default=False,
+										help="transifex push after extracting strings",
+										)
+	parser.add_option("-p", "--pull",
+										action="store_true", dest="pull", default=False,
+										help="transifex pull and compile translations",
+										)
 	parser.add_option("-t", "--transifex",
 										action="store_true", dest="transifex", default=False,
 										help="enable Transifex support (requires configuration file tx.py, ignore other options)")
@@ -89,15 +111,24 @@ if __name__ == '__main__':
 										help="process xrc files (wxWidgets required)")
 
 	(options, args) = parser.parse_args()
-	if options.transifex:
+
+	if options.transifex or options.push or options.pull:
 		import tx
 
 		if tx.config['xrc']:
 			import wx.tools.pywxrc
+
 		out = transifex_header.format(host=tx.config['host'])
 		out += execute(tx.config['dir'], '', tx.config['xrc'], tx.config['lang'], tx.config)
 		with open(os.path.join(tx.config['dir'], '.tx', 'config'), "w") as w:
 			w.write(out)
+
+		if options.pull:
+			tx_pull(tx.config['dir'])
+			execute(tx.config['dir'], '', tx.config['xrc'], tx.config['lang'], tx.config)
+
+		if options.push:
+			tx_push(tx.config['dir'])
 
 		exit(0)
 
