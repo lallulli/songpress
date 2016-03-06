@@ -66,9 +66,13 @@ def execute(path, relpath, xrc=False, lang=[], tx=None):
 			for f in created:
 				n, e = os.path.splitext(f)
 				fn = os.path.join(pl, n + ".po")
+				fm = os.path.join(pl, n + ".mo")
 				fo = os.path.join(path, f)
 				if os.path.isfile(fn):
 					s = 'msgmerge -U "%s" "%s"' % (fn, fo)
+					print s
+					os.system(s)
+					s = 'msgfmt -o "%s" "%s"' % (fm, fn)
 					print s
 					os.system(s)
 				else:
