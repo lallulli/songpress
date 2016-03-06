@@ -1,0 +1,111 @@
+
+[main]
+host = https://www.transifex.com
+
+[songpress-2.CompositePropertyPanel]
+file_filter = locale/<lang>/LC_MESSAGES/CompositePropertyPanel.po
+source_file = CompositePropertyPanel.pot
+source_lang = en
+type = PO
+
+[songpress-2.errdlg]
+file_filter = locale/<lang>/LC_MESSAGES/errdlg.po
+source_file = errdlg.pot
+source_lang = en
+type = PO
+
+[songpress-2.FontFaceDialog]
+file_filter = locale/<lang>/LC_MESSAGES/FontFaceDialog.po
+source_file = FontFaceDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.MyUpdateDialog]
+file_filter = locale/<lang>/LC_MESSAGES/MyUpdateDialog.po
+source_file = MyUpdateDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.NormalizeDialog]
+file_filter = locale/<lang>/LC_MESSAGES/NormalizeDialog.po
+source_file = NormalizeDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.NotationDialog]
+file_filter = locale/<lang>/LC_MESSAGES/NotationDialog.po
+source_file = NotationDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.Preferences]
+file_filter = locale/<lang>/LC_MESSAGES/Preferences.po
+source_file = Preferences.pot
+source_lang = en
+type = PO
+
+[songpress-2.PreferencesDialog]
+file_filter = locale/<lang>/LC_MESSAGES/PreferencesDialog.po
+source_file = PreferencesDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.PreviewCanvas]
+file_filter = locale/<lang>/LC_MESSAGES/PreviewCanvas.po
+source_file = PreviewCanvas.pot
+source_lang = en
+type = PO
+
+[songpress-2.SDIMainFrame]
+file_filter = locale/<lang>/LC_MESSAGES/SDIMainFrame.po
+source_file = SDIMainFrame.pot
+source_lang = en
+type = PO
+
+[songpress-2.SimplePropertyPanel]
+file_filter = locale/<lang>/LC_MESSAGES/SimplePropertyPanel.po
+source_file = SimplePropertyPanel.pot
+source_lang = en
+type = PO
+
+[songpress-2.SongpressFrame]
+file_filter = locale/<lang>/LC_MESSAGES/SongpressFrame.po
+source_file = SongpressFrame.pot
+source_lang = en
+type = PO
+
+[songpress-2.MyPreferencesDialog]
+file_filter = locale/<lang>/LC_MESSAGES/MyPreferencesDialog.po
+source_file = MyPreferencesDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.Transpose]
+file_filter = locale/<lang>/LC_MESSAGES/Transpose.po
+source_file = Transpose.pot
+source_lang = en
+type = PO
+
+[songpress-2.TransposeDialog]
+file_filter = locale/<lang>/LC_MESSAGES/TransposeDialog.po
+source_file = TransposeDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.UpdateDialog]
+file_filter = locale/<lang>/LC_MESSAGES/UpdateDialog.po
+source_file = UpdateDialog.pot
+source_lang = en
+type = PO
+
+[songpress-2.UpdatePanel]
+file_filter = locale/<lang>/LC_MESSAGES/UpdatePanel.po
+source_file = UpdatePanel.pot
+source_lang = en
+type = PO
+
+[songpress-2.songpress-gui]
+file_filter = xrc/locale/<lang>/LC_MESSAGES/songpress.po
+source_file = xrc/songpress.pot
+source_lang = en
+type = PO

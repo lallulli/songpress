@@ -32,4 +32,3 @@ class FontComboBox(wx.ComboBox):
 		s.height = -1
 		wx.ComboBox.__init__(self, parent, id, defaultFont, size=s, style=wx.CB_SORT)
 		MyFontEnumerator().Enumerate().AppendToComboBox(self)
-		

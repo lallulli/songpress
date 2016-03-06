@@ -9,27 +9,55 @@ def createDirAndGo(path, dir):
 		os.mkdir(final)
 	return final
 
-def execute(path, xrc=False, lang=[]):
+transifex_header = """
+[main]
+host = {host}
+"""
+
+transifex_item = """
+[{project}.{slug}]
+file_filter = {prefix}locale/<lang>/LC_MESSAGES/{file}.po
+source_file = {prefix}{file}.pot
+source_lang = en
+type = PO
+"""
+
+def execute(path, relpath, xrc=False, lang=[], tx=None):
 	print path
+	tx_out = ""
 	d = os.listdir(path)
 	created = []
+	prefix = relpath
 	for f in d:
-		fp = os.path.join(path, f)
-		if os.path.isfile(fp):
-			n, e = os.path.splitext(f)
-			if xrc and e == '.xrc':
-				newfp = os.path.join(path, n + '.pos')
-				wx.tools.pywxrc.main(['', '-g', '-o', newfp, fp])
-				fp = newfp
-			if e == '.py' or (xrc and e == '.xrc'):
-				pot = os.path.join(path, n + '.pot')
-				s = 'xgettext -L python "%s" -o "%s"' % (fp, pot)
-				print s
-				os.system(s)
-				if os.path.isfile(pot):
-					created.append(n + ".pot")
-		else:
-			execute(fp, xrc, lang)
+		if tx is None or not f in tx['exclude']:
+			fp = os.path.join(path, f)
+			relpath = os.path.join(prefix, f)
+			if os.path.isfile(fp):
+				n, e = os.path.splitext(f)
+				if xrc and e == '.xrc':
+					newfp = os.path.join(path, n + '.pos')
+					wx.tools.pywxrc.main(['', '-g', '-o', newfp, fp])
+					fp = newfp
+				if e == '.py' or (xrc and e == '.xrc'):
+					pot = os.path.join(path, n + '.pot')
+					s = 'xgettext -L python "%s" -o "%s"' % (fp, pot)
+					print s
+					os.system(s)
+					if os.path.isfile(pot):
+						created.append(n + ".pot")
+						if tx is not None:
+							slug = n
+							print "Relpath", relpath
+							if relpath in tx['slugs']:
+								slug = tx['slugs'][relpath]
+							tx_out += transifex_item.format(
+								project=tx['project'],
+								slug=slug,
+								prefix='' if prefix == '' else prefix + '/',
+								file=n,
+							)
+			else:
+				tx_out += execute(fp, relpath, xrc, lang, tx)
 	if len(lang)>0 and len(created)>0:
 		p = createDirAndGo(path, 'locale')
 		for l in lang:
@@ -45,9 +73,13 @@ def execute(path, xrc=False, lang=[]):
 					os.system(s)
 				else:
 					shutil.copy(fo, fn)
+	return tx_out
 
 if __name__ == '__main__':
 	parser = OptionParser()
+	parser.add_option("-t", "--transifex",
+										action="store_true", dest="transifex", default=False,
+										help="enable Transifex support (requires configuration file tx.py, ignore other options)")
 	parser.add_option("-d", "--dir", dest="dir",
 										help="directory to process")
 	parser.add_option("-l", "--languages", dest="lang",
@@ -57,6 +89,18 @@ if __name__ == '__main__':
 										help="process xrc files (wxWidgets required)")
 
 	(options, args) = parser.parse_args()
+	if options.transifex:
+		import tx
+
+		if tx.config['xrc']:
+			import wx.tools.pywxrc
+		out = transifex_header.format(host=tx.config['host'])
+		out += execute(tx.config['dir'], '', tx.config['xrc'], tx.config['lang'], tx.config)
+		with open(os.path.join(tx.config['dir'], '.tx', 'config'), "w") as w:
+			w.write(out)
+
+		exit(0)
+
 	if options.xrc:
 		import wx.tools.pywxrc
 	if options.lang != None:
@@ -67,4 +111,4 @@ if __name__ == '__main__':
 		path = os.path.abspath(os.curdir)
 	else:
 		path = options.dir
-	execute(path, options.xrc, lang)
+	execute(path, '', options.xrc, lang)

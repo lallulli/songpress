@@ -8,7 +8,7 @@ import shutil
 
 license_template = "license.txt.tpl"
 license_dest = "license.txt"
-python2_command = 'python2'
+python2_command = 'python'
 
 
 class cd:
