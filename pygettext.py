@@ -85,10 +85,12 @@ def tx_push(dir):
 	os.system('tx push -s -t --skip')
 	os.chdir(pwd)
 
-def tx_pull(dir):
+def tx_pull(dir, mode):
 	pwd = os.getcwd()
 	os.chdir(dir)
-	os.system('tx pull')
+	c = 'tx pull --mode {}'.format(mode)
+	print c
+	os.system(c)
 	os.chdir(pwd)
 
 
@@ -102,6 +104,10 @@ if __name__ == '__main__':
 	parser.add_option("-p", "--pull",
 										action="store_true", dest="pull", default=False,
 										help="transifex pull and compile translations",
+										)
+	parser.add_option("-m", "--mode",
+										action="store", dest="mode", type="string", default="translator",
+										help="for --pull, specify pull mode: translator (default), developer or reviewed",
 										)
 	parser.add_option("-t", "--transifex",
 										action="store_true", dest="transifex", default=False,
@@ -128,7 +134,7 @@ if __name__ == '__main__':
 			w.write(out)
 
 		if options.pull:
-			tx_pull(tx.config['dir'])
+			tx_pull(tx.config['dir'], options.mode)
 			execute(tx.config['dir'], '', tx.config['xrc'], tx.config['lang'], tx.config)
 
 		if options.push:
