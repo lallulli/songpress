@@ -43,3 +43,14 @@ Testing cycle:
 cd src
 python2 main.py
 </pre>
+
+
+Expert mode
+-----------
+
+`python2 pygettext.py -t` analyzes the source directory (according to configuration defined in `tx.py`), extracts i18n strings using `xgettext`, prepares directories and files for i18n (the `locale/<lang>/LC_MESSAGES/<file>.po` files) if they are not existing, or merges and compiles them if they are already existing. Moreover, the command prepares the Transifex configuration file `.tx/config`.
+
+Thus, instead of using Transifex web editor, you can edit `.po` files directly (e.g. with poedit).
+
+In order to upload translations to Transifex you can issue:
+<pre>python2 pygettext.py --push<pre>
