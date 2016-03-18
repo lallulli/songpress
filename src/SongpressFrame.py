@@ -37,9 +37,9 @@ class SongpressFindReplaceDialog(object):
 	def __init__(self, owner, replace = False):
 		object.__init__(self)
 		self.down = True
+		self.st = ''
 		self.data = wx.FindReplaceData(wx.FR_DOWN)
 		self.owner = owner
-		self.searchString = ""
 		self.flags = 0
 		self.dialog = wx.FindReplaceDialog(
 			owner.frame,
