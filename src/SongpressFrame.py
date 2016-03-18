@@ -210,8 +210,8 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvasPane = self.AddPane(self.previewCanvas.main_panel, wx.aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
 		self.previewCanvas.main_panel.Bind(wx.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
 		#self.previewCanvasPane.BestSize(wx.Size(400,800))
-		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize,
-			wx.TB_FLAT | wx.TB_NODIVIDER)
+		# self.mainToolBar2 = wx.aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize)
+		self.mainToolBar = wx.ToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
 		self.mainToolBar.AddTool(wx.xrc.XRCID('new'), wx.BitmapFromImage(wx.Image(glb.AddPath(glb.AddPath("img/new.png")))),
 			shortHelpString = _("New"),
@@ -697,12 +697,18 @@ class SongpressFrame(SDIMainFrame):
 			wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual"))
 
 	def OnIdle(self, evt):
-		cp = self.text.CanPaste()
-		self.mainToolBar.EnableTool(self.pasteTool, cp)
-		self.menuBar.Enable(self.pasteMenuId, cp)
-		self.mainToolBar.EnableTool(self.pasteChordsTool, cp)
-		self.menuBar.Enable(self.pasteChordsMenuId, cp)
+		try:
+			cp = self.text.CanPaste()
+			self.mainToolBar.EnableTool(self.pasteTool, cp)
+			self.menuBar.Enable(self.pasteMenuId, cp)
+			self.mainToolBar.EnableTool(self.pasteChordsTool, cp)
+			self.menuBar.Enable(self.pasteChordsMenuId, cp)
+		except wx._core.PyDeadObjectError:
+			# When frame is closed, this method may still be executed, generating an exception
+			# because UI elements have been destroyed. Simply ignore it.
+			pass
 		evt.Skip()
+
 
 	def OnNewsAndUpdates(self, evt):
 		MyUpdateDialog.check_and_update(self.frame, self.pref, True)
@@ -877,13 +883,18 @@ class SongpressFrame(SDIMainFrame):
 		self.text.AutoChangeMode(False)
 
 	def SetFont(self, updateFontChooser=True):
-		if updateFontChooser:
-			self.fontChooser.SetValue(self.pref.format.face)
-			self.showChordsChooser.SetValue(self.pref.format.showChords)
-			ids = [self.noChordsMenuId, self.oneVerseForEachChordPatternMenuId, self.wholeSongMenuId]
-			self.menuBar.Check(ids[self.pref.format.showChords], True)
-			
-		self.previewCanvas.Refresh(self.text.GetText())
+		try:
+			if updateFontChooser:
+				self.fontChooser.SetValue(self.pref.format.face)
+				self.showChordsChooser.SetValue(self.pref.format.showChords)
+				ids = [self.noChordsMenuId, self.oneVerseForEachChordPatternMenuId, self.wholeSongMenuId]
+				self.menuBar.Check(ids[self.pref.format.showChords], True)
+
+			self.previewCanvas.Refresh(self.text.GetText())
+		except wx._core.PyDeadObjectError:
+			# When frame is closed, this method may still be executed, generating an exception
+			# because UI elements have been destroyed. Simply ignore it.
+			pass
 
 	def CheckLabelVerses(self):
 		self.formatToolBar.ToggleTool(self.labelVersesToolId, self.pref.labelVerses)
