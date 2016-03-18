@@ -38,7 +38,7 @@ class Globals(object):
 	default_language = 'en'
 
 	PROG_NAME = 'Songpress'
-	VERSION = '1.6'
+	VERSION = '1.6.1'
 	BUG_REPORT_ADDRESS = 'luca@skeed.it'
 	YEAR = '2016'
 
