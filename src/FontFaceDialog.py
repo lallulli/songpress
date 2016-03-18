@@ -41,7 +41,7 @@ class FontFaceDialog(wx.Dialog):
 		m_staticText2.Wrap(-1)
 		hSizer2.Add(m_staticText2, 0, wx.ALL, 5)
 		
-		self.previewCanvas = PreviewCanvas(self, songFormat, songDecorator)
+		self.previewCanvas = PreviewCanvas(self, songFormat, songDecorator, embedded=True)
 		hSizer2.Add(self.previewCanvas.panel, 1, wx.EXPAND | wx.ALL, 5)
 		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 		self.previewCanvas.Refresh(previewSong)
