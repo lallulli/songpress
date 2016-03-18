@@ -1,21 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# l.allulli <l.allulli@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-04 21:03+0100\n"
-"PO-Revision-Date: 2013-08-19 20:09+0100\n"
-"Last-Translator: Luca Allulli <luca@skeed.it>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-03-06 22:34+0100\n"
+"PO-Revision-Date: 2016-03-06 21:24+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
+"it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/xrc/songpress.pos:1
 msgid "Songpress"
@@ -27,7 +29,7 @@ msgstr "MyMenuBar"
 
 #: src/xrc/songpress.pos:3
 msgid "&File"
-msgstr "&File"
+msgstr "&Filezz"
 
 #: src/xrc/songpress.pos:4
 msgid "&New\tCTRL+N"
@@ -501,64 +503,3 @@ msgstr "&Informazioni su..."
 #: src/xrc/songpress.pos:118
 msgid "Show credits"
 msgstr "Mostra i crediti"
-
-#, fuzzy
-#~ msgid "&Normalize chords"
-#~ msgstr "Inte&gra gli accordi"
-
-#~ msgid "&News and updates (web)"
-#~ msgstr "&Novità e aggiornamenti (web)"
-
-#~ msgid "Transpose"
-#~ msgstr "&Trasponi..."
-
-#~ msgid "Chord notation:"
-#~ msgstr "Notazione degli accordi:"
-
-#~ msgid "From key:"
-#~ msgstr "Dalla tonalità:"
-
-#~ msgid "Semitones:"
-#~ msgstr "Semitoni:"
-
-#~ msgid "To key:"
-#~ msgstr "Alla tonalità:"
-
-#~ msgid "&OK"
-#~ msgstr "&OK"
-
-#~ msgid "&Cancel"
-#~ msgstr "&Annulla"
-
-#~ msgid "Change notation"
-#~ msgstr "Modifica la &notazione degli accordi..."
-
-#~ msgid "From notation:"
-#~ msgstr "Dalla notazione:"
-
-#~ msgid "To notation:"
-#~ msgstr "Alla notazione:"
-
-#~ msgid "a page"
-#~ msgstr "una pagina"
-
-#~ msgid "Editor font"
-#~ msgstr "Tipo di carattere dell'editor"
-
-#~ msgid "Size"
-#~ msgstr "Dimensione"
-
-#~ msgid "Combo!"
-#~ msgstr "Combo!"
-
-#~ msgid "Preview"
-#~ msgstr "&Anteprima"
-
-#~ msgid "Language"
-#~ msgstr "Lingua"
-
-#~ msgid "Default notation"
-#~ msgstr "Notazione predefinita"
-
-#~ msgid "&New"
-#~ msgstr "&Nuovo"

@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 16:11+0100\n"
-"PO-Revision-Date: 2016-03-04 21:31+0100\n"
-"Last-Translator: Luca Allulli\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"PO-Revision-Date: 2016-03-06 21:28+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
+"it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/SDIMainFrame.py:124
 #, python-format
@@ -82,6 +83,3 @@ msgstr "File %s (*.%s)|*.%s|Tutti i file (*.*)|*.*"
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr "Il file \"%s\" esiste già. Vuoi sovrascriverlo?"
-
-#~ msgid "%s files (*.%s)|*.%s|%sAll files (*.*)|*.*"
-#~ msgstr "File %s (*.%s)|*.%s|%sTutti i file (*.*)|*.*"

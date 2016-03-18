@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-04 21:03+0100\n"
-"PO-Revision-Date: 2013-08-19 19:57+0100\n"
-"Last-Translator: Luca Allulli <luca@skeed.it>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-03-06 17:16+0100\n"
+"PO-Revision-Date: 2016-03-04 20:17+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
+"fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/xrc/songpress.pos:1
 msgid "Songpress"
@@ -66,9 +67,8 @@ msgid "E&xport"
 msgstr "E&xporter"
 
 #: src/xrc/songpress.pos:13
-#, fuzzy
 msgid "Export to &clipboard as a vector image\tCTRL+D"
-msgstr "Exporter l'image comme image vectorielle"
+msgstr ""
 
 #: src/xrc/songpress.pos:14
 msgid ""
@@ -156,9 +156,8 @@ msgid "Copy only Te&xt"
 msgstr ""
 
 #: src/xrc/songpress.pos:35
-#, fuzzy
 msgid "Copy selected text in the clipboard, ignoring chords and ChordPro tags"
-msgstr "Copier le texte sélectionné dans le presse-papier"
+msgstr ""
 
 #: src/xrc/songpress.pos:36
 msgid "Copy as &Image\tCTRL+D"
@@ -372,14 +371,12 @@ msgid "Set label for chorus"
 msgstr "Mettre un label pour les refrains"
 
 #: src/xrc/songpress.pos:88
-#, fuzzy
 msgid "&Show chords for"
-msgstr "Crédits"
+msgstr ""
 
 #: src/xrc/songpress.pos:89
-#, fuzzy
 msgid "&No chords"
-msgstr "Supprimer les &accords"
+msgstr ""
 
 #: src/xrc/songpress.pos:90
 msgid "Do not render chords at all"
@@ -432,14 +429,12 @@ msgstr ""
 "pour le chant ou la sélection"
 
 #: src/xrc/songpress.pos:102
-#, fuzzy
 msgid "&Cleanup chords..."
-msgstr "S&implifier les accords..."
+msgstr ""
 
 #: src/xrc/songpress.pos:103
-#, fuzzy
 msgid "Normalize chords according to current notation"
-msgstr "Intégrer les accords du texte copié dans la sélection courante"
+msgstr ""
 
 #: src/xrc/songpress.pos:104
 msgid "Convert &Tab to Chordpro"
