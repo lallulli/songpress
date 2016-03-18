@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 15:27+0100\n"
+"POT-Creation-Date: 2016-03-18 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/errdlg.py:321
+#: src/errdlg.py:321
 msgid "Error Traceback:"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/errdlg.py:325
+#: src/errdlg.py:325
 msgid "Abort"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/errdlg.py:326
+#: src/errdlg.py:326
 msgid "Exit the application"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/errdlg.py:327
+#: src/errdlg.py:327
 msgid "Report Error"
 msgstr ""

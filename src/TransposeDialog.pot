@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 15:27+0100\n"
+"POT-Creation-Date: 2016-03-18 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/TransposeDialog.py:21
+#: src/TransposeDialog.py:21
 msgid "Transpose"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/TransposeDialog.py:29
+#: src/TransposeDialog.py:29
 msgid "Chord notation:"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/TransposeDialog.py:42
+#: src/TransposeDialog.py:42
 msgid "From key:"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/TransposeDialog.py:55
+#: src/TransposeDialog.py:55
 msgid "Semitones:"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/TransposeDialog.py:66
+#: src/TransposeDialog.py:66
 msgid "To key:"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 15:27+0100\n"
+"POT-Creation-Date: 2016-03-18 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,90 +17,89 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:46
+#: src/SongpressFrame.py:46
 msgid "Replace"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:46
+#: src/SongpressFrame.py:46
 msgid "Find"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:90
+#: src/SongpressFrame.py:90
 msgid "beginning"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:91
+#: src/SongpressFrame.py:91
 msgid "Reached the end"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:94
+#: src/SongpressFrame.py:94
 msgid "end"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:95
+#: src/SongpressFrame.py:95
 msgid "Reached the beginning"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:99
+#: src/SongpressFrame.py:99
 #, python-format
 msgid "%s of the song, restarting search from the %s"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:110
+#: src/SongpressFrame.py:110
 msgid "The specified text was not found"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:150
+#: src/SongpressFrame.py:150
 #, python-format
 msgid "%d text occurrences have been replaced"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:166
+#: src/SongpressFrame.py:166
 msgid "Chordpro files (*.crd)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:167
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:177
+#: src/SongpressFrame.py:167 src/SongpressFrame.py:177
 msgid "Tab files (*.tab)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:168
+#: src/SongpressFrame.py:168
 msgid "Chordpro files (*.cho)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:169
+#: src/SongpressFrame.py:169
 msgid "Chordpro files (*.chordpro)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:170
+#: src/SongpressFrame.py:170
 msgid "Chordpro files (*.chopro)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:171
+#: src/SongpressFrame.py:171
 msgid "Chordpro files (*.pro)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:175
+#: src/SongpressFrame.py:175
 msgid "All supported files"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:176
+#: src/SongpressFrame.py:176
 msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:189
+#: src/SongpressFrame.py:189
 msgid "song"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:191
+#: src/SongpressFrame.py:191
 msgid "Songpress - Il Canzonatore"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:194
+#: src/SongpressFrame.py:194
 msgid "http://www.skeed.it/songpress"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:195
+#: src/SongpressFrame.py:195
 #, python-brace-format
 msgid ""
 "Copyright (c) 2009-{year} Luca Allulli - Skeed\n"
@@ -108,13 +107,13 @@ msgid ""
 "{translations}"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:199
+#: src/SongpressFrame.py:199
 msgid ""
 "Licensed under the terms and conditions of the GNU General Public License, "
 "version 2"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:200
+#: src/SongpressFrame.py:200
 msgid ""
 "Special thanks to:\n"
 "  * The Pyhton programming language (http://www.python.org)\n"
@@ -124,147 +123,143 @@ msgid ""
 "editor itself!)"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:213
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:342
+#: src/SongpressFrame.py:213 src/SongpressFrame.py:342
 msgid "Preview"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:220
+#: src/SongpressFrame.py:220
 msgid "New"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:221
+#: src/SongpressFrame.py:221
 msgid "Create a new song"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:224
+#: src/SongpressFrame.py:224
 msgid "Open"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:225
+#: src/SongpressFrame.py:225
 msgid "Open an existing song"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:228
+#: src/SongpressFrame.py:228
 msgid "Save"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:229
+#: src/SongpressFrame.py:229
 msgid "Save song with the current filename"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:234
+#: src/SongpressFrame.py:234
 msgid "Undo"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:235
+#: src/SongpressFrame.py:235
 msgid "Undo last edit"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:239
+#: src/SongpressFrame.py:239
 msgid "Redo"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:240
+#: src/SongpressFrame.py:240
 msgid "Redo previously undone edit"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:245
+#: src/SongpressFrame.py:245
 msgid "Cut"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:246
+#: src/SongpressFrame.py:246
 msgid "Move selected text in the clipboard"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:250
+#: src/SongpressFrame.py:250
 msgid "Copy"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:251
+#: src/SongpressFrame.py:251
 msgid "Copy selected text in the clipboard"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:256
+#: src/SongpressFrame.py:256
 msgid "Copy as Image"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:257
+#: src/SongpressFrame.py:257
 msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:261
+#: src/SongpressFrame.py:261
 msgid "Paste"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:262
+#: src/SongpressFrame.py:262
 msgid "Read text from the clipboard and place it at the cursor position"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:266
+#: src/SongpressFrame.py:266
 msgid "PasteChords"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:267
+#: src/SongpressFrame.py:267
 msgid "Integrate chords of copied text into current selection"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:270
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:343
+#: src/SongpressFrame.py:270 src/SongpressFrame.py:343
 msgid "Standard"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:283
+#: src/SongpressFrame.py:283
 msgid "Insert title"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:284
+#: src/SongpressFrame.py:284
 msgid "Insert a command to display song title"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:287
+#: src/SongpressFrame.py:287
 msgid "Insert chord"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:288
+#: src/SongpressFrame.py:288
 msgid "Insert square brackets that will host a chord"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:291
+#: src/SongpressFrame.py:291
 msgid "Insert chorus"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:292
+#: src/SongpressFrame.py:292
 msgid "Insert a couple of commands that will contain chorus"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:295
+#: src/SongpressFrame.py:295
 msgid "Insert verse with custom label or without label"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:296
+#: src/SongpressFrame.py:296
 msgid "Insert a commands that will display a verse with a custom label"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:299
+#: src/SongpressFrame.py:299
 msgid "Show verse labels"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:300
+#: src/SongpressFrame.py:300
 msgid "Show or hide verse and chorus labels"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:306
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:307
+#: src/SongpressFrame.py:306 src/SongpressFrame.py:307
 msgid "Hide or show chords in formatted song"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:316
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:344
+#: src/SongpressFrame.py:316 src/SongpressFrame.py:344
 msgid "Format"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:346
+#: src/SongpressFrame.py:346
 msgid ""
 "You are not a skilled guitarist? Songpress can help you: when you open a "
 "song, it can detect if chords are difficult. If this is the case, Songpress "
@@ -274,129 +269,124 @@ msgid ""
 "Do you want to turn this option on?"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:347
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:351
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:549
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:723
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:828
+#: src/SongpressFrame.py:347 src/SongpressFrame.py:351
+#: src/SongpressFrame.py:549 src/SongpressFrame.py:723
+#: src/SongpressFrame.py:828
 msgid "Songpress"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:350
+#: src/SongpressFrame.py:350
 msgid ""
 "Please take a minute to set up your skill as a guitarist. For each group of "
 "chords, tell Songpress how much you like them."
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:520
+#: src/SongpressFrame.py:520
 msgid "PNG image"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:533
+#: src/SongpressFrame.py:533
 msgid "HTML file"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:548
+#: src/SongpressFrame.py:548
 msgid "SVG export requires wxPython 2.9.1.2 or higher"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:552
+#: src/SongpressFrame.py:552
 msgid "SVG image"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:560
+#: src/SongpressFrame.py:560
 msgid "Enhanced Metafile"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:567
+#: src/SongpressFrame.py:567
 msgid "EPS image"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:574
+#: src/SongpressFrame.py:574
 msgid "Exporting image as EPS..."
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:700
+#: src/SongpressFrame.py:700
 msgid "http://www.skeed.it/songpress-manual"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:720
+#: src/SongpressFrame.py:720
 msgid "http://www.skeed.it/songpress#donate"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:738
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:880
+#: src/SongpressFrame.py:738 src/SongpressFrame.py:880
 msgid "Simplify chords"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:740
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:878
+#: src/SongpressFrame.py:740 src/SongpressFrame.py:878
 #, python-format
 msgid ""
 "The key of your song, %s, is not the easiest to play (difficulty: "
 "%.1f/5.0).\n"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:741
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:879
+#: src/SongpressFrame.py:741 src/SongpressFrame.py:879
 #, python-format
 msgid ""
 "Do you want to transpose the key %s, which is the easiest one (difficulty: "
 "%.1f/5.0)?"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:748
+#: src/SongpressFrame.py:748
 #, python-format
 msgid ""
 "The key of your song, %s, is already the easiest to play (difficulty: "
 "%.1f/5.0).\n"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:750
+#: src/SongpressFrame.py:750
 msgid "Your song or current selection does not contain any chords."
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:798
+#: src/SongpressFrame.py:798
 msgid "Insert a label for verse, or press Cancel if you want to omit label."
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:799
+#: src/SongpressFrame.py:799
 msgid "Verse label"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:808
+#: src/SongpressFrame.py:808
 msgid "Insert a label for chorus, or press Cancel if you want to omit label."
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:809
+#: src/SongpressFrame.py:809
 msgid "Chorus label"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:827
+#: src/SongpressFrame.py:827
 msgid "Please enter a label for chorus"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:854
+#: src/SongpressFrame.py:854
 msgid "It looks like there are spurious blank lines in the song.\n"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:855
+#: src/SongpressFrame.py:855
 msgid "Do you want to try to remove them automatically?"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:856
+#: src/SongpressFrame.py:856
 msgid "Remove spurious blank lines"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:866
+#: src/SongpressFrame.py:866
 msgid ""
 "It looks like your song is in tab format (i.e., chords are above the text).\n"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:867
+#: src/SongpressFrame.py:867
 msgid "Do you want to convert it to ChordPro automatically?"
 msgstr ""
 
-#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SongpressFrame.py:868
+#: src/SongpressFrame.py:868
 msgid "Convert to ChordPro"
 msgstr ""
