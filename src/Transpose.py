@@ -278,6 +278,8 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 		c = c[:-1]
 	else:
 		alt = ""
+	if c == "":
+		return chord
 	d = dNotation.Ord2Chord(sNotation.Chord2Ord(c)) + alt
 	b = dNotation.AlterationFromStandard(sNotation.AlterationToStandard(a))
 	d, b = dNotation.PostprocessingFromStandard(d, b)
