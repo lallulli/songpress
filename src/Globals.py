@@ -25,6 +25,14 @@ class Globals(object):
 		'en': "English",
 		'it': "Italiano",
 		'fr': u"Français",
+		'es': u"Español",
+	}
+
+	translators = {
+		'en': "Luca Allulli",
+		'it': "Luca Allulli",
+		'fr': "Raoul Schmitt",
+		'es': "Miguel Dell'Uomini",
 	}
 
 	default_language = 'en'

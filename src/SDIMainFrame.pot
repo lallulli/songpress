@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2016-03-18 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SDIMainFrame.py:124
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:124
 #, python-format
 msgid "%s files (*.%s)|%s"
 msgstr ""
 
-#: src/SDIMainFrame.py:131
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:131
 msgid "|All files (*.*)|*.*"
 msgstr ""
 
-#: src/SDIMainFrame.py:134
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:134
 msgid "Open file"
 msgstr ""
 
-#: src/SDIMainFrame.py:150
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:150
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr ""
 
-#: src/SDIMainFrame.py:174
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:174
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -48,29 +48,29 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/SDIMainFrame.py:182
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:182
 msgid "About "
 msgstr ""
 
-#: src/SDIMainFrame.py:221
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:221
 msgid "Untitled"
 msgstr ""
 
-#: src/SDIMainFrame.py:237
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:237
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr ""
 
-#: src/SDIMainFrame.py:253
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:253
 msgid "Choose a name for the file"
 msgstr ""
 
-#: src/SDIMainFrame.py:256
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:256
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr ""
 
-#: src/SDIMainFrame.py:268
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/SDIMainFrame.py:268
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2016-03-18 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/UpdatePanel.py:35
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/UpdatePanel.py:35
 msgid "Version number"
 msgstr ""
 
-#: src/UpdatePanel.py:42
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/UpdatePanel.py:42
 msgid "What's new"
 msgstr ""
 
-#: src/UpdatePanel.py:56
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/UpdatePanel.py:56
 msgid "Download"
 msgstr ""
 
-#: src/UpdatePanel.py:59
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/UpdatePanel.py:59
 msgid "Remind later"
 msgstr ""
 
-#: src/UpdatePanel.py:62
+#: /mnt/windows/Users/Luca/Documents/lucappl/Applicazioni/songpress/master/src/UpdatePanel.py:62
 msgid "Skip this version"
 msgstr ""
