@@ -3,7 +3,7 @@
 # Purpose:	 Hold program preferences
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2010-01-31
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -169,7 +169,7 @@ class Preferences(object):
 			self.ignoredUpdates = set(i.split(','))
 		u = self.config.Read('url')
 		if not u:
-			self.updateUrl = 'http://songpress.skeed.it/xmlrpc'
+			self.updateUrl = 'https://songpress.skeed.it/xmlrpc'
 		else:
 			self.updateUrl = u
 		d = self.config.Read('lastCheck')

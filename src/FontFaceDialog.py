@@ -4,7 +4,7 @@
 #            selector
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-08-14
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -46,8 +46,8 @@ class FontFaceDialog(wx.Dialog):
 		previewSong = _("{t:My Bonnie}\n\nMy [D]Bonnie lies [G]over the [D]ocean\noh [G]bring back my [A]Bonnie to [D]me!\n\n{soc}\n[D]Bring back, [E-]bring back,\n[A]bring back my Bonnie to [D]me!\n{eoc}")
 		self.previewCanvas.Refresh(previewSong)
 		
-		bSizer1.AddSizer(hSizer1, 0, wx.EXPAND, 5)
-		bSizer1.AddSizer(hSizer2, 1, wx.EXPAND, 5)
+		bSizer1.Add(hSizer1, 0, wx.EXPAND, 5)
+		bSizer1.Add(hSizer2, 1, wx.EXPAND, 5)
 		
 		bSizer2 = wx.BoxSizer(wx.HORIZONTAL)
 		

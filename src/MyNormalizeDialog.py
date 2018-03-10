@@ -3,7 +3,7 @@
 # Purpose:	 Dialog to change notation
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2013-07-14
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 

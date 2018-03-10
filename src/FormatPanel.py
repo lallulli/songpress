@@ -3,7 +3,7 @@
 # Purpose:	 Panel to hold all property settings
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2011-09-11
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 

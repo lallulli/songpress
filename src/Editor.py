@@ -4,7 +4,7 @@
 #            editor: loading, saving and syntax hilighting
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 

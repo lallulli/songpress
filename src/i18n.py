@@ -3,7 +3,7 @@
 # Purpose:	 Support internationalization
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-09-11
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -29,14 +29,16 @@ def init(default_lang, supported_langs):
 	defaultLang[0] = default_lang
 	supportedLangs[0] = supported_langs
 
+_ = lambda x: x
+
 def setLang(l):
 	lang[0] = l
 	for mod in reg:
 		if l != defaultLang[0]:
 			d, loc = GetDomainAndLocale(mod.__name__)
-			mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").ugettext
+			mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").gettext
 		else:
-			mod._ = gettext.NullTranslations().ugettext
+			mod._ = gettext.NullTranslations().gettext
 
 def getLang():
 	return lang[0]
@@ -59,9 +61,9 @@ def register(moduleName=None):
 	d, loc = GetDomainAndLocale(moduleName)
 	reg.append(mod)
 	if lang[0] == defaultLang[0]:
-		mod._ = gettext.NullTranslations().ugettext
+		mod._ = gettext.NullTranslations().gettext
 	else:
-		mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").ugettext
+		mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").gettext
 
 
 def localizeXrc(filename):

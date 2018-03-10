@@ -3,7 +3,7 @@
 # Purpose:	 Export song to HTML
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2010-05-05
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 

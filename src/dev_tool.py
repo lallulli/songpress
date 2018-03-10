@@ -24,7 +24,7 @@ import re
 import platform
 import traceback
 import time
-import urllib2
+import urllib as urllib2
 import webbrowser
 import codecs
 import locale
@@ -86,7 +86,7 @@ def ExceptionHook(exctype, value, trace):
     ftrace = u"".join(exc)
 
     # Ensure that error gets raised to console as well
-    print ftrace
+    print(ftrace)
 
     # If abort has been set and we get here again do a more forcefull shutdown
     if EdErrorDialog.ABORT:

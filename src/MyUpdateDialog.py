@@ -3,12 +3,12 @@
 # Purpose:	 Dialog to select updates to apply
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2010-12-14
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
 from UpdateDialog import *
-from xmlrpclib import Server
+from xmlrpc.client import Server
 import datetime
 from Globals import glb
 from MyUpdatePanel import MyUpdatePanel
@@ -17,7 +17,7 @@ import platform
 import wx
 import traceback
 import logging
-from proxiedxmlrpclib import ProxyTransport
+# from proxiedxmlrpclib import ProxyTransport
 
 import i18n
 i18n.register('MyUpdateDialog')
@@ -45,26 +45,29 @@ def check_and_update(parent, preferences, force=False):
 			or preferences.updateLastCheck is None
 			or datetime.datetime.now() > preferences.updateLastCheck + datetime.timedelta(days=preferences.updateFrequency)
 		):
-			tr = ProxyTransport()
-			s = Server(preferences.updateUrl, transport = tr)
-			# method returns a dictionary with those keys:
-			# 'new_url': if defined, new url of the webservice
-			# 'updates': list of 3-tuples (version, description, downloadUrl)
-			u = s.checkForUpdates(
-				glb.VERSION,
-				preferences.updateFrequency,
-				platform.system(),
-				platform.architecture(),
-				platform.platform(),
-				platform.python_version(),
-				wx.version(),
-				i18n.getLang(),
-			)
-			u2 = [x for x in u['updates'] if x[0] not in preferences.ignoredUpdates]
-			preferences.updateLastCheck = datetime.datetime.now()
-			if 'new_url' in u:
-				preferences.updateUrl = u['new_url']
-			return u2
+			# tr = ProxyTransport()
+			try:
+				s = Server(preferences.updateUrl) #, transport = tr)
+				# method returns a dictionary with those keys:
+				# 'new_url': if defined, new url of the webservice
+				# 'updates': list of 3-tuples (version, description, downloadUrl)
+				u = s.checkForUpdates(
+					glb.VERSION,
+					preferences.updateFrequency,
+					platform.system(),
+					platform.architecture(),
+					platform.platform(),
+					platform.python_version(),
+					wx.version(),
+					i18n.getLang(),
+				)
+				u2 = [x for x in u['updates'] if x[0] not in preferences.ignoredUpdates]
+				preferences.updateLastCheck = datetime.datetime.now()
+				if 'new_url' in u:
+					preferences.updateUrl = u['new_url']
+				return u2
+			except:
+				pass
 		return []
 
 	def consume_updates(dr):
@@ -81,7 +84,7 @@ def check_and_update(parent, preferences, force=False):
 					wx.OK | wx.ICON_INFORMATION
 				)
 				d.ShowModal()
-		except Exception, e:
+		except Exception as e:
 			logging.error(traceback.format_exc(e))
 			if force:
 				d = wx.MessageDialog(
@@ -116,6 +119,6 @@ class MyUpdateDialog(UpdateDialog):
 			self.Destroy()
 			
 	def OnDonate(self, evt):
-		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress.html#donate"))
+		wx.LaunchDefaultBrowser(_("https://www.skeed.it/songpress#donate"))
 		evt.Skip()
 

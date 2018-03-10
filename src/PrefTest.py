@@ -3,7 +3,7 @@
 # Purpose:	 Test preference management module
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-05-30
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 

@@ -15,7 +15,7 @@ It expects to find some menu elements, characterized by their XRC name:
 # Purpose:	 Abstract class for SDI Main Frames
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-16
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -27,6 +27,7 @@ import os.path
 import sys
 import i18n
 import platform
+import time
 
 i18n.register('SDIMainFrame')
 
@@ -200,6 +201,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			p = self._mgr.SavePerspective()
 			self.config.Write("Perspective", p)
 			self.SavePreferences()
+			self._mgr.UnInit()
 			self.frame.Destroy()
 		else:
 			evt.Veto()
@@ -357,7 +359,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		self.recentMenuBase = 800
 		self.config.SetPath('/SDIMainFrame/RecentFiles')
 		self.recentFiles = []
-		for i in xrange(1, 5):
+		for i in range(1, 5):
 			f = self.config.Read(str(i))
 			if f:
 				self.recentFiles.append(f)
@@ -366,7 +368,7 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def EmptyRecentFileMenu(self):
 		fileMenu = self.menuBar.GetMenu(0)
-		for i in xrange(1, len(self.recentFiles)+1):
+		for i in range(1, len(self.recentFiles)+1):
 			fileMenu.Remove(self.recentMenuBase + i)
 
 	def UpdateRecentFileMenu(self):

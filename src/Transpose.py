@@ -5,7 +5,7 @@
 # Purpose:	 Transposing services
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-11-18
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -313,7 +313,7 @@ def autodetectNotation(text, notations):
 	r = re.compile('\[([^]]*)\]')
 	cnt = [0 for x in notations]
 	for m in r.finditer(text):
-		for i in xrange(0, len(notations)):
+		for i in range(0, len(notations)):
 			c, a = splitChord(m.group(1), notations[i])
 			if c != "":
 				cnt[i] += 1
@@ -331,13 +331,13 @@ def normalize(vector):
 
 def scalarProduct(v1, v2):
 	count = 0
-	for i in xrange(0, len(v1)):
+	for i in range(0, len(v1)):
 		count += v1[i]*v2[i]
 	return count
 
 def vectorizeChords(text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
-	v = [0 for x in xrange(12 * len(vectorModes))]
+	v = [0 for x in range(12 * len(vectorModes))]
 	for m in r.finditer(text):
 		chord = translateChord(m.group(1), notation, enNotation)
 		c, a = splitChord(chord)
@@ -351,7 +351,7 @@ def autodetectKey(text, notation=enNotation):
 	max = 0
 	key = 0
 	n = len(vectorModes)
-	for k in xrange(0, 12):
+	for k in range(0, 12):
 		s = scalarProduct(v, r)
 		if s > max:
 			max = s
@@ -368,7 +368,7 @@ def integrateChords(chords, text):
 	if l != []:
 		lc = l[0].start()
 		lt = len(text)
-		for i in xrange(0, lc-lt):
+		for i in range(0, lc-lt):
 			text += ' '
 		for m in l:
 			s = m.start()
@@ -544,14 +544,14 @@ def pasteChords(src, dest):
 	out = []
 	m = min(len(ss), len(sd))
 	r = re.compile('\[([^]]*)\]')
-	for i in xrange(0, m):
+	for i in range(0, m):
 		cd = r.sub("", sd[i])
 		for x in r.finditer(ss[i]):
 			s = x.start()
 			if len(cd) < s:
-				cd += "".join([" " for y in xrange(len(cd), s)])
+				cd += "".join([" " for y in range(len(cd), s)])
 			cd = cd[:s] + x.group(0) + cd[s:]
 		out.append(cd)
-	for i in xrange(m, len(sd)):
+	for i in range(m, len(sd)):
 		out.append(r.sub("", sd[i]))
 	return "\n".join(out)

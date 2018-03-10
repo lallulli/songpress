@@ -3,7 +3,7 @@
 # Purpose:	 Abstract tokenizer
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-01-31
-# Copyright: Luca Allulli (http://www.skeed.it/songpress.html)
+# Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:	 GNU GPL v2
 ##############################################################
 
@@ -43,6 +43,9 @@ class Tokenizer(object):
 		return self
 
 	def next(self):
+		return self.__next__()
+
+	def __next__(self):
 		if self.repeatToken:
 			self.repeatToken = False
 			return self.prevToken
