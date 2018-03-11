@@ -38,9 +38,9 @@ class Globals(object):
 	default_language = 'en'
 
 	PROG_NAME = 'Songpress'
-	VERSION = '1.6.1'
+	VERSION = '1.7'
 	BUG_REPORT_ADDRESS = 'luca@skeed.it'
-	YEAR = '2016'
+	YEAR = '2018'
 
 glb = Globals()
 

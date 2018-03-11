@@ -17,7 +17,7 @@ import platform
 import wx
 import traceback
 import logging
-# from proxiedxmlrpclib import ProxyTransport
+from proxiedxmlrpclib import RequestsTransport
 
 import i18n
 i18n.register('MyUpdateDialog')
@@ -45,9 +45,9 @@ def check_and_update(parent, preferences, force=False):
 			or preferences.updateLastCheck is None
 			or datetime.datetime.now() > preferences.updateLastCheck + datetime.timedelta(days=preferences.updateFrequency)
 		):
-			# tr = ProxyTransport()
+			tr = RequestsTransport()
 			try:
-				s = Server(preferences.updateUrl) #, transport = tr)
+				s = Server(preferences.updateUrl, verbose=True)
 				# method returns a dictionary with those keys:
 				# 'new_url': if defined, new url of the webservice
 				# 'updates': list of 3-tuples (version, description, downloadUrl)
@@ -67,6 +67,7 @@ def check_and_update(parent, preferences, force=False):
 					preferences.updateUrl = u['new_url']
 				return u2
 			except:
+				traceback.print_exc()
 				pass
 		return []
 

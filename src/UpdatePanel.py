@@ -51,7 +51,7 @@ class UpdatePanel ( wx.Panel ):
 		bSizer18 = wx.BoxSizer( wx.HORIZONTAL )
 		
 		
-		bSizer18.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
+		bSizer18.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 		
 		self.download = wx.Button( self, wx.ID_ANY, _("Download"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer18.Add( self.download, 0, wx.ALL, 5 )
