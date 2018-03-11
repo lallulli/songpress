@@ -106,7 +106,7 @@ class Preferences(object):
 		self.editorFace = self.config.Read('Face')
 		self.editorSize = self.config.Read('Size')
 		if not self.editorFace:
-			self.editorFace = "Lucida Console"
+			self.editorFace = wx.SystemSettings().GetFont(wx.SYS_ANSI_FIXED_FONT).GetFaceName() # "Lucida Console"
 			self.editorSize = 12
 		else:
 			self.editorSize = int(self.editorSize)

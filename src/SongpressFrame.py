@@ -10,6 +10,7 @@
 import wx
 import wx.aui
 import wx.adv
+import wx.msw
 from wx import xrc
 from SDIMainFrame import *
 from Editor import *
@@ -564,7 +565,7 @@ class SongpressFrame(SDIMainFrame):
 	def OnExportAsEmf(self, evt):
 		n = self.AskExportFileName(_("Enhanced Metafile"), "emf")
 		if n is not None:
-			dc = wx.MetaFileDC(n)
+			dc = wx.msw.MetafileDC(n)
 			self.DrawOnDC(dc)
 			dc.Close()
 			
@@ -608,7 +609,7 @@ class SongpressFrame(SDIMainFrame):
 		self.text.CopyOnlyText()
 
 	def OnCopyAsImage(self, evt):
-		dc = wx.MetaFileDC()
+		dc = wx.msw.MetafileDC()
 		self.DrawOnDC(dc)
 		m = dc.Close()
 		m.SetClipboard(dc.MaxX(), dc.MaxY())

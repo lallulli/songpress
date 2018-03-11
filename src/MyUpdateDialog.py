@@ -46,29 +46,25 @@ def check_and_update(parent, preferences, force=False):
 			or datetime.datetime.now() > preferences.updateLastCheck + datetime.timedelta(days=preferences.updateFrequency)
 		):
 			tr = RequestsTransport()
-			try:
-				s = Server(preferences.updateUrl, verbose=True)
-				# method returns a dictionary with those keys:
-				# 'new_url': if defined, new url of the webservice
-				# 'updates': list of 3-tuples (version, description, downloadUrl)
-				u = s.checkForUpdates(
-					glb.VERSION,
-					preferences.updateFrequency,
-					platform.system(),
-					platform.architecture(),
-					platform.platform(),
-					platform.python_version(),
-					wx.version(),
-					i18n.getLang(),
-				)
-				u2 = [x for x in u['updates'] if x[0] not in preferences.ignoredUpdates]
-				preferences.updateLastCheck = datetime.datetime.now()
-				if 'new_url' in u:
-					preferences.updateUrl = u['new_url']
-				return u2
-			except:
-				traceback.print_exc()
-				pass
+			s = Server(preferences.updateUrl, transport=tr)
+			# method returns a dictionary with those keys:
+			# 'new_url': if defined, new url of the webservice
+			# 'updates': list of 3-tuples (version, description, downloadUrl)
+			u = s.checkForUpdates(
+				glb.VERSION,
+				preferences.updateFrequency,
+				platform.system(),
+				platform.architecture(),
+				platform.platform(),
+				platform.python_version(),
+				wx.version(),
+				i18n.getLang(),
+			)
+			u2 = [x for x in u['updates'] if x[0] not in preferences.ignoredUpdates]
+			preferences.updateLastCheck = datetime.datetime.now()
+			if 'new_url' in u:
+				preferences.updateUrl = u['new_url']
+			return u2
 		return []
 
 	def consume_updates(dr):
@@ -86,7 +82,7 @@ def check_and_update(parent, preferences, force=False):
 				)
 				d.ShowModal()
 		except Exception as e:
-			logging.error(traceback.format_exc(e))
+			logging.error(traceback.format_exc())
 			if force:
 				d = wx.MessageDialog(
 					parent,
