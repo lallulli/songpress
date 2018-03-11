@@ -202,7 +202,7 @@ class ErrorDialog(wx.Dialog):
         info.append("wxPython Info: (%s)" % ", ".join(wx.PlatformInfo))
         info.append("Python Encoding: Default=%s  File=%s" % \
                     (sys.getdefaultencoding(), sys.getfilesystemencoding()))
-        info.append("wxPython Encoding: %s" % wx.GetDefaultPyEncoding())
+        # info.append("wxPython Encoding: %s" % wx.GetDefaultPyEncoding())
         info.append("System Architecture: %s %s" % (platform.architecture()[0], \
                                                     platform.machine()))
         info.append("Byte order: %s" % sys.byteorder)

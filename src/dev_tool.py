@@ -24,7 +24,7 @@ import re
 import platform
 import traceback
 import time
-import urllib as urllib2
+import urllib.request as urllib2
 import webbrowser
 import codecs
 import locale
