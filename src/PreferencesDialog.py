@@ -26,7 +26,7 @@ class PreferencesDialog ( wx.Dialog ):
 	def __init__( self, parent ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Songpress options"), pos = wx.DefaultPosition, size = wx.Size( 535,410 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
 		
-		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		
 		bSizer10 = wx.BoxSizer( wx.VERTICAL )
 		

@@ -20,7 +20,8 @@ It expects to find some menu elements, characterized by their XRC name:
 ##############################################################
 
 import wx
-import wx.aui
+import wx.lib.agw.aui as aui
+# import wx.aui as aui
 from wx import xrc
 import os
 import os.path
@@ -84,8 +85,8 @@ class SDIMainFrame(wx.FileDropTarget):
 		dt = SDIDropTarget(self)
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
-		self._mgr = wx.aui.AuiManager(self.frame)
-		self._mgr.Bind(wx.aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
+		self._mgr = aui.AuiManager(self.frame)
+		self._mgr.Bind(aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
 		self.menusByPane = {}
@@ -333,7 +334,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		pass
 
 	def AddMainPane(self, window):
-		self._mgr.AddPane(window, wx.aui.AuiPaneInfo().CenterPane().Name('_main'))
+		self._mgr.AddPane(window, aui.AuiPaneInfo().CenterPane().Name('_main'))
 
 	def AddPane(self, window, info, caption, menuName):
 		self._mgr.AddPane(window, info.Name(menuName).Caption(caption))
