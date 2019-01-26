@@ -11,7 +11,6 @@ import wx
 import wx.lib.agw.aui as aui
 # import wx.aui as aui
 import wx.adv
-import wx.msw
 from wx import xrc
 from SDIMainFrame import *
 from Editor import *
@@ -33,6 +32,8 @@ import os
 import os.path
 import i18n
 import platform
+if platform.system() == 'Windows':
+	import wx.msw
 
 i18n.register('SongpressFrame')
 
@@ -214,12 +215,11 @@ class SongpressFrame(SDIMainFrame):
 		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
 		self.AddMainPane(self.text)
 		#self.previewCanvas.main_panel.SetSize(wx.Size(400, 800))
-		self.previewCanvasPane = self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right(), _('Preview'), 'preview')
+		self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 600), _('Preview'), 'preview')
 		if self.previewCanvas.link is not None:
 			self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
-		#self.previewCanvasPane.BestSize(wx.Size(400,800))
 		# self.mainToolBar2 = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize)
-		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0, aui.AUI_TB_PLAIN_BACKGROUND)
+		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_DEFAULT_STYLE, aui.AUI_TB_PLAIN_BACKGROUND | aui.AUI_TB_NO_AUTORESIZE)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
 		self.mainToolBar.AddSimpleTool(
 			wx.xrc.XRCID('new'),
@@ -337,7 +337,6 @@ class SongpressFrame(SDIMainFrame):
 			_("Show verse labels"),
 			_("Show or hide verse and chorus labels"),
 		)
-		labelVersesTool
 		self.labelVersesToolId = labelVersesTool.GetId()
 		showChordsIcon = wx.StaticBitmap(self.formatToolBar, -1, wx.Bitmap(wx.Image(glb.AddPath('img/showChords.png'))))
 		self.formatToolBar.AddControl(showChordsIcon)
@@ -378,9 +377,6 @@ class SongpressFrame(SDIMainFrame):
 		self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
 		self.FinalizePaneInitialization()
 		# Reassign caption value to override caption saved in preferences (it could be another language)
-		self.previewCanvasPane.caption = _('Preview')
-		self.mainToolBar.caption = _('Standard')
-		self.formatToolBar.caption = _('Format')
 		if 'firstTimeEasyKey' in self.pref.notices:
 			msg = _("You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n\nDo you want to turn this option on?")
 			d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.YES_NO | wx.ICON_QUESTION)

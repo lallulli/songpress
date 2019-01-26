@@ -85,7 +85,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		dt = SDIDropTarget(self)
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
-		self._mgr = aui.AuiManager(self.frame)
+		self._mgr = aui.AuiManager(self.frame, aui.AUI_MGR_ALLOW_FLOATING | aui.AUI_MGR_TRANSPARENT_DRAG)
 		self._mgr.Bind(aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
@@ -340,15 +340,15 @@ class SDIMainFrame(wx.FileDropTarget):
 		self._mgr.AddPane(window, info.Name(menuName).Caption(caption))
 		pane = self._mgr.GetPane(window)
 		menuid = xrc.XRCID(menuName)
-		self.panesByMenu[menuid] = pane
-		self.menusByPane[pane.name] = menuid
+		self.panesByMenu[menuid] = menuName
+		self.menusByPane[menuName] = menuid
 		self.Bind(wx.EVT_MENU, self.OnTogglePaneView, menuName)
-		return pane
 
 	def OnTogglePaneView(self, evt):
 		status = evt.GetInt()
 		menu = evt.GetId()
-		self.panesByMenu[menu].Show(status)
+		pane = self._mgr.GetPane(self.panesByMenu[menu])
+		pane.Show(status)
 		self._mgr.Update()
 
 	def OnPaneClose(self, evt):
@@ -415,7 +415,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		if p:
 			self._mgr.LoadPerspective(p)
 			for menuid in self.panesByMenu:
-				self.menuBar.Check(menuid, self.panesByMenu[menuid].IsShown())
+				self.menuBar.Check(menuid, self._mgr.GetPane(self.panesByMenu[menuid]).IsShown())
 		else:
 			self._mgr.Update()
 		if len(sys.argv) > 1:
