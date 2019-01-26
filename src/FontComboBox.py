@@ -22,7 +22,7 @@ class MyFontEnumerator(wx.FontEnumerator):
 		return self
 		
 	def AppendToComboBox(self, cb):
-		#self.names.sort(key=lambda x: x.upper())
+		self.names.sort(key=lambda x: x.upper())
 		cb.AppendItems(self.names)
 
 class FontComboBox(wx.ComboBox):
@@ -30,5 +30,5 @@ class FontComboBox(wx.ComboBox):
 		s = wx.Size()
 		s.width = 200
 		s.height = -1
-		wx.ComboBox.__init__(self, parent, id, defaultFont, size=s, style=wx.CB_SORT)
+		wx.ComboBox.__init__(self, parent, id, defaultFont, size=s)
 		MyFontEnumerator().Enumerate().AppendToComboBox(self)
