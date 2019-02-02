@@ -530,6 +530,17 @@ def removeChordPro(text):
 	return removeSpuriousLines(re.sub('(\[([^]]*)\]|{[^}]*})', "", text))
 
 
+def replaceTitles(text, replace_string):
+	"""
+	Replace {t:something} and {tititle:something} commands with a string
+
+	:param text: ChordPro song
+	:param replace_string: string to be replaced to titles
+	:return:
+	"""
+	return re.sub(r'({t:[^}]*}|{title:[^}]*})', replace_string, text)
+
+
 def pasteChords(src, dest):
 	"""
 	Paste chords from src to dest

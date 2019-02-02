@@ -47,6 +47,10 @@
 						<label>Export as _HTML...</label>
 						<help>Export formatted song as web page</help>
 					</object>
+					<object class="wxMenuItem" name="exportAsPptx">
+						<label>Export _karaoke as PPTX...</label>
+						<help>Export formatted song as web page</help>
+					</object>
 				</object>
 				<object class="wxMenuItem" name="exit">
 					<label>_Exit</label>

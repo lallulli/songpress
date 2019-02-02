@@ -24,6 +24,7 @@ from Transpose import *
 from MyTransposeDialog import *
 from MyNotationDialog import *
 from MyNormalizeDialog import *
+from MyListDialog import MyListDialog
 import MyUpdateDialog
 from Globals import glb
 from Preferences import Preferences
@@ -347,6 +348,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnExportAsEmf, 'exportAsEmf')
 		Bind(self.OnExportAsPng, 'exportAsPng')
 		Bind(self.OnExportAsHtml, 'exportAsHtml')
+		Bind(self.OnExportAsPptx, 'exportAsPptx')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
 		Bind(self.OnCut, 'cut')
@@ -540,14 +542,9 @@ class SongpressFrame(SDIMainFrame):
 				f.close()
 
 	def OnExportAsSvg(self, evt):
-		if wx.VERSION < (2, 9, 1, 2):
-			msg = _("SVG export requires wxPython 2.9.1.2 or higher")
-			d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.OK | wx.ICON_ERROR)
-			d.ShowModal()
-			return
 		n = self.AskExportFileName(_("SVG image"), "svg")
 		if n is not None:
-			dc = wx.MemoryDC(wx.EmptyBitmap(1, 1))
+			dc = wx.MemoryDC(wx.Bitmap(1, 1))
 			w, h = self.DrawOnDC(dc)
 			dc = wx.SVGFileDC(n, w, h)
 			self.DrawOnDC(dc)
@@ -570,6 +567,33 @@ class SongpressFrame(SDIMainFrame):
 			dc.StartDoc(_("Exporting image as EPS..."))
 			self.DrawOnDC(dc)
 			dc.EndDoc()
+
+	def OnExportAsPptx(self, evt):
+		try:
+			import songimpress
+		except ImportError:
+			msg = _("Please install the python-pptx module to use this feature")
+			d = wx.MessageDialog(self.frame, msg, "Songpress", wx.OK | wx.ICON_ERROR)
+			d.ShowModal()
+			return
+		text = replaceTitles(self.text.GetTextOrSelection(), '---')
+		text = removeChordPro(text).strip()
+		if text != '':
+			templates_path = os.path.join('templates', 'slides')
+			templates = [f for f in os.listdir(templates_path) if os.path.isfile(os.path.join(templates_path, f)) and f[-5:].upper() == '.PPTX']
+			mld = MyListDialog(
+				self.frame,
+				_("Please select a template for your PowerPoint presentation:"),
+				_("Export as PowerPoint"),
+				[f[:-5] for f in templates],
+			)
+			if mld.ShowModal() == wx.ID_OK:
+				output_file = self.AskExportFileName(_("PPTX presentation"), "pptx")
+				if output_file is not None:
+					i = mld.GetSelectedIndex()
+					template = os.path.join(templates_path, templates[i])
+					songimpress.to_presentation(text.splitlines(), output_file, template)
+					os.startfile(output_file)
 
 	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
