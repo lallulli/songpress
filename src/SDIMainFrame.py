@@ -20,7 +20,8 @@ It expects to find some menu elements, characterized by their XRC name:
 ##############################################################
 
 import wx
-import wx.aui as aui
+# import wx.aui as aui
+from wx.lib.agw import aui
 from wx import xrc
 import os
 import os.path
@@ -84,7 +85,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		dt = SDIDropTarget(self)
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
-		self._mgr = aui.AuiManager(self.frame, aui.AUI_MGR_ALLOW_FLOATING | aui.AUI_MGR_VENETIAN_BLINDS_HINT| aui.AUI_MGR_LIVE_RESIZE)
+		self._mgr = aui.AuiManager(self.frame, aui.AUI_MGR_ALLOW_FLOATING | aui.AUI_MGR_LIVE_RESIZE | aui.AUI_MGR_HINT_FADE)
 		self._mgr.Bind(aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}
@@ -202,6 +203,7 @@ class SDIMainFrame(wx.FileDropTarget):
 			self.config.Write("Perspective", p)
 			self.SavePreferences()
 			self._mgr.UnInit()
+			del self._mgr
 			self.frame.Destroy()
 		else:
 			evt.Veto()

@@ -8,7 +8,8 @@
 ##############################################################
 
 import wx
-import wx.aui as aui
+# import wx.aui as aui
+from wx.lib.agw import aui
 import wx.adv
 from wx import xrc
 from SDIMainFrame import *
@@ -31,13 +32,15 @@ import os
 import os.path
 import i18n
 import platform
+
 if platform.system() == 'Windows':
 	import wx.msw
 
 i18n.register('SongpressFrame')
 
+
 class SongpressFindReplaceDialog(object):
-	def __init__(self, owner, replace = False):
+	def __init__(self, owner, replace=False):
 		object.__init__(self)
 		self.down = True
 		self.st = ''
@@ -157,7 +160,6 @@ class SongpressFindReplaceDialog(object):
 		)
 		res = d.ShowModal()
 
-
 	def OnClose(self, evt):
 		self.dialog.Destroy()
 		self.dialog = None
@@ -181,6 +183,7 @@ else:
 		(_("Tab files (*.tab)"), ["tab"]),
 	]
 
+
 class SongpressFrame(SDIMainFrame):
 	def __init__(self, res):
 		SDIMainFrame.__init__(
@@ -200,7 +203,8 @@ class SongpressFrame(SDIMainFrame):
 				translations="\n".join([u"- {}: {}".format(glb.languages[x], glb.translators[x]) for x in glb.languages])
 			),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
-			_("Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
+			_(
+				"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
 			_import_formats,
 		)
 		self.pref = Preferences()
@@ -212,10 +216,10 @@ class SongpressFrame(SDIMainFrame):
 		# Other objects
 		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
 		self.AddMainPane(self.text)
-		self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 600), _('Preview'), 'preview')
+		self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 400), _('Preview'), 'preview')
 		if self.previewCanvas.link is not None:
 			self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
-		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition)
+		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, agwStyle=aui.AUI_TB_PLAIN_BACKGROUND)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
 		self.AddTool(self.mainToolBar, 'new', 'img/new.png', _("New"), _("Create a new song"))
 		self.AddTool(self.mainToolBar, 'open', 'img/open.png', _("Open"), _("Open an existing song"))
@@ -225,16 +229,22 @@ class SongpressFrame(SDIMainFrame):
 		self.redoTool = self.AddTool(self.mainToolBar, 'redo', 'img/redo.png', _("Redo"), _("Redo previously undone edit"))
 		self.redoTool = wx.xrc.XRCID('redo')
 		self.mainToolBar.AddSeparator()
-		self.cutTool = self.AddTool(self.mainToolBar, 'cut', 'img/cut.png', _("Cut"), _("Move selected text in the clipboard"))
-		self.copyTool = self.AddTool(self.mainToolBar, 'copy', 'img/copy.png', _("Copy"), _("Copy selected text in the clipboard"))
+		self.cutTool = self.AddTool(self.mainToolBar, 'cut', 'img/cut.png', _("Cut"),
+																_("Move selected text in the clipboard"))
+		self.copyTool = self.AddTool(self.mainToolBar, 'copy', 'img/copy.png', _("Copy"),
+																 _("Copy selected text in the clipboard"))
 		self.copyOnlyTextTool = wx.xrc.XRCID('copyOnlyText')
 		if platform.system() == 'Windows':
-			self.AddTool(self.mainToolBar, 'copyAsImage', 'img/copyAsImage2.png', _("Copy as Image"), _("Copy the whole FORMATTED song (or selected verses) to the clipboard"))
-		self.pasteTool = self.AddTool(self.mainToolBar, 'paste', 'img/paste.png', _("Paste"), _("Read text from the clipboard and place it at the cursor position"))
-		self.pasteChordsTool = self.AddTool(self.mainToolBar, 'pasteChords', 'img/pasteChords.png', _("PasteChords"), _("Integrate chords of copied text into current selection"))
+			self.AddTool(self.mainToolBar, 'copyAsImage', 'img/copyAsImage2.png', _("Copy as Image"),
+									 _("Copy the whole FORMATTED song (or selected verses) to the clipboard"))
+		self.pasteTool = self.AddTool(self.mainToolBar, 'paste', 'img/paste.png', _("Paste"),
+																	_("Read text from the clipboard and place it at the cursor position"))
+		self.pasteChordsTool = self.AddTool(self.mainToolBar, 'pasteChords', 'img/pasteChords.png', _("PasteChords"),
+																				_("Integrate chords of copied text into current selection"))
 		self.mainToolBar.Realize()
-		self.mainToolBarPane = self.AddPane(self.mainToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')
-		self.formatToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY)
+		self.mainToolBarPane = self.AddPane(self.mainToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1),
+																				_('Standard'), 'standard')
+		self.formatToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, agwStyle=aui.AUI_TB_PLAIN_BACKGROUND)
 		self.formatToolBar.SetExtraStyle(aui.AUI_TB_PLAIN_BACKGROUND)
 		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.pref.format.face)
 		self.formatToolBar.AddControl(self.fontChooser)
@@ -245,9 +255,12 @@ class SongpressFrame(SDIMainFrame):
 		self.frame.Bind(wx.EVT_TEXT_COPY, self.OnTextCutCopy, self.text)
 		self.fontChooser.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontChooser)
 		self.fontChooser.Bind(wx.EVT_KILL_FOCUS, self.OnFontSelected, self.fontChooser)
-		self.AddTool(self.formatToolBar, 'title', 'img/title.png', _("Insert title"), _("Insert a command to display song title"))
-		self.AddTool(self.formatToolBar, 'chord', 'img/chord.png', _("Insert chord"), _("Insert square brackets that will host a chord"))
-		self.AddTool(self.formatToolBar, 'chorus', 'img/chorus.png', _("Insert chorus"), _("Insert a couple of commands that will contain chorus"))
+		self.AddTool(self.formatToolBar, 'title', 'img/title.png', _("Insert title"),
+								 _("Insert a command to display song title"))
+		self.AddTool(self.formatToolBar, 'chord', 'img/chord.png', _("Insert chord"),
+								 _("Insert square brackets that will host a chord"))
+		self.AddTool(self.formatToolBar, 'chorus', 'img/chorus.png', _("Insert chorus"),
+								 _("Insert a couple of commands that will contain chorus"))
 		self.AddTool(
 			self.formatToolBar,
 			'verseWithCustomLabelOrWithoutLabel',
@@ -255,7 +268,7 @@ class SongpressFrame(SDIMainFrame):
 			_("Insert verse with custom label or without label"),
 			_("Insert a commands that will display a verse with a custom label"),
 		)
-		labelVersesTool = self.formatToolBar.AddTool( #AddToggleTool
+		labelVersesTool = self.formatToolBar.AddToggleTool(  # AddToggleTool (agw) or AddTool
 			wx.xrc.XRCID('labelVerses'),
 			wx.Bitmap(wx.Image(glb.AddPath("img/labelVerses.png"))),
 			wx.NullBitmap,
@@ -267,7 +280,8 @@ class SongpressFrame(SDIMainFrame):
 		self.labelVersesToolId = labelVersesTool.GetId()
 		showChordsIcon = wx.StaticBitmap(self.formatToolBar, -1, wx.Bitmap(wx.Image(glb.AddPath('img/showChords.png'))))
 		self.formatToolBar.AddControl(showChordsIcon)
-		self.showChordsChooser = wx.Slider(self.formatToolBar, -1, 0, 0, 2, wx.DefaultPosition, (100, -1), wx.SL_AUTOTICKS|wx.SL_HORIZONTAL)
+		self.showChordsChooser = wx.Slider(self.formatToolBar, -1, 0, 0, 2, wx.DefaultPosition, (100, -1),
+																			 wx.SL_AUTOTICKS | wx.SL_HORIZONTAL)
 		tt1 = wx.ToolTip(_("Hide or show chords in formatted song"))
 		tt2 = wx.ToolTip(_("Hide or show chords in formatted song"))
 		self.showChordsChooser.SetToolTip(tt1)
@@ -278,7 +292,8 @@ class SongpressFrame(SDIMainFrame):
 			"pippo"
 		)
 		self.formatToolBar.Realize()
-		self.formatToolBarPane = self.AddPane(self.formatToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2), _('Format'), 'format')
+		self.formatToolBarPane = self.AddPane(self.formatToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2),
+																					_('Format'), 'format')
 		self.BindMyMenu()
 		self.frame.Bind(EVT_TEXT_CHANGED, self.OnTextChanged)
 		self.exportMenuId = xrc.XRCID('export')
@@ -305,11 +320,13 @@ class SongpressFrame(SDIMainFrame):
 		self.FinalizePaneInitialization()
 		# Reassign caption value to override caption saved in preferences (it could be another language)
 		if 'firstTimeEasyKey' in self.pref.notices:
-			msg = _("You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n\nDo you want to turn this option on?")
+			msg = _(
+				"You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n\nDo you want to turn this option on?")
 			d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.YES_NO | wx.ICON_QUESTION)
 			if d.ShowModal() == wx.ID_YES:
 				self.pref.autoAdjustEasyKey = True
-				msg = _("Please take a minute to set up your skill as a guitarist. For each group of chords, tell Songpress how much you like them.")
+				msg = _(
+					"Please take a minute to set up your skill as a guitarist. For each group of chords, tell Songpress how much you like them.")
 				d = wx.MessageDialog(self.frame, msg, _("Songpress"), wx.OK)
 				d.ShowModal()
 				f = MyPreferencesDialog(self.frame, self.pref, easyChords)
@@ -319,9 +336,9 @@ class SongpressFrame(SDIMainFrame):
 					self.SetDefaultExtension(self.pref.defaultExtension)
 		MyUpdateDialog.check_and_update(self.frame, self.pref)
 
-
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""
+
 		def Bind(handler, xrcname):
 			self.Bind(wx.EVT_MENU, handler, xrcname)
 
@@ -358,7 +375,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnNoChords, 'noChords')
 		Bind(self.OnOneVerseForEachChordPattern, 'oneVerseForEachChordPattern')
-		Bind(self.OnWholeSong, 'wholeSong') 	
+		Bind(self.OnWholeSong, 'wholeSong')
 		Bind(self.OnTranspose, 'transpose')
 		Bind(self.OnSimplifyChords, 'simplifyChords')
 		Bind(self.OnChangeChordNotation, 'changeChordNotation')
@@ -432,7 +449,8 @@ class SongpressFrame(SDIMainFrame):
 
 	def TextUpdated(self):
 		self.previewCanvas.Refresh(self.text.GetText())
-		#self.UpdateEverything()
+
+	# self.UpdateEverything()
 
 	def DrawOnDC(self, dc):
 		decorator = self.pref.decorator if self.pref.labelVerses else SongDecorator()
@@ -462,7 +480,7 @@ class SongpressFrame(SDIMainFrame):
 
 				fn = dlg.GetPath()
 				if os.path.isfile(fn):
-					msg = "File \"%s\" already exists. Do you want to overwrite it?" % (fn, )
+					msg = "File \"%s\" already exists. Do you want to overwrite it?" % (fn,)
 					d = wx.MessageDialog(
 						self.frame,
 						msg,
@@ -476,7 +494,7 @@ class SongpressFrame(SDIMainFrame):
 					elif res == wx.ID_NO:
 						leave = False
 						consensus = False
-					else: #wxID_YES
+					else:  # wxID_YES
 						leave = True
 						consensus = True
 				else:
@@ -520,7 +538,7 @@ class SongpressFrame(SDIMainFrame):
 			f = open(n, "w")
 			f.write(h.getHtml().encode('utf-8'))
 			f.close()
-			
+
 	def OnExportAsSvg(self, evt):
 		if wx.VERSION < (2, 9, 1, 2):
 			msg = _("SVG export requires wxPython 2.9.1.2 or higher")
@@ -540,7 +558,7 @@ class SongpressFrame(SDIMainFrame):
 			dc = wx.msw.MetafileDC(n)
 			self.DrawOnDC(dc)
 			dc.Close()
-			
+
 	def OnExportAsEps(self, evt):
 		n = self.AskExportFileName(_("EPS image"), "eps")
 		if n is not None:
@@ -552,7 +570,7 @@ class SongpressFrame(SDIMainFrame):
 			dc.StartDoc(_("Exporting image as EPS..."))
 			self.DrawOnDC(dc)
 			dc.EndDoc()
-			
+
 	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
 		evt.Skip()
@@ -576,7 +594,7 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnCopy(self, evt):
 		self.text.Copy()
-		
+
 	def OnCopyOnlyText(self, evt):
 		self.text.CopyOnlyText()
 
@@ -588,7 +606,7 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnPaste(self, evt):
 		self.text.Paste()
-		
+
 	def OnPasteChords(self, evt):
 		self.text.PasteChords()
 
@@ -668,11 +686,9 @@ class SongpressFrame(SDIMainFrame):
 		self.SetFont(True)
 		evt.Skip()
 
-
-
 	def OnGuide(self, evt):
 		if platform.system() == 'Windows':
-			helpfile = os.path.join("help", "songpress-%s.chm" % (i18n.getLang(), ))
+			helpfile = os.path.join("help", "songpress-%s.chm" % (i18n.getLang(),))
 			subprocess.Popen("hh " + glb.AddPath(helpfile))
 		else:
 			wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual"))
@@ -690,7 +706,6 @@ class SongpressFrame(SDIMainFrame):
 			pass
 		evt.Skip()
 
-
 	def OnNewsAndUpdates(self, evt):
 		MyUpdateDialog.check_and_update(self.frame, self.pref, True)
 
@@ -698,7 +713,8 @@ class SongpressFrame(SDIMainFrame):
 		wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress#donate"))
 
 	def OnFormatFont(self, evt):
-		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.pref.format, self.pref.decorator, self.pref.decoratorFormat)
+		f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.pref.format, self.pref.decorator,
+											 self.pref.decoratorFormat)
 		if f.ShowModal() == wx.ID_OK:
 			self.pref.SetFont(f.GetValue())
 			self.SetFont()
@@ -734,7 +750,7 @@ class SongpressFrame(SDIMainFrame):
 		t = MyNotationDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
 			self.text.ReplaceTextOrSelection(t.ChangeChordNotation())
-			
+
 	def OnNormalizeChords(self, evt):
 		t = MyNormalizeDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())
 		if t.ShowModal() == wx.ID_OK:
@@ -759,7 +775,7 @@ class SongpressFrame(SDIMainFrame):
 		s, e = self.text.GetSelection()
 		c = st.find('|')
 		if c != -1:
-			self.text.ReplaceSelection(st[:c] + st[c+1:])
+			self.text.ReplaceSelection(st[:c] + st[c + 1:])
 			self.text.SetSelection(s + c, s + c)
 		else:
 			self.text.ReplaceSelection(st)
@@ -770,7 +786,7 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnChord(self, evt):
 		self.InsertWithCaret("[|]")
-		
+
 	def OnVerse(self, evt):
 		label = wx.GetTextFromUser(
 			_("Insert a label for verse, or press Cancel if you want to omit label."),
@@ -808,19 +824,19 @@ class SongpressFrame(SDIMainFrame):
 			c = d.GetValue()
 			self.pref.SetChorusLabel(c)
 			self.previewCanvas.Refresh(self.text.GetText())
-			
+
 	def OnNoChords(self, evt):
 		self.pref.format.showChords = 0
 		self.SetFont(True)
-		
+
 	def OnOneVerseForEachChordPattern(self, evt):
 		self.pref.format.showChords = 1
 		self.SetFont(True)
-		
+
 	def OnWholeSong(self, evt):
 		self.pref.format.showChords = 2
 		self.SetFont(True)
-			
+
 	def OnTextChanged(self, evt):
 		self.AutoAdjust(evt.lastPos, evt.currentPos)
 
