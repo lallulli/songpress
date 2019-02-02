@@ -535,9 +535,9 @@ class SongpressFrame(SDIMainFrame):
 				r.Render(self.text.GetText(), None)
 			else:
 				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
-			f = open(n, "w")
-			f.write(h.getHtml().encode('utf-8'))
-			f.close()
+			with open(n, "w") as f:
+				f.write(h.getHtml())
+				f.close()
 
 	def OnExportAsSvg(self, evt):
 		if wx.VERSION < (2, 9, 1, 2):
