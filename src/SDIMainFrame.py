@@ -20,8 +20,7 @@ It expects to find some menu elements, characterized by their XRC name:
 ##############################################################
 
 import wx
-import wx.lib.agw.aui as aui
-# import wx.aui as aui
+import wx.aui as aui
 from wx import xrc
 import os
 import os.path
@@ -85,7 +84,7 @@ class SDIMainFrame(wx.FileDropTarget):
 		dt = SDIDropTarget(self)
 		self.frame.SetDropTarget(dt)
 		self.UpdateTitle()
-		self._mgr = aui.AuiManager(self.frame, aui.AUI_MGR_ALLOW_FLOATING | aui.AUI_MGR_TRANSPARENT_DRAG)
+		self._mgr = aui.AuiManager(self.frame, aui.AUI_MGR_ALLOW_FLOATING | aui.AUI_MGR_VENETIAN_BLINDS_HINT| aui.AUI_MGR_LIVE_RESIZE)
 		self._mgr.Bind(aui.EVT_AUI_PANE_CLOSE, self.OnPaneClose)
 		self.menuBar = self.frame.GetMenuBar()
 		self.panesByMenu = {}

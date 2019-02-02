@@ -8,8 +8,7 @@
 ##############################################################
 
 import wx
-import wx.lib.agw.aui as aui
-# import wx.aui as aui
+import wx.aui as aui
 import wx.adv
 from wx import xrc
 from SDIMainFrame import *
@@ -183,7 +182,6 @@ else:
 	]
 
 class SongpressFrame(SDIMainFrame):
-
 	def __init__(self, res):
 		SDIMainFrame.__init__(
 			self,
@@ -214,86 +212,29 @@ class SongpressFrame(SDIMainFrame):
 		# Other objects
 		self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
 		self.AddMainPane(self.text)
-		#self.previewCanvas.main_panel.SetSize(wx.Size(400, 800))
 		self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 600), _('Preview'), 'preview')
 		if self.previewCanvas.link is not None:
 			self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
-		# self.mainToolBar2 = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize)
-		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_DEFAULT_STYLE, aui.AUI_TB_PLAIN_BACKGROUND | aui.AUI_TB_NO_AUTORESIZE)
+		self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition)
 		self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
-		self.mainToolBar.AddSimpleTool(
-			wx.xrc.XRCID('new'),
-			_("New"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/new.png"))),
-			_("Create a new song"),
-		)
-		self.mainToolBar.AddSimpleTool(
-			wx.xrc.XRCID('open'),
-			_("Open"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/open.png"))),
-			_("Open an existing song"),
-		)
-		self.mainToolBar.AddSimpleTool(
-			wx.xrc.XRCID('save'),
-			_("Save"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/save.png"))),
-			_("Save song with the current filename"),
-		)
+		self.AddTool(self.mainToolBar, 'new', 'img/new.png', _("New"), _("Create a new song"))
+		self.AddTool(self.mainToolBar, 'open', 'img/open.png', _("Open"), _("Open an existing song"))
+		self.AddTool(self.mainToolBar, 'save', 'img/save.png', _("Save"), _("Save song with the current filename"))
 		self.mainToolBar.AddSeparator()
-		self.undoTool = wx.xrc.XRCID('undo')
-		self.mainToolBar.AddSimpleTool(
-			self.undoTool,
-			_("Undo"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/undo.png"))),
-			_("Undo last edit"),
-		)
+		self.undoTool = self.AddTool(self.mainToolBar, 'undo', 'img/undo.png', _("Undo"), _("Undo last edit"))
+		self.redoTool = self.AddTool(self.mainToolBar, 'redo', 'img/redo.png', _("Redo"), _("Redo previously undone edit"))
 		self.redoTool = wx.xrc.XRCID('redo')
-		self.mainToolBar.AddSimpleTool(
-			self.redoTool,
-			_("Redo"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/redo.png"))),
-			_("Redo previously undone edit"),
-		)
 		self.mainToolBar.AddSeparator()
-		self.cutTool = wx.xrc.XRCID('cut')
-		self.mainToolBar.AddSimpleTool(
-			self.cutTool,
-			_("Cut"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/cut.png"))),
-			_("Move selected text in the clipboard"),
-		)
-		self.copyTool = wx.xrc.XRCID('copy')
-		self.mainToolBar.AddSimpleTool(
-			self.copyTool,
-			_("Copy"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/copy.png"))),
-			_("Copy selected text in the clipboard"),
-		)
+		self.cutTool = self.AddTool(self.mainToolBar, 'cut', 'img/cut.png', _("Cut"), _("Move selected text in the clipboard"))
+		self.copyTool = self.AddTool(self.mainToolBar, 'copy', 'img/copy.png', _("Copy"), _("Copy selected text in the clipboard"))
 		self.copyOnlyTextTool = wx.xrc.XRCID('copyOnlyText')
 		if platform.system() == 'Windows':
-			self.mainToolBar.AddSimpleTool(
-				wx.xrc.XRCID('copyAsImage'),
-				_("Copy as Image"),
-				wx.Bitmap(wx.Image(glb.AddPath("img/copyAsImage2.png"))),
-				_("Copy the whole FORMATTED song (or selected verses) to the clipboard"),
-			)
-		self.pasteTool = wx.xrc.XRCID('paste')
-		self.mainToolBar.AddSimpleTool(
-			self.pasteTool,
-			_("Paste"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/paste.png"))),
-			_("Read text from the clipboard and place it at the cursor position"),
-		)
-		self.pasteChordsTool = wx.xrc.XRCID('pasteChords')
-		self.mainToolBar.AddSimpleTool(
-			self.pasteChordsTool,
-			_("PasteChords"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/pasteChords.png"))),
-			_("Integrate chords of copied text into current selection"),
-		)
+			self.AddTool(self.mainToolBar, 'copyAsImage', 'img/copyAsImage2.png', _("Copy as Image"), _("Copy the whole FORMATTED song (or selected verses) to the clipboard"))
+		self.pasteTool = self.AddTool(self.mainToolBar, 'paste', 'img/paste.png', _("Paste"), _("Read text from the clipboard and place it at the cursor position"))
+		self.pasteChordsTool = self.AddTool(self.mainToolBar, 'pasteChords', 'img/pasteChords.png', _("PasteChords"), _("Integrate chords of copied text into current selection"))
 		self.mainToolBar.Realize()
 		self.mainToolBarPane = self.AddPane(self.mainToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(1), _('Standard'), 'standard')
-		self.formatToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0, aui.AUI_TB_PLAIN_BACKGROUND)
+		self.formatToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY)
 		self.formatToolBar.SetExtraStyle(aui.AUI_TB_PLAIN_BACKGROUND)
 		self.fontChooser = FontComboBox(self.formatToolBar, -1, self.pref.format.face)
 		self.formatToolBar.AddControl(self.fontChooser)
@@ -304,31 +245,17 @@ class SongpressFrame(SDIMainFrame):
 		self.frame.Bind(wx.EVT_TEXT_COPY, self.OnTextCutCopy, self.text)
 		self.fontChooser.Bind(wx.EVT_TEXT_ENTER, self.OnFontSelected, self.fontChooser)
 		self.fontChooser.Bind(wx.EVT_KILL_FOCUS, self.OnFontSelected, self.fontChooser)
-		self.formatToolBar.AddSimpleTool(
-			wx.xrc.XRCID('title'),
-			_("Insert title"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/title.png"))),
-			_("Insert a command to display song title"),
-		)
-		self.formatToolBar.AddSimpleTool(
-			wx.xrc.XRCID('chord'),
-			_("Insert chord"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/chord.png"))),
-			_("Insert square brackets that will host a chord"),
-		)
-		self.formatToolBar.AddSimpleTool(
-			wx.xrc.XRCID('chorus'),
-			_("Insert chorus"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/chorus.png"))),
-			_("Insert a couple of commands that will contain chorus"),
-		)
-		self.formatToolBar.AddSimpleTool(
-			wx.xrc.XRCID('verseWithCustomLabelOrWithoutLabel'),
+		self.AddTool(self.formatToolBar, 'title', 'img/title.png', _("Insert title"), _("Insert a command to display song title"))
+		self.AddTool(self.formatToolBar, 'chord', 'img/chord.png', _("Insert chord"), _("Insert square brackets that will host a chord"))
+		self.AddTool(self.formatToolBar, 'chorus', 'img/chorus.png', _("Insert chorus"), _("Insert a couple of commands that will contain chorus"))
+		self.AddTool(
+			self.formatToolBar,
+			'verseWithCustomLabelOrWithoutLabel',
+			'img/verse.png',
 			_("Insert verse with custom label or without label"),
-			wx.Bitmap(wx.Image(glb.AddPath("img/verse.png"))),
 			_("Insert a commands that will display a verse with a custom label"),
 		)
-		labelVersesTool = self.formatToolBar.AddToggleTool(
+		labelVersesTool = self.formatToolBar.AddTool( #AddToggleTool
 			wx.xrc.XRCID('labelVerses'),
 			wx.Bitmap(wx.Image(glb.AddPath("img/labelVerses.png"))),
 			wx.NullBitmap,
@@ -442,6 +369,20 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnGuide, 'guide')
 		Bind(self.OnNewsAndUpdates, 'newsAndUpdates')
 		Bind(self.OnDonate, 'donate')
+
+	def AddTool(self, toolbar, resource_string, icon_path, label, help):
+		tool = wx.xrc.XRCID(resource_string)
+		toolbar.AddTool(
+			tool,
+			label,
+			wx.Bitmap(wx.Image(glb.AddPath(icon_path))),
+			wx.NullBitmap,
+			wx.ITEM_NORMAL,
+			label,
+			help,
+			None
+		)
+		return tool
 
 	def New(self):
 		self.text.AutoChangeMode(True)
