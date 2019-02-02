@@ -36,8 +36,10 @@ class SDIDropTarget(wx.FileDropTarget):
 	def __init__(self, sdi):
 		wx.FileDropTarget.__init__(self)
 		self.sdi = sdi
+
 	def OnDropFiles(self, x, y, arr):
-		self.sdi.OnDropFiles(arr)
+		return self.sdi.OnDropFiles(arr)
+
 
 class SDIMainFrame(wx.FileDropTarget):
 	"""Abstract class. Override methods New, Open, Save"""
@@ -193,6 +195,8 @@ class SDIMainFrame(wx.FileDropTarget):
 				self.UpdateRecentFileList(fn)
 				self.modified = False
 				self.UpdateTitle()
+				return True
+		return False
 
 	def OnClose(self, evt):
 		"""Handler for windows close event"""

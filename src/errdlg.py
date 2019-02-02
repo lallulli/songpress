@@ -323,7 +323,7 @@ class ErrorPanel(wx.Panel):
                                                             wx.TE_READONLY)
 
         abort_b = wx.Button(self, wx.ID_ABORT, _("Abort"))
-        abort_b.SetToolTipString(_("Exit the application"))
+        abort_b.SetToolTip(_("Exit the application"))
         send_b = wx.Button(self, ErrorDialog.ID_SEND, _("Report Error"))
         send_b.SetDefault()
         close_b = wx.Button(self, wx.ID_CLOSE)
