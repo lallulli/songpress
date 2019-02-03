@@ -17,7 +17,9 @@ import dev_tool
 class SongpressApp(wx.App):
 
 	def OnInit(self):
-		self.config = wx.FileConfig("songpress")
+		self.SetAppName("songpress")
+		glb.InitDataPath()
+		self.config = wx.FileConfig(localFilename=os.path.join(glb.data_path, "config.ini"))
 		wx.Config.Set(self.config)
 		i18n.init(glb.default_language, [l for l in glb.languages])
 		self.config.SetPath("/App")

@@ -579,21 +579,20 @@ class SongpressFrame(SDIMainFrame):
 		text = replaceTitles(self.text.GetTextOrSelection(), '---')
 		text = removeChordPro(text).strip()
 		if text != '':
-			templates_path = os.path.join('templates', 'slides')
-			templates = [f for f in os.listdir(templates_path) if os.path.isfile(os.path.join(templates_path, f)) and f[-5:].upper() == '.PPTX']
+			template_rel = os.path.join('templates', 'slides')
+			template_paths = [f for f in glb.ListLocalGlobalDir(template_rel) if f[-5:].upper() == '.PPTX']
+			template_names = [os.path.split(f)[1][:-5] for f in template_paths]
 			mld = MyListDialog(
 				self.frame,
 				_("Please select a template for your PowerPoint presentation:"),
 				_("Export as PowerPoint"),
-				[f[:-5] for f in templates],
+				template_names,
 			)
 			if mld.ShowModal() == wx.ID_OK:
 				output_file = self.AskExportFileName(_("PPTX presentation"), "pptx")
 				if output_file is not None:
 					i = mld.GetSelectedIndex()
-					template = os.path.join(templates_path, templates[i])
-					songimpress.to_presentation(text.splitlines(), output_file, template)
-					os.startfile(output_file)
+					songimpress.to_presentation(text.splitlines(), output_file, template_paths[i])
 
 	def OnUpdateUI(self, evt):
 		self.UpdateEverything()
