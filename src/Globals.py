@@ -48,7 +48,6 @@ class Globals(object):
 			out.append(os.path.join(self.path, rel_path, f))
 		for f in os.listdir(os.path.join(self.data_path, rel_path)):
 			out.append(os.path.join(self.data_path, rel_path, f))
-		print(out)
 		return out
 
 	languages = {

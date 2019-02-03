@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 15:37+0100\n"
+"POT-Creation-Date: 2019-02-03 16:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/PreviewCanvas.py:23
+#: src/PreviewCanvas.py:26
 msgid "Copy formatted song to clipboard"
 msgstr ""
 
-#: src/PreviewCanvas.py:24
+#: src/PreviewCanvas.py:27
 msgid ""
 "Copy formatted song to clipboard, so that it can be pasted in any program "
 "and printed"

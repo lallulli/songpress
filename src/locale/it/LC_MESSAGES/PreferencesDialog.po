@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -22,75 +22,75 @@ msgstr ""
 msgid "Songpress options"
 msgstr "Opzioni di Songpress"
 
-#: src/PreferencesDialog.py:39
+#: src/PreferencesDialog.py:40
 msgid "Editor font"
 msgstr "Carattere editor"
 
-#: src/PreferencesDialog.py:46
+#: src/PreferencesDialog.py:47
 msgid "Size"
 msgstr "Dimensione"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "7"
 msgstr "7"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "8"
 msgstr "8"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "9"
 msgstr "9"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "10"
 msgstr "10"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "11"
 msgstr "11"
 
-#: src/PreferencesDialog.py:50 src/PreferencesDialog.py:51
+#: src/PreferencesDialog.py:51 src/PreferencesDialog.py:53
 msgid "12"
 msgstr "12"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "13"
 msgstr "13"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "14"
 msgstr "14"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "16"
 msgstr "16"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:51
 msgid "18"
 msgstr "18"
 
-#: src/PreferencesDialog.py:50
+#: src/PreferencesDialog.py:52
 msgid "20"
 msgstr "20"
 
-#: src/PreferencesDialog.py:59
+#: src/PreferencesDialog.py:62
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src/PreferencesDialog.py:71
+#: src/PreferencesDialog.py:73
 msgid "Default notation"
 msgstr "Notazione predefinita"
 
-#: src/PreferencesDialog.py:85
+#: src/PreferencesDialog.py:87
 msgid "Check for updates every"
 msgstr "Verifica disponibilità di aggiornamenti ogni"
 
-#: src/PreferencesDialog.py:99
+#: src/PreferencesDialog.py:101
 msgid "Default file extension"
 msgstr "Estensione dei file predefinita"
 
-#: src/PreferencesDialog.py:113
+#: src/PreferencesDialog.py:115
 msgid "Language"
 msgstr "Language"
 
@@ -102,14 +102,14 @@ msgstr "Generale"
 msgid "Offer to remove blank lines"
 msgstr "Proponi di rimuovere le linee vuote"
 
-#: src/PreferencesDialog.py:136
+#: src/PreferencesDialog.py:137
 msgid "Offer to convert songs in tab"
 msgstr "Proponi di convertire il formato delle canzoni da tab a ChordPro"
 
-#: src/PreferencesDialog.py:139
+#: src/PreferencesDialog.py:141
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proponi di trasporre le canzoni per semplificare gli accordi"
 
-#: src/PreferencesDialog.py:152
+#: src/PreferencesDialog.py:155
 msgid "AutoAdjust"
 msgstr "Strumenti automatici"

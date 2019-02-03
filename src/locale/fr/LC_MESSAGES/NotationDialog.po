@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 17:16+0100\n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
 "PO-Revision-Date: 2016-03-04 20:03+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -22,10 +22,10 @@ msgstr ""
 msgid "Change notation"
 msgstr "Changer la tonalité"
 
-#: src/NotationDialog.py:29
+#: src/NotationDialog.py:30
 msgid "From notation:"
 msgstr "De la tonalité de:"
 
-#: src/NotationDialog.py:42
+#: src/NotationDialog.py:43
 msgid "To notation:"
 msgstr "A la tonalité de:"

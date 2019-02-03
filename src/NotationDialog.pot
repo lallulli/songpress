@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 15:37+0100\n"
+"POT-Creation-Date: 2019-02-03 16:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,10 +21,10 @@ msgstr ""
 msgid "Change notation"
 msgstr ""
 
-#: src/NotationDialog.py:29
+#: src/NotationDialog.py:30
 msgid "From notation:"
 msgstr ""
 
-#: src/NotationDialog.py:42
+#: src/NotationDialog.py:43
 msgid "To notation:"
 msgstr ""

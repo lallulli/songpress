@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
 "PO-Revision-Date: 2016-03-06 21:28+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/SDIMainFrame.py:124
+#: src/SDIMainFrame.py:128
 #, python-format
 msgid "%s files (*.%s)|%s"
 msgstr "File %s (*.%s)|%s"
 
-#: src/SDIMainFrame.py:131
+#: src/SDIMainFrame.py:135
 msgid "|All files (*.*)|*.*"
 msgstr "|Tutti i file (*.*)|*.*"
 
-#: src/SDIMainFrame.py:134
+#: src/SDIMainFrame.py:138
 msgid "Open file"
 msgstr "Apertura file"
 
-#: src/SDIMainFrame.py:150
+#: src/SDIMainFrame.py:154
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr "Il file \"%s\" non esiste."
 
-#: src/SDIMainFrame.py:174
+#: src/SDIMainFrame.py:178
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -57,29 +57,29 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/SDIMainFrame.py:182
+#: src/SDIMainFrame.py:186
 msgid "About "
 msgstr "Informazioni su "
 
-#: src/SDIMainFrame.py:221
+#: src/SDIMainFrame.py:229
 msgid "Untitled"
 msgstr "Senza titolo"
 
-#: src/SDIMainFrame.py:237
+#: src/SDIMainFrame.py:245
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr "La tua %s è stata modificata. Vuoi salvarla?"
 
-#: src/SDIMainFrame.py:253
+#: src/SDIMainFrame.py:261
 msgid "Choose a name for the file"
 msgstr "Scegli un nome per il file"
 
-#: src/SDIMainFrame.py:256
+#: src/SDIMainFrame.py:264
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr "File %s (*.%s)|*.%s|Tutti i file (*.*)|*.*"
 
-#: src/SDIMainFrame.py:268
+#: src/SDIMainFrame.py:276
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr "Il file \"%s\" esiste già. Vuoi sovrascriverlo?"

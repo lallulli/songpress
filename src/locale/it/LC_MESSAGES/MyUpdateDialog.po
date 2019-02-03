@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 22:36+0100\n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -39,5 +39,6 @@ msgid "Update error"
 msgstr "Errore di aggiornamento"
 
 #: src/MyUpdateDialog.py:119
-msgid "http://www.skeed.it/songpress.html#donate"
+#, fuzzy
+msgid "https://www.skeed.it/songpress#donate"
 msgstr "http://www.skeed.it/songpress-it.html#donate"
