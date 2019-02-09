@@ -1,0 +1,1 @@
+Place your PowerPoint templates in this folder
