@@ -41,16 +41,16 @@ def get_files(dirs):
 	return out
 
 
-include_files = [(x, x) for x in get_files(['help', 'img', 'locale', 'xrc'])]
+include_files = [(x, x) for x in get_files(['help', 'img', 'locale', 'templates', 'xrc'])]
 
 
 options = {
 	'build_exe': {
 		'include_files': include_files,
 		'include_msvcr': True,
+		'packages': ["multiprocessing", "idna.idnadata"]
 	}
 }
-
 
 def build(version):
 	setup(

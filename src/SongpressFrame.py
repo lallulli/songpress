@@ -205,7 +205,7 @@ class SongpressFrame(SDIMainFrame):
 			),
 			_("Licensed under the terms and conditions of the GNU General Public License, version 2"),
 			_(
-				"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)"),
+				"Special thanks to:\n  * The Pyhton programming language (http://www.python.org)\n  * wxWidgets (http://www.wxwidgets.org)\n  * wxPython (http://www.wxpython.org)\n  * Editra (http://editra.org/) (for the error reporting dialog and... the editor itself!)\n  * python-pptx (for PowerPoint export)"),
 			_import_formats,
 		)
 		self.pref = Preferences()

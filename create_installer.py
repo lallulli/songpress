@@ -39,7 +39,7 @@ def create_installer():
 		pass
 	prepare_license()
 	if platform.system() == 'Linux':
-		print "Compressing..."
+		print("Compressing...")
 		zip_dir = os.path.join(os.getcwd(), 'src/build/exe.linux-x86_64-2.7')
 		shutil.make_archive('Songpress-%s-x86_64' % version, 'gztar', zip_dir)
 	else:
