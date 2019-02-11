@@ -320,6 +320,9 @@ class SongpressFrame(SDIMainFrame):
 		self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
 		self.FinalizePaneInitialization()
 		# Reassign caption value to override caption saved in preferences (it could be another language)
+		self._mgr.GetPane('preview').caption = _('Preview')
+		self._mgr.GetPane('standard').caption = _('Standard')
+		self._mgr.GetPane('format').caption = _('Format')
 		if 'firstTimeEasyKey' in self.pref.notices:
 			msg = _(
 				"You are not a skilled guitarist? Songpress can help you: when you open a song, it can detect if chords are difficult. If this is the case, Songpress will alert you, and offer to transpose your song to the easiest key, automatically.\n\nDo you want to turn this option on?")

@@ -343,7 +343,6 @@ class SDIMainFrame(wx.FileDropTarget):
 
 	def AddPane(self, window, info, caption, menuName):
 		self._mgr.AddPane(window, info.Name(menuName).Caption(caption))
-		pane = self._mgr.GetPane(window)
 		menuid = xrc.XRCID(menuName)
 		self.panesByMenu[menuid] = menuName
 		self.menusByPane[menuName] = menuid
