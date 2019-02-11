@@ -48,9 +48,18 @@ options = {
 	'build_exe': {
 		'include_files': include_files,
 		'include_msvcr': True,
-		'packages': ["multiprocessing", "idna.idnadata"]
+		'packages': ["multiprocessing", "idna.idnadata", "ssl"],
 	}
 }
+
+# Workaround for cx_Freeze issue for requests
+# https://github.com/anthony-tuininga/cx_Freeze/issues/437
+PYTHON_INSTALL_DIR = os.path.dirname(os.path.dirname(os.__file__))
+if sys.platform == "win32":
+	options["build_exe"]['include_files'].extend([
+		os.path.join(PYTHON_INSTALL_DIR, 'DLLs', 'libcrypto-1_1.dll'),
+		os.path.join(PYTHON_INSTALL_DIR, 'DLLs', 'libssl-1_1.dll'),
+	])
 
 def build(version):
 	setup(
