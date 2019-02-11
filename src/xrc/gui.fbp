@@ -282,7 +282,7 @@
                             <property name="bitmap"></property>
                             <property name="checked">0</property>
                             <property name="enabled">1</property>
-                            <property name="help">Export formatted song as web page</property>
+                            <property name="help">Create a karaoke-like PowerPoint presentation</property>
                             <property name="id">ID_EXPORT_AS_HTML</property>
                             <property name="kind">wxITEM_NORMAL</property>
                             <property name="label">Export &amp;karaoke as PPTX...</property>

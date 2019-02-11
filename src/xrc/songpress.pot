@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 16:35+0100\n"
+"POT-Creation-Date: 2019-02-11 19:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,12 +102,16 @@ msgstr ""
 msgid "Export as &HTML..."
 msgstr ""
 
-#: src/xrc/songpress.pos:22 src/xrc/songpress.pos:24
+#: src/xrc/songpress.pos:22
 msgid "Export formatted song as web page"
 msgstr ""
 
 #: src/xrc/songpress.pos:23
 msgid "Export &karaoke as PPTX..."
+msgstr ""
+
+#: src/xrc/songpress.pos:24
+msgid "Create a karaoke-like PowerPoint presentation"
 msgstr ""
 
 #: src/xrc/songpress.pos:25

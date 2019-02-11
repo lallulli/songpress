@@ -49,7 +49,7 @@
 					</object>
 					<object class="wxMenuItem" name="exportAsPptx">
 						<label>Export _karaoke as PPTX...</label>
-						<help>Export formatted song as web page</help>
+						<help>Create a karaoke-like PowerPoint presentation</help>
 					</object>
 				</object>
 				<object class="wxMenuItem" name="exit">

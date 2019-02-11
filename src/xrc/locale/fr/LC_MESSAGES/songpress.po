@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 16:35+0100\n"
+"POT-Creation-Date: 2019-02-11 19:47+0100\n"
 "PO-Revision-Date: 2016-03-04 20:17+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -103,7 +103,7 @@ msgstr "Exporter l'image comme une image raster"
 msgid "Export as &HTML..."
 msgstr "Exporter comme &HTML..."
 
-#: src/xrc/songpress.pos:22 src/xrc/songpress.pos:24
+#: src/xrc/songpress.pos:22
 msgid "Export formatted song as web page"
 msgstr "Exporter le chant formaté comme une page web"
 
@@ -111,6 +111,10 @@ msgstr "Exporter le chant formaté comme une page web"
 #, fuzzy
 msgid "Export &karaoke as PPTX..."
 msgstr "Exporter comme &PNG..."
+
+#: src/xrc/songpress.pos:24
+msgid "Create a karaoke-like PowerPoint presentation"
+msgstr ""
 
 #: src/xrc/songpress.pos:25
 msgid "&Exit"

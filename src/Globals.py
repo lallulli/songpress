@@ -28,10 +28,10 @@ class Globals(object):
 			old_config = self.data_path + ".orig"
 			shutil.move(self.data_path, old_config)
 		if not os.path.exists(self.data_path):
-			print("Creating", self.data_path)
 			shutil.copytree(os.path.join(self.path, 'templates', 'local_dir'), self.data_path)
 		if old_config is not None:
-			shutil.move(old_config, os.path.join(self.data_path, "config.ini"))
+			# Preserve old config file, but don't use it
+			shutil.move(old_config, os.path.join(self.data_path, "config.ini.orig"))
 
 	def AddPath(self, filename):
 		return os.path.join(self.path, filename)
@@ -67,7 +67,7 @@ class Globals(object):
 	default_language = 'en'
 
 	PROG_NAME = 'Songpress'
-	VERSION = '1.7'
+	VERSION = '1.7.1'
 	BUG_REPORT_ADDRESS = 'luca@skeed.it'
 	YEAR = '2019'
 
