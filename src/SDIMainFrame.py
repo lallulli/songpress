@@ -423,5 +423,5 @@ class SDIMainFrame(wx.FileDropTarget):
 		else:
 			self._mgr.Update()
 		if len(sys.argv) > 1:
-			self.OnDropFiles([sys.argv[1].decode(sys.getfilesystemencoding())])
+			self.OnDropFiles([sys.argv[1]])
 		self.frame.Show()
