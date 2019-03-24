@@ -540,7 +540,7 @@ class SongpressFrame(SDIMainFrame):
 				r.Render(self.text.GetText(), None)
 			else:
 				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
-			with open(n, "w") as f:
+			with open(n, "w", encoding='utf-8') as f:
 				f.write(h.getHtml())
 				f.close()
 
