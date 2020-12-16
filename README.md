@@ -16,6 +16,12 @@ Songpress is a free, easy to use song typeset program for Windows and Linux, tha
 
 Songpress is focused on song formatting. Once your song is ready, you can paste it into your favorite Windows program, to give your songbook the look you like the most.
 
+### Usage
+
+go to the src folder and use
+
+```python3 main.py```
+
 ### Highlights
 
 - Produce **high-quality guitar scores** (text and chords)
