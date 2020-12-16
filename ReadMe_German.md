@@ -16,6 +16,12 @@ Es kann mit diesem Befehl installiert werden.
 
 Songpress ist ein Programm für Windows und Linux, das Chord Pro Dateien erzeugen und bearbeiten kann.
 
+### Starten
+
+Terminal öffnen im src Ordner, dann
+
+```python3 main.py```
+
 ### Eigenschaften
 
 - Produziere hochwertige Gitarrenpartituren (Text und Akkorde)
