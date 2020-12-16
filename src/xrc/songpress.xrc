@@ -2,7 +2,7 @@
 <resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
 	<object class="wxFrame" name="MainFrame">
 		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
-		<size>611,477</size>
+		<size>800,600</size>
 		<title>Songpress</title>
 		<aui_managed>0</aui_managed>
 		<object class="wxMenuBar" name="menuBar">
