@@ -1,3 +1,5 @@
+![flag](https://github.githubassets.com/images/icons/emoji/unicode/1f1e9-1f1ea.png)
+
 Fork von lallulli / songpress
 
 Es wurden einige Änderungen vorgenommen, damit es unter Linux Mint funktioniert.
