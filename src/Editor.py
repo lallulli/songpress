@@ -288,7 +288,7 @@ class Editor(StyledTextCtrl):
 		changedBold = False
 		lc = self.GetLineCount()
 		while (changedBold and ln < lc) or start < end:
-			self.StartStyling(start, 0x1f)
+			self.StartStyling(start)
 			l = self.GetLine(ln)
 			tkz = SongTokenizer(l)
 			for tok in tkz:
