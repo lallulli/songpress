@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: songpress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"PO-Revision-Date: 2016-03-04 20:36+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/skeed/songpress-2/language/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/SDIMainFrame.py:128
+#, python-format
+msgid "%s files (*.%s)|%s"
+msgstr "%s Dateien (*.%s)|%s"
+
+#: src/SDIMainFrame.py:135
+msgid "|All files (*.*)|*.*"
+msgstr "|alle Dateien (*.*)|*.*"
+
+#: src/SDIMainFrame.py:138
+msgid "Open file"
+msgstr "Datei öffnen"
+
+#: src/SDIMainFrame.py:154
+#, python-format
+msgid "File \"%s\" does not exist."
+msgstr "Die Datei \"%s\" existiert nicht."
+
+#: src/SDIMainFrame.py:178
+#, python-format
+msgid ""
+"%s version %s\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s"
+msgstr ""
+"%s Version %s\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s\n"
+"\n"
+"%s"
+
+#: src/SDIMainFrame.py:186
+msgid "About "
+msgstr "über"
+
+#: src/SDIMainFrame.py:229
+msgid "Untitled"
+msgstr "Unbenannt"
+
+#: src/SDIMainFrame.py:245
+#, python-format
+msgid "Your %s has been modified. Do you want to save it?"
+msgstr "%s wurde geändert. Möchtest Du speichern?"
+
+#: src/SDIMainFrame.py:261
+msgid "Choose a name for the file"
+msgstr "Wähle einen Dateinamen"
+
+#: src/SDIMainFrame.py:264
+#, python-format
+msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
+msgstr "%s fichiers (*.%s)|*.%s|alle Dateien (*.*)|*.*"
+
+#: src/SDIMainFrame.py:276
+#, python-format
+msgid "File \"%s\" already exists. Do you want to overwrite it?"
+msgstr "Die Datei \"%s\" ist schon vorhanden. Möchtest Du sie überschreiben?"

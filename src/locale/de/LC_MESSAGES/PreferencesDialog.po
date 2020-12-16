@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: songpress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"PO-Revision-Date: 2016-03-04 20:06+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/skeed/songpress-2/language/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/PreferencesDialog.py:27
+msgid "Songpress options"
+msgstr "Songpress Optionen"
+
+#: src/PreferencesDialog.py:40
+msgid "Editor font"
+msgstr "Editor Schriftart"
+
+#: src/PreferencesDialog.py:47
+msgid "Size"
+msgstr "Größe"
+
+#: src/PreferencesDialog.py:51
+msgid "7"
+msgstr "7"
+
+#: src/PreferencesDialog.py:51
+msgid "8"
+msgstr "8"
+
+#: src/PreferencesDialog.py:51
+msgid "9"
+msgstr "9"
+
+#: src/PreferencesDialog.py:51
+msgid "10"
+msgstr "10"
+
+#: src/PreferencesDialog.py:51
+msgid "11"
+msgstr "11"
+
+#: src/PreferencesDialog.py:51 src/PreferencesDialog.py:53
+msgid "12"
+msgstr "12"
+
+#: src/PreferencesDialog.py:51
+msgid "13"
+msgstr "13"
+
+#: src/PreferencesDialog.py:51
+msgid "14"
+msgstr "14"
+
+#: src/PreferencesDialog.py:51
+msgid "16"
+msgstr "16"
+
+#: src/PreferencesDialog.py:51
+msgid "18"
+msgstr "18"
+
+#: src/PreferencesDialog.py:52
+msgid "20"
+msgstr "20"
+
+#: src/PreferencesDialog.py:62
+msgid "Preview"
+msgstr "Vorschau"
+
+#: src/PreferencesDialog.py:73
+msgid "Default notation"
+msgstr "Standardtonart"
+
+#: src/PreferencesDialog.py:87
+msgid "Check for updates every"
+msgstr "jeden Tag nach Updates suchen"
+
+#: src/PreferencesDialog.py:101
+msgid "Standarddateierweiterung"
+msgstr ""
+
+#: src/PreferencesDialog.py:115
+msgid "Language"
+msgstr "Sprache"
+
+#: src/PreferencesDialog.py:129
+msgid "General"
+msgstr "Allgemein"
+
+#: src/PreferencesDialog.py:133
+msgid "Offer to remove blank lines"
+msgstr "Leerzeilen entfernen anzeigen"
+
+#: src/PreferencesDialog.py:137
+msgid "Offer to convert songs in tab"
+msgstr "Songs in Tabs zu konvertieren anzeigen"
+
+#: src/PreferencesDialog.py:141
+msgid "Offer to transpose songs to simplify chords"
+msgstr "Songs zu transponieren, um Akkorde zu vereinfachen anzeigen"
+
+#: src/PreferencesDialog.py:155
+msgid "AutoAdjust"
+msgstr "Automatische Anpassung"

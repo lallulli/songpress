@@ -1,0 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: songpress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"PO-Revision-Date: 2016-03-04 20:03+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/skeed/songpress-2/language/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/NotationDialog.py:21
+msgid "Change notation"
+msgstr "Notation ändern"
+
+#: src/NotationDialog.py:30
+msgid "From notation:"
+msgstr "von:"
+
+#: src/NotationDialog.py:43
+msgid "To notation:"
+msgstr "zu:"
