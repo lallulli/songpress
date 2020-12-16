@@ -167,22 +167,23 @@ class SongpressFindReplaceDialog(object):
 
 
 if platform.system() == 'Linux':
-	# Apparently there is a problem with linux FileOpen dialog box in wxPython:
-	# it does not support multiple extensions in a filter.
-	_import_formats = [
-		(_("Chordpro files (*.crd)"), ["crd"]),
-		(_("Tab files (*.tab)"), ["tab"]),
-		(_("Chordpro files (*.cho)"), ["cho"]),
-		(_("Chordpro files (*.chordpro)"), ["chordpro"]),
-		(_("Chordpro files (*.chopro)"), ["chopro"]),
-		(_("Chordpro files (*.pro)"), ["pro"]),
-	]
+    # Apparently there is a problem with linux FileOpen dialog box in wxPython:
+    # it does not support multiple extensions in a filter.
+    _import_formats = [
+        (_("All supported files"), ["crd", "cho", "chordpro", "chopro", "tab", "cpm"]),
+        #(_("Chordpro files (*.crd)"), ["crd"]),
+        #(_("Tab files (*.tab)"), ["tab"]),
+        #(_("Chordpro files (*.cho)"), ["cho"]),
+        #(_("Chordpro files (*.chordpro)"), ["chordpro"]),
+        #(_("Chordpro files (*.chopro)"), ["chopro"]),
+        #(_("Chordpro files (*.pro)"), ["pro"]),
+    ]
 else:
-	_import_formats = [
-		(_("All supported files"), ["crd", "cho", "chordpro", "chopro", "pro", "tab"]),
-		(_("Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"), ["crd", "cho", "chordpro", "chopro", "pro"]),
-		(_("Tab files (*.tab)"), ["tab"]),
-	]
+    _import_formats = [
+        (_("All supported files"), ["crd", "cho", "chordpro", "chopro", "pro", "tab"]),
+        (_("Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"), ["crd", "cho", "chordpro", "chopro", "pro"]),
+        (_("Tab files (*.tab)"), ["tab"]),
+    ]
 
 
 class SongpressFrame(SDIMainFrame):
