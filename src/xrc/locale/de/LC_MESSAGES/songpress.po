@@ -1,0 +1,501 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: songpress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-11 19:47+0100\n"
+"PO-Revision-Date: 2016-03-04 20:17+0000\n"
+"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/skeed/songpress-2/language/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/xrc/songpress.pos:1
+msgid "Songpress"
+msgstr "Songpress"
+
+#: src/xrc/songpress.pos:2
+msgid "MyMenuBar"
+msgstr "MenuBar"
+
+#: src/xrc/songpress.pos:3
+msgid "&File"
+msgstr "&Datei"
+
+#: src/xrc/songpress.pos:4
+msgid "&New\tCTRL+N"
+msgstr "&Neu\tCTRL+N"
+
+#: src/xrc/songpress.pos:5
+msgid "Create a new song"
+msgstr "Neuen Song erstellen"
+
+#: src/xrc/songpress.pos:6
+msgid "&Open...\tCTRL+O"
+msgstr "&Öffnen...\tCTRL+O"
+
+#: src/xrc/songpress.pos:7
+msgid "Open an existing song"
+msgstr "existierenden Song öffnen"
+
+#: src/xrc/songpress.pos:8
+msgid "&Save\tSHIFT+F12"
+msgstr "&Speichern\tSHIFT+F12"
+
+#: src/xrc/songpress.pos:9
+msgid "Save song with the current filename"
+msgstr "Speichere den Song mit dem aktuellen Dateinamen"
+
+#: src/xrc/songpress.pos:10
+msgid "Save &as..."
+msgstr "Speichern &als..."
+
+#: src/xrc/songpress.pos:11
+msgid "Ask a filename for the song and save it"
+msgstr "Frage nach einem Dateinamen für den Song und speichere es"
+
+#: src/xrc/songpress.pos:12
+msgid "E&xport"
+msgstr "E&xport"
+
+#: src/xrc/songpress.pos:13
+msgid "Export to &clipboard as a vector image\tCTRL+D"
+msgstr "Export in &Zwischenablage als Vector Bild\tCTRL+D"
+
+#: src/xrc/songpress.pos:14
+msgid ""
+"Copy formatted song to clipboard, so that it can be pasted into any program"
+msgstr "Kopiere formatierte Songs in die Zwischenablage, damit sie in jedes Programm eingefügt werden können"
+
+#: src/xrc/songpress.pos:15
+msgid "Export as &SVG..."
+msgstr "Export als &SVG..."
+
+#: src/xrc/songpress.pos:16
+msgid "Export image as a vector image"
+msgstr "Exportiere als Vektor Bild"
+
+#: src/xrc/songpress.pos:17
+msgid "Export as &Enhanced Metafile..."
+msgstr "Exportiere als&erweiterte Metadatei..."
+
+#: src/xrc/songpress.pos:18
+msgid "Export image as a Windows Metafile vector image"
+msgstr "Exportiere Bild als Windows Metafile"
+
+#: src/xrc/songpress.pos:19
+msgid "Export as &PNG..."
+msgstr "Exportiere als &PNG..."
+
+#: src/xrc/songpress.pos:20
+msgid "Export image as a raster picture"
+msgstr "Exportiere als Rasterbild"
+
+#: src/xrc/songpress.pos:21
+msgid "Export as &HTML..."
+msgstr "Exportiere als &HTML..."
+
+#: src/xrc/songpress.pos:22
+msgid "Export formatted song as web page"
+msgstr "Exportiere als Webseite"
+
+#: src/xrc/songpress.pos:23
+#, fuzzy
+msgid "Export &karaoke as PPTX..."
+msgstr "Exportiere als &PPTX..."
+
+#: src/xrc/songpress.pos:24
+msgid "Create a karaoke-like PowerPoint presentation"
+msgstr "erstelle eine Karaoke PowerPoint Präsentation"
+
+#: src/xrc/songpress.pos:25
+msgid "&Exit"
+msgstr "&Beenden"
+
+#: src/xrc/songpress.pos:26
+msgid "Quit Songpress"
+msgstr "beende Songpress"
+
+#: src/xrc/songpress.pos:27
+msgid "&Edit"
+msgstr "&Bearbeiten"
+
+#: src/xrc/songpress.pos:28
+msgid "&Undo\tCTRL+Z"
+msgstr "&Rückgängig\tCTRL+Z"
+
+#: src/xrc/songpress.pos:29
+msgid "Undo last edit"
+msgstr "letzte Änderung rückgängig machen"
+
+#: src/xrc/songpress.pos:30
+msgid "&Redo\tCTRL+Y"
+msgstr "&Wiederholen\tCTRL+Y"
+
+#: src/xrc/songpress.pos:31
+msgid "Redo previously undone edit"
+msgstr "letzte Änderung wiederholen"
+
+#: src/xrc/songpress.pos:32
+msgid "&Cut\tCTRL+X"
+msgstr "&Ausschneiden\tCTRL+X"
+
+#: src/xrc/songpress.pos:33
+msgid "Move selected text in the clipboard"
+msgstr "markierten Text in die Zwischenablage verschieben"
+
+#: src/xrc/songpress.pos:34
+msgid "C&opy\tCTRL+C"
+msgstr "K&opieren\tCTRL+C"
+
+#: src/xrc/songpress.pos:35
+msgid "Copy selected text in the clipboard"
+msgstr "markierten Text in die Zwischenablage kopieren"
+
+#: src/xrc/songpress.pos:36
+msgid "Copy only Te&xt"
+msgstr "nur Te&xt kopieren"
+
+#: src/xrc/songpress.pos:37
+msgid "Copy selected text in the clipboard, ignoring chords and ChordPro tags"
+msgstr "Kopiere den ausgewählten Text in die Zwischenablage und ignoriere dabei Akkorde und ChordPro-Tags"
+
+#: src/xrc/songpress.pos:38
+msgid "Copy as &Image\tCTRL+D"
+msgstr "als &Bild kopieren\tCTRL+D"
+
+#: src/xrc/songpress.pos:39
+msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
+msgstr "Kopiere den gesamten  Song (oder ausgewählte Verse) in die Zwischenablage"
+
+#: src/xrc/songpress.pos:40
+msgid "&Paste\tCTRL+V"
+msgstr "&Einfügen\tCTRL+V"
+
+#: src/xrc/songpress.pos:41
+msgid "Read text from the clipboard and place it at the cursor position"
+msgstr "Text aus Zwischenablage an Cursorposition einfügen"
+
+#: src/xrc/songpress.pos:42
+msgid "P&aste Chords"
+msgstr "A&kkorde einfügen"
+
+#: src/xrc/songpress.pos:43
+msgid "Integrate chords of copied text into current selection"
+msgstr "Akkorde des kopierten Textes in Selektion einfügen"
+
+#: src/xrc/songpress.pos:44
+msgid "&Find...\tCTRL+F"
+msgstr "&Finden...\tCTRL+F"
+
+#: src/xrc/songpress.pos:45
+msgid "Search some text"
+msgstr "finde Text"
+
+#: src/xrc/songpress.pos:46
+msgid "Find &Next\tF3"
+msgstr "finde &nächstes\tF3"
+
+#: src/xrc/songpress.pos:47
+msgid "Search for the next occurrence of text"
+msgstr "finde nächste Übereinstimmung"
+
+#: src/xrc/songpress.pos:48
+msgid "Find Pre&vious\tSHIFT+F3"
+msgstr "finde vorherige\tSHIFT+F3"
+
+#: src/xrc/songpress.pos:49
+msgid "Search for the previous occurrence of text"
+msgstr "finde vorherige Übereinstimmung"
+
+#: src/xrc/songpress.pos:50
+msgid "R&eplace...\tCTRL+R"
+msgstr "Ersetzen...\tCTRL+R"
+
+#: src/xrc/songpress.pos:51
+msgid "Replace some text with some other text"
+msgstr "Ersetze einen Text durch einen anderen Text"
+
+#: src/xrc/songpress.pos:52
+msgid "&Select next chord\tALT+RIGHT"
+msgstr "nächsten Akkord markieren\tALT+RIGHT"
+
+#: src/xrc/songpress.pos:53
+msgid "Find next chord and select it"
+msgstr "finde nächsten Akkord und markiere ihn"
+
+#: src/xrc/songpress.pos:54
+msgid "Selec&t previous chord\tALT+LEFT"
+msgstr "markiere vorherigen Akkord\tALT+LEFT"
+
+#: src/xrc/songpress.pos:55
+msgid "Find previous chord and select it"
+msgstr "finde und markiere vorherigen Akkord"
+
+#: src/xrc/songpress.pos:56
+msgid "&Move chord right\tSHIFT+ALT+RIGHT"
+msgstr "&verschiebe Akkord nach rechts\tSHIFT+ALT+RIGHT"
+
+#: src/xrc/songpress.pos:57
+msgid "Move chord under cursor one position rightwards"
+msgstr "bewege den Akkord unter dem Cursor eine Position nach rechts"
+
+#: src/xrc/songpress.pos:58
+msgid "Move chord &left\tSHIFT+ALT+LEFT"
+msgstr "verschiebe Akkord nach links\tSHIFT+ALT+LEFT"
+
+#: src/xrc/songpress.pos:59
+msgid "Move chord under cursor one position leftwards"
+msgstr "bewege den Akkord unter dem Cursor eine Position nach links"
+
+#: src/xrc/songpress.pos:60
+msgid "Remove c&hords"
+msgstr "entferne Akkord"
+
+#: src/xrc/songpress.pos:61
+msgid "Remove all chords in current selection"
+msgstr "entferne alle Akkorde im markierten Text"
+
+#: src/xrc/songpress.pos:62
+msgid "Inte&grate chords"
+msgstr "Akkorde integrieren"
+
+#: src/xrc/songpress.pos:63
+msgid "Integrate chords of current line with text of following line"
+msgstr "Integriere die Akkorde der aktuellen Zeile in den Text der folgenden Zeile"
+
+#: src/xrc/songpress.pos:64
+msgid "&View"
+msgstr "&Ansicht"
+
+#: src/xrc/songpress.pos:65
+msgid "&Toolbars"
+msgstr "&Symbolleiste"
+
+#: src/xrc/songpress.pos:66
+msgid "&Standard"
+msgstr "&Standard"
+
+#: src/xrc/songpress.pos:67
+msgid "Show/hide toolbar with file and common buttons"
+msgstr "Symbolleiste mit Datei- und allgemeinen Schaltflächen ein- / ausblenden"
+
+#: src/xrc/songpress.pos:68
+msgid "&Format"
+msgstr "&Format"
+
+#: src/xrc/songpress.pos:69
+msgid "Show/hide toolbar with format tools"
+msgstr "Symbolleiste mit Formatierungswerkzeugen ein- / ausblenden"
+
+#: src/xrc/songpress.pos:70
+msgid "&Preview"
+msgstr "&Vorschau"
+
+#: src/xrc/songpress.pos:71
+msgid "Show/hide preview pane"
+msgstr "Vorschaufenster ein- / ausblenden"
+
+#: src/xrc/songpress.pos:72
+msgid "&Insert"
+msgstr "&Einfügen"
+
+#: src/xrc/songpress.pos:73
+msgid "&Title\tCTRL+T"
+msgstr "&Titel\tCTRL+T"
+
+#: src/xrc/songpress.pos:74
+msgid "Insert a command to display song title"
+msgstr "Füge einen Befehl ein, um Songtitel anzuzeigen"
+
+#: src/xrc/songpress.pos:75
+msgid "C&hord\tCTRL+H"
+msgstr "A&kkorde\tCTRL+H"
+
+#: src/xrc/songpress.pos:76
+msgid "Insert square brackets that will host a chord"
+msgstr "Füge eckige Klammern ein, die einen Akkord aufnehmen"
+
+#: src/xrc/songpress.pos:77
+msgid "Cho&rus\tCTRL+U"
+msgstr "Ref&rain\tCTRL+U"
+
+#: src/xrc/songpress.pos:78
+msgid "Insert a couple of commands that will contain chorus"
+msgstr "Füge einige Befehle ein, die Refrain enthalten"
+
+#: src/xrc/songpress.pos:79
+msgid "Co&mment\tCTRL+M"
+msgstr "Ko&mmentar\tCTRL+M"
+
+#: src/xrc/songpress.pos:80
+msgid "Insert a command to display a comment"
+msgstr "Füge einen Befehl ein, um einen Kommentar anzuzeigen"
+
+#: src/xrc/songpress.pos:81
+msgid "&Verse with custom label or without label..."
+msgstr "Strophe mit / ohne Bezeichnung"
+
+#: src/xrc/songpress.pos:82
+msgid "Insert a verse with a custom label or without label"
+msgstr "Strophe mit / ohne Bezeichnung einfügen"
+
+#: src/xrc/songpress.pos:83
+msgid "F&ormat"
+msgstr "F&ormat"
+
+#: src/xrc/songpress.pos:84
+msgid "&Font..."
+msgstr "&Schriftart..."
+
+#: src/xrc/songpress.pos:85
+msgid "Select song font"
+msgstr "wähle Song Schriftart"
+
+#: src/xrc/songpress.pos:86
+msgid "&Label verses"
+msgstr "&Bezeichnung der Strophe"
+
+#: src/xrc/songpress.pos:87
+msgid "Show/hide labels at the beginning of verses and chorus"
+msgstr "Beschriftungen am Anfang von Strophen und Refrain ein- / ausblenden"
+
+#: src/xrc/songpress.pos:88
+msgid "&Chorus label..."
+msgstr "Bezeichnung des &Refrains.."
+
+#: src/xrc/songpress.pos:89
+msgid "Set label for chorus"
+msgstr "Bezeichnung für die Refrains an"
+
+#: src/xrc/songpress.pos:90
+msgid "&Show chords for"
+msgstr "zeige Akkorde für"
+
+#: src/xrc/songpress.pos:91
+msgid "&No chords"
+msgstr "keine Akkorde"
+
+#: src/xrc/songpress.pos:92
+msgid "Do not render chords at all"
+msgstr "zeige überhaupt keine Akkorde"
+
+#: src/xrc/songpress.pos:93
+msgid "&One verse for each chord pattern"
+msgstr "Eine Strophe für jedes Akkordmuster"
+
+#: src/xrc/songpress.pos:94
+msgid "When a verse with a new chord pattern occurs, render chords"
+msgstr "Wenn eine Strophe mit einem neuen Akkordmuster auftritt, zeige die Akkorde"
+
+#: src/xrc/songpress.pos:95
+msgid "&Whole song"
+msgstr "ganzer Song"
+
+#: src/xrc/songpress.pos:96
+msgid "Render chords for whole song"
+msgstr "zeige Akkorde für gesamten Song"
+
+#: src/xrc/songpress.pos:97
+msgid "&Tools"
+msgstr "&Werkzeuge"
+
+#: src/xrc/songpress.pos:98
+msgid "&Transpose..."
+msgstr "&Transponieren.."
+
+#: src/xrc/songpress.pos:99
+msgid "Transpose song or selected text"
+msgstr "Transponiere Song oder markierten Text"
+
+#: src/xrc/songpress.pos:100
+msgid "S&implify chords..."
+msgstr "Akkorde vereinfachen..."
+
+#: src/xrc/songpress.pos:101
+msgid "Transpose chords to the easiest key"
+msgstr "Transponiere Akkorde in die einfachste Tonart"
+
+#: src/xrc/songpress.pos:102
+msgid "Change chord &notation..."
+msgstr "Ändere Tonart"
+
+#: src/xrc/songpress.pos:103
+msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
+msgstr "Ändere Tonart (z.B. C D E vs Do Re Mi) für Song oder Selektion"
+
+#: src/xrc/songpress.pos:104
+msgid "&Cleanup chords..."
+msgstr "Akkorde bereinigen"
+
+#: src/xrc/songpress.pos:105
+msgid "Normalize chords according to current notation"
+msgstr "Normalisiere Akkorde gemäß der aktuellen Notation"
+
+#: src/xrc/songpress.pos:106
+msgid "Convert &Tab to Chordpro"
+msgstr "Konvertiere &Tab zu ChordPro"
+
+#: src/xrc/songpress.pos:107
+msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
+msgstr "Konvertieren Sie den Song von der Tab-Notation (Akkorde in separaten Zeilen) in ChordPro"
+
+#: src/xrc/songpress.pos:108
+msgid "Remove &spurious blank lines"
+msgstr "entferne Leerzeilen"
+
+#: src/xrc/songpress.pos:109
+msgid "Remove blank lines inside a verse"
+msgstr "Entferne leere Zeilen innerhalb einer Zeilengruppe"
+
+#: src/xrc/songpress.pos:110
+msgid "&Options..."
+msgstr "&Optionen..."
+
+#: src/xrc/songpress.pos:111
+msgid "Set program options"
+msgstr "Programmoptionen einstellen"
+
+#: src/xrc/songpress.pos:112
+msgid "&?"
+msgstr "&?"
+
+#: src/xrc/songpress.pos:113
+msgid "&Guide\tF1"
+msgstr "&Anleitung\tF1"
+
+#: src/xrc/songpress.pos:114
+msgid "Show user's manual"
+msgstr "Benutzerhandbuch anzeigen"
+
+#: src/xrc/songpress.pos:115
+msgid "&Check for updates"
+msgstr "&nach Updates suchen"
+
+#: src/xrc/songpress.pos:116
+msgid "Open Songpress web site for news and updates"
+msgstr "Öffne Songpress Webseite für Neuigkeiten und Updates"
+
+#: src/xrc/songpress.pos:117
+msgid "&Donate to our scout Group (web)"
+msgstr "&Spende an unsere Gruppe (Web)"
+
+#: src/xrc/songpress.pos:118
+msgid "Open Songpress web site for donations"
+msgstr "Öffne die Songpress-Website für Spenden"
+
+#: src/xrc/songpress.pos:119
+msgid "&About..."
+msgstr "über"
+
+#: src/xrc/songpress.pos:120
+msgid "Show credits"
+msgstr "Credits anzeigen"
