@@ -340,7 +340,6 @@ class SongpressFrame(SDIMainFrame):
 					self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 					self.SetDefaultExtension(self.pref.defaultExtension)
 		MyUpdateDialog.check_and_update(self.frame, self.pref)
-		self.frame.Maximize(True)
 
 	def BindMyMenu(self):
 		"""Bind a menu item, by xrc name, to a handler"""

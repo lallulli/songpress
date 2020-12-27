@@ -1,2 +1,3 @@
 wxPython
 requests
+python-pptx

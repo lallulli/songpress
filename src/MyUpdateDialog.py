@@ -95,7 +95,6 @@ def check_and_update(parent, preferences, force=False):
 	delayedresult.startWorker(consume_updates, check_for_updates)
 
 
-
 class MyUpdateDialog(UpdateDialog):
 	def __init__(self, parent, preferences, updates):
 		UpdateDialog.__init__(self, parent)
