@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*- 
+
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ## Python code generated with wxFormBuilder (version Mar 10 2018)

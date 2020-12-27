@@ -58,8 +58,8 @@ class Notation(object):
 	def PostprocessingFromStandard(self, c, a):
 		return c, a
 
-	def PreprocessingToStandard(self, c, a):
-		return c, a
+	def PreprocessingToStandard(self, chord):
+		return chord
 
 	def AlterationFromStandard(self, a):
 		return self.__AlterationStandard(a, self.repl)
@@ -145,29 +145,73 @@ def getEasyChordsDescription(e):
 
 easyChordsOrder = ['basic', 'Cprog', 'F', 'Gprog', 'Dprog', 'Aprog', 'C#(m)(7)', 'Fprog', 'BB7']
 
+
 class GermanNotation(Notation):
-	def PreprocessingToStandard(self, c, a):
-		if c == '' and a != '' and a[0].upper() == 'B':
-			c = 'Hb'
-			a = a[1:]
-		if a != "" and a[0] == 'm':
-			c = c.capitalize()
-		return c, a
+	def PreprocessingToStandard(self, chord):
+		if chord.lower().startswith('bb'):
+			return "Hb" + chord[2:]
+		return chord
 
 	def PostprocessingFromStandard(self, c, a):
 		if c == 'Hb':
-			c = 'B'
-		if a != "" and a[0] == 'm':
+			c = 'Bb'
+		return c, a
+
+
+trad_de_map = [
+	('C#', 'Cis'),
+	('Db', 'Des'),
+	('Eb', 'Es'),
+	('F#', 'Fis'),
+	('Gb', 'Ges'),
+	('G#', 'Gis'),
+	('Ab', 'As'),
+	('A#', 'Ais'),
+	('Hb', 'B'),
+]
+
+trad_de_from = {a.lower(): b for a, b in trad_de_map}
+trad_de_to = [(b.lower(), a) for a, b in trad_de_map]
+
+
+class TraditionalGermanNotation(Notation):
+	def PreprocessingToStandard(self, chord):
+		cl = chord.lower()
+		for a, b in trad_de_to:
+			if cl.startswith(a):
+				return b + chord[len(a):]
+		return chord
+
+	def PostprocessingFromStandard(self, c, a):
+		c = trad_de_from.get(c.lower(), c)
+		if a != "" and a[0] == 'm' and not a.startswith('maj'):
 			c = c.lower()
 		return c, a
 
+
 deNotation = GermanNotation(
 	"deNotation",
-	_("German (C D E... H)"),
+	_("German/Sacandinavian (C C#/Db D... Bb H)"),
 	['C', 'D', 'E', 'F', 'G', 'A', 'H'],
 	[],
 	[]
 )
+
+
+tradDeNotation = TraditionalGermanNotation(
+	"tradDeNotation",
+	_("Traditional German (C Cis/Des D... B H)"),
+	['C', 'D', 'E', 'F', 'G', 'A', 'H'],
+	[
+		('C#', 'Cis'),
+		('Db', 'Des'),
+	],
+	[
+		('C#', 'Cis'),
+		('Db', 'Des'),
+	]
+)
+
 
 naturalScale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
@@ -269,8 +313,8 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	sl = chord.find("/")
 	if sl > -1:
 		return "%s/%s" % (translateChord(chord[:sl], sNotation, dNotation), translateChord(chord[sl + 1:], sNotation, dNotation))
+	chord = sNotation.PreprocessingToStandard(chord)
 	c, a = splitChord(chord, sNotation)
-	c, a = sNotation.PreprocessingToStandard(c, a)
 	if c == "":
 		return chord
 	alt = c[-1]
@@ -383,8 +427,8 @@ def testChordLine(line, notation=enNotation):
 	n = 0
 	for m in r.finditer(line):
 		c = m.group()
+		c = notation.PreprocessingToStandard(c)
 		e, a = splitChord(c, notation)
-		e, a = notation.PreprocessingToStandard(e, a)
 		if e == '':
 			return False
 		l += len(translateChord(c, notation, enNotation))
