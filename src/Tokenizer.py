@@ -9,6 +9,7 @@
 
 import re
 
+
 class Token(object):
 	def __init__(self, token, start, end, content):
 		object.__init__(self)
@@ -19,6 +20,7 @@ class Token(object):
 
 	def __str__(self):
 		return '%s, %d, %d, %s' % (str(self.token), self.start, self.end, self.content)
+
 
 class TokenType(object):
 	def __init__(self, r, name):
@@ -53,10 +55,10 @@ class Tokenizer(object):
 			#End of line
 			raise StopIteration
 		for t in self.transition[self.state]:
-			##print "Trying: %s" % (t[0],)
+			# print("Trying: %s" % (t[0],))
 			m = t[0].r.match(self.line, self.pos)
 			if m != None:
-				##print("Matched!")
+				# print("Matched!")
 				break
 		if m == None:
 			return None
