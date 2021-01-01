@@ -59,11 +59,7 @@ class Decorator(SongDecorator):
 				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
 			) + self.verseWidth
 		self.dc.SetFont(self.format.chorus.wxFont)
-		#self.chorusWidth, self.chorusHeight = self.dc.GetTextExtent(self.format.chorus.label)
-		#self.chorusTotalWidth = self.baseWidth * (
-		#		self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
-		#	) + self.chorusWidth
-		
+
 	def SetMarginBlock(self, block):
 		if block.type == block.verse:
 			font = self.format.wxFont

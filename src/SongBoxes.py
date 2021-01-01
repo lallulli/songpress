@@ -1,5 +1,5 @@
 ###############################################################
-# Name:			 SongBoxes.py
+# Name:			 SoongBoxes.py
 # Purpose:	 Elements that make up a song
 # Author:		 Luca Allulli (webmaster@roma21.it)
 # Created:	 2009-02-21
@@ -53,13 +53,14 @@ class SongSong(SongBox):
 		self.chorusCount = 0
 		self.labelCount = 0
 		self.drawWholeSong = False
-		
+
+
 class SongBlock(SongBox):
 	# types
 	verse = 1
 	chorus = 2
 	title = 3
-	
+
 	def __init__(self, type, format):
 		SongBox.__init__(self, 0, 0, 0, 0)
 		self.type = type
@@ -95,6 +96,7 @@ class SongText(SongBox):
 	chord = 2
 	comment = 3
 	title = 4
+	subtitle = 5
 	
 	def __init__(self, text, font, type):
 		SongBox.__init__(self, 0, 0, 0, 0)

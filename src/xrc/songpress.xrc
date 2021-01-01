@@ -2,7 +2,7 @@
 <resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
 	<object class="wxFrame" name="MainFrame">
 		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
-		<size>800,600</size>
+		<size>611,477</size>
 		<title>Songpress</title>
 		<aui_managed>0</aui_managed>
 		<object class="wxMenuBar" name="menuBar">
@@ -167,6 +167,10 @@
 					<label>_Title\tCTRL+T</label>
 					<help>Insert a command to display song title</help>
 				</object>
+				<object class="wxMenuItem" name="subtitle">
+					<label>_Subtitle</label>
+					<help>Insert a command to display song subtitle</help>
+				</object>
 				<object class="wxMenuItem" name="chord">
 					<label>C_hord\tCTRL+H</label>
 					<help>Insert square brackets that will host a chord</help>
@@ -273,7 +277,7 @@
 			</object>
 		</object>
 		<object class="wxStatusBar" name="m_statusBar1">
-			<style>wxST_SIZEGRIP</style>
+			<style>wxSTB_SIZEGRIP</style>
 			<fields>1</fields>
 		</object>
 	</object>

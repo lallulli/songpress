@@ -9,6 +9,7 @@
 
 import wx
 
+
 class AttributeMonitor(object):
 	def __init__(self, handlers):
 		object.__init__(self)
@@ -26,11 +27,13 @@ class AttributeMonitor(object):
 	def Am_Start(self):
 		self.am_started = True
 
+
 class FontChangeHandler(object):
 	names = set(("face", "size", "bold", "italic", "underline"))
 	@staticmethod
 	def OnSetAttr(format, name, value):
 		format.UpdateWxFont()
+
 
 class FontFormat(AttributeMonitor):
 	def __init__(self, ff=None):
@@ -62,6 +65,7 @@ class FontFormat(AttributeMonitor):
 			weight = wx.FONTWEIGHT_NORMAL
 		self.wxFont = wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
 
+
 class ParagraphFormat(FontFormat):
 	def __init__(self, ff=None):
 		FontFormat.__init__(self, ff)
@@ -70,12 +74,12 @@ class ParagraphFormat(FontFormat):
 		self.bottomMargin = 0
 		self.chordSpacing = 0.8
 		self.textSpacing = 1
-		self.vskip = 1
 		self.chord = FontFormat(ff)
 		self.chord.size = self.size * 0.9
 		self.chord.italic = True
 		self.comment = FontFormat(ff)
 		self.comment.italic = True
+
 
 class SongFormat(ParagraphFormat):
 	def __init__(self, ff=None):
@@ -87,12 +91,15 @@ class SongFormat(ParagraphFormat):
 		self.title = ParagraphFormat(ff)
 		self.title.bold = True
 		self.title.underline = True
+		self.subtitle = ParagraphFormat(ff)
+		self.subtitle.size = self.title.size * 0.95
+		self.subtitle.italic = True
 		self.blockSpacing = 1
 		# showChords:
 		# 0. None
 		# 1. First verse and chorus
 		# 2. Entire song
-		self.showChords = 1#2
+		self.showChords = 1
 
 	def StubSetVerseCount(self, n):
 		i = len(self.verse)

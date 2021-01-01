@@ -74,6 +74,7 @@ class Preferences(object):
 			v.chord.face = font
 			v.comment.face = font
 		self.format.title.face = font
+		self.format.subtitle.face = font
 		self.decoratorFormat.face = font
 		self.decoratorFormat.chorus.face = font
 		if showChords is not None:

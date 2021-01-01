@@ -372,6 +372,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnRemoveChords, 'removeChords')
 		Bind(self.OnIntegrateChords, 'integrateChords')
 		Bind(self.OnTitle, 'title')
+		Bind(self.OnSubtitle, 'subtitle')
 		Bind(self.OnChord, 'chord')
 		Bind(self.OnChorus, 'chorus')
 		Bind(self.OnVerse, 'verseWithCustomLabelOrWithoutLabel')
@@ -810,6 +811,9 @@ class SongpressFrame(SDIMainFrame):
 
 	def OnTitle(self, evt):
 		self.InsertWithCaret("{title:|}\n\n")
+
+	def OnSubtitle(self, evt):
+		self.InsertWithCaret("{subtitle:|}\n\n")
 
 	def OnChord(self, evt):
 		self.InsertWithCaret("[|]")

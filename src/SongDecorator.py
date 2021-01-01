@@ -10,6 +10,7 @@
 from SongFormat import *
 from SongBoxes import *
 
+
 class SongDecorator(object):
 	def __init__(self):
 		object.__init__(self)
@@ -97,7 +98,6 @@ class SongDecorator(object):
 			line.RelocateBox(t)
 		self.SetMarginLine(line)
 		
-		
 	def LayoutComposeBlock(self, block):
 		y = 0
 		for l in block.boxes:
@@ -115,7 +115,6 @@ class SongDecorator(object):
 			y += b.GetTotalHeight() + h * song.format.blockSpacing
 			song.RelocateBox(b)
 		self.SetMarginSong(song)
-		
 
 	def LayoutCompose(self):
 		# Postorder layout composing

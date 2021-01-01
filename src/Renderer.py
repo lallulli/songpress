@@ -15,6 +15,7 @@ from SongBoxes import *
 from Transpose import translateChord, autodetectNotation
 from EditDistance import minEditDist
 
+
 class Renderer(object):
 	def __init__(self, sf, sd=SongDecorator(), notations=[]):
 		object.__init__(self)
@@ -26,6 +27,8 @@ class Renderer(object):
 		self.textFont = None
 		self.chordFont = None
 		self.commentFont = None
+		self.titleFont = None
+		self.subtitleFont = None
 		self.format = None
 		self.currentBlock = None
 		self.currentLine = None
@@ -54,6 +57,8 @@ class Renderer(object):
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont
 		self.commentFont = self.format.comment.wxFont
+		self.titleFont = self.song.format.title.wxFont
+		self.subtitleFont = self.song.format.subtitle.wxFont
 
 	def EndBlock(self):
 		if self.currentBlock != None:
@@ -91,6 +96,7 @@ class Renderer(object):
 		if(
 			text.strip() != ''
 			and type != SongText.title
+			and type != SongText.subtitle
 			and type != SongText.comment
 			and self.currentBlock is not None
 			and self.currentBlock.type == SongBlock.title
@@ -105,6 +111,10 @@ class Renderer(object):
 			font = self.chordFont
 			if self.sf.showChords == 1:
 				self.currentBlock.chords.append(translateChord(text, self.notation, self.notation))
+		elif type == SongText.title:
+			font = self.titleFont
+		elif type == SongText.subtitle:
+			font = self.subtitleFont
 		else:
 			font = self.textFont
 		t = SongText(text, font, type)
@@ -112,9 +122,14 @@ class Renderer(object):
 			self.currentLine.AddBox(t)
 
 	def AddTitle(self, title):
-		self.BeginBlock(SongBlock.title)
+		if self.currentBlock is None or self.currentBlock.type != SongBlock.title:
+			self.BeginBlock(SongBlock.title)
 		self.AddText(title, SongText.title)
-		#self.EndBlock()
+
+	def AddSubTitle(self, title):
+		if self.currentBlock is None or self.currentBlock.type != SongBlock.title:
+			self.BeginBlock(SongBlock.title)
+		self.AddText(title, SongText.subtitle)
 
 	def BeginLine(self):
 		if self.currentLine == None:
@@ -192,12 +207,16 @@ class Renderer(object):
 						a = self.GetAttribute()
 						if a != None:
 							self.AddTitle(a)
+					elif cmd == 'st' or cmd == 'subtitle':
+						a = self.GetAttribute()
+						if a != None:
+							self.AddSubTitle(a)
 					elif cmd == 'verse':
 						self.BeginVerse(self.GetAttribute())
 
 			self.EndLine()
 			if empty:
-				if state == SongBlock.verse or state == SongBlock.title:
+				if state in {SongBlock.verse, SongBlock.title}:
 					self.EndBlock()
 				elif state == SongBlock.chorus:
 					self.ChorusVSkip()
