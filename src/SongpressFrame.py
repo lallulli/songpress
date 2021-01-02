@@ -799,21 +799,39 @@ class SongpressFrame(SDIMainFrame):
 			self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
 			self.SetDefaultExtension(self.pref.defaultExtension)
 
+	def StripSelection(self):
+		"""
+		Update selection, moving blank characters out of it
+		"""
+		t = self.text.GetText()
+		s, e = self.text.GetSelection()
+		mod = False
+		while e > s and t[e - 1].strip() == '':
+			e -= 1
+			mod = True
+		while s < e and t[s].strip() == '':
+			s += 1
+			mod = True
+		if mod:
+			self.text.SetSelection(s, e)
+
 	def InsertWithCaret(self, st):
+		self.StripSelection()
 		s, e = self.text.GetSelection()
 		c = st.find('|')
 		if c != -1:
-			self.text.ReplaceSelection(st[:c] + st[c + 1:])
-			self.text.SetSelection(s + c, s + c)
+			sel_text = self.text.GetSelectedText()
+			self.text.ReplaceSelection(st[:c] + sel_text + st[c + 1:])
+			self.text.SetSelection(s + c, e + c)
 		else:
 			self.text.ReplaceSelection(st)
 			self.text.SetSelection(s + len(st), s + len(st))
 
 	def OnTitle(self, evt):
-		self.InsertWithCaret("{title:|}\n\n")
+		self.InsertWithCaret("{title:|}")
 
 	def OnSubtitle(self, evt):
-		self.InsertWithCaret("{subtitle:|}\n\n")
+		self.InsertWithCaret("{subtitle:|}")
 
 	def OnChord(self, evt):
 		self.InsertWithCaret("[|]")
