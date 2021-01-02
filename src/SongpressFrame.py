@@ -817,14 +817,13 @@ class SongpressFrame(SDIMainFrame):
 		"""
 		Update selection, moving blank characters out of it
 		"""
-		t = self.text.GetText()
 		s, e = self.text.GetSelection()
 		mod = False
-		while e > s and t[e - 1].strip() == '':
-			e -= 1
+		while e > s and self.text.GetTextRange((ep := self.text.PositionBefore(e)), e).strip() == '':
+			e = ep
 			mod = True
-		while s < e and t[s].strip() == '':
-			s += 1
+		while s < e and self.text.GetTextRange(s, (sa := self.text.PositionAfter(s))).strip() == '':
+			s = sa
 			mod = True
 		if mod:
 			self.text.SetSelection(s, e)
