@@ -270,9 +270,11 @@ class Editor(StyledTextCtrl):
 			end = prev
 			prev = self.PositionBefore(end)
 		self.SetSelection(start, end)
-		self.ReplaceSelection(Transpose.pasteChords(src, self.GetSelectedText()))
+		sel = self.GetSelectedText()
+		if sel == "":
+			sel = " "
+		self.ReplaceSelection(Transpose.pasteChords(src, sel))
 		self.EndUndoAction()
-		
 
 	def OnStyleNeeded(self, evt):
 		end = evt.GetPosition()
