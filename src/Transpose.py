@@ -16,6 +16,7 @@ import math
 
 i18n.register('Transpose')
 
+
 class Notation(object):
 	def __init__(self, id, desc, chords, repl, replrev):
 		object.__init__(self)
@@ -262,6 +263,7 @@ vectorModes = ['', 'm', '7', 'm7']
 
 referenceVector = [0.65713162540630443, 0.0, 0.037841466800806009, 0.0, 0.0, 0.0014554410308002313, 0.0, 0.0, 0.026197938554404162, 0.12444020813341977, 0.0014554410308002313, 0.029108820616004623, 0.0, 0.0, 0.0, 0.0, 0.040024628347006361, 0.12589564916422, 0.030564261646804855, 0.0036386025770005779, 0.46210252727907342, 0.013098969277202081, 0.0, 0.0, 0.0, 0.00072772051540011566, 0.0, 0.0, 0.49703311201827893, 0.0, 0.016009851338802544, 0.0, 0.00072772051540011566, 0.0, 0.0, 0.0, 0.0094603667002015022, 0.2648902676056421, 0.0058217641232009253, 0.0043663230924006939, 0.0014554410308002313, 0.0, 0.00072772051540011566, 0.0, 0.0, 0.0014554410308002313, 0.0, 0.0]
 
+
 def splitChord(c, locNotation=enNotation):
 	for k in locNotation.chords:
 		if c.upper().startswith(k.upper()):
@@ -273,6 +275,7 @@ def splitChord(c, locNotation=enNotation):
 			return (c, "")
 	return ("", c)
 
+
 def __alteration(chord):
 	if len(chord) == 1:
 		return (chord, 0)
@@ -281,10 +284,12 @@ def __alteration(chord):
 	else:
 		return (chord[0], -1)
 
+
 def chord2pos(chord, key="C"):
 	c, a = __alteration(chord)
 	s, b = __alteration(key)
 	return (tone[c.upper()] + a - tone[s.upper()] - b) % 12
+
 
 def __pos2chord(pos, key):
 	n, i = interval[pos]
@@ -296,6 +301,7 @@ def __pos2chord(pos, key):
 	diff = (pos + ref) % 12
 	return naturalScale[diff]
 
+
 def transpose(s, d, chord, notation=enNotation):
 	sl = chord.find("/")
 	if sl > -1:
@@ -306,6 +312,7 @@ def transpose(s, d, chord, notation=enNotation):
 		return chord
 	p = chord2pos(c, s)
 	return translateChord(__pos2chord(p, d) + v, enNotation, notation)
+
 
 def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	#if sNotation == dNotation:
@@ -329,6 +336,7 @@ def translateChord(chord, sNotation=enNotation, dNotation=enNotation):
 	d, b = dNotation.PostprocessingFromStandard(d, b)
 	return d + b
 
+
 def transposeChordPro(s, d, text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
 	p = 0
@@ -340,6 +348,7 @@ def transposeChordPro(s, d, text, notation=enNotation):
 		)
 		p = m.end()
 	return b + text[p:]
+
 
 def translateChordPro(text, sNotation=enNotation, dNotation=enNotation):
 	r = re.compile('\[([^]]*)\]')
@@ -353,6 +362,7 @@ def translateChordPro(text, sNotation=enNotation, dNotation=enNotation):
 		p = m.end()
 	return b + text[p:]
 
+
 def autodetectNotation(text, notations):
 	r = re.compile('\[([^]]*)\]')
 	cnt = [0 for x in notations]
@@ -362,6 +372,7 @@ def autodetectNotation(text, notations):
 			if c != "":
 				cnt[i] += 1
 	return notations[cnt.index(max(cnt))]
+
 
 def normalize(vector):
 	count = 0
@@ -373,11 +384,13 @@ def normalize(vector):
 	else:
 		return vector
 
+
 def scalarProduct(v1, v2):
 	count = 0
 	for i in range(0, len(v1)):
 		count += v1[i]*v2[i]
 	return count
+
 
 def vectorizeChords(text, notation=enNotation):
 	r = re.compile('\[([^]]*)\]')
@@ -388,6 +401,7 @@ def vectorizeChords(text, notation=enNotation):
 		if c != "" and a in vectorModes:
 			v[chord2pos(c, "C") * len(vectorModes) + vectorModes.index(a)] += 1
 	return normalize(v)
+
 
 def autodetectKey(text, notation=enNotation):
 	v = vectorizeChords(text, notation)
@@ -402,6 +416,7 @@ def autodetectKey(text, notation=enNotation):
 			key = k
 		r = r[-n:] + r[:-n]
 	return orderedKeys[key]
+
 
 def integrateChords(chords, text):
 	"""Integrate chord line in text line, as chordpro"""
@@ -418,6 +433,7 @@ def integrateChords(chords, text):
 			s = m.start()
 			text = text[:s] + '[' + m.group() + ']' + text[s:]
 	return text
+
 
 def testChordLine(line, notation=enNotation):
 	"""Return True iff line contains only chords"""
@@ -442,6 +458,7 @@ def testChordLine(line, notation=enNotation):
 	# Uhm, weird... are chord tokens "short"? Yes <=> True
 	return l/float(n) <= 2.3
 
+
 def testTabFormat(text, notations):
 	"""
 	Test whether text is in tab format
@@ -463,8 +480,11 @@ def testTabFormat(text, notations):
 			maxn = n
 	return maxn
 
+
 def tab2ChordPro(text, notation=enNotation):
-	"""Convert text from tab to chordpro format"""
+	"""
+	Convert text from tab to chordpro format
+	"""
 	l = text.splitlines()
 	n = len(l)
 	i = 0
@@ -478,8 +498,10 @@ def tab2ChordPro(text, notation=enNotation):
 			i += 1
 	return "\n".join(out)
 
+
 def testSpuriousLines(text):
-	"""Determine if there are spurious empty lines
+	"""
+	Determine if there are spurious empty lines
 
 	It happens iff at least 1/3 of the lines are empty,
 	and there are at least 3 non-empty lines
@@ -490,6 +512,7 @@ def testSpuriousLines(text):
 		if l.strip() == '':
 			c += 1
 	return c >= len(ll)/3.0 and len(ll) - c >= 3
+
 
 def removeSpuriousLines(text):
 	"""
@@ -517,6 +540,7 @@ def removeSpuriousLines(text):
 			out.append(ll[i])
 			i += 1
 	return "\n".join(out)
+
 
 def findEasiestKey(text, fav, notation=enNotation):
 	"""
@@ -555,6 +579,7 @@ def findEasiestKey(text, fav, notation=enNotation):
 			)
 	return (0, current_key, 0, current_key, 0)
 
+
 def removeChords(text):
 	"""
 	Remove all chords in (ChordPro) text.
@@ -563,6 +588,7 @@ def removeChords(text):
 		return: text without chords
 	"""
 	return re.sub('\[([^]]*)\]', "", text)
+
 
 def removeChordPro(text):
 	"""

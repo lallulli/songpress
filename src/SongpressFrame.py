@@ -19,7 +19,7 @@ from Renderer import *
 from FontComboBox import FontComboBox
 from FontFaceDialog import FontFaceDialog
 from MyPreferencesDialog import MyPreferencesDialog
-from HTML import HtmlExporter
+from HTML import HtmlExporter, TabExporter
 from Transpose import *
 from MyTransposeDialog import *
 from MyNotationDialog import *
@@ -352,6 +352,7 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnExportAsEmf, 'exportAsEmf')
 		Bind(self.OnExportAsPng, 'exportAsPng')
 		Bind(self.OnExportAsHtml, 'exportAsHtml')
+		Bind(self.OnExportAsTab, 'exportAsTab')
 		Bind(self.OnExportAsPptx, 'exportAsPptx')
 		Bind(self.OnUndo, 'undo')
 		Bind(self.OnRedo, 'redo')
@@ -544,7 +545,19 @@ class SongpressFrame(SDIMainFrame):
 				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
 			with open(n, "w", encoding='utf-8') as f:
 				f.write(h.getHtml())
-				f.close()
+
+	def OnExportAsTab(self, evt):
+		n = self.AskExportFileName(_("TAB file"), "tab")
+		if n is not None:
+			t = TabExporter(self.pref.format)
+			r = Renderer(self.pref.format, t, self.pref.notations)
+			start, end = self.text.GetSelection()
+			if start == end:
+				r.Render(self.text.GetText(), None)
+			else:
+				r.Render(self.text.GetText(), None, self.text.LineFromPosition(start), self.text.LineFromPosition(end))
+			with open(n, "w", encoding='utf-8') as f:
+				f.write(t.getTab())
 
 	def OnExportAsSvg(self, evt):
 		n = self.AskExportFileName(_("SVG image"), "svg")
@@ -572,6 +585,7 @@ class SongpressFrame(SDIMainFrame):
 			dc.StartDoc(_("Exporting image as EPS..."))
 			self.DrawOnDC(dc)
 			dc.EndDoc()
+
 
 	def OnExportAsPptx(self, evt):
 		try:

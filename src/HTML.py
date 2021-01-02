@@ -17,7 +17,7 @@ template = """
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style type="text/css">
 			<!--
-				div.chorus,div.verse,div.title {
+				div.chorus,div.verse,div.title,div.titleblock {
 					margin-bottom: 1.5em;
 					font-family: "%(face)s";
 				}
@@ -39,6 +39,11 @@ template = """
 					font-weight: bold;
 					text-decoration: underline;
 				}
+				.subtitle {
+					font-weight: normal;
+					font-style: italic;
+					font-size: 0.95em;
+				}
 			-->
 		</style>
 	</head>
@@ -57,7 +62,7 @@ class HtmlExporter(object):
 	def Draw(self, song, dc):
 		# dc is a dummy parameter
 		classes = {
-			SongBlock.title: 'title',
+			SongBlock.title: 'titleblock',
 			SongBlock.chorus: 'chorus',
 			SongBlock.verse: 'verse',
 		}
@@ -70,7 +75,11 @@ class HtmlExporter(object):
 				tt = "<td>"
 				new_line = True
 				for t in line.boxes:
-					if t.type == SongText.chord:
+					if t.type == SongText.title:
+						tt += f"""<span class="title">{t.text.replace(" ", "&nbsp;")}</span>"""
+					elif t.type == SongText.subtitle:
+						tt += f"""<span class="subtitle">{t.text.replace(" ", "&nbsp;")}</span>"""
+					elif t.type == SongText.chord:
 						if not new_line:
 							tc += "</td><td>"
 							tt += "</td><td>"
@@ -93,4 +102,41 @@ class HtmlExporter(object):
 		return 0, 0
 
 	def getHtml(self):
+		return self.out
+
+
+class TabExporter(object):
+	def __init__(self, sf):
+		object.__init__(self)
+		self.sf = sf
+		self.out = ""
+
+	def Draw(self, song, dc):
+		# dc is a dummy parameter
+		out = []
+		for block in song.boxes:
+			for line in block.boxes:
+				tc = ""
+				tt = ""
+				spaces = 0
+				for t in line.boxes:
+					if t.type == SongText.chord:
+						# n = spaces + t.text
+						if spaces >= 0:
+							tc += " " * spaces
+						else:
+							tt += " " * -spaces
+						tc += t.text
+						spaces = -len(t.text)
+					else:
+						tt += t.text
+						spaces += len(t.text)
+				if tc != "":
+					out.append(tc)
+				out.append(tt)
+			out.append("\n")
+		self.out = "\n".join(out).strip()
+		return 0, 0
+
+	def getTab(self):
 		return self.out

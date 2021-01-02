@@ -47,6 +47,10 @@
 						<label>Export as _HTML...</label>
 						<help>Export formatted song as web page</help>
 					</object>
+					<object class="wxMenuItem" name="exportAsTab">
+						<label>Export as _TAB/TXT...</label>
+						<help>Export song as text file with chords above lyrics</help>
+					</object>
 					<object class="wxMenuItem" name="exportAsPptx">
 						<label>Export _karaoke as PPTX...</label>
 						<help>Create a karaoke-like PowerPoint presentation</help>
