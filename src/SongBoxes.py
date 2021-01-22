@@ -60,6 +60,7 @@ class SongBlock(SongBox):
 	verse = 1
 	chorus = 2
 	title = 3
+	subtitle = 4
 
 	def __init__(self, type, format):
 		SongBox.__init__(self, 0, 0, 0, 0)

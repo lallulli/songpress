@@ -56,7 +56,7 @@ class Renderer(object):
 		self.currentBlock.verseLabelNumber = self.song.labelCount
 
 	def EndBlock(self):
-		if self.currentBlock != None:
+		if self.currentBlock is not None:
 			self.EndLine()
 			if self.sf.showChords == 1:
 				current = self.currentBlock.chords
@@ -70,8 +70,8 @@ class Renderer(object):
 				if not found:
 					self.chordPatterns.append(current)
 				else:
-					self.currentBlock.RemoveChordBoxes()		
-			self.song.AddBox(self.currentBlock)			
+					self.currentBlock.RemoveChordBoxes()
+			self.song.AddBox(self.currentBlock)
 			self.currentBlock = None
 
 	def BeginVerse(self, label=None):
@@ -106,10 +106,6 @@ class Renderer(object):
 			format = self.format.chord
 			if self.sf.showChords == 1:
 				self.currentBlock.chords.append(translateChord(text, self.notation, self.notation))
-		elif type == SongText.title:
-			format = self.format.title
-		elif type == SongText.subtitle:
-			format = self.format.subtitle
 		else:
 			format = self.format
 		t = SongText(text, format.wxFont, type, format.color)
@@ -119,11 +115,13 @@ class Renderer(object):
 	def AddTitle(self, title):
 		if self.currentBlock is None or self.currentBlock.type != SongBlock.title:
 			self.BeginBlock(SongBlock.title)
+		self.format = self.sf.title
 		self.AddText(title, SongText.title)
 
 	def AddSubTitle(self, title):
 		if self.currentBlock is None or self.currentBlock.type != SongBlock.title:
 			self.BeginBlock(SongBlock.title)
+		self.format = self.sf.subtitle
 		self.AddText(title, SongText.subtitle)
 
 	def BeginLine(self):
@@ -133,7 +131,7 @@ class Renderer(object):
 			self.currentLine = SongLine()
 
 	def EndLine(self):
-		if self.currentLine != None:
+		if self.currentLine is not None:
 			self.currentBlock.AddBox(self.currentLine)
 			self.currentLine = None
 
@@ -197,15 +195,15 @@ class Renderer(object):
 						self.EndBlock()
 					elif cmd == 'c' or cmd == 'comment':
 						a = self.GetAttribute()
-						if a != None:
+						if a is not None:
 							self.AddText(a, SongText.comment)
 					elif cmd == 't' or cmd == 'title':
 						a = self.GetAttribute()
-						if a != None:
+						if a is not None:
 							self.AddTitle(a)
 					elif cmd == 'st' or cmd == 'subtitle':
 						a = self.GetAttribute()
-						if a != None:
+						if a is not None:
 							self.AddSubTitle(a)
 					elif cmd == 'verse':
 						self.BeginVerse(self.GetAttribute())
