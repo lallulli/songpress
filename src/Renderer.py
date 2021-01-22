@@ -16,6 +16,10 @@ from Transpose import translateChord, autodetectNotation
 from EditDistance import minEditDist
 
 
+class BreakException(Exception):
+	pass
+
+
 class Renderer(object):
 	def __init__(self, sf, sd=SongDecorator(), notations=[]):
 		object.__init__(self)
@@ -23,6 +27,7 @@ class Renderer(object):
 		self.sd = sd
 		self.dc = None
 		# SongFormat
+		self.starting_sf = sf
 		self.sf = sf
 		self.textFont = None
 		self.chordFont = None
@@ -43,8 +48,8 @@ class Renderer(object):
 			self.song.verseCount += 1
 			if label is None:
 				self.song.labelCount += 1
-			self.sf.StubSetVerseCount(self.song.verseCount)
-			self.format = self.sf.verse[self.song.verseCount-1]
+			self.sf.AddVerse()
+			self.format = self.sf.verse[-1]
 		elif type == SongBlock.chorus:
 			self.format = self.sf.chorus
 			self.song.chorusCount += 1
@@ -54,6 +59,12 @@ class Renderer(object):
 		self.currentBlock.label = label
 		self.currentBlock.verseNumber = self.song.verseCount
 		self.currentBlock.verseLabelNumber = self.song.labelCount
+		self._SetFont()
+
+	def _SetFont(self):
+		"""
+		Read font from current format, and get it ready to be used
+		"""
 		self.textFont = self.format.wxFont
 		self.chordFont = self.format.chord.wxFont
 		self.commentFont = self.format.comment.wxFont
@@ -117,7 +128,7 @@ class Renderer(object):
 			font = self.subtitleFont
 		else:
 			font = self.textFont
-		t = SongText(text, font, type)
+		t = SongText(text, font, type, self.format.color)
 		if not type == SongText.chord or self.sf.showChords > 0:
 			self.currentLine.AddBox(t)
 
@@ -175,6 +186,7 @@ class Renderer(object):
 		self.lineCount = -1
 		self.fromLine = fromLine
 		self.toLine = toLine
+		self.sf = SongFormat(self.starting_sf)
 		if self.sf.showChords == 1:
 			self.notation = autodetectNotation(text, self.notations)
 			self.chordPatterns = []
@@ -213,6 +225,54 @@ class Renderer(object):
 							self.AddSubTitle(a)
 					elif cmd == 'verse':
 						self.BeginVerse(self.GetAttribute())
+					elif cmd == 'textsize':
+						try:
+							try:
+								size = int(self.GetAttribute())
+							except TypeError:
+								raise BreakException()
+							except ValueError:
+								raise BreakException()
+							# self.format.textFont = wx.Font(self.textFont)
+							self.format = ParagraphFormat(self.format)
+							self.format.size = size
+							self._SetFont()
+							self.sf.size = size
+							self.sf.chorus.size = size
+							self.sf.title.size = size
+							self.sf.subtitle.size = size
+						except BreakException:
+							pass
+					elif cmd == 'textfont':
+						try:
+							face = self.GetAttribute()
+							# self.format.textFont = wx.Font(self.textFont)
+							if face is None:
+								raise BreakException
+							self.format = ParagraphFormat(self.format)
+							self.format.face = face
+							self._SetFont()
+							self.sf.face = face
+							self.sf.chorus.face = face
+							self.sf.title.face = face
+							self.sf.subtitle.face = face
+						except BreakException:
+							pass
+					elif cmd == 'textcolour':
+						try:
+							color = self.GetAttribute()
+							# self.format.textFont = wx.Font(self.textFont)
+							if color is None:
+								raise BreakException
+							self.format = ParagraphFormat(self.format)
+							self.format.color = color
+							self._SetFont()
+							self.sf.color = color
+							self.sf.chorus.color = color
+							self.sf.title.color = color
+							self.sf.subtitle.color = color
+						except BreakException:
+							pass
 
 			self.EndLine()
 			if empty:

@@ -178,7 +178,6 @@ class Preferences(object):
 			self.updateLastCheck = None
 		else:
 			self.updateLastCheck = datetime.datetime.fromordinal(int(d))
-		
 
 	def Bool2String(self, param):
 		return "1" if param else "0"

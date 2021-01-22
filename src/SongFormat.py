@@ -43,10 +43,11 @@ class FontFormat(AttributeMonitor):
 			self.face = "Arial"
 		else:
 			self.face = ff.face
-		self.size = 12
-		self.bold = False
-		self.italic = False
-		self.underline = False
+		self.size = 12 if ff is None else ff.size
+		self.bold = False if ff is None else ff.bold
+		self.italic = False if ff is None else ff.italic
+		self.underline = False  if ff is None else ff.underline
+		self.color = '#000000' if ff is None else ff.color
 		# Auto set
 		self.wxFont = None
 		self.UpdateWxFont()
@@ -101,8 +102,14 @@ class SongFormat(ParagraphFormat):
 		# 2. Entire song
 		self.showChords = 1
 
-	def StubSetVerseCount(self, n):
-		i = len(self.verse)
-		while i < n:
-			self.verse.append(ParagraphFormat(self))
-			i = i + 1
+	# def StubSetVerseCount(self, n):
+	# 	i = len(self.verse)
+	# 	while i < n:
+	# 		self.verse.append(ParagraphFormat(self))
+	# 		i = i + 1
+	#
+	def AddVerse(self):
+		self.verse.append(ParagraphFormat(self))
+
+	def InitVerses(self):
+		self.verse = []

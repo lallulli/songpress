@@ -98,8 +98,9 @@ class SongText(SongBox):
 	title = 4
 	subtitle = 5
 	
-	def __init__(self, text, font, type):
+	def __init__(self, text, font, type, color):
 		SongBox.__init__(self, 0, 0, 0, 0)
 		self.text = text
 		self.font = font
 		self.type = type
+		self.color = color

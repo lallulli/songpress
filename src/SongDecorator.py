@@ -162,6 +162,7 @@ class SongDecorator(object):
 	def DrawText(self, text, tx, ty):
 		# tx, ty: coordinates of top-left corner of drawable area
 		self.dc.SetFont(text.font)
+		self.dc.SetTextForeground(text.color)
 		self.dc.DrawText(text.text, tx + text.marginLeft, ty + text.marginTop)
 		
 	def PostDrawText(self, text, tx, ty):

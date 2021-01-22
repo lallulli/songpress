@@ -14,8 +14,8 @@ from Globals import glb
 import i18n
 import dev_tool
 
-class SongpressApp(wx.App):
 
+class SongpressApp(wx.App):
     def OnInit(self):
         self.SetAppName("songpress")
         glb.InitDataPath()
@@ -31,6 +31,8 @@ class SongpressApp(wx.App):
         self.res = wx.xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
         songpressFrame = SongpressFrame.SongpressFrame(self.res)
         return True
+
+
 
 
 if __name__ == '__main__':
