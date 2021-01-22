@@ -109,10 +109,9 @@ class SongDecorator(object):
 	def LayoutComposeSong(self, song):
 		y = 0
 		self.dc.SetFont(song.format.wxFont)
-		w, h = self.dc.GetTextExtent("Dummy")
 		for b in song.boxes:
 			b.y = y
-			y += b.GetTotalHeight() + h * song.format.blockSpacing
+			y += b.GetTotalHeight() + b.GetLastLineTextHeight() * song.format.blockSpacing
 			song.RelocateBox(b)
 		self.SetMarginSong(song)
 

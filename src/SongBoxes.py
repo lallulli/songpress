@@ -75,6 +75,9 @@ class SongBlock(SongBox):
 		for l in self.boxes:
 			l.RemoveChordBoxes()
 
+	def GetLastLineTextHeight(self):
+		return self.boxes[-1].GetTextHeight()
+
 			
 class SongLine(SongBox):
 	def __init__(self):
@@ -90,7 +93,13 @@ class SongLine(SongBox):
 		
 	def RemoveChordBoxes(self):
 		self.boxes = [b for b in self.boxes if b.type != b.chord]
-		
+
+	def GetTextHeight(self):
+		tbs = [b for b in self.boxes if b.type != b.chord]
+		if len(tbs) == 0:
+			return self.h
+		return max(tb.h for tb in tbs)
+
 	
 class SongText(SongBox):
 	text = 1
