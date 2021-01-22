@@ -70,44 +70,41 @@ class FontFormat(AttributeMonitor):
 class ParagraphFormat(FontFormat):
 	def __init__(self, ff=None):
 		FontFormat.__init__(self, ff)
-		self.leftMargin = 0
-		self.topMargin = 12
-		self.bottomMargin = 0
-		self.chordSpacing = 0.8
-		self.textSpacing = 1
-		self.chord = FontFormat(ff)
-		self.chord.size = self.size * 0.9
-		self.chord.italic = True
-		self.comment = FontFormat(ff)
-		self.comment.italic = True
+		self.leftMargin = 0 if ff is None else ff.leftMargin
+		self.topMargin = 12 if ff is None else ff.topMargin
+		self.bottomMargin = 0 if ff is None else ff.bottomMargin
+		self.chordSpacing = 0.8 if ff is None else ff.chordSpacing
+		self.textSpacing = 1 if ff is None else ff.textSpacing
+		self.chord = FontFormat(ff.chord) if ff is not None else FontFormat()
+		self.comment = FontFormat(ff.comment) if ff is not None else FontFormat()
+		if ff is None:
+			self.chord.size = self.size * 0.9
+			self.chord.italic = True
+			self.chord.bold = False
+			self.comment.italic = True
 
 
 class SongFormat(ParagraphFormat):
 	def __init__(self, ff=None):
 		ParagraphFormat.__init__(self, ff)
 		self.verse = []
-		self.chorus = ParagraphFormat(ff)
-		self.chorus.bold = True
-		self.chorus.underline = False
-		self.title = ParagraphFormat(ff)
-		self.title.bold = True
-		self.title.underline = True
-		self.subtitle = ParagraphFormat(ff)
-		self.subtitle.size = self.title.size * 0.95
-		self.subtitle.italic = True
-		self.blockSpacing = 1
+		self.chorus = ParagraphFormat(ff.chorus) if ff is not None else ParagraphFormat()
+		self.title = ParagraphFormat(ff.title) if ff is not None else ParagraphFormat()
+		self.subtitle = ParagraphFormat(ff.subtitle) if ff is not None else ParagraphFormat()
+		self.blockSpacing = 1 if ff is None else ff.blockSpacing
 		# showChords:
 		# 0. None
 		# 1. First verse and chorus
 		# 2. Entire song
-		self.showChords = 1
+		self.showChords = 1 if ff is None else ff.showChords
+		if ff is None:
+			self.chorus.bold = True
+			self.chorus.underline = False
+			self.title.bold = True
+			self.title.underline = True
+			self.subtitle.size = self.title.size * 0.95
+			self.subtitle.italic = True
 
-	# def StubSetVerseCount(self, n):
-	# 	i = len(self.verse)
-	# 	while i < n:
-	# 		self.verse.append(ParagraphFormat(self))
-	# 		i = i + 1
-	#
 	def AddVerse(self):
 		self.verse.append(ParagraphFormat(self))
 

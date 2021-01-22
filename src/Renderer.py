@@ -29,11 +29,6 @@ class Renderer(object):
 		# SongFormat
 		self.starting_sf = sf
 		self.sf = sf
-		self.textFont = None
-		self.chordFont = None
-		self.commentFont = None
-		self.titleFont = None
-		self.subtitleFont = None
 		self.format = None
 		self.currentBlock = None
 		self.currentLine = None
@@ -59,17 +54,6 @@ class Renderer(object):
 		self.currentBlock.label = label
 		self.currentBlock.verseNumber = self.song.verseCount
 		self.currentBlock.verseLabelNumber = self.song.labelCount
-		self._SetFont()
-
-	def _SetFont(self):
-		"""
-		Read font from current format, and get it ready to be used
-		"""
-		self.textFont = self.format.wxFont
-		self.chordFont = self.format.chord.wxFont
-		self.commentFont = self.format.comment.wxFont
-		self.titleFont = self.song.format.title.wxFont
-		self.subtitleFont = self.song.format.subtitle.wxFont
 
 	def EndBlock(self):
 		if self.currentBlock != None:
@@ -117,18 +101,18 @@ class Renderer(object):
 		self.BeginLine()
 		if type == SongText.comment:
 			text = "(" + text + ")"
-			font = self.commentFont
+			format = self.format.comment
 		elif type == SongText.chord:
-			font = self.chordFont
+			format = self.format.chord
 			if self.sf.showChords == 1:
 				self.currentBlock.chords.append(translateChord(text, self.notation, self.notation))
 		elif type == SongText.title:
-			font = self.titleFont
+			format = self.format.title
 		elif type == SongText.subtitle:
-			font = self.subtitleFont
+			format = self.format.subtitle
 		else:
-			font = self.textFont
-		t = SongText(text, font, type, self.format.color)
+			format = self.format
+		t = SongText(text, format.wxFont, type, format.color)
 		if not type == SongText.chord or self.sf.showChords > 0:
 			self.currentLine.AddBox(t)
 
@@ -233,10 +217,8 @@ class Renderer(object):
 								raise BreakException()
 							except ValueError:
 								raise BreakException()
-							# self.format.textFont = wx.Font(self.textFont)
 							self.format = ParagraphFormat(self.format)
 							self.format.size = size
-							self._SetFont()
 							self.sf.size = size
 							self.sf.chorus.size = size
 							self.sf.title.size = size
@@ -246,12 +228,10 @@ class Renderer(object):
 					elif cmd == 'textfont':
 						try:
 							face = self.GetAttribute()
-							# self.format.textFont = wx.Font(self.textFont)
 							if face is None:
 								raise BreakException
 							self.format = ParagraphFormat(self.format)
 							self.format.face = face
-							self._SetFont()
 							self.sf.face = face
 							self.sf.chorus.face = face
 							self.sf.title.face = face
@@ -261,16 +241,50 @@ class Renderer(object):
 					elif cmd == 'textcolour':
 						try:
 							color = self.GetAttribute()
-							# self.format.textFont = wx.Font(self.textFont)
 							if color is None:
 								raise BreakException
 							self.format = ParagraphFormat(self.format)
 							self.format.color = color
-							self._SetFont()
 							self.sf.color = color
 							self.sf.chorus.color = color
 							self.sf.title.color = color
 							self.sf.subtitle.color = color
+						except BreakException:
+							pass
+					elif cmd == 'chordsize':
+						try:
+							try:
+								size = int(self.GetAttribute())
+							except TypeError:
+								raise BreakException()
+							except ValueError:
+								raise BreakException()
+							self.format = ParagraphFormat(self.format)
+							self.format.chord.size = size
+							self.sf.chord.size = size
+							self.sf.chorus.chord.size = size
+						except BreakException:
+							pass
+					elif cmd == 'chordfont':
+						try:
+							face = self.GetAttribute()
+							if face is None:
+								raise BreakException
+							self.format = ParagraphFormat(self.format)
+							self.format.chord.face = face
+							self.sf.chord.face = face
+							self.sf.chorus.chord.face = face
+						except BreakException:
+							pass
+					elif cmd == 'chordcolour':
+						try:
+							color = self.GetAttribute()
+							if color is None:
+								raise BreakException
+							self.format = ParagraphFormat(self.format)
+							self.format.chord.color = color
+							self.sf.chord.color = color
+							self.sf.chorus.chord.color = color
 						except BreakException:
 							pass
 
