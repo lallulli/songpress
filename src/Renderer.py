@@ -136,7 +136,6 @@ class Renderer(object):
 			self.currentLine = None
 
 	def GetAttribute(self):
-		#print("Getting attribute...")
 		try:
 			tok = self.tkz.next()
 			if tok.token != SongTokenizer.colonToken:
@@ -148,7 +147,6 @@ class Renderer(object):
 				return ''
 			return tok.content
 		except StopIteration:
-			#print("No attribute")
 			pass
 		return None
 
@@ -156,11 +154,10 @@ class Renderer(object):
 		return None if self.currentBlock == None else self.currentBlock.type
 
 	def Render(self, text, dc, fromLine = -1, toLine = -1):
-		#print "Face is " + self.sf.face
 		self.text = text
 		self.dc = dc
 		self.verseNumber = 0
-		self.format = self.sf
+		self.format = self.starting_sf
 		self.currentLine = None
 		self.currentBlock = None
 		self.song = SongSong(self.sf)
@@ -209,12 +206,21 @@ class Renderer(object):
 						self.BeginVerse(self.GetAttribute())
 					elif cmd == 'textsize':
 						try:
-							try:
-								size = int(self.GetAttribute())
-							except TypeError:
-								raise BreakException()
-							except ValueError:
-								raise BreakException()
+							a = self.GetAttribute()
+							if a is None:
+								size = self.starting_sf.size
+							else:
+								a = a.strip()
+								try:
+									if a.endswith("%"):
+										perc = int(a[:-1])
+										size = self.format.size * perc / 100
+									else:
+										size = int(a)
+								except TypeError:
+									raise BreakException()
+								except ValueError:
+									raise BreakException()
 							self.format = ParagraphFormat(self.format)
 							self.format.size = size
 							self.sf.size = size
@@ -227,7 +233,9 @@ class Renderer(object):
 						try:
 							face = self.GetAttribute()
 							if face is None:
-								raise BreakException
+								face = self.starting_sf.face
+							else:
+								face = face.strip()
 							self.format = ParagraphFormat(self.format)
 							self.format.face = face
 							self.sf.face = face
@@ -240,7 +248,9 @@ class Renderer(object):
 						try:
 							color = self.GetAttribute()
 							if color is None:
-								raise BreakException
+								color = self.starting_sf.color
+							else:
+								color = color.strip()
 							self.format = ParagraphFormat(self.format)
 							self.format.color = color
 							self.sf.color = color
@@ -251,12 +261,21 @@ class Renderer(object):
 							pass
 					elif cmd == 'chordsize':
 						try:
-							try:
-								size = int(self.GetAttribute())
-							except TypeError:
-								raise BreakException()
-							except ValueError:
-								raise BreakException()
+							a = self.GetAttribute()
+							if a is None:
+								size = self.starting_sf.chord.size
+							else:
+								a = a.strip()
+								try:
+									if a.endswith("%"):
+										perc = int(a[:-1])
+										size = self.format.chord.size * perc / 100
+									else:
+										size = int(a)
+								except TypeError:
+									raise BreakException()
+								except ValueError:
+									raise BreakException()
 							self.format = ParagraphFormat(self.format)
 							self.format.chord.size = size
 							self.sf.chord.size = size
@@ -267,7 +286,9 @@ class Renderer(object):
 						try:
 							face = self.GetAttribute()
 							if face is None:
-								raise BreakException
+								face = self.starting_sf.chord.face
+							else:
+								face = face.strip()
 							self.format = ParagraphFormat(self.format)
 							self.format.chord.face = face
 							self.sf.chord.face = face
@@ -278,7 +299,9 @@ class Renderer(object):
 						try:
 							color = self.GetAttribute()
 							if color is None:
-								raise BreakException
+								color = self.starting_sf.chord.color
+							else:
+								color = color.strip()
 							self.format = ParagraphFormat(self.format)
 							self.format.chord.color = color
 							self.sf.chord.color = color
