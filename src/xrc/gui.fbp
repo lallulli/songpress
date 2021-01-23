@@ -76,7 +76,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">&amp;File</property>
                     <property name="name">file</property>
                     <property name="permission">protected</property>
@@ -132,7 +132,7 @@
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
                     </object>
-                    <object class="submenu" expanded="1">
+                    <object class="submenu" expanded="0">
                         <property name="bitmap"></property>
                         <property name="label">E&amp;xport</property>
                         <property name="name">export</property>
@@ -202,7 +202,7 @@
                             <property name="shortcut"></property>
                             <property name="unchecked_bitmap"></property>
                         </object>
-                        <object class="wxMenuItem" expanded="1">
+                        <object class="wxMenuItem" expanded="0">
                             <property name="bitmap"></property>
                             <property name="checked">0</property>
                             <property name="enabled">1</property>
@@ -502,11 +502,11 @@
                         <property name="unchecked_bitmap"></property>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="0">
+                <object class="wxMenu" expanded="1">
                     <property name="label">&amp;View</property>
                     <property name="name">view</property>
                     <property name="permission">protected</property>
-                    <object class="submenu" expanded="0">
+                    <object class="submenu" expanded="1">
                         <property name="bitmap"></property>
                         <property name="label">&amp;Toolbars</property>
                         <property name="name">toolbars</property>
@@ -552,7 +552,7 @@
                         <property name="unchecked_bitmap"></property>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">&amp;Insert</property>
                     <property name="name">insert</property>
                     <property name="permission">protected</property>
@@ -569,7 +569,7 @@
                         <property name="shortcut">CTRL+T</property>
                         <property name="unchecked_bitmap"></property>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -635,7 +635,7 @@
                         <property name="unchecked_bitmap"></property>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="0">
+                <object class="wxMenu" expanded="1">
                     <property name="label">F&amp;ormat</property>
                     <property name="name">formatMenu</property>
                     <property name="permission">protected</property>
@@ -644,10 +644,36 @@
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
                         <property name="help">Select song font</property>
-                        <property name="id">ID_FONT</property>
+                        <property name="id">ID_SONG_FONT</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">&amp;Font...</property>
-                        <property name="name">font</property>
+                        <property name="label">Song &amp;font...</property>
+                        <property name="name">songFont</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                    </object>
+                    <object class="wxMenuItem" expanded="0">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Modify text font and color from cursor position or in selection</property>
+                        <property name="id">ID_TEXT_FONT</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">&amp;Text font...</property>
+                        <property name="name">textFont</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                    </object>
+                    <object class="wxMenuItem" expanded="0">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help">Modify chord font and color from cursor position or in selection</property>
+                        <property name="id">ID_CHORD_FONT</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">C&amp;hord font...</property>
+                        <property name="name">chordFont</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>

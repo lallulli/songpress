@@ -378,7 +378,9 @@ class SongpressFrame(SDIMainFrame):
 		Bind(self.OnChorus, 'chorus')
 		Bind(self.OnVerse, 'verseWithCustomLabelOrWithoutLabel')
 		Bind(self.OnComment, 'comment')
-		Bind(self.OnFormatFont, 'font')
+		Bind(self.OnFormatFont, 'songFont')
+		Bind(self.OnTextFont, 'textFont')
+		Bind(self.OnChordFont, 'chordFont')
 		Bind(self.OnLabelVerses, 'labelVerses')
 		Bind(self.OnChorusLabel, 'chorusLabel')
 		Bind(self.OnNoChords, 'noChords')
@@ -760,6 +762,38 @@ class SongpressFrame(SDIMainFrame):
 		if f.ShowModal() == wx.ID_OK:
 			self.pref.SetFont(f.GetValue())
 			self.SetFont()
+
+	def OnTextFont(self, evt):
+		data = wx.FontData()
+		data.SetInitialFont(self.pref.format.wxFont)
+		data.SetColour(self.pref.format.color)
+
+		dialog = wx.FontDialog(self.frame, data)
+		if dialog.ShowModal() == wx.ID_OK:
+			retData = dialog.GetFontData()
+			font = retData.GetChosenFont()
+			face = font.GetFaceName()
+			size = font.GetPointSize()
+			color = retData.GetColour().GetAsString(wx.C2S_HTML_SYNTAX)
+			s = f"{{textfont:{face}}}{{textsize:{size}}}{{textcolour:{color}}}|"
+			s += "{textfont}{textsize}{textcolour}"
+			self.InsertWithCaret(s)
+
+	def OnChordFont(self, evt):
+		data = wx.FontData()
+		data.SetInitialFont(self.pref.format.wxFont)
+		data.SetColour(self.pref.format.color)
+
+		dialog = wx.FontDialog(self.frame, data)
+		if dialog.ShowModal() == wx.ID_OK:
+			retData = dialog.GetFontData()
+			font = retData.GetChosenFont()
+			face = font.GetFaceName()
+			size = font.GetPointSize()
+			color = retData.GetColour().GetAsString(wx.C2S_HTML_SYNTAX)
+			s = f"{{chordfont:{face}}}{{chordsize:{size}}}{{chordcolour:{color}}}|"
+			s += "{chordfont}{chordsize}{chordcolour}"
+			self.InsertWithCaret(s)
 
 	def OnTranspose(self, evt):
 		t = MyTransposeDialog(self.frame, self.pref.notations, self.text.GetTextOrSelection())

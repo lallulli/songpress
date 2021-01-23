@@ -194,9 +194,17 @@
 			</object>
 			<object class="wxMenu" name="formatMenu">
 				<label>F_ormat</label>
-				<object class="wxMenuItem" name="font">
-					<label>_Font...</label>
+				<object class="wxMenuItem" name="songFont">
+					<label>Song _font...</label>
 					<help>Select song font</help>
+				</object>
+				<object class="wxMenuItem" name="textFont">
+					<label>_Text font...</label>
+					<help>Modify text font and color from cursor position or in selection</help>
+				</object>
+				<object class="wxMenuItem" name="chordFont">
+					<label>C_hord font...</label>
+					<help>Modify chord font and color from cursor position or in selection</help>
 				</object>
 				<object class="wxMenuItem" name="labelVerses">
 					<label>_Label verses</label>
