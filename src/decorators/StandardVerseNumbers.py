@@ -32,7 +32,6 @@ class Format(FontFormat):
 		self.chorus.bold = sf.chorus.bold
 		self.chorus.italic = sf.chorus.italic
 		self.chorus.underline = sf.chorus.underline
-		config = wx.Config.Get()
 		self.chorus.label = chorusLabel
 
 	def SetChorusLabel(self, label):
@@ -51,31 +50,18 @@ class Decorator(SongDecorator):
 	wxWhite = wx.Colour(255, 255, 255)
 	wxGrey = wx.Colour(200, 200, 200)
 
-	def InitDraw(self):
-		self.dc.SetFont(self.format.wxFont)
-		self.baseWidth, self.baseHeight = self.dc.GetTextExtent("0")
-		self.verseWidth, self.verseHeight = self.dc.GetTextExtent(str(self.s.labelCount))
-		self.verseTotalWidth = self.baseWidth * (
-				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
-			) + self.verseWidth
-		self.dc.SetFont(self.format.chorus.wxFont)
-
 	def SetMarginBlock(self, block):
+		font = block.format.wxFont
+		self.dc.SetFont(font)
+		baseWidth, baseHeight = self.dc.GetTextExtent("0")
 		if block.type == block.verse:
-			font = self.format.wxFont
-			self.dc.SetFont(font)
-			if block.label is not None:
-				text = block.label
-				if text == '':
-					w = self.verseWidth
-					h = self.verseHeight
-				else:
-					w, h = self.dc.GetTextExtent(text)
-				w += self.baseWidth * (
-					self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
-				)
-			else:
-				w = self.verseTotalWidth
+			text = block.label if block.label is not None else ''
+			text_spacer = text if text != '' else str(self.s.labelCount)
+			w, h = self.dc.GetTextExtent(text_spacer)
+
+			w += baseWidth * (
+				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
+			)
 		elif block.type == block.title:
 			w = 0
 		else:
@@ -83,33 +69,30 @@ class Decorator(SongDecorator):
 				text = block.label
 			else:
 				text = self.format.chorus.label
-			font = self.format.chorus.wxFont
-			self.dc.SetFont(font)
 			w, h = self.dc.GetTextExtent(text)
-			w += self.baseWidth * (
+			w += baseWidth * (
 				self.format.leftMargin + self.format.leftPadding + self.format.rightMargin + self.format.rightPadding
 			)
 		block.SetMargin(0, 0, 0, w)
 
 	def PreDrawBlock(self, block, bx, by):
 		if block.type != block.title and len(block.boxes) > 0:
+			font = block.format.wxFont
+			self.dc.SetFont(font)
+			baseWidth, baseHeight = self.dc.GetTextExtent("0")
 			if block.type == block.verse:
-				font = self.format.wxFont
-				self.dc.SetFont(font)
 				background = self.wxGrey
 				foreground = self.wxBlack
 				if block.label is not None:
 					text = block.label
+					text_spacer = text
 					if text == '':
-						w = self.verseWidth
-						h = self.verseHeight
-					else:
-						w, h = self.dc.GetTextExtent(text)
+						text_spacer = str(self.s.labelCount)
 				else:
 					text = str(block.verseLabelNumber)
-					w = self.verseWidth
-					h = self.verseHeight
-					
+					text_spacer = str(self.s.labelCount)
+				w, h = self.dc.GetTextExtent(text_spacer)
+
 			else:
 				background = self.wxBlack
 				foreground = self.wxWhite
@@ -117,24 +100,20 @@ class Decorator(SongDecorator):
 					text = block.label
 				else:
 					text = self.format.chorus.label
-				font = self.format.chorus.wxFont
-				self.dc.SetFont(font)
 				w, h = self.dc.GetTextExtent(text)
 			if text != '':
 				realW, realH = self.dc.GetTextExtent(text)
-				# rx, ry: top-left corner of rectangle
-				# tx, ty: top-left corner of text
-				rx = bx + self.format.leftMargin * self.baseWidth
+				rx = bx + self.format.leftMargin * baseWidth
 				tx = (rx
-					+ self.baseWidth * self.format.leftPadding
+					+ baseWidth * self.format.leftPadding
 					+ 0.5 * (w - realW))
 				ty = by + block.boxes[0].textBaseline + block.marginTop - h
-				ry = ty - self.format.topPadding * self.baseHeight
+				ry = ty - self.format.topPadding * baseHeight
 				brush = wx.Brush(background, wx.SOLID)
 				self.dc.SetBrush(brush)
 				self.dc.DrawRectangle(rx, ry,
-					w + self.baseWidth * (self.format.leftPadding + self.format.rightPadding),
-					h + self.baseHeight * (self.format.topPadding + self.format.bottomPadding))
+					w + baseWidth * (self.format.leftPadding + self.format.rightPadding),
+					h + baseHeight * (self.format.topPadding + self.format.bottomPadding))
 				brush = wx.Brush(foreground, wx.SOLID)
 				self.dc.SetBrush(brush)
 				self.dc.SetTextForeground(foreground)

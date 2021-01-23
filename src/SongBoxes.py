@@ -76,7 +76,9 @@ class SongBlock(SongBox):
 			l.RemoveChordBoxes()
 
 	def GetLastLineTextHeight(self):
-		return self.boxes[-1].GetTextHeight()
+		if len(self.boxes) > 0:
+			return self.boxes[-1].GetTextHeight()
+		return 0
 
 			
 class SongLine(SongBox):
