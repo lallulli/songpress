@@ -20,8 +20,21 @@ class Globals(object):
         self.path = os.path.abspath(os.path.dirname(sys.argv[0]))
         self.data_path = None
 
+    def _monkeypatch_standard_paths(self):
+        sp = wx.StandardPaths.Get()
+        def my_get(*args, **kwargs):
+            return "/home/luca"
+        sp.GetUserDataDir = my_get
+
     def InitDataPath(self):
         sp = wx.StandardPaths.Get()
+        portable_config = os.path.join(self.path, 'config.ini')
+        if os.path.isfile(portable_config):
+            # Monkey-patch StandardPaths instance so that portable config.ini is used
+            def my_get(*args, **kwargs):
+                return self.path
+            sp.GetUserDataDir = my_get
+
         self.data_path = sp.GetUserDataDir()
         old_config = None
         if os.path.isfile(self.data_path):
