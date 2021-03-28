@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-11 19:47+0100\n"
-"PO-Revision-Date: 2019-02-11 19:47+0100\n"
-"Last-Translator: l.allulli <l.allulli@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
-"it/)\n"
+"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"PO-Revision-Date: 2021-03-28 18:48+0100\n"
+"Last-Translator: Luca Allulli <luca@skeed.it>\n"
+"Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,495 +19,643 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: src/xrc/songpress.pos:1
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:1
 msgid "Songpress"
 msgstr "Songpress"
 
-#: src/xrc/songpress.pos:2
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:2
 msgid "MyMenuBar"
 msgstr "MyMenuBar"
 
-#: src/xrc/songpress.pos:3
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:3
 msgid "&File"
 msgstr "&File"
 
-#: src/xrc/songpress.pos:4
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:4
 msgid "&New\tCTRL+N"
 msgstr "&Nuovo\tCTRL+N"
 
-#: src/xrc/songpress.pos:5
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:5
 msgid "Create a new song"
 msgstr "Crea una nuova canzone"
 
-#: src/xrc/songpress.pos:6
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:6
 msgid "&Open...\tCTRL+O"
 msgstr "&Apri...\tCTRL+O"
 
-#: src/xrc/songpress.pos:7
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:7
 msgid "Open an existing song"
 msgstr "Apre una canzone esistente"
 
-#: src/xrc/songpress.pos:8
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:8
 msgid "&Save\tSHIFT+F12"
 msgstr "&Salva\tSHIFT+F12"
 
-#: src/xrc/songpress.pos:9
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:9
 msgid "Save song with the current filename"
 msgstr "Salva la canzone con il nome del file attuale"
 
-#: src/xrc/songpress.pos:10
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:10
 msgid "Save &as..."
 msgstr "Salva &con nome..."
 
-#: src/xrc/songpress.pos:11
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:11
 msgid "Ask a filename for the song and save it"
 msgstr "Chiede un nome di file e salva la canzone"
 
-#: src/xrc/songpress.pos:12
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:12
 msgid "E&xport"
 msgstr "Es&porta"
 
-#: src/xrc/songpress.pos:13
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:13
 msgid "Export to &clipboard as a vector image\tCTRL+D"
 msgstr "Esporta negli &appunti come immagine vettoriale\tCTRL+D"
 
-#: src/xrc/songpress.pos:14
-msgid ""
-"Copy formatted song to clipboard, so that it can be pasted into any program"
-msgstr ""
-"Copia la canzone formattata negli appunti, in modo che possa essere "
-"incollata in un qualunque programma"
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:14
+msgid "Copy formatted song to clipboard, so that it can be pasted into any program"
+msgstr "Copia la canzone formattata negli appunti, in modo che possa essere incollata in un qualunque programma"
 
-#: src/xrc/songpress.pos:15
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:15
 msgid "Export as &SVG..."
 msgstr "Esporta come &SVG..."
 
-#: src/xrc/songpress.pos:16
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:16
 msgid "Export image as a vector image"
 msgstr "Esporta l'immagine come immagine vettoriale"
 
-#: src/xrc/songpress.pos:17
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:17
 msgid "Export as &Enhanced Metafile..."
 msgstr "Esporta come &Enhanced Metafile..."
 
-#: src/xrc/songpress.pos:18
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:18
 msgid "Export image as a Windows Metafile vector image"
 msgstr "Esporta l'immagine come immagine vettoriale Windows Metafile"
 
-#: src/xrc/songpress.pos:19
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:19
 msgid "Export as &PNG..."
 msgstr "Esporta come &PNG..."
 
-#: src/xrc/songpress.pos:20
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:20
 msgid "Export image as a raster picture"
 msgstr "Esporta l'immagine come raster"
 
-#: src/xrc/songpress.pos:21
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:21
 msgid "Export as &HTML..."
 msgstr "Esporta come &HTML..."
 
-#: src/xrc/songpress.pos:22
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:22
 msgid "Export formatted song as web page"
 msgstr "Esporta come pagina web la canzone formattata"
 
-#: src/xrc/songpress.pos:23
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:23
+msgid "Export as &TAB/TXT..."
+msgstr "Esporta come &TAB/TXT..."
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:24
+msgid "Export song as text file with chords above lyrics"
+msgstr "Esporta la canzone come file di testo con gli accordi sopra le parole"
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:25
 msgid "Export &karaoke as PPTX..."
 msgstr "Esporta &karaoke come PPTX..."
 
-#: src/xrc/songpress.pos:24
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:26
 msgid "Create a karaoke-like PowerPoint presentation"
 msgstr "Crea una presentazione PowerPoint per karaoke"
 
-#: src/xrc/songpress.pos:25
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:27
 msgid "&Exit"
 msgstr "&Esci"
 
-#: src/xrc/songpress.pos:26
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:28
 msgid "Quit Songpress"
 msgstr "Esce da Songpress"
 
-#: src/xrc/songpress.pos:27
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:29
 msgid "&Edit"
 msgstr "&Modifica"
 
-#: src/xrc/songpress.pos:28
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:30
 msgid "&Undo\tCTRL+Z"
 msgstr "&Annulla\tCTRL+Z"
 
-#: src/xrc/songpress.pos:29
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:31
 msgid "Undo last edit"
 msgstr "Annulla l'ultima modifica"
 
-#: src/xrc/songpress.pos:30
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:32
 msgid "&Redo\tCTRL+Y"
 msgstr "&Ripeti\tCTRL+Y"
 
-#: src/xrc/songpress.pos:31
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:33
 msgid "Redo previously undone edit"
 msgstr "Ripete la modifica precedentemente annullata"
 
-#: src/xrc/songpress.pos:32
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:34
 msgid "&Cut\tCTRL+X"
 msgstr "&Taglia\tCTRL+X"
 
-#: src/xrc/songpress.pos:33
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:35
 msgid "Move selected text in the clipboard"
 msgstr "Sposta il testo selezionato negli appunti"
 
-#: src/xrc/songpress.pos:34
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:36
 msgid "C&opy\tCTRL+C"
 msgstr "&Copia\tCTRL+C"
 
-#: src/xrc/songpress.pos:35
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:37
 msgid "Copy selected text in the clipboard"
 msgstr "Copia il testo selezionato negli appunti"
 
-#: src/xrc/songpress.pos:36
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:38
 msgid "Copy only Te&xt"
 msgstr "Copia solo &Testo"
 
-#: src/xrc/songpress.pos:37
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:39
 msgid "Copy selected text in the clipboard, ignoring chords and ChordPro tags"
-msgstr ""
-"Copia il testo selezionato negli appunti, ignorando gli accordi e i tag "
-"ChordPro"
+msgstr "Copia il testo selezionato negli appunti, ignorando gli accordi e i tag ChordPro"
 
-#: src/xrc/songpress.pos:38
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:40
 msgid "Copy as &Image\tCTRL+D"
 msgstr "Copia come I&mmagine\tCTRL+D"
 
-#: src/xrc/songpress.pos:39
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:41
 msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
-msgstr ""
-"Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
+msgstr "Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
 
-#: src/xrc/songpress.pos:40
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:42
 msgid "&Paste\tCTRL+V"
 msgstr "&Incolla\tCTRL+V"
 
-#: src/xrc/songpress.pos:41
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:43
 msgid "Read text from the clipboard and place it at the cursor position"
-msgstr ""
-"Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
+msgstr "Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
 
-#: src/xrc/songpress.pos:42
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:44
 msgid "P&aste Chords"
 msgstr "I&ncolla gli accordi"
 
-#: src/xrc/songpress.pos:43
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:45
 msgid "Integrate chords of copied text into current selection"
 msgstr "Integra gli accordi tel testo copiato nella selezione corrente"
 
-#: src/xrc/songpress.pos:44
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:46
 msgid "&Find...\tCTRL+F"
 msgstr "Tro&va...\tCTRL+F"
 
-#: src/xrc/songpress.pos:45
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:47
 msgid "Search some text"
 msgstr "Cerca del testo"
 
-#: src/xrc/songpress.pos:46
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:48
 msgid "Find &Next\tF3"
 msgstr "Trova &Successivo\tF3"
 
-#: src/xrc/songpress.pos:47
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:49
 msgid "Search for the next occurrence of text"
 msgstr "Cerca la prossima occorrenza del testo"
 
-#: src/xrc/songpress.pos:48
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:50
 msgid "Find Pre&vious\tSHIFT+F3"
 msgstr "Trova &Precedente\tSHIFT+F3"
 
-#: src/xrc/songpress.pos:49
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:51
 msgid "Search for the previous occurrence of text"
 msgstr "Cerca l'occorrenza precedente del testo"
 
-#: src/xrc/songpress.pos:50
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:52
 msgid "R&eplace...\tCTRL+R"
 msgstr "S&ostituisci...\tCTRL+R"
 
-#: src/xrc/songpress.pos:51
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:53
 msgid "Replace some text with some other text"
 msgstr "Sostituisce del testo con dell'altro"
 
-#: src/xrc/songpress.pos:52
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:54
 msgid "&Select next chord\tALT+RIGHT"
 msgstr "Seleziona accordo s&uccessivo\tALT+RIGHT"
 
-#: src/xrc/songpress.pos:53
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:55
 msgid "Find next chord and select it"
 msgstr "Trova l'accordo successivo e selezionalo"
 
-#: src/xrc/songpress.pos:54
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:56
 msgid "Selec&t previous chord\tALT+LEFT"
 msgstr "Seleziona accordo pr&ecedente\tALT+LEFT"
 
-#: src/xrc/songpress.pos:55
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:57
 msgid "Find previous chord and select it"
 msgstr "Trova l'accordo precedente e selezionalo"
 
-#: src/xrc/songpress.pos:56
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:58
 msgid "&Move chord right\tSHIFT+ALT+RIGHT"
 msgstr "Sposta l'accordo a &destra\tSHIFT+ALT+RIGHT"
 
-#: src/xrc/songpress.pos:57
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:59
 msgid "Move chord under cursor one position rightwards"
 msgstr "Sposta l'accordo sotto il cursore di una posizione verso destra"
 
-#: src/xrc/songpress.pos:58
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:60
 msgid "Move chord &left\tSHIFT+ALT+LEFT"
 msgstr "Sposta l'accordo a si&nistra\tSHIFT+ALT+LEFT"
 
-#: src/xrc/songpress.pos:59
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:61
 msgid "Move chord under cursor one position leftwards"
 msgstr "Sposta l'accordo sotto il cursore di una posizione verso sinistra"
 
-#: src/xrc/songpress.pos:60
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:62
 msgid "Remove c&hords"
 msgstr "Rimuovi g&li accordi"
 
-#: src/xrc/songpress.pos:61
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:63
 msgid "Remove all chords in current selection"
 msgstr "Rimuove tutti gli accordi del testo selezionato"
 
-#: src/xrc/songpress.pos:62
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:64
 msgid "Inte&grate chords"
 msgstr "Inte&gra gli accordi"
 
-#: src/xrc/songpress.pos:63
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:65
 msgid "Integrate chords of current line with text of following line"
-msgstr ""
-"Integra gli accordi della linea corrente con il testo della linea sottostante"
+msgstr "Integra gli accordi della linea corrente con il testo della linea sottostante"
 
-#: src/xrc/songpress.pos:64
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:66
 msgid "&View"
 msgstr "&Visualizza"
 
-#: src/xrc/songpress.pos:65
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:67
 msgid "&Toolbars"
 msgstr "&Barre degli strumenti"
 
-#: src/xrc/songpress.pos:66
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:68
 msgid "&Standard"
 msgstr "&Standard"
 
-#: src/xrc/songpress.pos:67
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:69
 msgid "Show/hide toolbar with file and common buttons"
 msgstr "Mostra/nasconde la barra degli strumenti con i bottoni d'uso comune"
 
-#: src/xrc/songpress.pos:68
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:70
 msgid "&Format"
 msgstr "&Formattazione"
 
-#: src/xrc/songpress.pos:69
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:71
 msgid "Show/hide toolbar with format tools"
-msgstr ""
-"Mostra/nasconde la barra degli strumenti con gli strumenti di formattazione"
+msgstr "Mostra/nasconde la barra degli strumenti con gli strumenti di formattazione"
 
-#: src/xrc/songpress.pos:70
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:72
 msgid "&Preview"
 msgstr "&Anteprima"
 
-#: src/xrc/songpress.pos:71
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:73
 msgid "Show/hide preview pane"
 msgstr "Mostra/nasconde il pannello di anteprima"
 
-#: src/xrc/songpress.pos:72
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:74
 msgid "&Insert"
 msgstr "&Inserisci"
 
-#: src/xrc/songpress.pos:73
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:75
 msgid "&Title\tCTRL+T"
 msgstr "&Titolo\tCTRL+T"
 
-#: src/xrc/songpress.pos:74
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:76
 msgid "Insert a command to display song title"
 msgstr "Inserisce un comando che mostra il titolo della canzone"
 
-#: src/xrc/songpress.pos:75
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:77
+msgid "&Subtitle"
+msgstr "&Sottotitolo"
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:78
+msgid "Insert a command to display song subtitle"
+msgstr "Inserisce un comando che mostra il sottotitolo della canzone"
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:79
 msgid "C&hord\tCTRL+H"
 msgstr "&Accordo\tCTRL+H"
 
-#: src/xrc/songpress.pos:76
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:80
 msgid "Insert square brackets that will host a chord"
 msgstr "Inserisce delle parentesi quadre, che conterranno un accordo"
 
-#: src/xrc/songpress.pos:77
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:81
 msgid "Cho&rus\tCTRL+U"
 msgstr "&Ritornello\tCTRL+U"
 
-#: src/xrc/songpress.pos:78
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:82
 msgid "Insert a couple of commands that will contain chorus"
 msgstr "Inserisce due comandi, tra i quali scrivere il ritornello"
 
-#: src/xrc/songpress.pos:79
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:83
 msgid "Co&mment\tCTRL+M"
 msgstr "&Commento\tCTRL+M"
 
-#: src/xrc/songpress.pos:80
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:84
 msgid "Insert a command to display a comment"
 msgstr "Inserisce un comando per mostrare un commento"
 
-#: src/xrc/songpress.pos:81
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:85
 msgid "&Verse with custom label or without label..."
 msgstr "&Strofa con etichetta personale o senza etichetta"
 
-#: src/xrc/songpress.pos:82
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:86
 msgid "Insert a verse with a custom label or without label"
 msgstr "Inserisce una strofa con un'etichetta personale o senza etichetta"
 
-#: src/xrc/songpress.pos:83
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:87
 msgid "F&ormat"
 msgstr "F&ormato"
 
-#: src/xrc/songpress.pos:84
-msgid "&Font..."
-msgstr "&Carattere..."
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:88
+msgid "Song &font..."
+msgstr "Carattere della can&zone..."
 
-#: src/xrc/songpress.pos:85
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:89
 msgid "Select song font"
 msgstr "Scegli il tipo di carattere per la canzone"
 
-#: src/xrc/songpress.pos:86
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:90
+msgid "&Text font..."
+msgstr "Carattere del &testo..."
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:91
+msgid "Modify text font and color from cursor position or in selection"
+msgstr "Modifica il carattere e il colore del testo dalla posizione del cursore o nella selezione"
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:92
+msgid "C&hord font..."
+msgstr "Carattere degli &accordi..."
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:93
+msgid "Modify chord font and color from cursor position or in selection"
+msgstr "Modifica il carattere e il colore degli accordi dalla posizione del cursore o nella selezione"
+
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:94
 msgid "&Label verses"
 msgstr "&Etichette strofe"
 
-#: src/xrc/songpress.pos:87
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:95
 msgid "Show/hide labels at the beginning of verses and chorus"
 msgstr "Mostra/nasconde le etichette all'inizio delle strofe e del ritornello"
 
-#: src/xrc/songpress.pos:88
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:96
 msgid "&Chorus label..."
 msgstr "Etichetta &ritornello..."
 
-#: src/xrc/songpress.pos:89
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:97
 msgid "Set label for chorus"
 msgstr "Imposta l'etichetta dei ritornelli"
 
-#: src/xrc/songpress.pos:90
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:98
 msgid "&Show chords for"
 msgstr "&Formatta gli accordi per"
 
-#: src/xrc/songpress.pos:91
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:99
 msgid "&No chords"
 msgstr "&Nessun accordo"
 
-#: src/xrc/songpress.pos:92
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:100
 msgid "Do not render chords at all"
 msgstr "Non formatta gli accordi"
 
-#: src/xrc/songpress.pos:93
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:101
 msgid "&One verse for each chord pattern"
 msgstr "&Una strofa per ogni tipologia di accordi"
 
-#: src/xrc/songpress.pos:94
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:102
 msgid "When a verse with a new chord pattern occurs, render chords"
-msgstr ""
-"Quando trova una strofa con una nuova tipologia di accordi, formatta gli "
-"accordi"
+msgstr "Quando trova una strofa con una nuova tipologia di accordi, formatta gli accordi"
 
-#: src/xrc/songpress.pos:95
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:103
 msgid "&Whole song"
 msgstr "&Intera canzone"
 
-#: src/xrc/songpress.pos:96
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:104
 msgid "Render chords for whole song"
 msgstr "Formatta gli accordi dell'intera canzone"
 
-#: src/xrc/songpress.pos:97
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:105
 msgid "&Tools"
 msgstr "&Strumenti"
 
-#: src/xrc/songpress.pos:98
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:106
 msgid "&Transpose..."
 msgstr "&Trasponi..."
 
-#: src/xrc/songpress.pos:99
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:107
 msgid "Transpose song or selected text"
 msgstr "Traspone la canzone o il testo selezionato"
 
-#: src/xrc/songpress.pos:100
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:108
 msgid "S&implify chords..."
 msgstr "&Semplifica gli accordi..."
 
-#: src/xrc/songpress.pos:101
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:109
 msgid "Transpose chords to the easiest key"
 msgstr "Traspone gli accordi nella tonalità più facile"
 
-#: src/xrc/songpress.pos:102
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:110
 msgid "Change chord &notation..."
 msgstr "Modifica la &notazione degli accordi..."
 
-#: src/xrc/songpress.pos:103
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:111
 msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
-msgstr ""
-"Modifica la notazione degli accordi (es. Do Re Mi vs C D E) della canzone o "
-"selezione"
+msgstr "Modifica la notazione degli accordi (es. Do Re Mi vs C D E) della canzone o selezione"
 
-#: src/xrc/songpress.pos:104
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:112
 msgid "&Cleanup chords..."
 msgstr "&Pulisci gli accordi"
 
-#: src/xrc/songpress.pos:105
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:113
 msgid "Normalize chords according to current notation"
 msgstr "Normalizza gli accordi secondo la notazione usata"
 
-#: src/xrc/songpress.pos:106
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:114
 msgid "Convert &Tab to Chordpro"
 msgstr "&Converti formato da tab a ChordPro"
 
-#: src/xrc/songpress.pos:107
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:115
 msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
 msgstr "Converte il formato da tab (accordi su una linea separata) a ChordPro"
 
-#: src/xrc/songpress.pos:108
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:116
 msgid "Remove &spurious blank lines"
 msgstr "&Rimuovi le linee vuote di troppo"
 
-#: src/xrc/songpress.pos:109
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:117
 msgid "Remove blank lines inside a verse"
 msgstr "Rimuove le linee vuote dentro le strofe"
 
-#: src/xrc/songpress.pos:110
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:118
 msgid "&Options..."
 msgstr "&Opzioni..."
 
-#: src/xrc/songpress.pos:111
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:119
 msgid "Set program options"
 msgstr "Imposta le opzioni del programma"
 
-#: src/xrc/songpress.pos:112
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:120
 msgid "&?"
 msgstr "&?"
 
-#: src/xrc/songpress.pos:113
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:121
 msgid "&Guide\tF1"
 msgstr "&Guida\tF1"
 
-#: src/xrc/songpress.pos:114
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:122
 msgid "Show user's manual"
 msgstr "Mostra il manuale utente"
 
-#: src/xrc/songpress.pos:115
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:123
 msgid "&Check for updates"
 msgstr "&Verifica la disponibilità di aggiornamenti"
 
-#: src/xrc/songpress.pos:116
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:124
 msgid "Open Songpress web site for news and updates"
 msgstr "Apre il sito di Songpress per novità e aggiornamenti"
 
-#: src/xrc/songpress.pos:117
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:125
 msgid "&Donate to our scout Group (web)"
 msgstr "&Dona al nostro Gruppo Scout (web)"
 
-#: src/xrc/songpress.pos:118
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:126
 msgid "Open Songpress web site for donations"
 msgstr "Apre il sito di Songpress per donazioni"
 
-#: src/xrc/songpress.pos:119
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:127
 msgid "&About..."
 msgstr "&Informazioni su..."
 
-#: src/xrc/songpress.pos:120
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\xrc\songpress.pos:128
 msgid "Show credits"
 msgstr "Mostra i crediti"
+

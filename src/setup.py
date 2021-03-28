@@ -49,6 +49,7 @@ options = {
 		'include_files': include_files,
 		'include_msvcr': True,
 		'packages': ["multiprocessing", "idna.idnadata", "ssl"],
+		'excludes': ["numpy", "tkinter"],
 	}
 }
 
@@ -70,7 +71,7 @@ def build(version):
 		executables=[Executable(
 			"main.py",
 			base=base,
-			targetName='Songpress' if platform.system() == 'Linux' else "Songpress.exe",
+			target_name='Songpress' if platform.system() == 'Linux' else "Songpress.exe",
 			icon='img/songpress.ico',
 		)]
 	)

@@ -2,6 +2,10 @@ Required tools:
 - cx_freeze (pip install cx_freeze)
 - NSIS
 
-Adjust path of NSIS executable in pynsis.py if necessary, then run:
+Configure parameters in pynsis.py, such as:
+ - path of NSIS executable
+ - build path, depending on Python version (such as: src\build\exe.win32-3.9)
+
+Then run:
 
 python create_installer.py

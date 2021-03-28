@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2021-03-28 18:44+0200\n"
 "PO-Revision-Date: 2016-03-06 21:28+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,22 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/TransposeDialog.py:21
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\TransposeDialog.py:21
 msgid "Transpose"
 msgstr "Trasponi"
 
-#: src/TransposeDialog.py:29
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\TransposeDialog.py:29
 msgid "Chord notation:"
 msgstr "Notazione degli accordi:"
 
-#: src/TransposeDialog.py:42
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\TransposeDialog.py:42
 msgid "From key:"
 msgstr "Dalla tonalità:"
 
-#: src/TransposeDialog.py:55
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\TransposeDialog.py:55
 msgid "Semitones:"
 msgstr "Semitoni:"
 
-#: src/TransposeDialog.py:66
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\TransposeDialog.py:66
 msgid "To key:"
 msgstr "Alla tonalità:"

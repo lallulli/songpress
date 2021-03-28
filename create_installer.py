@@ -8,7 +8,7 @@ import shutil
 
 license_template = "license.txt.tpl"
 license_dest = "license.txt"
-python2_command = 'python'
+python_command = 'venv\\Scripts\\python.exe'
 
 
 class cd:
@@ -35,7 +35,7 @@ def prepare_license():
 def create_installer():
 	version = Globals.glb.VERSION
 	with cd('src'):
-		subprocess.call([python2_command, 'setup.py', 'build'])
+		subprocess.call([python_command, 'setup.py', 'build'])
 		pass
 	prepare_license()
 	if platform.system() == 'Linux':

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 22:35+0100\n"
+"POT-Creation-Date: 2021-03-28 18:44+0200\n"
 "PO-Revision-Date: 2016-03-06 21:25+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/CompositePropertyPanel.py:31
+#: C:\Users\Luca
+#: Allulli\Documents\dev\songpress\master\src\CompositePropertyPanel.py:31
 msgid "label"
 msgstr "etichetta"

@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"POT-Creation-Date: 2021-03-28 18:44+0200\n"
 "PO-Revision-Date: 2016-03-06 21:28+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/SDIMainFrame.py:128
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:128
 #, python-format
 msgid "%s files (*.%s)|%s"
 msgstr "File %s (*.%s)|%s"
 
-#: src/SDIMainFrame.py:135
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:135
 msgid "|All files (*.*)|*.*"
 msgstr "|Tutti i file (*.*)|*.*"
 
-#: src/SDIMainFrame.py:138
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:138
 msgid "Open file"
 msgstr "Apertura file"
 
-#: src/SDIMainFrame.py:154
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:154
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr "Il file \"%s\" non esiste."
 
-#: src/SDIMainFrame.py:178
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:178
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -57,29 +57,29 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/SDIMainFrame.py:186
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:186
 msgid "About "
 msgstr "Informazioni su "
 
-#: src/SDIMainFrame.py:229
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:229
 msgid "Untitled"
 msgstr "Senza titolo"
 
-#: src/SDIMainFrame.py:245
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:245
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr "La tua %s è stata modificata. Vuoi salvarla?"
 
-#: src/SDIMainFrame.py:261
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:261
 msgid "Choose a name for the file"
 msgstr "Scegli un nome per il file"
 
-#: src/SDIMainFrame.py:264
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:264
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr "File %s (*.%s)|*.%s|Tutti i file (*.*)|*.*"
 
-#: src/SDIMainFrame.py:276
+#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:276
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr "Il file \"%s\" esiste già. Vuoi sovrascriverlo?"

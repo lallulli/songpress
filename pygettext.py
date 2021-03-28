@@ -23,7 +23,7 @@ type = PO
 """
 
 def execute(path, relpath, xrc=False, lang=[], tx=None):
-	print path
+	print(path)
 	tx_out = ""
 	d = os.listdir(path)
 	created = []
@@ -41,13 +41,13 @@ def execute(path, relpath, xrc=False, lang=[], tx=None):
 				if e == '.py' or (xrc and e == '.xrc'):
 					pot = os.path.join(path, n + '.pot')
 					s = 'xgettext -L python "%s" -o "%s"' % (fp, pot)
-					print s
+					print(s)
 					os.system(s)
 					if os.path.isfile(pot):
 						created.append(n + ".pot")
 						if tx is not None:
 							slug = n
-							print "Relpath", relpath
+							print("Relpath", relpath)
 							if relpath in tx['slugs']:
 								slug = tx['slugs'][relpath]
 							tx_out += transifex_item.format(
@@ -70,10 +70,10 @@ def execute(path, relpath, xrc=False, lang=[], tx=None):
 				fo = os.path.join(path, f)
 				if os.path.isfile(fn):
 					s = 'msgmerge -U "%s" "%s"' % (fn, fo)
-					print s
+					print(s)
 					os.system(s)
 					s = 'msgfmt -o "%s" "%s"' % (fm, fn)
-					print s
+					print(s)
 					os.system(s)
 				else:
 					shutil.copy(fo, fn)
@@ -89,7 +89,7 @@ def tx_pull(dir, mode):
 	pwd = os.getcwd()
 	os.chdir(dir)
 	c = 'tx pull --mode {}'.format(mode)
-	print c
+	print(c)
 	os.system(c)
 	os.chdir(pwd)
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
 	parser.add_option("-l", "--languages", dest="lang",
 										help="comma-separated list of languages to handle (init, merge)")
 	parser.add_option("-x", "--xrc",
-										action="store_true", dest="xrc", default=False,
+										action="store_true", dest="xrc", default=True,
 										help="process xrc files (wxWidgets required)")
 
 	(options, args) = parser.parse_args()
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 	else:
 		lang = []
 	if options.dir == None:
-		path = os.path.abspath(os.curdir)
+		path = os.path.join(os.path.abspath(os.curdir), 'src')
 	else:
 		path = options.dir
 	execute(path, '', options.xrc, lang)

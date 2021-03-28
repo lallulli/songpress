@@ -1,3 +1,4 @@
 wxPython
 requests
 python-pptx
+cx_Freeze
