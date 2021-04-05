@@ -48,7 +48,7 @@ options = {
 	'build_exe': {
 		'include_files': include_files,
 		'include_msvcr': True,
-		'packages': ["multiprocessing", "idna.idnadata", "ssl"],
+		'packages': ["multiprocessing", "idna.idnadata", "ssl", "win32api"],
 		'excludes': ["numpy", "tkinter"],
 	}
 }

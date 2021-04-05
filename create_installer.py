@@ -8,7 +8,11 @@ import shutil
 
 license_template = "license.txt.tpl"
 license_dest = "license.txt"
-python_command = 'venv\\Scripts\\python.exe'
+python_command = '.\\venv38\\Scripts\\python.exe'
+# python_command = 'py'
+
+
+python_command = os.path.join(os.getcwd(), python_command)
 
 
 class cd:

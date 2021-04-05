@@ -2,3 +2,4 @@ wxPython
 requests
 python-pptx
 cx_Freeze
+pywin32

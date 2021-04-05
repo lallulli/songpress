@@ -110,6 +110,14 @@ LangString TabSectionNameLS ${LANG_ITALIAN} "Associa i file TAB"
 LangString FileAssociationSG ${LANG_ENGLISH} "File type association"
 LangString FileAssociationSG ${LANG_ITALIAN} "Associa tipi di file"
 
+;Section "Visual Studio Runtime"
+;  SetOutPath "$INSTDIR"
+;  SetOverwrite on
+;  File "installer\VC_redist.x86.exe"
+;  ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+;  Delete "$INSTDIR\VC_redist.x86.exe"
+;SectionEnd
+
 Section $(SongpressSectionNameLS) SongpressSection
 
   push $R0
@@ -120,7 +128,7 @@ Section $(SongpressSectionNameLS) SongpressSection
   SetShellVarContext all
   SectionIn RO
   SetOutPath "$INSTDIR"
-  SetOverwrite try
+  SetOverwrite on
 {{Installation}}
 SetOutPath "$INSTDIR"
 
@@ -214,7 +222,7 @@ SectionEnd
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
-LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) è stato disinstallato con successo."
+LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) ï¿½ stato disinstallato con successo."
 
 Function un.onUninstSuccess
   HideWindow

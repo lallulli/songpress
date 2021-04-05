@@ -4,7 +4,7 @@ import shutil
 import subprocess
 #from optparse import OptionParser
 
-dir = "src\\build\\exe.win32-3.9"
+dir = "src\\build\\exe.win32-3.8"
 source = "installer\\songpress.nsi.tpl"
 dest = "songpress.nsi"
 nsis_path = r"C:\Program Files (x86)\NSIS\makensis.exe"

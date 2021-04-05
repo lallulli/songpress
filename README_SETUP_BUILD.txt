@@ -4,7 +4,7 @@ Required tools:
 
 Configure parameters in pynsis.py, such as:
  - path of NSIS executable
- - build path, depending on Python version (such as: src\build\exe.win32-3.9)
+ - build path, depending on Python version (such as: src\build\exe.win32-3.8)
 
 Then run:
 
