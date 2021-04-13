@@ -141,15 +141,13 @@ class SongpressFindReplaceDialog(object):
 		if self.case:
 			flags |= wx.stc.STC_FIND_MATCHCASE
 		self.owner.text.SetSelection(0, 0)
-		p = 0
 		c = 0
-		while p != -1:
-			p = self.owner.text.FindText(p, self.owner.text.GetLength(), s, flags)
-			if p != -1:
-				self.owner.text.SetTargetStart(p)
-				self.owner.text.SetTargetEnd(p + len(s))
-				p += self.owner.text.ReplaceTarget(r)
-				c += 1
+		p = 0
+		while (p := self.owner.text.FindText(p, self.owner.text.GetLength(), s, flags)[0]) != -1:
+			self.owner.text.SetTargetStart(p)
+			self.owner.text.SetTargetEnd(p + len(s))
+			p += self.owner.text.ReplaceTarget(r)
+			c += 1
 
 		self.owner.text.EndUndoAction()
 
