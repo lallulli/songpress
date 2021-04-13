@@ -123,11 +123,6 @@ ptNotation = Notation(
 	]
 )
 
-defaultLangNotation = {
-	'en': enNotation,
-	'it': itNotation,
-	'fr': frNotation,
-}
 
 easyChords = {
 	'basic': (_("Basic chords (A, E, D)"), ["A", "E", "D"], 4),
@@ -212,6 +207,14 @@ tradDeNotation = TraditionalGermanNotation(
 		('Db', 'Des'),
 	]
 )
+
+
+defaultLangNotation = {
+	'en': enNotation,
+	'it': itNotation,
+	'fr': frNotation,
+	'de': deNotation,
+}
 
 
 naturalScale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']

@@ -117,10 +117,10 @@ class Preferences(object):
 			self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
 		else:
 			lang = i18n.getLang()
+			self.defaultNotation = None
 			if lang in defaultLangNotation:
 				n = defaultLangNotation[lang].id
 				self.notations = [x for x in self.notations if x.id == n] + [x for x in self.notations if x.id != n]
-				self.defaultNotation = None
 		self.config.SetPath('/AutoAdjust')
 		spuriousLines = self.config.Read('spuriousLines')
 		if spuriousLines:
