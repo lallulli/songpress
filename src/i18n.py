@@ -14,6 +14,7 @@ import os.path
 import locale
 import sys
 from Globals import *
+import wx
 
 
 registered_modules = []
@@ -47,10 +48,15 @@ _ = lambda x: x
 
 
 def setLang(l):
-	global current_language
+	global current_language, mylocale
 	current_language = l
+	langid = wx.Locale.FindLanguageInfo(l).Language
+	mylocale = wx.Locale(langid)
+	localedir = os.path.join(glb.path, "locale")
+	mylocale.AddCatalogLookupPathPrefix(localedir)
 	for mod in registered_modules:
-		mod._ = wx.GetTranslation
+		domain = mod.__name__
+		mylocale.AddCatalog(domain)
 
 
 def getLang():
@@ -74,20 +80,12 @@ def register(moduleName=None):
 	else:
 		mod = sys.modules[moduleName]
 	registered_modules.append(mod)
-	if current_language == defaultLang:
-		mod._ = gettext.NullTranslations().gettext
-	else:
-		mod._ = wx.GetTranslation
+	mod._ = wx.GetTranslation
 
 
 def localizeXrc(filename):
-	import wx
 	if current_language != defaultLang:
-		langid = wx.Locale.FindLanguageInfo(current_language).Language
 		d, domain = os.path.split(filename)
 		localedir = os.path.join(glb.AddPath(d), "locale")
-		# Set locale for wxWidgets
-		global mylocale
-		mylocale = wx.Locale(langid)
 		mylocale.AddCatalogLookupPathPrefix(localedir)
 		mylocale.AddCatalog(domain)
