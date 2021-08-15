@@ -28,9 +28,13 @@ defaultLang = None
 supportedLangs = None
 
 
-def GetDomainAndLocale(name):
-	d, f = os.path.split(name.replace('.', '/'))
-	return (f, os.path.join(d, "locale"))
+"""
+Client shall:
+1. Call `init`
+2. Call either `setLang` (if a langugage is chosen by the user)
+   or `setSystemLang`
+"""
+
 
 def init(default_lang, supported_langs):
 	global defaultLang
@@ -47,11 +51,6 @@ def setLang(l):
 	current_language = l
 	for mod in registered_modules:
 		mod._ = wx.GetTranslation
-		# if l != defaultLang[0]:
-		# 	d, loc = GetDomainAndLocale(mod.__name__)
-		# 	mod._ = gettext.translation(d, glb.AddPath(loc), languages=lang, codeset="iso-8859-1").gettext
-		# else:
-		# 	mod._ = gettext.NullTranslations().gettext
 
 
 def getLang():
@@ -74,12 +73,11 @@ def register(moduleName=None):
 		moduleName = mod.__name__
 	else:
 		mod = sys.modules[moduleName]
-	d, loc = GetDomainAndLocale(moduleName)
 	registered_modules.append(mod)
 	if current_language == defaultLang:
 		mod._ = gettext.NullTranslations().gettext
 	else:
-		mod._ = gettext.translation(d, glb.AddPath(loc), languages=current_language, codeset="iso-8859-1").gettext
+		mod._ = wx.GetTranslation
 
 
 def localizeXrc(filename):
