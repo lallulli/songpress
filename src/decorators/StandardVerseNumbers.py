@@ -111,12 +111,12 @@ class Decorator(SongDecorator):
 				ry = ty - self.format.topPadding * baseHeight
 				brush = wx.Brush(background, wx.SOLID)
 				self.dc.SetBrush(brush)
-				self.dc.DrawRectangle(rx, ry,
-					w + baseWidth * (self.format.leftPadding + self.format.rightPadding),
-					h + baseHeight * (self.format.topPadding + self.format.bottomPadding))
+				self.dc.DrawRectangle(int(rx), int(ry),
+					int(w + baseWidth * (self.format.leftPadding + self.format.rightPadding)),
+					int(h + baseHeight * (self.format.topPadding + self.format.bottomPadding)))
 				brush = wx.Brush(foreground, wx.SOLID)
 				self.dc.SetBrush(brush)
 				self.dc.SetTextForeground(foreground)
 				self.dc.SetBackgroundMode(wx.TRANSPARENT)
-				self.dc.DrawText(text, tx, ty)
+				self.dc.DrawText(text, int(tx), int(ty))
 				self.dc.SetTextForeground(self.wxBlack)

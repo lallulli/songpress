@@ -64,7 +64,7 @@ class FontFormat(AttributeMonitor):
 			weight = wx.FONTWEIGHT_BOLD
 		else:
 			weight = wx.FONTWEIGHT_NORMAL
-		self.wxFont = wx.Font(self.size, wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
+		self.wxFont = wx.Font(int(self.size), wx.FONTFAMILY_DEFAULT, style, weight, self.underline, self.face)
 
 
 class ParagraphFormat(FontFormat):

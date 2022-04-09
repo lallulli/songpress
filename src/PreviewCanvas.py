@@ -53,7 +53,7 @@ class PreviewCanvas(object):
 		dc.SetBackground(wx.WHITE_BRUSH)
 		dc.Clear()
 		w, h = self.renderer.Render(self.text, dc)
-		self.panel.SetVirtualSize(wx.Size(w, h))
+		self.panel.SetVirtualSize(wx.Size(int(w), int(h)))
 		
 
 	def Refresh(self, text):
