@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "Songpress"
+version = "1.9.0"
+description = "Songpress is a free, easy to use song typeset program for Windows and Linux, that generates high-quality songbooks."
+authors = ["Luca Allulli <luca@skeed.it>"]
+license = "GNU GPL v2"
+
+packages = [
+    { include = "songpress", from = "src" },
+]
+
+[tool.poetry.scripts]
+songpress = "songpress.main:main"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+wxPython = "^4.2.3"
+requests = "^2.32.4"
+python-pptx = "^1.0.2"
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

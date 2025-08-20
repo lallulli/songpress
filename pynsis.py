@@ -1,6 +1,5 @@
 import os
 import os.path
-import shutil
 import subprocess
 #from optparse import OptionParser
 
@@ -61,8 +60,9 @@ def call_nsis():
 	
 	
 if __name__ == '__main__':
-	from src import Globals
-	prepare_nsis_file(Globals.glb.VERSION)
+	from songpress import Globals
+
+    prepare_nsis_file(Globals.glb.VERSION)
 	dedup_dll()
 	call_nsis()
 

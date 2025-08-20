@@ -1,6 +1,5 @@
 import pynsis
-from src import Globals
-import sys
+from songpress import Globals
 import os, os.path
 import subprocess
 import platform
