@@ -524,7 +524,7 @@ class SongpressFrame(SDIMainFrame):
 			dc = wx.MemoryDC(wx.EmptyBitmap(1, 1))
 			scale = 1
 			w, h = self.DrawOnDC(dc)
-			b = wx.EmptyBitmap(w * scale, h * scale)
+			b = wx.EmptyBitmap(int(w * scale), int(h * scale))
 			dc = wx.MemoryDC(b)
 			dc.SetUserScale(scale, scale)
 			dc.SetBackground(wx.WHITE_BRUSH);
@@ -564,7 +564,7 @@ class SongpressFrame(SDIMainFrame):
 		if n is not None:
 			dc = wx.MemoryDC(wx.Bitmap(1, 1))
 			w, h = self.DrawOnDC(dc)
-			dc = wx.SVGFileDC(n, w, h)
+			dc = wx.SVGFileDC(n, int(w), int(h))
 			self.DrawOnDC(dc)
 
 	def OnExportAsEmf(self, evt):
