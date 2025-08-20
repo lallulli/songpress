@@ -33,7 +33,11 @@ class SongpressApp(wx.App):
         return True
 
 
-if __name__ == '__main__':
+def main():
     sys.excepthook = dev_tool.ExceptionHook
     songpressApp = SongpressApp()
     songpressApp.MainLoop()
+
+
+if __name__ == '__main__':
+    main()
