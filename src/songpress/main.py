@@ -12,7 +12,6 @@ import sys, os
 import wx
 
 from .Globals import glb
-from . import SongpressFrame
 from . import i18n
 from . import dev_tool
 
@@ -30,12 +29,18 @@ class SongpressApp(wx.App):
             i18n.setLang(l)
         else:
             i18n.setSystemLang()
+
+        from . import SongpressFrame
         self.res = wx.xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
         songpressFrame = SongpressFrame.SongpressFrame(self.res)
         return True
 
 
 def main():
+    if "--create-shortcuts" in sys.argv:
+        from .shortcuts import create_shortcuts
+        create_shortcuts()
+        return
     sys.excepthook = dev_tool.ExceptionHook
     songpressApp = SongpressApp()
     songpressApp.MainLoop()
