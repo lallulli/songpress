@@ -31,6 +31,7 @@ from . import MyUpdateDialog
 from .Globals import glb
 from .Preferences import Preferences
 from . import i18n
+from .utils import temp_dir
 
 _ = wx.GetTranslation
 
@@ -357,6 +358,8 @@ class SongpressFrame(SDIMainFrame):
         Bind(self.OnRedo, 'redo')
         Bind(self.OnCut, 'cut')
         Bind(self.OnCopy, 'copy')
+        if platform.system() == 'Linux':
+            self.text.Bind(EVT_STC_CLIPBOARD_COPY, self.OnCopyFromText, self.text)
         Bind(self.OnCopyAsImage, 'copyAsImage')
         Bind(self.OnCopyOnlyText, 'copyOnlyText')
         Bind(self.OnPaste, 'paste')
@@ -571,12 +574,17 @@ class SongpressFrame(SDIMainFrame):
             with open(n, "w", encoding='utf-8') as f:
                 f.write(t.getTab())
 
+    def SaveSvg(self, filename, size=None):
+        if size is None:
+            size = self.ComputeRenderedSize()
+        w, h = size
+        dc = wx.SVGFileDC(filename, int(w), int(h))
+        self.DrawOnDC(dc)
+
     def OnExportAsSvg(self, evt):
         n = self.AskExportFileName(_("SVG image"), "svg")
         if n is not None:
-            w, h = self.ComputeRenderedSize()
-            dc = wx.SVGFileDC(n, int(w), int(h))
-            self.DrawOnDC(dc)
+            self.SaveSvg(n)
 
     def OnExportAsEmf(self, evt):
         n = self.AskExportFileName(_("Enhanced Metafile"), "emf")
@@ -644,17 +652,63 @@ class SongpressFrame(SDIMainFrame):
         self.UpdateCutCopyPaste()
         evt.Skip()
 
+    def Copy(self):
+        if platform.system() == 'Windows':
+            self.text.Copy()
+
+        else:
+            composite = wx.DataObjectComposite()
+            size = self.ComputeRenderedSize()
+
+            # SVG
+            with temp_dir() as path:
+                svg_obj = wx.CustomDataObject("image/svg+xml")
+                fp = os.path.join(path, 'temp.svg')
+                self.SaveSvg(fp, size=size)
+                with open(fp, 'rb') as f:
+                    svg_obj.SetData(f.read())
+                composite.Add(svg_obj, preferred=True)
+
+            # 2. PNG
+            bmp = self.RenderAsPng(scale=2, size=size)
+            png_obj = wx.BitmapDataObject(bmp)
+            composite.Add(png_obj)
+
+            # 3. Plain text
+            txt_obj = wx.TextDataObject(self.text.GetSelectedText())
+            composite.Add(txt_obj)
+
+            # Place on Clipboard
+            if wx.TheClipboard.Open():
+                wx.TheClipboard.SetData(composite)
+                wx.TheClipboard.Close()
+
     def OnCopy(self, evt):
-        self.text.Copy()
+        self.Copy()
+
+    def OnCopyFromText(self, evt):
+        """
+        Called on copy event triggered by text editor
+
+        The event is triggered before copying text to clipboard,
+        and copying cannot be disabled, due to how Scintilla works.
+        Thus, we call the self.Copy method after event processing is done,
+        in order to overwrite clipboard content with new content, with images.
+        """
+        wx.CallAfter(self.Copy)
 
     def OnCopyOnlyText(self, evt):
         self.text.CopyOnlyText()
 
     def OnCopyAsImage(self, evt):
-        dc = wx.msw.MetafileDC()
-        self.DrawOnDC(dc)
-        m = dc.Close()
-        m.SetClipboard(dc.MaxX(), dc.MaxY())
+        if platform.system() == 'Windows':
+            # Windows Metafile
+            dc = wx.MetafileDC()
+            self.DrawOnDC(dc)
+            m = dc.Close()
+            m.SetClipboard(dc.MaxX(), dc.MaxY())
+        else:
+            self.OnCopy()
 
     def OnPaste(self, evt):
         self.text.Paste()
