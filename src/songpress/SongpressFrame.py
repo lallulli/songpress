@@ -590,7 +590,7 @@ class SongpressFrame(SDIMainFrame):
 
     def OnExportAsPptx(self, evt):
         try:
-            import songimpress
+            from . import songimpress
         except ImportError:
             msg = _("Please install the python-pptx module to use this feature")
             d = wx.MessageDialog(self.frame, msg, "Songpress", wx.OK | wx.ICON_ERROR)
