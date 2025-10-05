@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,123 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:27
+#: src/songpress/PreferencesDialog.py:28
 msgid "Songpress options"
 msgstr "Opzioni di Songpress"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:40
+#: src/songpress/PreferencesDialog.py:41
 msgid "Editor font"
 msgstr "Carattere editor"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:47
+#: src/songpress/PreferencesDialog.py:48
 msgid "Size"
 msgstr "Dimensione"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "7"
 msgstr "7"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "8"
 msgstr "8"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "9"
 msgstr "9"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "10"
 msgstr "10"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "11"
 msgstr "11"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:53
+#: src/songpress/PreferencesDialog.py:52 src/songpress/PreferencesDialog.py:54
 msgid "12"
 msgstr "12"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "13"
 msgstr "13"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "14"
 msgstr "14"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "16"
 msgstr "16"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "18"
 msgstr "18"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:52
+#: src/songpress/PreferencesDialog.py:53
 msgid "20"
 msgstr "20"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:62
+#: src/songpress/PreferencesDialog.py:63
 msgid "Preview"
 msgstr "Anteprima"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:73
+#: src/songpress/PreferencesDialog.py:74
 msgid "Default notation"
 msgstr "Notazione predefinita"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:87
+#: src/songpress/PreferencesDialog.py:88
 msgid "Check for updates every"
 msgstr "Verifica disponibilità di aggiornamenti ogni"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:101
+#: src/songpress/PreferencesDialog.py:102
 msgid "Default file extension"
 msgstr "Estensione dei file predefinita"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:115
+#: src/songpress/PreferencesDialog.py:116
 msgid "Language"
 msgstr "Language"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:129
+#: src/songpress/PreferencesDialog.py:130
 msgid "General"
 msgstr "Generale"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:133
+#: src/songpress/PreferencesDialog.py:134
 msgid "Offer to remove blank lines"
 msgstr "Proponi di rimuovere le linee vuote"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:137
+#: src/songpress/PreferencesDialog.py:138
 msgid "Offer to convert songs in tab"
 msgstr "Proponi di convertire il formato delle canzoni da tab a ChordPro"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:141
+#: src/songpress/PreferencesDialog.py:142
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proponi di trasporre le canzoni per semplificare gli accordi"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\PreferencesDialog.py:155
+#: src/songpress/PreferencesDialog.py:156
 msgid "AutoAdjust"
 msgstr "Strumenti automatici"

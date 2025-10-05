@@ -9,10 +9,9 @@
 
 import wx
 
-from . import i18n
 
+_ = wx.GetTranslation
 
-i18n.register('songpress.TransposeDialog')
 
 ###########################################################################
 ## Class TransposeDialog

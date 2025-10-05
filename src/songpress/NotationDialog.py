@@ -9,8 +9,7 @@
 ###########################################################################
 
 import wx
-from . import i18n
-i18n.register('songpress.NotationDialog')
+_ = wx.GetTranslation
 
 ###########################################################################
 ## Class NotationDialog

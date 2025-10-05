@@ -10,9 +10,9 @@
 
 from .PreviewCanvas import *
 from .FontComboBox import FontComboBox
-from . import i18n
 
-i18n.register('songpress.FontFaceDialog')
+_ = wx.GetTranslation
+
 
 class FontFaceDialog(wx.Dialog):
 	def __init__(self, parent, id, title, songFormat, songDecorator, decoratorFormat):

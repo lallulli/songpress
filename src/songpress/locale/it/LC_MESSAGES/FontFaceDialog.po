@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,19 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:28
+#: src/songpress/FontFaceDialog.py:27
 msgid "Font"
 msgstr "Carattere"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:40
+#: src/songpress/FontFaceDialog.py:39
 msgid "Preview"
 msgstr "Anteprima"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:46
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:82
+#: src/songpress/FontFaceDialog.py:45 src/songpress/FontFaceDialog.py:81
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -52,12 +48,10 @@ msgstr ""
 "era goba anche [Do]quela la fa[Sol]miglia dei go[Do]bon.\n"
 "{eoc}"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:56
+#: src/songpress/FontFaceDialog.py:55
 msgid "OK"
 msgstr "OK"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\FontFaceDialog.py:59
+#: src/songpress/FontFaceDialog.py:58
 msgid "Cancel"
 msgstr "Annulla"

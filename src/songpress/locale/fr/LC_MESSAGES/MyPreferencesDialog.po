@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 21:42+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-06 21:29+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/MyPreferencesDialog.py:33
+#: src/songpress/MyPreferencesDialog.py:33
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -40,11 +40,11 @@ msgstr ""
 "[A]bring back my Bonnie to [D]me!\n"
 "{eoc}"
 
-#: src/MyPreferencesDialog.py:119
+#: src/songpress/MyPreferencesDialog.py:119
 msgid "Language settings will be applied when you restart Songpress."
 msgstr ""
 "Les paramètres de langues seront appliqués après redémarrage de Songpress."
 
-#: src/MyPreferencesDialog.py:120
+#: src/songpress/MyPreferencesDialog.py:120
 msgid "Songpress"
 msgstr "Songpress"

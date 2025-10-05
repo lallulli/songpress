@@ -9,12 +9,13 @@
 
 import platform
 
+import wx
 import wx.adv
 
 from .Renderer import *
-from . import i18n
 
-i18n.register('songpress.PreviewCanvas')
+
+_ = wx.GetTranslation
 
 
 class PreviewCanvas(object):

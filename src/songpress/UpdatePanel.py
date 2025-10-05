@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*- 
 
-from . import i18n
+import wx
+import wx.html
 
-i18n.register('songpress.UpdatePanel')
+_ = wx.GetTranslation
+
 
 # -*- coding: utf-8 -*- 
 
@@ -13,8 +15,6 @@ i18n.register('songpress.UpdatePanel')
 ## PLEASE DO "NOT" EDIT THIS FILE!
 ###########################################################################
 
-import wx
-import wx.html
 
 ###########################################################################
 ## Class UpdatePanel

@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # l.allulli <l.allulli@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
-"PO-Revision-Date: 2019-02-09 17:44+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"PO-Revision-Date: 2025-08-23 12:47+0200\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
 "it/)\n"
@@ -18,88 +18,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:54
+#: src/songpress/SongpressFrame.py:52
 msgid "Replace"
 msgstr "Sostituisci"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:54
+#: src/songpress/SongpressFrame.py:52
 msgid "Find"
 msgstr "Trova"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:98
+#: src/songpress/SongpressFrame.py:96
 msgid "beginning"
 msgstr "l'inizio"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:99
+#: src/songpress/SongpressFrame.py:97
 msgid "Reached the end"
 msgstr "Raggiunta la fine"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:102
+#: src/songpress/SongpressFrame.py:100
 msgid "end"
 msgstr "la fine"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:103
+#: src/songpress/SongpressFrame.py:101
 msgid "Reached the beginning"
 msgstr "Raggiunto l'inizio"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:107
+#: src/songpress/SongpressFrame.py:105
 #, python-format
 msgid "%s of the song, restarting search from the %s"
 msgstr "%s della canzone; la ricerca riprende dal%s"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:118
+#: src/songpress/SongpressFrame.py:116
 msgid "The specified text was not found"
 msgstr "Il testo immesso non è stato trovato"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:158
+#: src/songpress/SongpressFrame.py:154
 #, python-format
 msgid "%d text occurrences have been replaced"
 msgstr "Sono state sostituite %d occorrenze del testo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:173
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:183
+#: src/songpress/SongpressFrame.py:169 src/songpress/SongpressFrame.py:179
 msgid "All supported files"
 msgstr "Tutti i file supportati"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:184
+#: src/songpress/SongpressFrame.py:180
 msgid "Chordpro files (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
 msgstr "File ChordPro (*.crd, *.cho, *.chordpro, *.chopro, *.pro)"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:185
+#: src/songpress/SongpressFrame.py:181
 msgid "Tab files (*.tab)"
 msgstr "File in formato tab (*.tab)"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:197
+#: src/songpress/SongpressFrame.py:193
 msgid "song"
 msgstr "canzone"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:199
+#: src/songpress/SongpressFrame.py:195
 msgid "Songpress - Il Canzonatore"
 msgstr "Songpress - Il Canzonatore"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:202
+#: src/songpress/SongpressFrame.py:198
 msgid "http://www.skeed.it/songpress"
 msgstr "http://www.skeed.it/songpress"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:203
+#: src/songpress/SongpressFrame.py:199
 #, python-brace-format
 msgid ""
 "Copyright (c) 2009-{year} Luca Allulli - Skeed\n"
@@ -110,8 +93,7 @@ msgstr ""
 "Localizzazione:\n"
 "{translations}"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:207
+#: src/songpress/SongpressFrame.py:203
 msgid ""
 "Licensed under the terms and conditions of the GNU General Public License, "
 "version 2"
@@ -119,8 +101,7 @@ msgstr ""
 "Concesso in licenza secondo i termini e le condizioni della GNU General "
 "Public License, versione 2"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:209
+#: src/songpress/SongpressFrame.py:205
 msgid ""
 "Special thanks to:\n"
 "  * The Pyhton programming language (http://www.python.org)\n"
@@ -138,186 +119,147 @@ msgstr ""
 "per l'editor in quanto tale!)\n"
 "  * python-pptx (per l'esportazione in PowerPoint)"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:221
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:324
+#: src/songpress/SongpressFrame.py:217 src/songpress/SongpressFrame.py:321
 msgid "Preview"
 msgstr "Anteprima"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:226
+#: src/songpress/SongpressFrame.py:222
 msgid "New"
 msgstr "Nuovo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:226
+#: src/songpress/SongpressFrame.py:222
 msgid "Create a new song"
 msgstr "Crea una nuova canzone"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:227
+#: src/songpress/SongpressFrame.py:223
 msgid "Open"
 msgstr "Apri"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:227
+#: src/songpress/SongpressFrame.py:223
 msgid "Open an existing song"
 msgstr "Apre una canzone esistente"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:228
+#: src/songpress/SongpressFrame.py:224
 msgid "Save"
 msgstr "Salva"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:228
+#: src/songpress/SongpressFrame.py:224
 msgid "Save song with the current filename"
 msgstr "Salva la canzone con il nome del file attuale"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:230
+#: src/songpress/SongpressFrame.py:226
 msgid "Undo"
 msgstr "Annulla"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:230
+#: src/songpress/SongpressFrame.py:226
 msgid "Undo last edit"
 msgstr "Annulla l'ultima modifica"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:231
+#: src/songpress/SongpressFrame.py:228
 msgid "Redo"
 msgstr "Ripeti"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:231
+#: src/songpress/SongpressFrame.py:228
 msgid "Redo previously undone edit"
 msgstr "Ripete la modifica precedentemente annullata"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:234
+#: src/songpress/SongpressFrame.py:231
 msgid "Cut"
 msgstr "Taglia"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:235
+#: src/songpress/SongpressFrame.py:232
 msgid "Move selected text in the clipboard"
 msgstr "Sposta il testo selezionato negli appunti"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:236
+#: src/songpress/SongpressFrame.py:233
 msgid "Copy"
 msgstr "Copia"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:237
+#: src/songpress/SongpressFrame.py:234
 msgid "Copy selected text in the clipboard"
 msgstr "Copia il testo selezionato negli appunti"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:240
+#: src/songpress/SongpressFrame.py:237
 msgid "Copy as Image"
 msgstr "Copia come immagine"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:241
+#: src/songpress/SongpressFrame.py:238
 msgid "Copy the whole FORMATTED song (or selected verses) to the clipboard"
 msgstr ""
 "Copia la canzone FORMATTATA (tutta o le strofe selezionate) negli appunti"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:242
+#: src/songpress/SongpressFrame.py:239
 msgid "Paste"
 msgstr "Incolla"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:243
+#: src/songpress/SongpressFrame.py:240
 msgid "Read text from the clipboard and place it at the cursor position"
 msgstr ""
 "Lagge il testo dagli appunti e lo inserisce nella posizione del cursore"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:244
+#: src/songpress/SongpressFrame.py:241
 msgid "PasteChords"
 msgstr "Incolla Accordi"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:245
+#: src/songpress/SongpressFrame.py:242
 msgid "Integrate chords of copied text into current selection"
 msgstr "Integra gli accordi del testo copiato nella selezione corrente"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:248
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:325
+#: src/songpress/SongpressFrame.py:245 src/songpress/SongpressFrame.py:322
 msgid "Standard"
 msgstr "Standard"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:260
+#: src/songpress/SongpressFrame.py:257
 msgid "Insert title"
 msgstr "Inserisci titolo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:261
+#: src/songpress/SongpressFrame.py:258
 msgid "Insert a command to display song title"
 msgstr "Inserisce un comando che mostra il titolo della canzone"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:262
+#: src/songpress/SongpressFrame.py:259
 msgid "Insert chord"
 msgstr "Inserisci accordo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:263
+#: src/songpress/SongpressFrame.py:260
 msgid "Insert square brackets that will host a chord"
 msgstr "Inserisce delle parentesi quadre, che conterranno un accordo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:264
+#: src/songpress/SongpressFrame.py:261
 msgid "Insert chorus"
 msgstr "Inserisci ritornello"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:265
+#: src/songpress/SongpressFrame.py:262
 msgid "Insert a couple of commands that will contain chorus"
 msgstr "Inserisce due comandi, tra i quali scrivere il ritornello"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:270
+#: src/songpress/SongpressFrame.py:267
 msgid "Insert verse with custom label or without label"
 msgstr "Inserisci una strofa con un'etichetta personalizzata o senza etichetta"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:271
+#: src/songpress/SongpressFrame.py:268
 msgid "Insert a commands that will display a verse with a custom label"
 msgstr ""
 "Inserisce un comando per mostrare una strofa con un'etichetta "
 "personalizzabile"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:279
+#: src/songpress/SongpressFrame.py:276
 msgid "Show verse labels"
 msgstr "Mostra le etichette delle strofe"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:280
+#: src/songpress/SongpressFrame.py:277
 msgid "Show or hide verse and chorus labels"
 msgstr "Mostra o nasconde le etichette delle strofe e dei ritornelli"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:287
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:288
+#: src/songpress/SongpressFrame.py:284 src/songpress/SongpressFrame.py:285
 msgid "Hide or show chords in formatted song"
 msgstr "Nasconde o mostra gli accordi nella canzone formattata"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:298
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:326
+#: src/songpress/SongpressFrame.py:295 src/songpress/SongpressFrame.py:323
 msgid "Format"
 msgstr "Formattazione"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:329
+#: src/songpress/SongpressFrame.py:326
 msgid ""
 "You are not a skilled guitarist? Songpress can help you: when you open a "
 "song, it can detect if chords are difficult. If this is the case, Songpress "
@@ -333,16 +275,12 @@ msgstr ""
 "\n"
 "Vuoi attivare questa funzionalità?"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:330
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:335
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:760
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:918
+#: src/songpress/SongpressFrame.py:327 src/songpress/SongpressFrame.py:332
+#: src/songpress/SongpressFrame.py:757 src/songpress/SongpressFrame.py:915
 msgid "Songpress"
 msgstr "Songpress"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:334
+#: src/songpress/SongpressFrame.py:331
 msgid ""
 "Please take a minute to set up your skill as a guitarist. For each group of "
 "chords, tell Songpress how much you like them."
@@ -351,92 +289,72 @@ msgstr ""
 "chitarrista. Esprimi il tuo grado di preferenza per ciascuno dei gruppi di "
 "accordi che ti verranno presentati."
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:524
+#: src/songpress/SongpressFrame.py:521
 msgid "PNG image"
 msgstr "Immagine PNG"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:539
+#: src/songpress/SongpressFrame.py:536
 msgid "HTML file"
-msgstr "File HTML..."
+msgstr "File HTML"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:552
-#, fuzzy
+#: src/songpress/SongpressFrame.py:549
 msgid "TAB file"
-msgstr "File HTML..."
+msgstr "File TAB"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:565
+#: src/songpress/SongpressFrame.py:562
 msgid "SVG image"
 msgstr "Immagine SVG"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:573
+#: src/songpress/SongpressFrame.py:570
 msgid "Enhanced Metafile"
 msgstr "Metafile avanzato"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:580
+#: src/songpress/SongpressFrame.py:577
 msgid "EPS image"
 msgstr "Immagine EPS"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:587
+#: src/songpress/SongpressFrame.py:584
 msgid "Exporting image as EPS..."
 msgstr "Esportazione in formato EPS..."
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:596
+#: src/songpress/SongpressFrame.py:593
 msgid "Please install the python-pptx module to use this feature"
 msgstr "Installa il modulo python-pptx per usare questa funzionalità"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:608
+#: src/songpress/SongpressFrame.py:605
 msgid "Please select a template for your PowerPoint presentation:"
 msgstr "Scegli un template per la presentazione PowerPoint:"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:609
+#: src/songpress/SongpressFrame.py:606
 msgid "Export as PowerPoint"
 msgstr "Esporta come PowerPoint"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:613
+#: src/songpress/SongpressFrame.py:610
 msgid "PPTX presentation"
 msgstr "Presentazione PPTX"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:738
+#: src/songpress/SongpressFrame.py:735
 msgid "http://www.skeed.it/songpress-manual"
 msgstr "http://www.skeed.it/songpress-manuale"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:757
+#: src/songpress/SongpressFrame.py:754
 msgid "http://www.skeed.it/songpress#donate"
 msgstr "http://www.skeed.it/songpress-it#donate"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:808
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:970
+#: src/songpress/SongpressFrame.py:805 src/songpress/SongpressFrame.py:967
 msgid "Simplify chords"
 msgstr "Semplifica gli accordi"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:810
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:968
+#: src/songpress/SongpressFrame.py:807 src/songpress/SongpressFrame.py:965
 #, python-format
 msgid ""
-"The key of your song, %s, is not the easiest to play (difficulty: "
-"%.1f/5.0).\n"
+"The key of your song, %s, is not the easiest to play (difficulty: %.1f/"
+"5.0).\n"
 msgstr ""
 "La canzone è in %s. Questa non è la tonalità più facile da suonare "
 "(difficoltà %.1f/5.0).\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:811
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:969
+#: src/songpress/SongpressFrame.py:808 src/songpress/SongpressFrame.py:966
 #, python-format
 msgid ""
 "Do you want to transpose the key %s, which is the easiest one (difficulty: "
@@ -444,80 +362,67 @@ msgid ""
 msgstr ""
 "Vuoi trasporla in %s, che è la tonalità più semplice (difficoltà: %.1f/5.0)?"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:818
+#: src/songpress/SongpressFrame.py:815
 #, python-format
 msgid ""
-"The key of your song, %s, is already the easiest to play (difficulty: "
-"%.1f/5.0).\n"
+"The key of your song, %s, is already the easiest to play (difficulty: %.1f/"
+"5.0).\n"
 msgstr ""
 "La canzone è già nella tonalità più facile da suonare, il %s (difficoltà "
 "%.1f/5.0).\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:820
+#: src/songpress/SongpressFrame.py:817
 msgid "Your song or current selection does not contain any chords."
 msgstr "La canzone o la selezione corrente non contiene accordi."
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:888
+#: src/songpress/SongpressFrame.py:885
 msgid "Insert a label for verse, or press Cancel if you want to omit label."
 msgstr ""
 "Inserisci un'etichetta per la strofa, o premi annulla per omettere "
 "l'etichetta."
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:889
+#: src/songpress/SongpressFrame.py:886
 msgid "Verse label"
 msgstr "Etichetta della strofa"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:898
+#: src/songpress/SongpressFrame.py:895
 msgid "Insert a label for chorus, or press Cancel if you want to omit label."
 msgstr ""
 "Inserisci un'etichetta per il ritornello, o premi Annulla per omettere "
 "l'etichetta."
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:899
+#: src/songpress/SongpressFrame.py:896
 msgid "Chorus label"
 msgstr "Etichetta del ritornello"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:917
+#: src/songpress/SongpressFrame.py:914
 msgid "Please enter a label for chorus"
 msgstr "Etichetta per il ritornello"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:944
+#: src/songpress/SongpressFrame.py:941
 msgid "It looks like there are spurious blank lines in the song.\n"
 msgstr "A quanto pare la canzone contiene troppe linee vuote.\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:945
+#: src/songpress/SongpressFrame.py:942
 msgid "Do you want to try to remove them automatically?"
 msgstr "Vuoi provare a rimuoverle automaticamente?"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:946
+#: src/songpress/SongpressFrame.py:943
 msgid "Remove spurious blank lines"
 msgstr "Rimuovi le linee vuote di troppo"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:956
+#: src/songpress/SongpressFrame.py:953
 msgid ""
 "It looks like your song is in tab format (i.e., chords are above the text).\n"
 msgstr ""
 "A quanto pare la canzone è nel formato tab (cioè gli accordi si trovano "
 "sopra il testo).\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:957
+#: src/songpress/SongpressFrame.py:954
 msgid "Do you want to convert it to ChordPro automatically?"
 msgstr "Vuoi convertirla automaticamente al formato ChordPro?"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\SongpressFrame.py:958
+#: src/songpress/SongpressFrame.py:955
 msgid "Convert to ChordPro"
 msgstr "Converti a ChordPro"
 

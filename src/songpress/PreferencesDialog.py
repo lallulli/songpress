@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from . import i18n
+import wx
+
 from .FontComboBox import FontComboBox
 from . import Editor
 
-i18n.register('songpress.PreferencesDialog')
+_ = wx.GetTranslation
 
 # -*- coding: utf-8 -*-
 

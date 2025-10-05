@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*- 
 
-from . import i18n
+import wx
 
-i18n.register('songpress.UpdateDialog')
+_ = wx.GetTranslation
 
 # -*- coding: utf-8 -*- 
 
@@ -12,8 +12,6 @@ i18n.register('songpress.UpdateDialog')
 ##
 ## PLEASE DO "NOT" EDIT THIS FILE!
 ###########################################################################
-
-import wx
 
 ###########################################################################
 ## Class UpdateDialog

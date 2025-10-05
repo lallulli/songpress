@@ -8,8 +8,9 @@
 ###########################################################################
 
 import wx
-from . import i18n
-i18n.register('songpress.NormalizeDialog')
+
+_ = wx.GetTranslation
+
 # -*- coding: utf-8 -*- 
 
 

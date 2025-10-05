@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:128
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:129
 #, python-format
 msgid "%s files (*.%s)|%s"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:135
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:136
 msgid "|All files (*.*)|*.*"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:138
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:139
 msgid "Open file"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:154
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:155
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:178
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:179
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -48,29 +48,29 @@ msgid ""
 "%s"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:186
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:187
 msgid "About "
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:229
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:230
 msgid "Untitled"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:245
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:246
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:261
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:262
 msgid "Choose a name for the file"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:264
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:265
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\SDIMainFrame.py:276
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/SDIMainFrame.py:277
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr ""

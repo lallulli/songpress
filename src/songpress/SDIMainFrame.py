@@ -31,7 +31,7 @@ from wx import xrc
 from . import i18n
 
 
-i18n.register('songpress.SDIMainFrame')
+_ = wx.GetTranslation
 
 class SDIDropTarget(wx.FileDropTarget):
 	def __init__(self, sdi):

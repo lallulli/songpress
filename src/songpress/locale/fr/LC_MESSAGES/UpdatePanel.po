@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 17:16+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-04 20:06+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,22 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/UpdatePanel.py:35
+#: src/songpress/UpdatePanel.py:36
 msgid "Version number"
 msgstr "Numéro de version"
 
-#: src/UpdatePanel.py:42
+#: src/songpress/UpdatePanel.py:43
 msgid "What's new"
 msgstr "Les nouveautés"
 
-#: src/UpdatePanel.py:56
+#: src/songpress/UpdatePanel.py:57
 msgid "Download"
 msgstr "Télécharger"
 
-#: src/UpdatePanel.py:59
+#: src/songpress/UpdatePanel.py:60
 msgid "Remind later"
 msgstr "Me rappeler plus tard"
 
-#: src/UpdatePanel.py:62
+#: src/songpress/UpdatePanel.py:63
 msgid "Skip this version"
 msgstr "Passer cette version"

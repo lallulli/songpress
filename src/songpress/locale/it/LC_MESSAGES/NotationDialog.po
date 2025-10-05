@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,17 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\NotationDialog.py:22
+#: src/songpress/NotationDialog.py:22
 msgid "Change notation"
 msgstr "Modifica notazione"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\NotationDialog.py:31
+#: src/songpress/NotationDialog.py:31
 msgid "From notation:"
 msgstr "Dalla notazione:"
 
-#: C:\Users\Luca
-#: Allulli\Documents\dev\songpress\master\src\NotationDialog.py:44
+#: src/songpress/NotationDialog.py:44
 msgid "To notation:"
 msgstr "Alla notazione:"

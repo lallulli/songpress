@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-04 20:06+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,98 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/PreferencesDialog.py:27
+#: src/songpress/PreferencesDialog.py:28
 msgid "Songpress options"
 msgstr "Options Songpress"
 
-#: src/PreferencesDialog.py:40
+#: src/songpress/PreferencesDialog.py:41
 msgid "Editor font"
 msgstr "Police de l'éditeur"
 
-#: src/PreferencesDialog.py:47
+#: src/songpress/PreferencesDialog.py:48
 msgid "Size"
 msgstr "Taille"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "7"
 msgstr "7"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "8"
 msgstr "8"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "9"
 msgstr "9"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "10"
 msgstr "10"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "11"
 msgstr "11"
 
-#: src/PreferencesDialog.py:51 src/PreferencesDialog.py:53
+#: src/songpress/PreferencesDialog.py:52 src/songpress/PreferencesDialog.py:54
 msgid "12"
 msgstr "12"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "13"
 msgstr "13"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "14"
 msgstr "14"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "16"
 msgstr "16"
 
-#: src/PreferencesDialog.py:51
+#: src/songpress/PreferencesDialog.py:52
 msgid "18"
 msgstr "18"
 
-#: src/PreferencesDialog.py:52
+#: src/songpress/PreferencesDialog.py:53
 msgid "20"
 msgstr "20"
 
-#: src/PreferencesDialog.py:62
+#: src/songpress/PreferencesDialog.py:63
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: src/PreferencesDialog.py:73
+#: src/songpress/PreferencesDialog.py:74
 msgid "Default notation"
 msgstr "Tonalité par défaut"
 
-#: src/PreferencesDialog.py:87
+#: src/songpress/PreferencesDialog.py:88
 msgid "Check for updates every"
 msgstr "Vérifier les mises-à-jour tous les"
 
-#: src/PreferencesDialog.py:101
+#: src/songpress/PreferencesDialog.py:102
 msgid "Default file extension"
 msgstr ""
 
-#: src/PreferencesDialog.py:115
+#: src/songpress/PreferencesDialog.py:116
 msgid "Language"
 msgstr "Langue"
 
-#: src/PreferencesDialog.py:129
+#: src/songpress/PreferencesDialog.py:130
 msgid "General"
 msgstr "Général"
 
-#: src/PreferencesDialog.py:133
+#: src/songpress/PreferencesDialog.py:134
 msgid "Offer to remove blank lines"
 msgstr "Proposer de supprimer les lignes vides"
 
-#: src/PreferencesDialog.py:137
+#: src/songpress/PreferencesDialog.py:138
 msgid "Offer to convert songs in tab"
 msgstr "Proposer de convertir les chants en tablatures"
 
-#: src/PreferencesDialog.py:141
+#: src/songpress/PreferencesDialog.py:142
 msgid "Offer to transpose songs to simplify chords"
 msgstr "Proposer de transposer les chants en accords simplifiés"
 
-#: src/PreferencesDialog.py:155
+#: src/songpress/PreferencesDialog.py:156
 msgid "AutoAdjust"
 msgstr "Ajustement automatique"

@@ -23,7 +23,9 @@ from .proxiedxmlrpclib import RequestsTransport
 
 
 from . import i18n
-i18n.register('songpress.MyUpdateDialog')
+
+
+_ = wx.GetTranslation
 
 def check_and_update(parent, preferences, force=False):
 	"""

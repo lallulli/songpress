@@ -9,11 +9,13 @@
 # License:	 GNU GPL v2
 ##############################################################
 
-from . import i18n
 import re
 import math
 
-i18n.register('songpress.Transpose')
+import wx
+
+
+_ = wx.GetTranslation
 
 
 class Notation(object):
