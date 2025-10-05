@@ -519,19 +519,30 @@ class SongpressFrame(SDIMainFrame):
         else:
             return None
 
+    def ComputeRenderedSize(self):
+        """
+        Compute and return rendered size as tuple (with, height)
+        """
+        dc = wx.MemoryDC(wx.Bitmap(1, 1))
+        return self.DrawOnDC(dc)
+
+    def RenderAsPng(self, scale=1, size=None):
+        if size is None:
+            size = self.ComputeRenderedSize()
+        w, h = size
+        b = wx.Bitmap(int(w * scale), int(h * scale))
+        dc = wx.MemoryDC(b)
+        dc.SetUserScale(scale, scale)
+        dc.SetBackground(wx.WHITE_BRUSH)
+        dc.Clear()
+        self.DrawOnDC(dc)
+        return b
+
     def OnExportAsPng(self, evt):
         n = self.AskExportFileName(_("PNG image"), "png")
         if n is not None:
-            dc = wx.MemoryDC(wx.EmptyBitmap(1, 1))
-            scale = 1
-            w, h = self.DrawOnDC(dc)
-            b = wx.EmptyBitmap(int(w * scale), int(h * scale))
-            dc = wx.MemoryDC(b)
-            dc.SetUserScale(scale, scale)
-            dc.SetBackground(wx.WHITE_BRUSH);
-            dc.Clear();
-            self.DrawOnDC(dc)
-            i = wx.ImageFromBitmap(b)
+            b = self.RenderAsPng()
+            i = b.ConvertToImage()
             i.SaveFile(n, wx.BITMAP_TYPE_PNG)
 
     def OnExportAsHtml(self, evt):
@@ -563,8 +574,7 @@ class SongpressFrame(SDIMainFrame):
     def OnExportAsSvg(self, evt):
         n = self.AskExportFileName(_("SVG image"), "svg")
         if n is not None:
-            dc = wx.MemoryDC(wx.Bitmap(1, 1))
-            w, h = self.DrawOnDC(dc)
+            w, h = self.ComputeRenderedSize()
             dc = wx.SVGFileDC(n, int(w), int(h))
             self.DrawOnDC(dc)
 
@@ -586,7 +596,6 @@ class SongpressFrame(SDIMainFrame):
             dc.StartDoc(_("Exporting image as EPS..."))
             self.DrawOnDC(dc)
             dc.EndDoc()
-
 
     def OnExportAsPptx(self, evt):
         try:
