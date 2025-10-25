@@ -127,7 +127,7 @@ class Renderer(object):
 
 	def BeginLine(self):
 		if self.currentLine == None:
-			if self.song.drawWholeSong or (self.fromLine <= self.lineCount and self.lineCount <= self.toLine):
+			if self.song.drawWholeSong or self.fromLine <= self.lineCount <= self.toLine:
 				self.currentBlock.drawBlock = True
 			self.currentLine = SongLine()
 

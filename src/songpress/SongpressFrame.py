@@ -460,6 +460,9 @@ class SongpressFrame(SDIMainFrame):
     # self.UpdateEverything()
 
     def DrawOnDC(self, dc):
+        """
+        Draw song on DC and return the tuple (width, height) of rendered song
+        """
         decorator = self.pref.decorator if self.pref.labelVerses else SongDecorator()
         r = Renderer(self.pref.format, decorator, self.pref.notations)
         start, end = self.text.GetSelection()
@@ -648,7 +651,7 @@ class SongpressFrame(SDIMainFrame):
         evt.Skip()
 
     def OnTextKeyDown(self, evt):
-        if evt.GetKeyCode() == 68 and evt.ControlDown():  # D character
+        if evt.GetKeyCode() == ord('D') and evt.ControlDown():  # D character
             # CTRL+D is pressed: trigger copy as image, and prevent self.text from processing the keystroke
             self.OnCopyAsImage(evt)
             evt.Skip(False)
