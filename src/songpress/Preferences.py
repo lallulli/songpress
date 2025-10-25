@@ -9,6 +9,7 @@
 
 import datetime
 
+from . import i18n
 from .SongFormat import *
 from .decorators import StandardVerseNumbers
 from .Transpose import *

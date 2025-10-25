@@ -110,9 +110,6 @@ class Editor(StyledTextCtrl):
         f.write(t)
         f.close()
 
-    def Copy(self):
-        print("Hello world")
-        
     def GetTextOrSelection(self):
         start, end = self.GetSelection()
         if start == end:
