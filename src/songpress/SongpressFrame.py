@@ -708,7 +708,7 @@ class SongpressFrame(SDIMainFrame):
             m = dc.Close()
             m.SetClipboard(dc.MaxX(), dc.MaxY())
         else:
-            self.OnCopy()
+            self.Copy()
 
     def OnPaste(self, evt):
         self.text.Paste()
