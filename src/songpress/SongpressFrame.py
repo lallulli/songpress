@@ -214,12 +214,12 @@ class SongpressFrame(SDIMainFrame):
         dt = SDIDropTarget(self)
         self.text.SetDropTarget(dt)
         self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
+        self.text.Bind(wx.EVT_KEY_DOWN, self.OnTextKeyDown, self.text)
         # Other objects
         self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
         self.AddMainPane(self.text)
         self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 400), _('Preview'), 'preview')
-        if self.previewCanvas.link is not None:
-            self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
+        self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
         self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, agwStyle=aui.AUI_TB_PLAIN_BACKGROUND)
         self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
         self.AddTool(self.mainToolBar, 'new', 'img/new.png', _("New"), _("Create a new song"))
@@ -236,8 +236,7 @@ class SongpressFrame(SDIMainFrame):
         self.copyTool = self.AddTool(self.mainToolBar, 'copy', 'img/copy.png', _("Copy"),
                                                                  _("Copy selected text in the clipboard"))
         self.copyOnlyTextTool = wx.xrc.XRCID('copyOnlyText')
-        if platform.system() == 'Windows':
-            self.AddTool(self.mainToolBar, 'copyAsImage', 'img/copyAsImage2.png', _("Copy as Image"),
+        self.AddTool(self.mainToolBar, 'copyAsImage', 'img/copyAsImage2.png', _("Copy as Image"),
                                      _("Copy the whole FORMATTED song (or selected verses) to the clipboard"))
         self.pasteTool = self.AddTool(self.mainToolBar, 'paste', 'img/paste.png', _("Paste"),
                                                                     _("Read text from the clipboard and place it at the cursor position"))
@@ -312,8 +311,6 @@ class SongpressFrame(SDIMainFrame):
         self.oneVerseForEachChordPatternMenuId = xrc.XRCID('oneVerseForEachChordPattern')
         self.wholeSongMenuId = xrc.XRCID('wholeSong')
         if platform.system() != 'Windows':
-            self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportToClipboardAsAVectorImage)
-            self.menuBar.GetMenu(1).Delete(self.copyAsImageMenuId)
             self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportAsEmfMenuId)
         self.findReplaceDialog = None
         self.CheckLabelVerses()
@@ -358,8 +355,6 @@ class SongpressFrame(SDIMainFrame):
         Bind(self.OnRedo, 'redo')
         Bind(self.OnCut, 'cut')
         Bind(self.OnCopy, 'copy')
-        if platform.system() == 'Linux':
-            self.text.Bind(EVT_STC_CLIPBOARD_COPY, self.OnCopyFromText, self.text)
         Bind(self.OnCopyAsImage, 'copyAsImage')
         Bind(self.OnCopyOnlyText, 'copyOnlyText')
         Bind(self.OnPaste, 'paste')
@@ -652,15 +647,36 @@ class SongpressFrame(SDIMainFrame):
         self.UpdateCutCopyPaste()
         evt.Skip()
 
+    def OnTextKeyDown(self, evt):
+        if evt.GetKeyCode() == 68 and evt.ControlDown():  # D character
+            # CTRL+D is pressed: trigger copy as image, and prevent self.text from processing the keystroke
+            self.OnCopyAsImage(evt)
+            evt.Skip(False)
+        else:
+            evt.Skip()
+
     def Copy(self):
+        self.text.Copy()
+
+    def OnCopy(self, evt):
+        self.Copy()
+
+    def OnCopyOnlyText(self, evt):
+        self.text.CopyOnlyText()
+
+    def CopyAsImage(self):
         if platform.system() == 'Windows':
-            self.text.Copy()
+            # Windows Metafile
+            dc = wx.MetafileDC()
+            self.DrawOnDC(dc)
+            m = dc.Close()
+            m.SetClipboard(dc.MaxX(), dc.MaxY())
 
         else:
             composite = wx.DataObjectComposite()
             size = self.ComputeRenderedSize()
 
-            # SVG
+            # 1. SVG
             with temp_dir() as path:
                 svg_obj = wx.CustomDataObject("image/svg+xml")
                 fp = os.path.join(path, 'temp.svg')
@@ -674,41 +690,13 @@ class SongpressFrame(SDIMainFrame):
             png_obj = wx.BitmapDataObject(bmp)
             composite.Add(png_obj)
 
-            # 3. Plain text
-            txt_obj = wx.TextDataObject(self.text.GetSelectedText())
-            composite.Add(txt_obj)
-
             # Place on Clipboard
             if wx.TheClipboard.Open():
                 wx.TheClipboard.SetData(composite)
                 wx.TheClipboard.Close()
 
-    def OnCopy(self, evt):
-        self.Copy()
-
-    def OnCopyFromText(self, evt):
-        """
-        Called on copy event triggered by text editor
-
-        The event is triggered before copying text to clipboard,
-        and copying cannot be disabled, due to how Scintilla works.
-        Thus, we call the self.Copy method after event processing is done,
-        in order to overwrite clipboard content with new content, with images.
-        """
-        wx.CallAfter(self.Copy)
-
-    def OnCopyOnlyText(self, evt):
-        self.text.CopyOnlyText()
-
     def OnCopyAsImage(self, evt):
-        if platform.system() == 'Windows':
-            # Windows Metafile
-            dc = wx.MetafileDC()
-            self.DrawOnDC(dc)
-            m = dc.Close()
-            m.SetClipboard(dc.MaxX(), dc.MaxY())
-        else:
-            self.Copy()
+        self.CopyAsImage()
 
     def OnPaste(self, evt):
         self.text.Paste()
