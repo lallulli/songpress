@@ -24,8 +24,6 @@ songpress --create-shortcuts
 ```
 
 
-
-
 ### Highlights
 
 - Produce **high-quality guitar scores** (text and chords)
@@ -39,3 +37,12 @@ songpress --create-shortcuts
 - **Clean up** dirty songs with spurious blank lines (such as songs copied and pasted from web pages) and not homogeneous chord notations
 
 Learn more at http://www.skeed.it/songpress
+
+
+### Upgrade
+
+To upgrade Songpress, run:
+
+```bash
+pipx upgrade songpress
+```
