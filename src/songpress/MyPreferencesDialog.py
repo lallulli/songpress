@@ -9,6 +9,7 @@
 
 import wx
 
+from . import i18n
 from .PreferencesDialog import PreferencesDialog
 from .MyDecoSlider import MyDecoSlider
 from .Transpose import *
