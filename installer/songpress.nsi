@@ -42,8 +42,7 @@ var ICONS_GROUP
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
-!define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_FUNCTION LaunchSongpress
+!define MUI_FINISHPAGE_RUN "$PROFILE\.local\bin\songpress.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -212,11 +211,6 @@ Function DoInstallPythonAndSongpress
   DetailPrint "$(SongpressDone)"
 FunctionEnd
 
-Function LaunchSongpress
-  Exec '"$SongpressExe"'
-FunctionEnd
-
-
 ; Uninstall Songpress
 Function un.DoUninstallSongpress
   DetailPrint "$(UninstallSongpress)"
@@ -262,23 +256,23 @@ LangString FileAssociationSG ${LANG_ITALIAN} "Associa tipi di file"
 ;SectionEnd
 
 Section $(SongpressSectionNameLS) SongpressSection
-  SetShellVarContext all
+  ; SetShellVarContext all
   SectionIn RO
   ; SetOutPath "$INSTDIR"
   ; SetOverwrite on
   Call DoInstallPythonAndSongpress
   SetOutPath "$INSTDIR"
-
+  File songpress.ico
 
 ; Shortcuts
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$ICONS_GROUP"
-  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$SongpressExe"
+  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$SongpressExe" "" "$INSTDIR\songpress.ico" 0
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section $(DesktopSectionNameLS) DesktopSection
-  SetShellVarContext all
+  ; SetShellVarContext all
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateShortCut "$DESKTOP\Songpress.lnk" "$SongpressExe"
   !insertmacro MUI_STARTMENU_WRITE_END
@@ -293,22 +287,31 @@ SectionEnd
 
 SectionGroup $(FileAssociationSG)
 Section $(CrdSectionNameLS) CrdSection
-  ${registerExtension} "$SongpressExe" ".crd" "ChordPro file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".crd" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
 SectionEnd
 Section $(ChoSectionNameLS) ChoSection
-  ${registerExtension} "$SongpressExe" ".cho" "ChordPro file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".cho" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
 SectionEnd
 Section $(ChordproSectionNameLS) ChordproSection
-  ${registerExtension} "$SongpressExe" ".chordpro" "ChordPro file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chordpro" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
 SectionEnd
 Section $(ChoproSectionNameLS) ChoproSection
-  ${registerExtension} "$SongpressExe" ".chopro" "ChordPro file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chopro" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
 SectionEnd
 Section $(TabSectionNameLS) TabSection
-  ${registerExtension} "$SongpressExe" ".tab" "TAB chord file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".tab" "TABChord"
+  WriteRegStr HKCU "Software\Classes\TABChord\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
 SectionEnd
 Section $(ProSectionNameLS) ProSection
-  ${registerExtension} "$SongpressExe" ".pro" "PRO chord file"
+  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".pro" "PROChord"
+  WriteRegStr HKCU "Software\Classes\PROChord\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+
+  ;Notify Explorer about changes
+  System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
 SectionEnd
 SectionGroupEnd
 
@@ -378,7 +381,7 @@ FunctionEnd
 
 Section Uninstall
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
-  SetShellVarContext all
+  ; SetShellVarContext all
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
   Delete "$DESKTOP\Songpress.lnk"
   Delete "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk"
@@ -389,11 +392,15 @@ Section Uninstall
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
-  ${unregisterExtension} ".crd" "ChordPro file"
-  ${unregisterExtension} ".cho" "ChordPro file"
-  ${unregisterExtension} ".chordpro" "ChordPro file"
-  ${unregisterExtension} ".chopro" "ChordPro file"
-  ${unregisterExtension} ".tab" "TAB chord file"
-  ${unregisterExtension} ".tab" "PRO chord file"
+  ${unregisterExtension} ".crd" "ChordPro"
+  ${unregisterExtension} ".cho" "ChordPro"
+  ${unregisterExtension} ".chordpro" "ChordPro"
+  ${unregisterExtension} ".chopro" "ChordPro"
+  ${unregisterExtension} ".tab" "TABChord"
+  ${unregisterExtension} ".tab" "PROChord"
+
+  ;Notify Explorer about changes
+  System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
+
   SetAutoClose true
 SectionEnd
