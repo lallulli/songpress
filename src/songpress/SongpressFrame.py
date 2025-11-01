@@ -157,10 +157,9 @@ class SongpressFindReplaceDialog(object):
             self.owner.appName,
             wx.OK | wx.ICON_INFORMATION
         )
-        res = d.ShowModal()
+        d.ShowModal()
 
     def OnClose(self, evt):
-        self.config.Flush()
         self.dialog.Destroy()
         self.dialog = None
 
@@ -337,6 +336,10 @@ class SongpressFrame(SDIMainFrame):
                     self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
                     self.SetDefaultExtension(self.pref.defaultExtension)
         MyUpdateDialog.check_and_update(self.frame, self.pref)
+
+    def OnClose(self, evt):
+        self.config.Flush()
+        super().OnClose(evt)
 
     def BindMyMenu(self):
         """Bind a menu item, by xrc name, to a handler"""
