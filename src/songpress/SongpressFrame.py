@@ -654,9 +654,21 @@ class SongpressFrame(SDIMainFrame):
         evt.Skip()
 
     def OnTextKeyDown(self, evt):
-        if evt.GetKeyCode() == ord('D') and evt.ControlDown():  # D character
-            # CTRL+D is pressed: trigger copy as image, and prevent self.text from processing the keystroke
-            self.OnCopyAsImage(evt)
+        # 314: left
+        # 316: right
+        map = {
+            (314, True, True, False): self.MoveChordLeft,
+            (316, True, True, False): self.MoveChordRight,
+            (ord('D'), False, False, True): self.CopyAsImage,
+        }
+        tp = (
+            evt.GetKeyCode(),
+            evt.ShiftDown(),
+            evt.AltDown(),
+            evt.ControlDown(),
+        )
+        if (method := map.get(tp)) is not None:
+            method()
             evt.Skip(False)
         else:
             evt.Skip()
@@ -732,7 +744,7 @@ class SongpressFrame(SDIMainFrame):
     def OnSelectPreviousChord(self, evt):
         self.text.SelectPreviousChord()
 
-    def OnMoveChordRight(self, evt):
+    def MoveChordRight(self):
         r = self.text.GetChordUnderCursor()
         if r is not None:
             n = self.text.GetLength()
@@ -749,7 +761,10 @@ class SongpressFrame(SDIMainFrame):
                 self.text.SetSelection(s2, s2)
                 self.text.EndUndoAction()
 
-    def OnMoveChordLeft(self, evt):
+    def OnMoveChordRight(self, evt):
+        self.MoveChordRight()
+
+    def MoveChordLeft(self):
         r = self.text.GetChordUnderCursor()
         if r is not None:
             s, e, c = r
@@ -765,6 +780,9 @@ class SongpressFrame(SDIMainFrame):
                 s = self.text.PositionAfter(s1)
                 self.text.SetSelection(s, s)
                 self.text.EndUndoAction()
+
+    def OnMoveChordLeft(self, evt):
+        self.MoveChordLeft()
 
     def OnRemoveChords(self, evt):
         self.text.RemoveChordsInSelection()
