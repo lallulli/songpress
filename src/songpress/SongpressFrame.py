@@ -528,7 +528,8 @@ class SongpressFrame(SDIMainFrame):
         Compute and return rendered size as tuple (with, height)
         """
         dc = wx.MemoryDC(wx.Bitmap(1, 1))
-        return self.DrawOnDC(dc)
+        w, h = self.DrawOnDC(dc)
+        return max(1, w), max(1, h)
 
     def RenderAsPng(self, scale=1, size=None):
         if size is None:
