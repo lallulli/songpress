@@ -18,7 +18,7 @@
 					<help>Open an existing song</help>
 				</object>
 				<object class="wxMenuItem" name="save">
-					<label>_Save\tSHIFT+F12</label>
+					<label>_Save\tCTRL+S</label>
 					<help>Save song with the current filename</help>
 				</object>
 				<object class="wxMenuItem" name="saveAs">
