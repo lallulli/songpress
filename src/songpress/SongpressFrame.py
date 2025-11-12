@@ -819,7 +819,7 @@ class SongpressFrame(SDIMainFrame):
             self.menuBar.Enable(self.pasteMenuId, cp)
             self.mainToolBar.EnableTool(self.pasteChordsTool, cp)
             self.menuBar.Enable(self.pasteChordsMenuId, cp)
-        except wx._core.PyDeadObjectError:
+        except Exception:
             # When frame is closed, this method may still be executed, generating an exception
             # because UI elements have been destroyed. Simply ignore it.
             pass
