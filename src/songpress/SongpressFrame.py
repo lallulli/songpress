@@ -810,11 +810,7 @@ class SongpressFrame(SDIMainFrame):
         evt.Skip()
 
     def OnGuide(self, evt):
-        if platform.system() == 'Windows':
-            helpfile = os.path.join("../help", "songpress-%s.chm" % (i18n.getLang(),))
-            subprocess.Popen("hh " + glb.AddPath(helpfile))
-        else:
-            wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual"))
+        wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress-manual"))
 
     def OnIdle(self, evt):
         try:
