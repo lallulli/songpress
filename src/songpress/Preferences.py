@@ -58,7 +58,7 @@ class Preferences(object):
         self.format = SongFormat()
         self.decoratorFormat = StandardVerseNumbers.Format(self.format, _("Chorus"))
         self.decorator = StandardVerseNumbers.Decorator(self.decoratorFormat)
-        self.notations = [enNotation, itNotation, deNotation, tradDeNotation, frNotation, ptNotation]
+        self.notations = [enNotation, itNotation, itUcNotation, deNotation, tradDeNotation, frNotation, ptNotation]
         self.easyChordsGroup = {}
         self.Load()
 

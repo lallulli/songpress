@@ -60,6 +60,7 @@ class SongDecorator(object):
                 self.SetMarginChord(t)
                 chordMaxH = max(chordMaxH, t.h)
                 chordMaxTH = max(chordMaxTH, t.GetTotalHeight())
+                t.w += self.dc.GetTextExtent(" ")[0] / 2
             else:
                 if text.strip() != '':
                     chordsOnly = False

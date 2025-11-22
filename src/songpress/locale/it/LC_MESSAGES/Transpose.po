@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 16:22+0200\n"
-"PO-Revision-Date: 2025-11-22 17:46+0100\n"
+"POT-Creation-Date: 2025-11-22 17:58+0100\n"
+"PO-Revision-Date: 2025-11-22 18:30+0100\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
 "it/)\n"
@@ -27,54 +27,58 @@ msgstr "Americana (C D E... B)"
 msgid "Italian (Do Re Mi... Si)"
 msgstr "Italiana (Do Re Mi... Si)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:99
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:100
+msgid "Uppercase Italian (DO RE MI... SI)"
+msgstr "Italiana maiuscola (Do Re Mi... Si)"
+
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:116
 msgid "French (Do Ré Mi... Si)"
 msgstr "Francese (Do Ré Mi... Si)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:113
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:130
 msgid "Portuguese (Dó Ré Mi... Si)"
 msgstr "Portoghese (Dó Ré Mi... Si)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:129
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:146
 msgid "Basic chords (A, E, D)"
 msgstr "Accordi di base (La, Mi, Re)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:130
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:147
 msgid "50s progr. in C (C, Am, Dm, G7)"
 msgstr "Giro di Do (Do, La-, Re-, Sol7)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:131
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:148
 msgid "F chord"
 msgstr "Accordo Fa"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:132
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:149
 msgid "50s progr. in G (G, Em, Am, D7)"
 msgstr "Giro di Sol (Sol, Mi-, La-, Re7)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:133
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:150
 msgid "50s progr. in D (D, Bm, Em, A7)"
 msgstr "Giro di Re (Re, Si-, Mi-, La7)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:134
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:151
 msgid "50s progr. in A (A, F#m, Bm, E7)"
 msgstr "Giro di La (La, Fa#-, Si-, Mi7)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:135
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:152
 msgid "C#, C#m, C#7 chords"
 msgstr "Accordi Do#, Do#-, Do#7"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:136
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:153
 msgid "50s progr. in F (F, Dm, Gm, C7)"
 msgstr "Giro di Fa (Fa, Re-, Sol-, Do7)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:137
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:154
 msgid "B and B7 chords"
 msgstr "Accordi Si e Si7"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:191
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:208
 msgid "German/Sacandinavian (C C#/Db D... Bb H)"
 msgstr "Tedesca/Scandinava (C C#/Db D... Bb H)"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:200
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:217
 msgid "Traditional German (C Cis/Des D... B H)"
 msgstr "Tedesca tradizionale (C Cis/Des D... B H)"

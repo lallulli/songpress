@@ -94,6 +94,23 @@ itNotation = Notation(
 	]
 )
 
+
+itUcNotation = Notation(
+	"itNotation",
+	_("Uppercase Italian (DO RE MI... SI)"),
+	['DO', 'RE', 'MI', 'FA', 'SOL', 'LA', 'SI'],
+	[
+		(r'maj7', '7+'),
+		(r'sus4', '4'),
+		(r'^m', '-')
+	],
+	[
+		(r'7\+', 'maj7'),
+		(r'^4', 'sus4'),
+		(r'^-', 'm')
+	]
+)
+
 frNotation = Notation(
 	"frNotation",
 	_(u"French (Do Ré Mi... Si)"),

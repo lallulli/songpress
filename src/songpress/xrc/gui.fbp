@@ -82,7 +82,7 @@
         <property name="window_extra_style"></property>
         <property name="window_name"></property>
         <property name="window_style"></property>
-        <object class="wxMenu" expanded="false">
+        <object class="wxMenu" expanded="true">
           <property name="label">&amp;File</property>
           <property name="name">file</property>
           <property name="permission">protected</property>
@@ -100,7 +100,7 @@
             <property name="unchecked_bitmap"></property>
           </object>
           <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
+            <property name="bitmap">Load From File; open.png</property>
             <property name="checked">0</property>
             <property name="enabled">1</property>
             <property name="help">Open an existing song</property>
