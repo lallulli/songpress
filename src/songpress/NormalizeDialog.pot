@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/NormalizeDialog.py:23
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/NormalizeDialog.py:24
 msgid "Cleanup Chords"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/NormalizeDialog.py:31
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/NormalizeDialog.py:32
 msgid "Notation:"
 msgstr ""

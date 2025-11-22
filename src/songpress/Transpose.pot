@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,62 +17,62 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:73
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:75
 msgid "American (C D E... B)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:81
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:83
 msgid "Italian (Do Re Mi... Si)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:97
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:99
 msgid "French (Do Ré Mi... Si)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:111
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:113
 msgid "Portuguese (Dó Ré Mi... Si)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:127
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:129
 msgid "Basic chords (A, E, D)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:128
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:130
 msgid "50s progr. in C (C, Am, Dm, G7)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:129
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:131
 msgid "F chord"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:130
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:132
 msgid "50s progr. in G (G, Em, Am, D7)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:131
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:133
 msgid "50s progr. in D (D, Bm, Em, A7)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:132
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:134
 msgid "50s progr. in A (A, F#m, Bm, E7)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:133
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:135
 msgid "C#, C#m, C#7 chords"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:134
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:136
 msgid "50s progr. in F (F, Dm, Gm, C7)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:135
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:137
 msgid "B and B7 chords"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:189
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:191
 msgid "German/Sacandinavian (C C#/Db D... Bb H)"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:198
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:200
 msgid "Traditional German (C Cis/Des D... B H)"
 msgstr ""

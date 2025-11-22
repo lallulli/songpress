@@ -18,6 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/songpress/CompositePropertyPanel.py:31
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/CompositePropertyPanel.py:31
 msgid "label"
 msgstr "etichetta"

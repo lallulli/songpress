@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-25 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreviewCanvas.py:28
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreviewCanvas.py:26
 msgid "Copy formatted song to clipboard"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreviewCanvas.py:29
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreviewCanvas.py:27
 msgid ""
 "Copy formatted song to clipboard, so that it can be pasted in any program "
 "and printed"

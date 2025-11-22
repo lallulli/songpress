@@ -115,6 +115,10 @@
 					<help>Replace some text with some other text</help>
 				</object>
 				<object class="separator" />
+				<object class="wxMenuItem" name="selectAll">
+					<label>Select _all\tCTRL+A</label>
+					<help>Select the whole song</help>
+				</object>
 				<object class="wxMenuItem" name="selectNextChord">
 					<label>_Select next chord\tALT+RIGHT</label>
 					<help>Find next chord and select it</help>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,99 +17,99 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:28
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:29
 msgid "Songpress options"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:41
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:42
 msgid "Editor font"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:48
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:49
 msgid "Size"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "7"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "8"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "9"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "10"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "11"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:54
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:55
 msgid "12"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "13"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "14"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "16"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:52
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
 msgid "18"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:53
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:54
 msgid "20"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:63
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:64
 msgid "Preview"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:74
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:75
 msgid "Default notation"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:88
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:89
 msgid "Check for updates every"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:102
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:103
 msgid "Default file extension"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:116
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:117
 msgid "Language"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:130
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:131
 msgid "General"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:134
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:135
 msgid "Offer to remove blank lines"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:138
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:139
 msgid "Offer to convert songs in tab"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:142
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:143
 msgid "Offer to transpose songs to simplify chords"
 msgstr ""
 
-#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:156
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/PreferencesDialog.py:157
 msgid "AutoAdjust"
 msgstr ""

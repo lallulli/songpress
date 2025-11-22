@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/songpress/errdlg.py:321
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/errdlg.py:321
 msgid "Error Traceback:"
 msgstr "Traceback dell'errore:"
 
-#: src/songpress/errdlg.py:325
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/errdlg.py:325
 msgid "Abort"
 msgstr "Interrompi"
 
-#: src/songpress/errdlg.py:326
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/errdlg.py:326
 msgid "Exit the application"
 msgstr "Esci dall'applicazione"
 
-#: src/songpress/errdlg.py:327
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/errdlg.py:327
 msgid "Report Error"
 msgstr "Invia un rapporto d'errore"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-25 16:53+0200\n"
 "PO-Revision-Date: 2016-03-06 21:27+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,26 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/songpress/Preferences.py:22
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:22
 msgid "Never"
 msgstr "Mai"
 
-#: src/songpress/Preferences.py:23
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:23
 msgid "Week"
 msgstr "Settimana"
 
-#: src/songpress/Preferences.py:24
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:24
 msgid "Two weeks"
 msgstr "Due settimane"
 
-#: src/songpress/Preferences.py:25
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:25
 msgid "Month"
 msgstr "Mese"
 
-#: src/songpress/Preferences.py:26
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:26
 msgid "Two months"
 msgstr "Due mesi"
 
-#: src/songpress/Preferences.py:59
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Preferences.py:59
 msgid "Chorus"
 msgstr "Rit."

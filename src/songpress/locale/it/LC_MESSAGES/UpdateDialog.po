@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: 2016-03-06 21:28+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/songpress/UpdateDialog.py:25
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdateDialog.py:23
 msgid "New updates are available"
 msgstr "Sono disponibili aggiornamenti"
 
-#: src/songpress/UpdateDialog.py:35
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdateDialog.py:33
 msgid ">> Donate now! <<"
 msgstr ">> Dona ora! <<"

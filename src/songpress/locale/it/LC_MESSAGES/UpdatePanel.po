@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 11:13+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: 2016-03-06 21:28+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,22 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/songpress/UpdatePanel.py:36
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdatePanel.py:36
 msgid "Version number"
 msgstr "Numero della versione"
 
-#: src/songpress/UpdatePanel.py:43
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdatePanel.py:43
 msgid "What's new"
 msgstr "Novità"
 
-#: src/songpress/UpdatePanel.py:57
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdatePanel.py:57
 msgid "Download"
 msgstr "Scarica"
 
-#: src/songpress/UpdatePanel.py:60
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdatePanel.py:60
 msgid "Remind later"
 msgstr "Ricordamelo in seguito"
 
-#: src/songpress/UpdatePanel.py:63
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/UpdatePanel.py:63
 msgid "Skip this version"
 msgstr "Salta questa versione"

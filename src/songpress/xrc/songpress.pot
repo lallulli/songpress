@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 12:48+0200\n"
+"POT-Creation-Date: 2025-11-22 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgid "Open an existing song"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:8
-msgid "&Save\tSHIFT+F12"
+msgid "&Save\tCTRL+S"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:9
@@ -231,301 +231,309 @@ msgid "Replace some text with some other text"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:54
-msgid "&Select next chord\tALT+RIGHT"
+msgid "Select &all\tCTRL+A"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:55
-msgid "Find next chord and select it"
+msgid "Select the whole song"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:56
-msgid "Selec&t previous chord\tALT+LEFT"
+msgid "&Select next chord\tALT+RIGHT"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:57
-msgid "Find previous chord and select it"
+msgid "Find next chord and select it"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:58
-msgid "&Move chord right\tSHIFT+ALT+RIGHT"
+msgid "Selec&t previous chord\tALT+LEFT"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:59
-msgid "Move chord under cursor one position rightwards"
+msgid "Find previous chord and select it"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:60
-msgid "Move chord &left\tSHIFT+ALT+LEFT"
+msgid "&Move chord right\tSHIFT+ALT+RIGHT"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:61
-msgid "Move chord under cursor one position leftwards"
+msgid "Move chord under cursor one position rightwards"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:62
-msgid "Remove c&hords"
+msgid "Move chord &left\tSHIFT+ALT+LEFT"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:63
-msgid "Remove all chords in current selection"
+msgid "Move chord under cursor one position leftwards"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:64
-msgid "Inte&grate chords"
+msgid "Remove c&hords"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:65
-msgid "Integrate chords of current line with text of following line"
+msgid "Remove all chords in current selection"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:66
-msgid "&View"
+msgid "Inte&grate chords"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:67
-msgid "&Toolbars"
+msgid "Integrate chords of current line with text of following line"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:68
-msgid "&Standard"
+msgid "&View"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:69
-msgid "Show/hide toolbar with file and common buttons"
+msgid "&Toolbars"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:70
-msgid "&Format"
+msgid "&Standard"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:71
-msgid "Show/hide toolbar with format tools"
+msgid "Show/hide toolbar with file and common buttons"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:72
-msgid "&Preview"
+msgid "&Format"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:73
-msgid "Show/hide preview pane"
+msgid "Show/hide toolbar with format tools"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:74
-msgid "&Insert"
+msgid "&Preview"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:75
-msgid "&Title\tCTRL+T"
+msgid "Show/hide preview pane"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:76
-msgid "Insert a command to display song title"
+msgid "&Insert"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:77
-msgid "&Subtitle"
+msgid "&Title\tCTRL+T"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:78
-msgid "Insert a command to display song subtitle"
+msgid "Insert a command to display song title"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:79
-msgid "C&hord\tCTRL+H"
+msgid "&Subtitle"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:80
-msgid "Insert square brackets that will host a chord"
+msgid "Insert a command to display song subtitle"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:81
-msgid "Cho&rus\tCTRL+U"
+msgid "C&hord\tCTRL+H"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:82
-msgid "Insert a couple of commands that will contain chorus"
+msgid "Insert square brackets that will host a chord"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:83
-msgid "Co&mment\tCTRL+M"
+msgid "Cho&rus\tCTRL+U"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:84
-msgid "Insert a command to display a comment"
+msgid "Insert a couple of commands that will contain chorus"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:85
-msgid "&Verse with custom label or without label..."
+msgid "Co&mment\tCTRL+M"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:86
-msgid "Insert a verse with a custom label or without label"
+msgid "Insert a command to display a comment"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:87
-msgid "F&ormat"
+msgid "&Verse with custom label or without label..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:88
-msgid "Song &font..."
+msgid "Insert a verse with a custom label or without label"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:89
-msgid "Select song font"
+msgid "F&ormat"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:90
-msgid "&Text font..."
+msgid "Song &font..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:91
-msgid "Modify text font and color from cursor position or in selection"
+msgid "Select song font"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:92
-msgid "C&hord font..."
+msgid "&Text font..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:93
-msgid "Modify chord font and color from cursor position or in selection"
+msgid "Modify text font and color from cursor position or in selection"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:94
-msgid "&Label verses"
+msgid "C&hord font..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:95
-msgid "Show/hide labels at the beginning of verses and chorus"
+msgid "Modify chord font and color from cursor position or in selection"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:96
-msgid "&Chorus label..."
+msgid "&Label verses"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:97
-msgid "Set label for chorus"
+msgid "Show/hide labels at the beginning of verses and chorus"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:98
-msgid "&Show chords for"
+msgid "&Chorus label..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:99
-msgid "&No chords"
+msgid "Set label for chorus"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:100
-msgid "Do not render chords at all"
+msgid "&Show chords for"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:101
-msgid "&One verse for each chord pattern"
+msgid "&No chords"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:102
-msgid "When a verse with a new chord pattern occurs, render chords"
+msgid "Do not render chords at all"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:103
-msgid "&Whole song"
+msgid "&One verse for each chord pattern"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:104
-msgid "Render chords for whole song"
+msgid "When a verse with a new chord pattern occurs, render chords"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:105
-msgid "&Tools"
+msgid "&Whole song"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:106
-msgid "&Transpose..."
+msgid "Render chords for whole song"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:107
-msgid "Transpose song or selected text"
+msgid "&Tools"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:108
-msgid "S&implify chords..."
+msgid "&Transpose..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:109
-msgid "Transpose chords to the easiest key"
+msgid "Transpose song or selected text"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:110
-msgid "Change chord &notation..."
+msgid "S&implify chords..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:111
-msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
+msgid "Transpose chords to the easiest key"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:112
-msgid "&Cleanup chords..."
+msgid "Change chord &notation..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:113
-msgid "Normalize chords according to current notation"
+msgid "Change chord notation (e.g. C D E vs Do Re Mi) of the song or selection"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:114
-msgid "Convert &Tab to Chordpro"
+msgid "&Cleanup chords..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:115
-msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
+msgid "Normalize chords according to current notation"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:116
-msgid "Remove &spurious blank lines"
+msgid "Convert &Tab to Chordpro"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:117
-msgid "Remove blank lines inside a verse"
+msgid "Convert song from tab notation (chords on separate lines) to ChordPro"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:118
-msgid "&Options..."
+msgid "Remove &spurious blank lines"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:119
-msgid "Set program options"
+msgid "Remove blank lines inside a verse"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:120
-msgid "&?"
+msgid "&Options..."
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:121
-msgid "&Guide\tF1"
+msgid "Set program options"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:122
-msgid "Show user's manual"
+msgid "&?"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:123
-msgid "&Check for updates"
+msgid "&Guide\tF1"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:124
-msgid "Open Songpress web site for news and updates"
+msgid "Show user's manual"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:125
-msgid "&Donate to our scout Group (web)"
+msgid "&Check for updates"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:126
-msgid "Open Songpress web site for donations"
+msgid "Open Songpress web site for news and updates"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:127
-msgid "&About..."
+msgid "&Donate to our scout Group (web)"
 msgstr ""
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:128
+msgid "Open Songpress web site for donations"
+msgstr ""
+
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:129
+msgid "&About..."
+msgstr ""
+
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/xrc/songpress.pos:130
 msgid "Show credits"
 msgstr ""

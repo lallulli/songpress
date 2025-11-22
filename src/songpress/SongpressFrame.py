@@ -366,6 +366,7 @@ class SongpressFrame(SDIMainFrame):
         Bind(self.OnFindNext, 'findNext')
         Bind(self.OnFindPrevious, 'findPrevious')
         Bind(self.OnReplace, 'replace')
+        Bind(self.OnSelectAll, 'selectAll')
         Bind(self.OnSelectNextChord, 'selectNextChord')
         Bind(self.OnSelectPreviousChord, 'selectPreviousChord')
         Bind(self.OnMoveChordRight, 'moveChordRight')
@@ -738,6 +739,9 @@ class SongpressFrame(SDIMainFrame):
 
     def OnReplace(self, evt):
         self.findReplaceDialog = SongpressFindReplaceDialog(self, True)
+
+    def OnSelectAll(self, evt):
+        self.text.SelectAll()
 
     def OnSelectNextChord(self, evt):
         self.text.SelectNextChord()
