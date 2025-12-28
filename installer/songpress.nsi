@@ -12,6 +12,20 @@
 
 SetCompressor lzma
 
+Function UninstallOld
+  ; $R0 should contain the GUID of the application, i.e. Songpress
+  push $R1
+  ReadRegStr $R1 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\$R0" "UninstallString"
+  StrCmp $R1 "" UninstallMSI_nomsi
+    MessageBox MB_YESNOCANCEL|MB_ICONQUESTION  $(UninstallAsk) IDNO UninstallMSI_nomsi IDYES UninstallMSI_yesmsi
+      Abort
+UninstallMSI_yesmsi:
+    ExecWait $R1
+    MessageBox MB_OK|MB_ICONINFORMATION $(UninstallPressOk)
+UninstallMSI_nomsi:
+  pop $R1
+FunctionEnd
+
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
 !include "FileAssociation.nsh"
@@ -256,7 +270,13 @@ LangString FileAssociationSG ${LANG_ITALIAN} "Associa tipi di file"
 ;SectionEnd
 
 Section $(SongpressSectionNameLS) SongpressSection
-  ; SetShellVarContext all
+
+  push $R0
+    StrCpy $R0 "Songpress";  the ProductID of my package
+    Call UninstallOld
+  pop $R0
+
+  SetShellVarContext all
   SectionIn RO
   ; SetOutPath "$INSTDIR"
   ; SetOverwrite on
@@ -274,7 +294,7 @@ SectionEnd
 Section $(DesktopSectionNameLS) DesktopSection
   ; SetShellVarContext all
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-  CreateShortCut "$DESKTOP\Songpress.lnk" "$SongpressExe"
+  CreateShortCut "$DESKTOP\Songpress.lnk" "$SongpressExe" "" "$INSTDIR\songpress.ico"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
@@ -288,27 +308,27 @@ SectionEnd
 SectionGroup $(FileAssociationSG)
 Section $(CrdSectionNameLS) CrdSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".crd" "ChordPro"
-  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoSectionNameLS) ChoSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".cho" "ChordPro"
-  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChordproSectionNameLS) ChordproSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chordpro" "ChordPro"
-  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoproSectionNameLS) ChoproSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chopro" "ChordPro"
-  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(TabSectionNameLS) TabSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".tab" "TABChord"
-  WriteRegStr HKCU "Software\Classes\TABChord\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\TABChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ProSectionNameLS) ProSection
   ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".pro" "PROChord"
-  WriteRegStr HKCU "Software\Classes\PROChord\DefaultIcon" "" "$INSTDIR\songpress.ico,0"
+  WriteRegStr HKCU "Software\Classes\PROChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
 
   ;Notify Explorer about changes
   System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
