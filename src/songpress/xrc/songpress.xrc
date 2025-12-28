@@ -16,7 +16,6 @@
 				<object class="wxMenuItem" name="open">
 					<label>_Open...\tCTRL+O</label>
 					<help>Open an existing song</help>
-					<bitmap>songpress/img/open.png</bitmap>
 				</object>
 				<object class="wxMenuItem" name="save">
 					<label>_Save\tCTRL+S</label>

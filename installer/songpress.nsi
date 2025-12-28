@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Songpress"
-!define PRODUCT_VERSION "net"
+!define PRODUCT_VERSION "(net installer)"
 !define PRODUCT_PUBLISHER "Luca Allulli - Skeed"
 !define PRODUCT_WEB_SITE "http://www.skeed.it"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\songpress.exe"
@@ -199,7 +199,7 @@ Function DoInstallPythonAndSongpress
     nsExec::ExecToLog 'pipx update songpress'
   ${Else}
     DetailPrint "$(SongpressInstalling)"
-    nsExec::ExecToLog 'pipx install songpress'
+    nsExec::ExecToLog 'pipx upgrade songpress --install'
   ${EndIf}
 
   ; Find songpress path
