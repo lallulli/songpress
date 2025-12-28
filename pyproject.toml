@@ -1,6 +1,6 @@
 [project]
 name = "songpress"
-version = "1.9.0.dev4"
+version = "1.9.0.dev5"
 description = "Songpress is a free, easy to use song typeset program for Windows and Linux, that generates high-quality songbooks."
 authors = [
     { name = "Luca Allulli", email = "luca@skeed.it" }
@@ -9,7 +9,7 @@ license = { text = "GNU GPL v2" }
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "wxPython>=4.2.3,<5.0.0",
+    "wxPython>=4.2.4,<5.0.0",
     "requests>=2.32.4,<3.0.0",
     "python-pptx>=1.0.2,<2.0.0",
     "pyshortcuts>=1.9.5,<2.0.0",
