@@ -206,14 +206,14 @@ Function DoInstallPythonAndSongpress
 
   ; Install or update Songpress
   DetailPrint "$(InstallingSongpress)"
-  nsExec::ExecToStack 'pipx list | findstr songpress'
+  nsExec::ExecToStack '$PythonCmd -m pipx list | findstr songpress'
   Pop $0
   ${If} $0 == "0"
     DetailPrint "$(SongpressUpdating)"
-    nsExec::ExecToLog 'pipx update songpress'
+    nsExec::ExecToLog '$PythonCmd -m pipx update songpress'
   ${Else}
     DetailPrint "$(SongpressInstalling)"
-    nsExec::ExecToLog 'pipx upgrade songpress --install'
+    nsExec::ExecToLog '$PythonCmd -m pipx upgrade songpress --install'
   ${EndIf}
 
   ; Find songpress path
