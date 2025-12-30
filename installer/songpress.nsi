@@ -70,9 +70,6 @@ var ICONS_GROUP
 ; --- English Strings ---
 LangString UninstallAsk ${LANG_ENGLISH} "A previous version of Songpress was found. It is recommended that you uninstall it first. Do you want to do that now?"
 LangString UninstallPressOk ${LANG_ENGLISH} "Press OK to continue upgrading your version of Songpress"
-LangString STR_CHECKING_UV ${LANG_ENGLISH} "Checking uv..."
-LangString STR_UV_NOT_FOUND ${LANG_ENGLISH} "uv not found. Installing via script..."
-LangString STR_UV_PATH ${LANG_ENGLISH} "uv path:"
 LangString STR_INSTALLING_SONGPRESS ${LANG_ENGLISH} "Installing Songpress via uv..."
 LangString STR_INSTALL_SUCCESS ${LANG_ENGLISH} "Installation completed successfully."
 LangString STR_FALLBACK_PS ${LANG_ENGLISH} "Attempting fallback via PowerShell..."
@@ -81,9 +78,6 @@ LangString STR_CRITICAL_ERROR ${LANG_ENGLISH} "Critical error: Songpress not ins
 ; --- Italian Strings ---
 LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
 LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornamento di Songpress"
-LangString STR_CHECKING_UV ${LANG_ITALIAN} "Controllo di uv in corso..."
-LangString STR_UV_NOT_FOUND ${LANG_ITALIAN} "uv non trovato. Installazione tramite script..."
-LangString STR_UV_PATH ${LANG_ITALIAN} "Percorso uv:"
 LangString STR_INSTALLING_SONGPRESS ${LANG_ITALIAN} "Installazione Songpress in corso con uv..."
 LangString STR_INSTALL_SUCCESS ${LANG_ITALIAN} "Installazione completata con successo."
 LangString STR_FALLBACK_PS ${LANG_ITALIAN} "Tentativo di fallback tramite PowerShell..."
@@ -109,37 +103,10 @@ Var UvCmd
 ; Installing UV + Python + Songpress
 
 Function DoInstallPythonAndSongpress
-  DetailPrint "$(STR_CHECKING_UV)"
-
-  ; 1. Check if uv is already present
-  nsExec::ExecToStack 'uv --version'
-  Pop $0
-
-  ${If} $0 != "0"
-    DetailPrint "$(STR_UV_NOT_FOUND)"
-    ; Execute uv installation
-    nsExec::ExecToLog 'powershell -ExecutionPolicy ByPass -Command "irm https://astral.sh/uv/install.ps1 | iex"'
-
-    Sleep 1000
-
-    ReadEnvStr $0 "USERPROFILE"
-    ReadEnvStr $1 "LOCALAPPDATA"
-
-    ${If} ${FileExists} "$0\.local\bin\uv.exe"
-      StrCpy $UvCmd "$0\.local\bin\uv.exe"
-    ${ElseIf} ${FileExists} "$0\.cargo\bin\uv.exe"
-      StrCpy $UvCmd "$0\.cargo\bin\uv.exe"
-    ${ElseIf} ${FileExists} "$1\uv\uv.exe"
-      StrCpy $UvCmd "$1\uv\uv.exe"
-    ${Else}
-      StrCpy $UvCmd "uv"
-    ${EndIf}
-
-    DetailPrint "$(STR_UV_PATH) $UvCmd"
-
-  ${Else}
-    StrCpy $UvCmd "uv"
-  ${EndIf}
+  ; 1. Preparing uv
+  InitPluginsDir
+  File "/oname=$PLUGINSDIR\uv.exe" "uv.exe"
+  StrCpy $UvCmd "$PLUGINSDIR\uv.exe"
 
   ; 2. Variable Setup
   ; Use SetEnvironmentVariable for the current session
@@ -335,7 +302,7 @@ SectionEnd
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
-LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) � stato disinstallato con successo."
+LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) e' stato disinstallato con successo."
 
 Function un.onUninstSuccess
   HideWindow
