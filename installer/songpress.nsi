@@ -10,6 +10,7 @@
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
+RequestExecutionLevel admin
 SetCompressor lzma
 
 Function UninstallOld
@@ -56,7 +57,7 @@ var ICONS_GROUP
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
-!define MUI_FINISHPAGE_RUN "$PROFILE\.local\bin\songpress.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\bin\songpress.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -74,42 +75,9 @@ LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornam
 ; === Language strings for pipx-based Songpress installer ===
 
 ; --- Python checks ---
-LangString CheckingPython ${LANG_ENGLISH} "=== Checking for Python installation ==="
-LangString CheckingPython ${LANG_ITALIAN} "=== Verifica presenza di Python ==="
 
-LangString FoundPythonLauncher ${LANG_ENGLISH} "Found Python launcher (py.exe)"
-LangString FoundPythonLauncher ${LANG_ITALIAN} "Trovato Python launcher (py.exe)"
 
-LangString FoundPythonExe ${LANG_ENGLISH} "Found Python executable (python.exe)"
-LangString FoundPythonExe ${LANG_ITALIAN} "Trovato Python (python.exe)"
 
-LangString PythonNotFound ${LANG_ENGLISH} "Python not found."
-LangString PythonNotFound ${LANG_ITALIAN} "Python non trovato."
-
-LangString InstallingPython ${LANG_ENGLISH} "Installing Python from Microsoft Store..."
-LangString InstallingPython ${LANG_ITALIAN} "Installazione Python dal Microsoft Store..."
-
-LangString PythonInstallNotice ${LANG_ENGLISH} "Please install Python from the Store, then restart this installer."
-LangString PythonInstallNotice ${LANG_ITALIAN} "Installa Python dallo Store, poi riavvia questo programma di installazione."
-
-LangString PythonVersionCheck ${LANG_ENGLISH} "Checking Python version..."
-LangString PythonVersionCheck ${LANG_ITALIAN} "Verifica versione di Python..."
-
-LangString PythonVersionTooOld ${LANG_ENGLISH} "Python must be version 3.9 or newer."
-LangString PythonVersionTooOld ${LANG_ITALIAN} "Python deve essere versione 3.9 o superiore."
-
-LangString PythonVersionUnknown ${LANG_ENGLISH} "Unable to check Python version."
-LangString PythonVersionUnknown ${LANG_ITALIAN} "Impossibile verificare la versione di Python."
-
-; --- pipx checks ---
-LangString CheckingPipx ${LANG_ENGLISH} "=== Checking for pipx ==="
-LangString CheckingPipx ${LANG_ITALIAN} "=== Verifica presenza di pipx ==="
-
-LangString InstallingPipx ${LANG_ENGLISH} "Installing pipx..."
-LangString InstallingPipx ${LANG_ITALIAN} "Installazione di pipx..."
-
-LangString PipxFound ${LANG_ENGLISH} "pipx is already installed."
-LangString PipxFound ${LANG_ITALIAN} "pipx � gi� installato."
 
 ; --- Songpress install/update ---
 LangString InstallingSongpress ${LANG_ENGLISH} "=== Installing Songpress ==="
@@ -148,55 +116,79 @@ AutoCloseWindow false
 ; Global variables
 Var PythonCmd
 Var SongpressExe
+Var UvCmd
 
 ; Installing UV + Python + Songpress
+
 Function DoInstallPythonAndSongpress
   DetailPrint "Controllo di uv in corso..."
 
-  ; 1. Verifica/Installa uv
+  ; 1. Verifica se uv è già presente
   nsExec::ExecToStack 'uv --version'
   Pop $0
+
   ${If} $0 != "0"
-    DetailPrint "uv non trovato. Installazione..."
+    DetailPrint "uv non trovato. Installazione tramite script..."
+    ; Eseguiamo l'installazione di uv
     nsExec::ExecToLog 'powershell -ExecutionPolicy ByPass -Command "irm https://astral.sh/uv/install.ps1 | iex"'
-    StrCpy $UvCmd "$PROFILE\.cargo\bin\uv.exe"
+
+    Sleep 1000
+
+    ReadEnvStr $0 "USERPROFILE"
+    StrCpy $UvCmd "$0\.local\bin\uv.exe"
+
+    ${Unless} ${FileExists} "$UvCmd"
+      StrCpy $UvCmd "$LOCALAPPDATA\.local\bin\uv.exe"
+    ${EndUnless}
+
+    DetailPrint "Percorso uv: $UvCmd"
   ${Else}
     StrCpy $UvCmd "uv"
   ${EndIf}
 
-  ; 2. Configura i percorsi (Per isolare Python e Songpress in Program Files)
+  ; 2. Impostazione Variabili
+  ; Usiamo SetEnvironmentVariable per la sessione corrente
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_BIN_DIR", t "$INSTDIR\bin")'
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_DIR", t "$INSTDIR\tools")'
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_PYTHON_INSTALL_DIR", t "$INSTDIR\python")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_CACHE_DIR", t "$INSTDIR\cache")'
 
-  ; 3. Installazione intelligente
-  DetailPrint "Installazione Songpress (uso Python di sistema se disponibile)..."
+  ; 3. ESECUZIONE INSTALLAZIONE SONGPRESS
+  DetailPrint "Installazione Songpress in corso con uv..."
 
-  ; --python-preference system,managed:
-  ; Prova prima quello che trova nel PATH o nel registro di Windows.
-  ; Se fallisce, scarica Python in $INSTDIR\python.
-  nsExec::ExecToLog '$UvCmd tool install --python-preference system,managed songpress'
+  ; Usiamo il percorso completo di uv.exe tra virgolette
+  ; Aggiungiamo --force per assicurarci che sovrascriva eventuali tentativi falliti
+  nsExec::ExecToLog '"$UvCmd" tool install --force --python-preference system songpress'
 
-  ; 4. Verifica finale
-  IfFileExists "$INSTDIR\bin\songpress.exe" +3
-    DetailPrint "Errore: Songpress non trovato in $INSTDIR\bin"
-    Abort
+  ; 4. VERIFICA FINALE E FALLBACK
+  ${If} ${FileExists} "$INSTDIR\bin\songpress.exe"
+    DetailPrint "Installazione completata con successo."
+  ${Else}
+    ; Se ancora fallisce, proviamo a chiamarlo tramite PowerShell come ultima spiaggia
+    DetailPrint "Tentativo di fallback tramite PowerShell..."
+    nsExec::ExecToLog 'powershell -Command "& { $$env:UV_TOOL_BIN_DIR=''$INSTDIR\bin''; $$env:UV_TOOL_DIR=''$INSTDIR\tools''; $$env:UV_PYTHON_INSTALL_DIR=''$INSTDIR\python''; & ''$UvCmd'' tool install --force songpress }"'
+
+    ${Unless} ${FileExists} "$INSTDIR\bin\songpress.exe"
+       DetailPrint "Errore critico: Songpress non installato."
+       Abort
+    ${EndUnless}
+  ${EndIf}
 
   StrCpy $SongpressExe "$INSTDIR\bin\songpress.exe"
-  DetailPrint "Installazione completata: $SongpressExe"
+
+  RMDir /r "$INSTDIR\cache"
 FunctionEnd
+
 
 ; Uninstall Songpress
 Function un.DoUninstallSongpress
-  DetailPrint "$(UninstallSongpress)"
-  nsExec::ExecToStack 'where pipx'
-  Pop $0
-  Pop $1
-  ${If} $0 == "0"
-    nsExec::ExecToLog 'pipx uninstall songpress'
-  ${Else}
-    DetailPrint "$(PipxNotFound)"
-  ${EndIf}
+  RMDir /r "$INSTDIR\bin"
+  RMDir /r "$INSTDIR\tools"
+  RMDir /r "$INSTDIR\python"
+  RMDir /r "$INSTDIR\cache"
+  Delete "$INSTDIR\songpress.ico"
+  Delete "$INSTDIR\uninst.exe"
+  RMDir "$INSTDIR"
 FunctionEnd
 
 Function .onInit
@@ -248,14 +240,14 @@ Section $(SongpressSectionNameLS) SongpressSection
 ; Shortcuts
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$ICONS_GROUP"
-  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$SongpressExe" "" "$INSTDIR\songpress.ico" 0
+  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$INSTDIR\bin\songpress.exe" "" "$INSTDIR\songpress.ico" 0
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section $(DesktopSectionNameLS) DesktopSection
   ; SetShellVarContext all
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-  CreateShortCut "$DESKTOP\Songpress.lnk" "$SongpressExe" "" "$INSTDIR\songpress.ico"
+  CreateShortCut "$DESKTOP\Songpress.lnk" "$INSTDIR\bin\songpress.exe" "" "$INSTDIR\songpress.ico"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
@@ -268,27 +260,27 @@ SectionEnd
 
 SectionGroup $(FileAssociationSG)
 Section $(CrdSectionNameLS) CrdSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".crd" "ChordPro"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".crd" "ChordPro"
   WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoSectionNameLS) ChoSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".cho" "ChordPro"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".cho" "ChordPro"
   WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChordproSectionNameLS) ChordproSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chordpro" "ChordPro"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".chordpro" "ChordPro"
   WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoproSectionNameLS) ChoproSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".chopro" "ChordPro"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".chopro" "ChordPro"
   WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(TabSectionNameLS) TabSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".tab" "TABChord"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".tab" "TABChord"
   WriteRegStr HKCU "Software\Classes\TABChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ProSectionNameLS) ProSection
-  ${registerExtension} "$PROFILE\.local\bin\songpress.exe" ".pro" "PROChord"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".pro" "PROChord"
   WriteRegStr HKCU "Software\Classes\PROChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
 
   ;Notify Explorer about changes
