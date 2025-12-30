@@ -109,17 +109,17 @@ LangString InstallingPipx ${LANG_ENGLISH} "Installing pipx..."
 LangString InstallingPipx ${LANG_ITALIAN} "Installazione di pipx..."
 
 LangString PipxFound ${LANG_ENGLISH} "pipx is already installed."
-LangString PipxFound ${LANG_ITALIAN} "pipx è già installato."
+LangString PipxFound ${LANG_ITALIAN} "pipx ï¿½ giï¿½ installato."
 
 ; --- Songpress install/update ---
 LangString InstallingSongpress ${LANG_ENGLISH} "=== Installing Songpress ==="
 LangString InstallingSongpress ${LANG_ITALIAN} "=== Installazione Songpress ==="
 
 LangString SongpressUpdating ${LANG_ENGLISH} "Songpress already installed, updating..."
-LangString SongpressUpdating ${LANG_ITALIAN} "Songpress già installato, aggiornamento in corso..."
+LangString SongpressUpdating ${LANG_ITALIAN} "Songpress giï¿½ installato, aggiornamento in corso..."
 
 LangString SongpressInstalling ${LANG_ENGLISH} "Downloading and installing Songpress. This operation may take several minutes..."
-LangString SongpressInstalling ${LANG_ITALIAN} "Scaricamento e installazione di Songpress. Questa operazione può durare alcuni minuti..."
+LangString SongpressInstalling ${LANG_ITALIAN} "Scaricamento e installazione di Songpress. Questa operazione puï¿½ durare alcuni minuti..."
 
 LangString SongpressDone ${LANG_ENGLISH} "Songpress installation complete."
 LangString SongpressDone ${LANG_ITALIAN} "Installazione di Songpress completata."
@@ -149,80 +149,41 @@ AutoCloseWindow false
 Var PythonCmd
 Var SongpressExe
 
-; Installing Python + PIPX + Songpress
+; Installing UV + Python + Songpress
 Function DoInstallPythonAndSongpress
-  DetailPrint "$(CheckingPython)"
+  DetailPrint "Controllo di uv in corso..."
 
-  ; Check if py exists
-  nsExec::ExecToStack 'where py'
-  Pop $0
-  Pop $1
-
-  ${If} $0 == "0"
-    DetailPrint "$(FoundPythonLauncher)"
-    
-    StrCpy $PythonCmd "py -3"
-  ${Else}
-    ; If py is not present, try python
-    nsExec::ExecToStack 'where python'
-    Pop $0
-    Pop $1
-    ${If} $0 == "0"
-      DetailPrint "$(FoundPythonExe): $1"
-      StrCpy $PythonCmd "python"
-    ${Else}
-      DetailPrint "$(PythonNotFound)"
-      DetailPrint "$(InstallingPython)"
-      nsExec::ExecToLog 'powershell -Command "winget install -e --id Python.Python.3.13"'
-      StrCpy $PythonCmd "py -3"
-    ${EndIf}
-  ${EndIf}
-
-  ; Check python versione >= 3.9
-  nsExec::ExecToStack '$PythonCmd -c "import sys; sys.exit(0 if sys.version_info>=(3,9) else 1)"'
+  ; 1. Verifica/Installa uv
+  nsExec::ExecToStack 'uv --version'
   Pop $0
   ${If} $0 != "0"
-    DetailPrint "$(PythonVersionTooOld)"
-    DetailPrint "$(InstallingPython)"
-    nsExec::ExecToLog 'powershell -Command "winget install -e --id Python.Python.3.13 --accept-source-agreements --accept-package-agreements"'
-    StrCpy $PythonCmd "py -3"
+    DetailPrint "uv non trovato. Installazione..."
+    nsExec::ExecToLog 'powershell -ExecutionPolicy ByPass -Command "irm https://astral.sh/uv/install.ps1 | iex"'
+    StrCpy $UvCmd "$PROFILE\.cargo\bin\uv.exe"
   ${Else}
-    DetailPrint "Python ok"
+    StrCpy $UvCmd "uv"
   ${EndIf}
 
+  ; 2. Configura i percorsi (Per isolare Python e Songpress in Program Files)
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_BIN_DIR", t "$INSTDIR\bin")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_DIR", t "$INSTDIR\tools")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_PYTHON_INSTALL_DIR", t "$INSTDIR\python")'
 
-  ; Check pipx
-  DetailPrint "$(CheckingPipx)"
-  nsExec::ExecToStack '$PythonCmd -m pip show pipx'
-  Pop $0
-  Pop $1
-  ${If} $0 != "0"
-    DetailPrint "$(InstallingPipx)"
-    nsExec::ExecToLog '$PythonCmd -m pip install -U pipx'
-    nsExec::ExecToLog '$PythonCmd -m pipx ensurepath'
-  ${Else}
-    DetailPrint "$(PipxFound)"
-  ${EndIf}
+  ; 3. Installazione intelligente
+  DetailPrint "Installazione Songpress (uso Python di sistema se disponibile)..."
 
-  ; Install or update Songpress
-  DetailPrint "$(InstallingSongpress)"
-  nsExec::ExecToStack '$PythonCmd -m pipx list | findstr songpress'
-  Pop $0
-  ${If} $0 == "0"
-    DetailPrint "$(SongpressUpdating)"
-    nsExec::ExecToLog '$PythonCmd -m pipx update songpress'
-  ${Else}
-    DetailPrint "$(SongpressInstalling)"
-    nsExec::ExecToLog '$PythonCmd -m pipx upgrade songpress --install'
-  ${EndIf}
+  ; --python-preference system,managed:
+  ; Prova prima quello che trova nel PATH o nel registro di Windows.
+  ; Se fallisce, scarica Python in $INSTDIR\python.
+  nsExec::ExecToLog '$UvCmd tool install --python-preference system,managed songpress'
 
-  ; Find songpress path
-  nsExec::ExecToStack 'where songpress'
-  Pop $0
-  Pop $SongpressExe
-  DetailPrint "Songpress path: $SongpressExe"
+  ; 4. Verifica finale
+  IfFileExists "$INSTDIR\bin\songpress.exe" +3
+    DetailPrint "Errore: Songpress non trovato in $INSTDIR\bin"
+    Abort
 
-  DetailPrint "$(SongpressDone)"
+  StrCpy $SongpressExe "$INSTDIR\bin\songpress.exe"
+  DetailPrint "Installazione completata: $SongpressExe"
 FunctionEnd
 
 ; Uninstall Songpress
@@ -383,7 +344,7 @@ SectionEnd
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
-LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) è stato disinstallato con successo."
+LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) ï¿½ stato disinstallato con successo."
 
 Function un.onUninstSuccess
   HideWindow
