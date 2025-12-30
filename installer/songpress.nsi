@@ -67,38 +67,27 @@ var ICONS_GROUP
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Italian"
 
+; --- English Strings ---
 LangString UninstallAsk ${LANG_ENGLISH} "A previous version of Songpress was found. It is recommended that you uninstall it first. Do you want to do that now?"
-LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
 LangString UninstallPressOk ${LANG_ENGLISH} "Press OK to continue upgrading your version of Songpress"
+LangString STR_CHECKING_UV ${LANG_ENGLISH} "Checking uv..."
+LangString STR_UV_NOT_FOUND ${LANG_ENGLISH} "uv not found. Installing via script..."
+LangString STR_UV_PATH ${LANG_ENGLISH} "uv path:"
+LangString STR_INSTALLING_SONGPRESS ${LANG_ENGLISH} "Installing Songpress via uv..."
+LangString STR_INSTALL_SUCCESS ${LANG_ENGLISH} "Installation completed successfully."
+LangString STR_FALLBACK_PS ${LANG_ENGLISH} "Attempting fallback via PowerShell..."
+LangString STR_CRITICAL_ERROR ${LANG_ENGLISH} "Critical error: Songpress not installed."
+
+; --- Italian Strings ---
+LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
 LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornamento di Songpress"
-
-; === Language strings for pipx-based Songpress installer ===
-
-; --- Python checks ---
-
-
-
-
-; --- Songpress install/update ---
-LangString InstallingSongpress ${LANG_ENGLISH} "=== Installing Songpress ==="
-LangString InstallingSongpress ${LANG_ITALIAN} "=== Installazione Songpress ==="
-
-LangString SongpressUpdating ${LANG_ENGLISH} "Songpress already installed, updating..."
-LangString SongpressUpdating ${LANG_ITALIAN} "Songpress gi� installato, aggiornamento in corso..."
-
-LangString SongpressInstalling ${LANG_ENGLISH} "Downloading and installing Songpress. This operation may take several minutes..."
-LangString SongpressInstalling ${LANG_ITALIAN} "Scaricamento e installazione di Songpress. Questa operazione pu� durare alcuni minuti..."
-
-LangString SongpressDone ${LANG_ENGLISH} "Songpress installation complete."
-LangString SongpressDone ${LANG_ITALIAN} "Installazione di Songpress completata."
-
-; --- Uninstall ---
-LangString UninstallSongpress ${LANG_ENGLISH} "=== Uninstalling Songpress (via pipx) ==="
-LangString UninstallSongpress ${LANG_ITALIAN} "=== Disinstallazione Songpress (tramite pipx) ==="
-
-LangString PipxNotFound ${LANG_ENGLISH} "pipx not found: skipping uninstall."
-LangString PipxNotFound ${LANG_ITALIAN} "pipx non trovato: disinstallazione non necessaria."
-
+LangString STR_CHECKING_UV ${LANG_ITALIAN} "Controllo di uv in corso..."
+LangString STR_UV_NOT_FOUND ${LANG_ITALIAN} "uv non trovato. Installazione tramite script..."
+LangString STR_UV_PATH ${LANG_ITALIAN} "Percorso uv:"
+LangString STR_INSTALLING_SONGPRESS ${LANG_ITALIAN} "Installazione Songpress in corso con uv..."
+LangString STR_INSTALL_SUCCESS ${LANG_ITALIAN} "Installazione completata con successo."
+LangString STR_FALLBACK_PS ${LANG_ITALIAN} "Tentativo di fallback tramite PowerShell..."
+LangString STR_CRITICAL_ERROR ${LANG_ITALIAN} "Errore critico: Songpress non installato."
 
 ; Reserve files
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
@@ -114,62 +103,73 @@ ShowUnInstDetails show
 AutoCloseWindow false
 
 ; Global variables
-Var PythonCmd
 Var SongpressExe
 Var UvCmd
 
 ; Installing UV + Python + Songpress
 
 Function DoInstallPythonAndSongpress
-  DetailPrint "Controllo di uv in corso..."
+  DetailPrint "$(STR_CHECKING_UV)"
 
-  ; 1. Verifica se uv è già presente
+  ; 1. Check if uv is already present
   nsExec::ExecToStack 'uv --version'
   Pop $0
 
   ${If} $0 != "0"
-    DetailPrint "uv non trovato. Installazione tramite script..."
-    ; Eseguiamo l'installazione di uv
+    DetailPrint "$(STR_UV_NOT_FOUND)"
+    ; Execute uv installation
     nsExec::ExecToLog 'powershell -ExecutionPolicy ByPass -Command "irm https://astral.sh/uv/install.ps1 | iex"'
 
     Sleep 1000
 
     ReadEnvStr $0 "USERPROFILE"
-    StrCpy $UvCmd "$0\.local\bin\uv.exe"
+    ReadEnvStr $1 "LOCALAPPDATA"
 
-    ${Unless} ${FileExists} "$UvCmd"
-      StrCpy $UvCmd "$LOCALAPPDATA\.local\bin\uv.exe"
-    ${EndUnless}
+    ${If} ${FileExists} "$0\.local\bin\uv.exe"
+      StrCpy $UvCmd "$0\.local\bin\uv.exe"
+    ${ElseIf} ${FileExists} "$0\.cargo\bin\uv.exe"
+      StrCpy $UvCmd "$0\.cargo\bin\uv.exe"
+    ${ElseIf} ${FileExists} "$1\uv\uv.exe"
+      StrCpy $UvCmd "$1\uv\uv.exe"
+    ${Else}
+      StrCpy $UvCmd "uv"
+    ${EndIf}
 
-    DetailPrint "Percorso uv: $UvCmd"
+    DetailPrint "$(STR_UV_PATH) $UvCmd"
+
   ${Else}
     StrCpy $UvCmd "uv"
   ${EndIf}
 
-  ; 2. Impostazione Variabili
-  ; Usiamo SetEnvironmentVariable per la sessione corrente
+  ; 2. Variable Setup
+  ; Use SetEnvironmentVariable for the current session
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_BIN_DIR", t "$INSTDIR\bin")'
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_DIR", t "$INSTDIR\tools")'
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_PYTHON_INSTALL_DIR", t "$INSTDIR\python")'
   System::Call 'kernel32::SetEnvironmentVariable(t "UV_CACHE_DIR", t "$INSTDIR\cache")'
 
-  ; 3. ESECUZIONE INSTALLAZIONE SONGPRESS
-  DetailPrint "Installazione Songpress in corso con uv..."
+  ; 3. EXECUTE SONGPRESS INSTALLATION
+  DetailPrint "$(STR_INSTALLING_SONGPRESS)"
 
-  ; Usiamo il percorso completo di uv.exe tra virgolette
-  ; Aggiungiamo --force per assicurarci che sovrascriva eventuali tentativi falliti
+  ; Use the full path of uv.exe in quotes
+  ; Add --force to ensure it overwrites any failed attempts
   nsExec::ExecToLog '"$UvCmd" tool install --force --python-preference system songpress'
 
-  ; 4. VERIFICA FINALE E FALLBACK
+  ; 4. FINAL VERIFICATION AND FALLBACK
   ${If} ${FileExists} "$INSTDIR\bin\songpress.exe"
-    DetailPrint "Installazione completata con successo."
+    DetailPrint "$(STR_INSTALL_SUCCESS)"
   ${Else}
-    ; Se ancora fallisce, proviamo a chiamarlo tramite PowerShell come ultima spiaggia
-    DetailPrint "Tentativo di fallback tramite PowerShell..."
-    nsExec::ExecToLog 'powershell -Command "& { $$env:UV_TOOL_BIN_DIR=''$INSTDIR\bin''; $$env:UV_TOOL_DIR=''$INSTDIR\tools''; $$env:UV_PYTHON_INSTALL_DIR=''$INSTDIR\python''; & ''$UvCmd'' tool install --force songpress }"'
-
+    ; If it still fails, try calling it via PowerShell as a last resort
+    DetailPrint "$(STR_FALLBACK_PS)"
+    nsExec::ExecToLog 'powershell -Command "& { \
+      $$env:UV_TOOL_BIN_DIR=$\"$INSTDIR\bin$\"; \
+      $$env:UV_TOOL_DIR=$\"$INSTDIR\tools$\"; \
+      $$env:UV_PYTHON_INSTALL_DIR=$\"$INSTDIR\python$\"; \
+      $$env:UV_CACHE_DIR=$\"$INSTDIR\cache$\"; \
+      & $\"$UvCmd$\" tool install --force songpress \
+    }"'
     ${Unless} ${FileExists} "$INSTDIR\bin\songpress.exe"
-       DetailPrint "Errore critico: Songpress non installato."
+       DetailPrint "$(STR_CRITICAL_ERROR)"
        Abort
     ${EndUnless}
   ${EndIf}
@@ -178,7 +178,6 @@ Function DoInstallPythonAndSongpress
 
   RMDir /r "$INSTDIR\cache"
 FunctionEnd
-
 
 ; Uninstall Songpress
 Function un.DoUninstallSongpress
