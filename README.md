@@ -44,7 +44,7 @@ songpress --create-shortcuts
 
 - Produce **high-quality guitar scores** (text and chords)
 - **Easy** to learn, quick to use
-- You can **paste formatted songs** into any Windows application, to layout your songbook with maximum flexibility (Microsoft Word, LibreOffice, Microsoft Publisher, Inkscape etc.)
+- You can **paste formatted songs** into any Linux and Windows application, to layout your songbook with maximum flexibility (Affinity, Microsoft Word, LibreOffice, Microsoft Publisher, Inkscape etc.)
 - **Export** formatted songs to PNG and HTML (web pages and snippets)
 - **Chord transposition** with automatic key detection
 - **Chord simplification** for beginner guitarists: determine the easiest key to play your song, and transpose it automatically
