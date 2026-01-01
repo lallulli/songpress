@@ -2,27 +2,43 @@ Songpress is a free, easy to use song typeset program for Windows and Linux, tha
 
 Songpress is focused on song formatting. Once your song is ready, you can copy-paste it into your favorite program, to give your songbook the look you like the most.
 
+### Windows Installation
 
-### Installation
+To install Songpress on Windows, we provide a [network installer](#)
+that downloads and installs the latest available version of Songpress.
 
-You can install Songpress using [https://github.com/pypa/pipx](`pipx`):
+Songpress is distributed through PyPI, the standard repository for Python packages. The network installer uses uv to:
+
+1. Check whether a recent version of Python is already installed on your system. If not, the installer will download a local version of Python dedicated to Songpress.
+2. Download and install Songpress along with all its dependencies (locally).
+
+All installed files are contained in a single folder within your _Program Files_ directory, allowing Songpress to be cleanly uninstalled using its own uninstaller.
+
+### Linux Installation
+
+On Linux, you can install Songpress using pipx:
 
 ```bash
 pipx install songpress
 ```
 
-Then you can run Songpress simply typing:
+Alternatively, you can use uv:
+
+```bash
+uv tool install songpress
+```
+
+The installation process may take several minutes, as the installer needs to download and compile the wxPython and wxWidgets libraries. Once installed, you can run Songpress by typing:
 
 ```bash
 songpress
 ```
 
-You can create a start menu shortcut by executing:
+You can create a start menu (application menu) shortcut by executing:
 
 ```bash
 songpress --create-shortcuts
 ```
-
 
 ### Highlights
 
