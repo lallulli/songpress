@@ -58,5 +58,11 @@ pipx upgrade songpress
 - Support Chordpro and Tab (i.e. two-line) **chord formats**
 - **Clean up** dirty songs with spurious blank lines (such as songs copied and pasted from web pages) and not homogeneous chord notations
 
-Learn more at http://www.skeed.it/songpress
 
+Learn more at http://www.skeed.it/songpress
+  
+### Known Issues
+
+__Linux: SVG export and display scaling__
+
+When the system display scaling factor is not set to 1, the SVG output produced by Copy as Image may be incorrectly formatted. This is a known issue in the current wxPython release. The underlying problem [has already been fixed upstream in wxWidgets](https://github.com/wxWidgets/wxWidgets/issues/25707) and will be resolved automatically once the next version of wxPython becomes available.
