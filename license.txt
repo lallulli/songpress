@@ -322,7 +322,7 @@ The error reporting dialog used in Songpress is taken from the Editra
 project. Editra is licensed under the terms and conditions of the
 wxWindows Library Licence, Version 3.1.
 
-http://editra.org/
+https://github.com/cjprecord/editra
 
 
 ----
@@ -330,6 +330,8 @@ http://editra.org/
 ----
 
 The Windows installer contains uv, licensed under the MIT License.
+
+https://github.com/astral-sh/uv
 
 MIT License
 
