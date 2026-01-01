@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 17:16+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-04 20:06+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,58 +18,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/Transpose.py:73
+#: src/songpress/Transpose.py:73
 msgid "American (C D E... B)"
 msgstr "Américain (C D E... B)"
 
-#: src/Transpose.py:81
+#: src/songpress/Transpose.py:81
 msgid "Italian (Do Re Mi... Si)"
 msgstr "Italien (Do Re Mi... Si)"
 
-#: src/Transpose.py:97
+#: src/songpress/Transpose.py:97
 msgid "French (Do Ré Mi... Si)"
 msgstr "Français (Do Ré Mi... Si)"
 
-#: src/Transpose.py:111
+#: src/songpress/Transpose.py:111
 msgid "Portuguese (Dó Ré Mi... Si)"
 msgstr "Portugais (Dó Ré Mi... Si)"
 
-#: src/Transpose.py:132
+#: src/songpress/Transpose.py:127
 msgid "Basic chords (A, E, D)"
 msgstr "Accords basiques (A, E, D)"
 
-#: src/Transpose.py:133
+#: src/songpress/Transpose.py:128
 msgid "50s progr. in C (C, Am, Dm, G7)"
 msgstr "50ème progression en Do (Do, Lam, Rém, Sol7)"
 
-#: src/Transpose.py:134
+#: src/songpress/Transpose.py:129
 msgid "F chord"
 msgstr "Accord de Fa"
 
-#: src/Transpose.py:135
+#: src/songpress/Transpose.py:130
 msgid "50s progr. in G (G, Em, Am, D7)"
 msgstr "50ème progression en Sol (Sol, Mim, Lam, Ré7)"
 
-#: src/Transpose.py:136
+#: src/songpress/Transpose.py:131
 msgid "50s progr. in D (D, Bm, Em, A7)"
 msgstr "50ème progression en Ré (Ré, Sim, Mim, La7)"
 
-#: src/Transpose.py:137
+#: src/songpress/Transpose.py:132
 msgid "50s progr. in A (A, F#m, Bm, E7)"
 msgstr "50ème progression en La (La, Fa#m, Sim, Mi7)"
 
-#: src/Transpose.py:138
+#: src/songpress/Transpose.py:133
 msgid "C#, C#m, C#7 chords"
 msgstr "Accords de Do#, Do#m, Do#7 "
 
-#: src/Transpose.py:139
+#: src/songpress/Transpose.py:134
 msgid "50s progr. in F (F, Dm, Gm, C7)"
 msgstr "50ème progression en Fa (Fa, Rém, Solm, Do7)"
 
-#: src/Transpose.py:140
+#: src/songpress/Transpose.py:135
 msgid "B and B7 chords"
 msgstr "Accords de Si et Si7"
 
-#: src/Transpose.py:166
-msgid "German (C D E... H)"
+#: src/songpress/Transpose.py:189
+#, fuzzy
+msgid "German/Sacandinavian (C C#/Db D... Bb H)"
+msgstr "Allemand (C D E ... H)"
+
+#: src/songpress/Transpose.py:198
+#, fuzzy
+msgid "Traditional German (C Cis/Des D... B H)"
 msgstr "Allemand (C D E ... H)"

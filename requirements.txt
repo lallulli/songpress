@@ -1,5 +1,0 @@
-wxPython
-requests
-python-pptx
-cx_Freeze
-pywin32; sys_platform == 'win32'

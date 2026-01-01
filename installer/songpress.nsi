@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Songpress"
-!define PRODUCT_VERSION "{{Version}}"
+!define PRODUCT_VERSION "(net installer)"
 !define PRODUCT_PUBLISHER "Luca Allulli - Skeed"
 !define PRODUCT_WEB_SITE "http://www.skeed.it"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\songpress.exe"
@@ -29,7 +29,7 @@ FunctionEnd
 
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"
-!include "Installer\FileAssociation.nsh"
+!include "FileAssociation.nsh"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
@@ -44,9 +44,7 @@ FunctionEnd
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-!insertmacro MUI_PAGE_LICENSE "license.txt"
-; Directory page
-!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_LICENSE "..\license.txt"
 ; Start menu page
 var ICONS_GROUP
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "Songpress"
@@ -59,7 +57,7 @@ var ICONS_GROUP
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
-!define MUI_FINISHPAGE_RUN "$INSTDIR\songpress.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\bin\songpress.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -69,11 +67,21 @@ var ICONS_GROUP
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Italian"
 
+; --- English Strings ---
 LangString UninstallAsk ${LANG_ENGLISH} "A previous version of Songpress was found. It is recommended that you uninstall it first. Do you want to do that now?"
-LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
 LangString UninstallPressOk ${LANG_ENGLISH} "Press OK to continue upgrading your version of Songpress"
-LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornamento di Songpress"
+LangString STR_INSTALLING_SONGPRESS ${LANG_ENGLISH} "Installing Songpress via uv..."
+LangString STR_INSTALL_SUCCESS ${LANG_ENGLISH} "Installation completed successfully."
+LangString STR_FALLBACK_PS ${LANG_ENGLISH} "Attempting fallback via PowerShell..."
+LangString STR_CRITICAL_ERROR ${LANG_ENGLISH} "Critical error: Songpress not installed."
 
+; --- Italian Strings ---
+LangString UninstallAsk ${LANG_ITALIAN} "E' presente una versione precedente di Songpress. Si consiglia di disinstallarla prima di continuare. Eseguire la disinstallazione ora?"
+LangString UninstallPressOk ${LANG_ITALIAN} "Premi OK per continuare l'aggiornamento di Songpress"
+LangString STR_INSTALLING_SONGPRESS ${LANG_ITALIAN} "Installazione Songpress in corso con uv..."
+LangString STR_INSTALL_SUCCESS ${LANG_ITALIAN} "Installazione completata con successo."
+LangString STR_FALLBACK_PS ${LANG_ITALIAN} "Tentativo di fallback tramite PowerShell..."
+LangString STR_CRITICAL_ERROR ${LANG_ITALIAN} "Errore critico: Songpress non installato."
 
 ; Reserve files
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
@@ -86,6 +94,68 @@ InstallDir "$PROGRAMFILES\Songpress"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
+AutoCloseWindow false
+
+; Global variables
+Var SongpressExe
+Var UvCmd
+
+; Installing UV + Python + Songpress
+
+Function DoInstallPythonAndSongpress
+  ; 1. Preparing uv
+  InitPluginsDir
+  File "/oname=$PLUGINSDIR\uv.exe" "uv.exe"
+  StrCpy $UvCmd "$PLUGINSDIR\uv.exe"
+
+  ; 2. Variable Setup
+  ; Use SetEnvironmentVariable for the current session
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_BIN_DIR", t "$INSTDIR\bin")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_TOOL_DIR", t "$INSTDIR\tools")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_PYTHON_INSTALL_DIR", t "$INSTDIR\python")'
+  System::Call 'kernel32::SetEnvironmentVariable(t "UV_CACHE_DIR", t "$INSTDIR\cache")'
+
+  ; 3. EXECUTE SONGPRESS INSTALLATION
+  DetailPrint "$(STR_INSTALLING_SONGPRESS)"
+
+  ; Use the full path of uv.exe in quotes
+  ; Add --force to ensure it overwrites any failed attempts
+  nsExec::ExecToLog '"$UvCmd" tool install --force --python-preference system songpress'
+
+  ; 4. FINAL VERIFICATION AND FALLBACK
+  ${If} ${FileExists} "$INSTDIR\bin\songpress.exe"
+    DetailPrint "$(STR_INSTALL_SUCCESS)"
+  ${Else}
+    ; If it still fails, try calling it via PowerShell as a last resort
+    DetailPrint "$(STR_FALLBACK_PS)"
+    nsExec::ExecToLog 'powershell -Command "& { \
+      $$env:UV_TOOL_BIN_DIR=$\"$INSTDIR\bin$\"; \
+      $$env:UV_TOOL_DIR=$\"$INSTDIR\tools$\"; \
+      $$env:UV_PYTHON_INSTALL_DIR=$\"$INSTDIR\python$\"; \
+      $$env:UV_CACHE_DIR=$\"$INSTDIR\cache$\"; \
+      & $\"$UvCmd$\" tool install --force songpress \
+    }"'
+    ${Unless} ${FileExists} "$INSTDIR\bin\songpress.exe"
+       DetailPrint "$(STR_CRITICAL_ERROR)"
+       Abort
+    ${EndUnless}
+  ${EndIf}
+
+  StrCpy $SongpressExe "$INSTDIR\bin\songpress.exe"
+
+  RMDir /r "$INSTDIR\cache"
+FunctionEnd
+
+; Uninstall Songpress
+Function un.DoUninstallSongpress
+  RMDir /r "$INSTDIR\bin"
+  RMDir /r "$INSTDIR\tools"
+  RMDir /r "$INSTDIR\python"
+  RMDir /r "$INSTDIR\cache"
+  Delete "$INSTDIR\songpress.ico"
+  Delete "$INSTDIR\uninst.exe"
+  RMDir "$INSTDIR"
+FunctionEnd
 
 Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
@@ -127,22 +197,23 @@ Section $(SongpressSectionNameLS) SongpressSection
 
   SetShellVarContext all
   SectionIn RO
+  ; SetOutPath "$INSTDIR"
+  ; SetOverwrite on
+  Call DoInstallPythonAndSongpress
   SetOutPath "$INSTDIR"
-  SetOverwrite on
-{{Installation}}
-SetOutPath "$INSTDIR"
+  File songpress.ico
 
 ; Shortcuts
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$ICONS_GROUP"
-  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$INSTDIR\songpress.exe"
+  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk" "$INSTDIR\bin\songpress.exe" "" "$INSTDIR\songpress.ico" 0
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section $(DesktopSectionNameLS) DesktopSection
-  SetShellVarContext all
+  ; SetShellVarContext all
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-  CreateShortCut "$DESKTOP\Songpress.lnk" "$INSTDIR\songpress.exe"
+  CreateShortCut "$DESKTOP\Songpress.lnk" "$INSTDIR\bin\songpress.exe" "" "$INSTDIR\songpress.ico"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
@@ -155,22 +226,31 @@ SectionEnd
 
 SectionGroup $(FileAssociationSG)
 Section $(CrdSectionNameLS) CrdSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".crd" "ChordPro file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".crd" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoSectionNameLS) ChoSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".cho" "ChordPro file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".cho" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChordproSectionNameLS) ChordproSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".chordpro" "ChordPro file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".chordpro" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ChoproSectionNameLS) ChoproSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".chopro" "ChordPro file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".chopro" "ChordPro"
+  WriteRegStr HKCU "Software\Classes\ChordPro\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(TabSectionNameLS) TabSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".tab" "TAB chord file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".tab" "TABChord"
+  WriteRegStr HKCU "Software\Classes\TABChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
 SectionEnd
 Section $(ProSectionNameLS) ProSection
-  ${registerExtension} "$INSTDIR\songpress.exe" ".pro" "PRO chord file"
+  ${registerExtension} "$INSTDIR\bin\songpress.exe" ".pro" "PROChord"
+  WriteRegStr HKCU "Software\Classes\PROChord\DefaultIcon" "" "$INSTDIR\songpress.ico"
+
+  ;Notify Explorer about changes
+  System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
 SectionEnd
 SectionGroupEnd
 
@@ -209,7 +289,7 @@ SectionEnd
   LangString TabSectionLS ${LANG_ITALIAN} "Apre i file .tab con Songpress"
   LangString ProSectionLS ${LANG_ENGLISH} "Open .pro files with Songpress"
   LangString ProSectionLS ${LANG_ITALIAN} "Apre i file .pro con Songpress"
-  
+
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
     !insertmacro MUI_DESCRIPTION_TEXT ${SongpressSection} $(SongpressSectionLS)
     !insertmacro MUI_DESCRIPTION_TEXT ${DesktopSection} $(DesktopSectionLS)
@@ -222,7 +302,7 @@ SectionEnd
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 LangString UninstallComplete ${LANG_ENGLISH} "$(^Name) has been successfully removed from your computer."
-LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) � stato disinstallato con successo."
+LangString UninstallComplete ${LANG_ITALIAN} "$(^Name) e' stato disinstallato con successo."
 
 Function un.onUninstSuccess
   HideWindow
@@ -240,22 +320,26 @@ FunctionEnd
 
 Section Uninstall
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
-  SetShellVarContext all
+  ; SetShellVarContext all
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
   Delete "$DESKTOP\Songpress.lnk"
   Delete "$SMPROGRAMS\$ICONS_GROUP\Songpress.lnk"
   RMDir "$SMPROGRAMS\$ICONS_GROUP"
   Delete "$INSTDIR\uninst.exe"
-  
-{{UnInstallation}}
+
+  Call un.DoUninstallSongpress
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
-  ${unregisterExtension} ".crd" "ChordPro file"
-  ${unregisterExtension} ".cho" "ChordPro file"
-  ${unregisterExtension} ".chordpro" "ChordPro file"
-  ${unregisterExtension} ".chopro" "ChordPro file"
-  ${unregisterExtension} ".tab" "TAB chord file"
-  ${unregisterExtension} ".tab" "PRO chord file"
+  ${unregisterExtension} ".crd" "ChordPro"
+  ${unregisterExtension} ".cho" "ChordPro"
+  ${unregisterExtension} ".chordpro" "ChordPro"
+  ${unregisterExtension} ".chopro" "ChordPro"
+  ${unregisterExtension} ".tab" "TABChord"
+  ${unregisterExtension} ".tab" "PROChord"
+
+  ;Notify Explorer about changes
+  System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
+
   SetAutoClose true
 SectionEnd

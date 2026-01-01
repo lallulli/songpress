@@ -1,10 +1,10 @@
 ###############################################################
-# Name:			 PrefTest.py
-# Purpose:	 Test preference management module
-# Author:		 Luca Allulli (webmaster@roma21.it)
-# Created:	 2009-05-30
+# Name:             PrefTest.py
+# Purpose:     Test preference management module
+# Author:         Luca Allulli (webmaster@roma21.it)
+# Created:     2009-05-30
 # Copyright: Luca Allulli (https://www.skeed.it/songpress)
-# License:	 GNU GPL v2
+# License:     GNU GPL v2
 ##############################################################
 
 from xml.dom import minidom
@@ -13,16 +13,16 @@ from .Pref import *
 
 
 def EtaValidator(eta):
-	if eta < 0:
-		return True, 0
-	elif eta < 120:
-		return True, eta
-	else:
-		return False, 0
+    if eta < 0:
+        return True, 0
+    elif eta < 120:
+        return True, eta
+    else:
+        return False, 0
 
 class Persona(Preferences):
-	def __init__(self, parents = [], gui = None):
-		Preferences.__init__(self, parents, gui)
+    def __init__(self, parents = [], gui = None):
+        Preferences.__init__(self, parents, gui)
 
 
 
@@ -41,16 +41,16 @@ x.Serialize(a)
 
 #Patch
 def newwritexml(self, writer, indent= '', addindent= '', newl= ''):
-	if len(self.childNodes)==1 and self.firstChild.nodeType==3:
-		writer.write(indent)
-		self.oldwritexml(writer) # cancel extra whitespace
-		writer.write(newl)
-	else:
-		self.oldwritexml(writer, indent, addindent, newl)
+    if len(self.childNodes)==1 and self.firstChild.nodeType==3:
+        writer.write(indent)
+        self.oldwritexml(writer) # cancel extra whitespace
+        writer.write(newl)
+    else:
+        self.oldwritexml(writer, indent, addindent, newl)
 
 if not ('oldwritexml' in minidom.Element.__dict__):
-	minidom.Element.oldwritexml = minidom.Element.writexml
-	minidom.Element.writexml = newwritexml
+    minidom.Element.oldwritexml = minidom.Element.writexml
+    minidom.Element.writexml = newwritexml
 #End patch
 
 #print x.dom.toprettyxml()

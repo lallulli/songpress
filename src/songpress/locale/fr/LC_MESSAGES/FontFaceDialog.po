@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 22:35+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-06 21:29+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/FontFaceDialog.py:28
+#: src/songpress/FontFaceDialog.py:27
 msgid "Font"
 msgstr "Police"
 
-#: src/FontFaceDialog.py:40
+#: src/songpress/FontFaceDialog.py:39
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: src/FontFaceDialog.py:46 src/FontFaceDialog.py:82
+#: src/songpress/FontFaceDialog.py:45 src/songpress/FontFaceDialog.py:81
 msgid ""
 "{t:My Bonnie}\n"
 "\n"
@@ -48,10 +48,10 @@ msgstr ""
 "[A]bring back my Bonnie to [D]me!\n"
 "{eoc}"
 
-#: src/FontFaceDialog.py:56
+#: src/songpress/FontFaceDialog.py:55
 msgid "OK"
 msgstr "Ok"
 
-#: src/FontFaceDialog.py:59
+#: src/songpress/FontFaceDialog.py:58
 msgid "Cancel"
 msgstr "Annuler"

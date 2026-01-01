@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 18:44+0200\n"
+"POT-Creation-Date: 2025-10-05 16:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\MyUpdateDialog.py:79
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/MyUpdateDialog.py:84
 msgid "Your version of Songpress is up to date."
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\MyUpdateDialog.py:80
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/MyUpdateDialog.py:85
 msgid "Songpress"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\MyUpdateDialog.py:89
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/MyUpdateDialog.py:94
 msgid ""
 "There was an error while checking for updates.\n"
 "Please try again later."
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\MyUpdateDialog.py:90
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/MyUpdateDialog.py:95
 msgid "Update error"
 msgstr ""
 
-#: C:\Users\Luca Allulli\Documents\dev\songpress\master\src\MyUpdateDialog.py:118
+#: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/MyUpdateDialog.py:123
 msgid "https://www.skeed.it/songpress#donate"
 msgstr ""

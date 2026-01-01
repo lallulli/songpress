@@ -26,8 +26,10 @@ class SongpressApp(wx.App):
         self.config.SetPath("/App")
         l = self.config.Read("locale")
         if l:
+            print("Setting language ", l)
             i18n.setLang(l)
         else:
+            print("Setting system language ")
             i18n.setSystemLang()
 
         from . import SongpressFrame

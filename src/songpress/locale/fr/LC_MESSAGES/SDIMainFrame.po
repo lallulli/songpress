@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 15:54+0100\n"
+"POT-Creation-Date: 2025-08-20 11:13+0200\n"
 "PO-Revision-Date: 2016-03-04 20:36+0000\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/skeed/songpress-2/language/"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/SDIMainFrame.py:128
+#: src/songpress/SDIMainFrame.py:129
 #, python-format
 msgid "%s files (*.%s)|%s"
 msgstr "%s fichiers (*.%s)|%s"
 
-#: src/SDIMainFrame.py:135
+#: src/songpress/SDIMainFrame.py:136
 msgid "|All files (*.*)|*.*"
 msgstr "|Tous les fichiers (*.*)|*.*"
 
-#: src/SDIMainFrame.py:138
+#: src/songpress/SDIMainFrame.py:139
 msgid "Open file"
 msgstr "Ouvrir fichier"
 
-#: src/SDIMainFrame.py:154
+#: src/songpress/SDIMainFrame.py:155
 #, python-format
 msgid "File \"%s\" does not exist."
 msgstr "Le fichier \"%s\" n'existe pas."
 
-#: src/SDIMainFrame.py:178
+#: src/songpress/SDIMainFrame.py:179
 #, python-format
 msgid ""
 "%s version %s\n"
@@ -57,29 +57,29 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/SDIMainFrame.py:186
+#: src/songpress/SDIMainFrame.py:187
 msgid "About "
 msgstr "A propos"
 
-#: src/SDIMainFrame.py:229
+#: src/songpress/SDIMainFrame.py:230
 msgid "Untitled"
 msgstr "sans-titre"
 
-#: src/SDIMainFrame.py:245
+#: src/songpress/SDIMainFrame.py:246
 #, python-format
 msgid "Your %s has been modified. Do you want to save it?"
 msgstr "%s a été modifié. Voulez vous sauvegarder les modifications?"
 
-#: src/SDIMainFrame.py:261
+#: src/songpress/SDIMainFrame.py:262
 msgid "Choose a name for the file"
 msgstr "Choisissez un nom de fichier"
 
-#: src/SDIMainFrame.py:264
+#: src/songpress/SDIMainFrame.py:265
 #, python-format
 msgid "%s files (*.%s)|*.%s|All files (*.*)|*.*"
 msgstr "%s fichiers (*.%s)|*.%s|Tous les fichiers (*.*)|*.*"
 
-#: src/SDIMainFrame.py:276
+#: src/songpress/SDIMainFrame.py:277
 #, python-format
 msgid "File \"%s\" already exists. Do you want to overwrite it?"
 msgstr "Le fichier \"%s\" existe déjà. Voulez-vous l'écraser?"
