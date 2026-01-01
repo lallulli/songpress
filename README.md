@@ -4,10 +4,10 @@ Songpress is focused on song formatting. Once your song is ready, you can copy-p
 
 ### Windows Installation
 
-To install Songpress on Windows, we provide a [network installer](#)
+To install Songpress on Windows, we provide a [network installer](https://github.com/lallulli/songpress/releases/download/1.9.0rc1/songpress-net-setup.exe)
 that downloads and installs the latest available version of Songpress.
 
-Songpress is distributed through PyPI, the standard repository for Python packages. The network installer uses uv to:
+Songpress is distributed through PyPI, the standard repository for Python packages. The network installer uses `uv` to:
 
 1. Check whether a recent version of Python is already installed on your system. If not, the installer will download a local version of Python dedicated to Songpress.
 2. Download and install Songpress along with all its dependencies (locally).
@@ -16,13 +16,13 @@ All installed files are contained in a single folder within your _Program Files_
 
 ### Linux Installation
 
-On Linux, you can install Songpress using pipx:
+On Linux, you can install Songpress using `pipx`:
 
 ```bash
 pipx install songpress
 ```
 
-Alternatively, you can use uv:
+Alternatively, you can use `uv`:
 
 ```bash
 uv tool install songpress
@@ -40,6 +40,12 @@ You can create a start menu (application menu) shortcut by executing:
 songpress --create-shortcuts
 ```
 
+To upgrade Songpress on Linux, run:
+
+```bash
+pipx upgrade songpress
+```
+
 ### Highlights
 
 - Produce **high-quality guitar scores** (text and chords)
@@ -54,11 +60,3 @@ songpress --create-shortcuts
 
 Learn more at http://www.skeed.it/songpress
 
-
-### Upgrade
-
-To upgrade Songpress, run:
-
-```bash
-pipx upgrade songpress
-```
