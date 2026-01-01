@@ -7,7 +7,7 @@ Songpress is focused on song formatting. Once your song is ready, you can copy-p
 To install Songpress on Windows, we provide a [network installer](https://github.com/lallulli/songpress/releases/download/1.9.0rc1/songpress-net-setup.exe)
 that downloads and installs the latest available version of Songpress.
 
-Songpress is distributed through PyPI, the standard repository for Python packages. The network installer uses `uv` to:
+Songpress is distributed through [PyPI](https://pypi.org/project/songpress/), the standard repository for Python packages. The network installer uses `uv` to:
 
 1. Check whether a recent version of Python is already installed on your system. If not, the installer will download a local version of Python dedicated to Songpress.
 2. Download and install Songpress along with all its dependencies (locally).
