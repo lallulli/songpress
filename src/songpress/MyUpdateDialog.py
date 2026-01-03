@@ -6,7 +6,6 @@
 # Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:     GNU GPL v2
 ##############################################################
-from curses.ascii import isdigit
 from xmlrpc.client import Server
 import datetime
 import platform
