@@ -8,6 +8,7 @@
 ##############################################################
 
 import sys, os
+import platform
 
 import wx
 
@@ -44,6 +45,10 @@ def main():
         create_shortcuts()
         return
     sys.excepthook = dev_tool.ExceptionHook
+    if platform.system() == 'Windows':
+        import ctypes
+        appid = f'songpress.{glb.VERSION}'
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)
     songpressApp = SongpressApp()
     songpressApp.MainLoop()
 
