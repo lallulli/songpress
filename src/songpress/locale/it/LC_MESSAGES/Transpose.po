@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: songpress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-22 17:58+0100\n"
-"PO-Revision-Date: 2025-11-22 18:30+0100\n"
+"PO-Revision-Date: 2026-01-03 08:49+0100\n"
 "Last-Translator: l.allulli <l.allulli@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/skeed/songpress-2/language/"
 "it/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:75
 msgid "American (C D E... B)"
@@ -29,7 +29,7 @@ msgstr "Italiana (Do Re Mi... Si)"
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:100
 msgid "Uppercase Italian (DO RE MI... SI)"
-msgstr "Italiana maiuscola (Do Re Mi... Si)"
+msgstr "Italiana maiuscola (DO RE MI... SI)"
 
 #: /home/luca/Documenti/dev/Applicazioni/songpress/master/src/songpress/Transpose.py:116
 msgid "French (Do Ré Mi... Si)"
