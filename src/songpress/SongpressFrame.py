@@ -309,8 +309,10 @@ class SongpressFrame(SDIMainFrame):
         self.noChordsMenuId = xrc.XRCID('noChords')
         self.oneVerseForEachChordPatternMenuId = xrc.XRCID('oneVerseForEachChordPattern')
         self.wholeSongMenuId = xrc.XRCID('wholeSong')
+        self.donateMenuId = xrc.XRCID('donate')
         if platform.system() != 'Windows':
             self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportAsEmfMenuId)
+        self.menuBar.GetMenu(6).Delete(self.donateMenuId)
         self.findReplaceDialog = None
         self.CheckLabelVerses()
         self.SetFont()
