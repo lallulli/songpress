@@ -143,6 +143,13 @@ Function DoInstallPythonAndSongpress
 
   StrCpy $SongpressExe "$INSTDIR\bin\songpress.exe"
 
+  ; 5. PATCH EXE ICON
+
+  File "/oname=$PLUGINSDIR\icon-changer.exe" "icon-changer.exe"
+  nsExec::ExecToLog '"$PLUGINSDIR\icon-changer.exe" "$INSTDIR\songpress.ico" "$SongpressExe"'
+
+  ; 6. CLEANUP CACHE
+
   RMDir /r "$INSTDIR\cache"
 FunctionEnd
 
