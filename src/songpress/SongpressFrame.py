@@ -832,8 +832,14 @@ class SongpressFrame(SDIMainFrame):
         wx.LaunchDefaultBrowser(_("http://www.skeed.it/songpress#donate"))
 
     def OnFormatFont(self, evt):
-        f = FontFaceDialog(self.frame, wx.ID_ANY, _("Songpress"), self.pref.format, self.pref.decorator,
-                                             self.pref.decoratorFormat)
+        f = FontFaceDialog(
+            self.frame,
+            wx.ID_ANY,
+            _("Songpress"),
+            self.pref.format,
+            self.pref.decorator,
+            self.pref.decoratorFormat
+        )
         if f.ShowModal() == wx.ID_OK:
             self.pref.SetFont(f.GetValue())
             self.SetFont()

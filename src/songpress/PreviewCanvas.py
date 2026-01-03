@@ -23,11 +23,12 @@ class PreviewCanvas(object):
         object.__init__(self)
         self.main_panel = wx.Window(parent)
         bSizer = wx.BoxSizer(wx.VERTICAL)
-        self.link = wx.adv.HyperlinkCtrl(self.main_panel, 0, _("Copy formatted song to clipboard"), '')
-        tt = wx.ToolTip(_("Copy formatted song to clipboard, so that it can be pasted in any program and printed"))
-        self.link.SetToolTip(tt)
-        bSizer.Add(self.link, 0, wx.EXPAND)
         parent = self.main_panel
+        if not embedded:
+            self.link = wx.adv.HyperlinkCtrl(parent, 0, _("Copy formatted song to clipboard"), '')
+            tt = wx.ToolTip(_("Copy formatted song to clipboard, so that it can be pasted in any program and printed"))
+            self.link.SetToolTip(tt)
+            bSizer.Add(self.link, 0, wx.EXPAND)
         self.panel = wx.ScrolledWindow(parent, style=wx.BORDER_DOUBLE)
         self.panel.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
         self.pixedScrolled = 10

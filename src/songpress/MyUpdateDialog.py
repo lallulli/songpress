@@ -6,7 +6,7 @@
 # Copyright: Luca Allulli (https://www.skeed.it/songpress)
 # License:     GNU GPL v2
 ##############################################################
-
+from curses.ascii import isdigit
 from xmlrpc.client import Server
 import datetime
 import platform
@@ -55,8 +55,14 @@ def check_and_update(parent, preferences, force=False):
             # method returns a dictionary with those keys:
             # 'new_url': if defined, new url of the webservice
             # 'updates': list of 3-tuples (version, description, downloadUrl)
+            version = glb.VERSION
+            version_lst = version.split(".")
+            if len(version_lst) > 3 or not version_lst[-1].isdigit():
+                # Prerelease
+                version = ".".join(version_lst[:2]) + ".-1"
+            print(version)
             u = s.checkForUpdates(
-                glb.VERSION,
+                version,
                 preferences.updateFrequency,
                 platform.system(),
                 platform.architecture(),

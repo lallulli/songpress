@@ -1,6 +1,6 @@
 [project]
 name = "songpress"
-version = "1.9.0rc1"
+version = "1.9.0rc2"
 description = "Songpress is a free, easy to use song typeset program for Windows and Linux, that generates high-quality songbooks."
 authors = [
     { name = "Luca Allulli", email = "luca@skeed.it" }
