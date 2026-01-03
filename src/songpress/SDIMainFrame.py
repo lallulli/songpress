@@ -202,13 +202,17 @@ class SDIMainFrame(wx.FileDropTarget):
     def OnClose(self, evt):
         """Handler for windows close event"""
         if self.AskSaveModified(evt.CanVeto()):
-            self.config.SetPath('/SDIMainFrame')
-            self.config.Write("Version", self.version)
-            p = self._mgr.SavePerspective()
-            self.config.Write("Perspective", p)
+            try:
+                self.config.SetPath('/SDIMainFrame')
+                self.config.Write("Version", self.version)
+                p = self._mgr.SavePerspective()
+                self.config.Write("Perspective", p)
+                self._mgr.UnInit()
+                del self._mgr
+            except AttributeError:
+                # Handle the case where _mgr has already been deleted
+                pass
             self.SavePreferences()
-            self._mgr.UnInit()
-            del self._mgr
             self.frame.Destroy()
         else:
             evt.Veto()
