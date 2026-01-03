@@ -16,13 +16,13 @@ All installed files are contained in a single folder within your _Program Files_
 
 ### Linux Installation
 
-On Linux, you can install Songpress using `pipx`:
+On Linux, you can install Songpress using [pipx](https://github.com/pypa/pipx):
 
 ```bash
 pipx install songpress
 ```
 
-Alternatively, you can use `uv`:
+Alternatively, you can use [uv](https://github.com/astral-sh/uv):
 
 ```bash
 uv tool install songpress
