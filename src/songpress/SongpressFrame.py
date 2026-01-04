@@ -47,6 +47,9 @@ class SongpressFindReplaceDialog(object):
         self.st = ''
         self.data = wx.FindReplaceData(wx.FR_DOWN)
         self.owner = owner
+        selection = self.owner.text.GetSelectedText()
+        if selection != '':
+            self.data.SetFindString(selection)
         self.flags = 0
         self.dialog = wx.FindReplaceDialog(
             owner.frame,
