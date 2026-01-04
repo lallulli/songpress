@@ -1,6 +1,6 @@
 ###############################################################
 # Name:             Editor.py
-# Purpose:     Subclass of StyledTextControl providing songpress
+# Purpose:     Subclass of StyledTextCtrl providing songpress
 #            editor: loading, saving and syntax hilighting
 # Author:         Luca Allulli (webmaster@roma21.it)
 # Created:     2009-01-16
@@ -16,7 +16,7 @@ import wx.lib, wx.lib.newevent
 from .SDIMainFrame import *
 from .SongTokenizer import *
 from . import Transpose
-
+from .utils import undo_action
 
 EventTextChanged, EVT_TEXT_CHANGED = wx.lib.newevent.NewEvent()
 
@@ -123,17 +123,22 @@ class Editor(StyledTextCtrl):
         else:
             self.ReplaceSelection(text)
 
-    def GetChordUnderCursor(self):
+    def GetChordUnderCursor(self, position=None):
         """Return info about chord under cursor, or None
+
+        If `position` is specified, use it instead of the cursor position.
 
         Return a 3-tuple: (begin, end, chord)
             begin: position before open bracket
             end: position after close bracket
             chord: chord, without brackets
         """
-        pos, dummy = self.GetSelection()
+        if position is None:
+            pos, dummy = self.GetSelection()
+        else:
+            pos = position
         char = ""
-        if self.GetSelectedText().find('[') != -1:
+        if position is None and self.GetSelectedText().find('[') != -1:
             start = pos
             while char != '[':
                 next = self.PositionAfter(start)
@@ -255,25 +260,24 @@ class Editor(StyledTextCtrl):
         src = get_text_from_clipboard()
         if src is None:
             return
-        self.BeginUndoAction()
-        start, end = self.GetSelection()
-        if start == end:
-            l = self.LineFromPosition(start)
-            end = self.PositionFromLine(l + len(src.splitlines()))
-            if end == -1:
-                end = self.GetLength()
-            else:
-                end = self.PositionBefore(end)
-        prev = self.PositionBefore(end)
-        while end > start and self.GetCharAt(prev) in [10, 13]:
-            end = prev
+        with undo_action(self):
+            start, end = self.GetSelection()
+            if start == end:
+                l = self.LineFromPosition(start)
+                end = self.PositionFromLine(l + len(src.splitlines()))
+                if end == -1:
+                    end = self.GetLength()
+                else:
+                    end = self.PositionBefore(end)
             prev = self.PositionBefore(end)
-        self.SetSelection(start, end)
-        sel = self.GetSelectedText()
-        if sel == "":
-            sel = " "
-        self.ReplaceSelection(Transpose.pasteChords(src, sel))
-        self.EndUndoAction()
+            while end > start and self.GetCharAt(prev) in [10, 13]:
+                end = prev
+                prev = self.PositionBefore(end)
+            self.SetSelection(start, end)
+            sel = self.GetSelectedText()
+            if sel == "":
+                sel = " "
+            self.ReplaceSelection(Transpose.pasteChords(src, sel))
 
     def OnStyleNeeded(self, evt):
         end = evt.GetPosition()

@@ -31,7 +31,7 @@ from . import MyUpdateDialog
 from .Globals import glb
 from .Preferences import Preferences
 from . import i18n
-from .utils import temp_dir
+from .utils import temp_dir, undo_action
 
 _ = wx.GetTranslation
 
@@ -132,27 +132,25 @@ class SongpressFindReplaceDialog(object):
             self.FindNext()
 
     def OnReplaceAll(self, evt):
-        self.owner.text.BeginUndoAction()
-        s = self.data.GetFindString()
-        r = self.data.GetReplaceString()
-        f = self.data.GetFlags()
-        self.whole = f & wx.FR_WHOLEWORD
-        self.case = f & wx.FR_MATCHCASE
-        flags = 0
-        if self.whole:
-            flags |= wx.stc.STC_FIND_WHOLEWORD
-        if self.case:
-            flags |= wx.stc.STC_FIND_MATCHCASE
-        self.owner.text.SetSelection(0, 0)
-        c = 0
-        p = 0
-        while (p := self.owner.text.FindText(p, self.owner.text.GetLength(), s, flags)[0]) != -1:
-            self.owner.text.SetTargetStart(p)
-            self.owner.text.SetTargetEnd(p + len(s))
-            p += self.owner.text.ReplaceTarget(r)
-            c += 1
-
-        self.owner.text.EndUndoAction()
+        with undo_action(self.owner.text):
+            s = self.data.GetFindString()
+            r = self.data.GetReplaceString()
+            f = self.data.GetFlags()
+            self.whole = f & wx.FR_WHOLEWORD
+            self.case = f & wx.FR_MATCHCASE
+            flags = 0
+            if self.whole:
+                flags |= wx.stc.STC_FIND_WHOLEWORD
+            if self.case:
+                flags |= wx.stc.STC_FIND_MATCHCASE
+            self.owner.text.SetSelection(0, 0)
+            c = 0
+            p = 0
+            while (p := self.owner.text.FindText(p, self.owner.text.GetLength(), s, flags)[0]) != -1:
+                self.owner.text.SetTargetStart(p)
+                self.owner.text.SetTargetEnd(p + len(s))
+                p += self.owner.text.ReplaceTarget(r)
+                c += 1
 
         d = wx.MessageDialog(
             self.dialog,
@@ -754,42 +752,73 @@ class SongpressFrame(SDIMainFrame):
     def OnSelectPreviousChord(self, evt):
         self.text.SelectPreviousChord()
 
-    def MoveChordRight(self):
-        r = self.text.GetChordUnderCursor()
-        if r is not None:
-            n = self.text.GetLength()
-            s, e, c = r
-            if e < n:
-                self.text.BeginUndoAction()
-                e1 = self.text.PositionAfter(e)
-                self.text.SetSelection(e, e1)
-                l = self.text.GetTextRange(e, e1)
-                self.text.ReplaceSelection('')
-                self.text.SetSelection(s, s)
-                self.text.ReplaceSelection(l)
-                s2 = self.text.PositionAfter(self.text.PositionAfter(s))
-                self.text.SetSelection(s2, s2)
-                self.text.EndUndoAction()
+    def MoveChordRight(self, position=None):
+        """
+        Move the chord 1 position to the right, hooking its neighbords
+
+        Apply to the chord at `position`, or under the cursor if `position`
+        is not specified.
+
+        :return: `False` if the chord is at the end of the song and cannot be moved,
+            `True` otherwise
+        """
+
+        r = self.text.GetChordUnderCursor(position)
+        if r is None:
+            return True
+        n = self.text.GetLength()
+        s, e, c = r
+
+        if e >= n:
+            return False
+        with undo_action(self.text):
+            # Recursively push to the right the next adjacent chord (if any)
+            if not self.MoveChordRight(e + 1):
+                return False
+
+            e1 = self.text.PositionAfter(e)
+            self.text.SetSelection(e, e1)
+            l = self.text.GetTextRange(e, e1)
+            self.text.ReplaceSelection('')
+            self.text.SetSelection(s, s)
+            self.text.ReplaceSelection(l)
+            s2 = self.text.PositionAfter(self.text.PositionAfter(s))
+            self.text.SetSelection(s2, s2)
+            return True
 
     def OnMoveChordRight(self, evt):
         self.MoveChordRight()
 
-    def MoveChordLeft(self):
-        r = self.text.GetChordUnderCursor()
-        if r is not None:
-            s, e, c = r
-            if s > 0:
-                self.text.BeginUndoAction()
-                s1 = self.text.PositionBefore(s)
-                e1 = self.text.PositionBefore(e)
-                l = self.text.GetTextRange(s1, s)
-                self.text.SetSelection(e, e)
-                self.text.ReplaceSelection(l)
-                self.text.SetSelection(s1, s)
-                self.text.ReplaceSelection('')
-                s = self.text.PositionAfter(s1)
-                self.text.SetSelection(s, s)
-                self.text.EndUndoAction()
+    def MoveChordLeft(self, position=None):
+        """
+        Move the chord 1 position to the left, hooking its neighbords
+
+        Apply to the chord at `position`, or under the cursor if `position`
+        is not specified.
+
+        :return: `False` if the chord is at the beginnig of the song and cannot be moved,
+            `True` otherwise
+        """
+        r = self.text.GetChordUnderCursor(position)
+        if r is None:
+            return True
+        s, e, c = r
+        if s == 0:
+            return False
+        with undo_action(self.text):
+            # Recursively push to the left the previous adjacent chord (if any)
+            if not self.MoveChordLeft(s - 1):
+                return False
+
+            s1 = self.text.PositionBefore(s)
+            l = self.text.GetTextRange(s1, s)
+            self.text.SetSelection(e, e)
+            self.text.ReplaceSelection(l)
+            self.text.SetSelection(s1, s)
+            self.text.ReplaceSelection('')
+            s = self.text.PositionAfter(s1)
+            self.text.SetSelection(s, s)
+            return True
 
     def OnMoveChordLeft(self, evt):
         self.MoveChordLeft()
