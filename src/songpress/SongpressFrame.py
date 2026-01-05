@@ -12,18 +12,8 @@ import os
 import os.path
 import platform
 
-# import wx.aui as aui
 import wx.adv
 from wx import xrc
-from wx.aui import AuiNotebook
-# from wx.lib.agw.flatnotebook import FlatNotebook as AuiNotebook
-# from wx.lib.agw.aui import (
-#     AuiNotebook,
-#     AUI_NB_CLOSE_ON_ALL_TABS,
-#     AUI_NB_DEFAULT_STYLE,
-#     AUI_NB_SUB_NOTEBOOK,
-#     AUI_NB_TAB_SPLIT,
-# )
 
 from .Editor import *
 from .PreviewCanvas import *
@@ -44,6 +34,8 @@ from .utils import temp_dir, undo_action
 
 _ = wx.GetTranslation
 
+
+SPLITTED_UI_MIN_SIZE = 600
 
 if platform.system() == 'Windows':
     import wx.msw
@@ -219,24 +211,22 @@ class SongpressFrame(SDIMainFrame):
         )
         self.pref = Preferences()
         self.SetDefaultExtension(self.pref.defaultExtension)
-        self.notebook = AuiNotebook(
-            self.frame,
-            style=wx.aui.AUI_NB_TOP | wx.aui.AUI_NB_TAB_SPLIT | wx.aui.AUI_NB_TAB_MOVE | wx.aui.AUI_NB_SCROLL_BUTTONS
-        )
-        self.text = Editor(self, frame=self.notebook)
-        self.notebook.AddPage(self.text, _("Editor"))
+        self.notebook = wx.Notebook(self.frame)
+        self.splitter = wx.SplitterWindow(self.frame)
+        self.splitted = True
+        self.text = Editor(self, frame=self.splitter)
+        # self.notebook.AddPage(self.text, _("Editor"))
         dt = SDIDropTarget(self)
         self.text.SetDropTarget(dt)
+        self.frame.Bind(wx.EVT_SIZE, self.OnSize, self.frame)
         self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
         self.text.Bind(wx.EVT_KEY_DOWN, self.OnTextKeyDown, self.text)
         # Other objects
-        self.previewCanvas = PreviewCanvas(self.notebook, self.pref.format, self.pref.notations, self.pref.decorator)
-        self.AddMainPane(self.notebook)
-        # self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 400), _('Preview'), 'preview')
-        self.notebook.AddPage(self.previewCanvas.main_panel, _('Preview'))
-        print(self.notebook.GetChildren())
-        self.notebook.Split(1, wx.RIGHT)
-        print(self.notebook.GetChildren())
+        self.previewCanvas = PreviewCanvas(self.splitter, self.pref.format, self.pref.notations, self.pref.decorator)
+        self.AddMainPane(self.splitter)
+        self.SwitchToSplittedUI(False)
+        if self.frame.GetSize()[0] < SPLITTED_UI_MIN_SIZE:
+            self.SwitchToTabbedUI()
         self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
         self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, agwStyle=aui.AUI_TB_PLAIN_BACKGROUND)
         self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
@@ -308,7 +298,6 @@ class SongpressFrame(SDIMainFrame):
         self.frame.Bind(wx.EVT_SCROLL, self.OnFontSelected, self.showChordsChooser)
         self.formatToolBar.AddControl(
             self.showChordsChooser,
-            "pippo"
         )
         self.formatToolBar.Realize()
         self.formatToolBarPane = self.AddPane(self.formatToolBar, aui.AuiPaneInfo().ToolbarPane().Top().Row(1).Position(2),
@@ -358,9 +347,44 @@ class SongpressFrame(SDIMainFrame):
                     self.SetDefaultExtension(self.pref.defaultExtension)
         MyUpdateDialog.check_and_update(self.frame, self.pref)
 
+    def SwitchToTabbedUI(self, detach_from_splitter=True):
+        if detach_from_splitter:
+            self.text.Reparent(self.notebook)
+            self.previewCanvas.main_panel.Reparent(self.notebook)
+            self.ReplaceMainPane(self.notebook)
+            self.splitter.Hide()
+            self.notebook.Show()
+        self.notebook.AddPage(self.text, _("Editor"))
+        self.notebook.AddPage(self.previewCanvas.main_panel, _("Preview"))
+        self.splitted = False
+        self._mgr.Update()
+
+    def SwitchToSplittedUI(self, detach_from_tabbed=True):
+        if detach_from_tabbed:
+            self.notebook.RemovePage(1)
+            self.notebook.RemovePage(0)
+            self.text.Reparent(self.splitter)
+            self.previewCanvas.main_panel.Reparent(self.splitter)
+            self.ReplaceMainPane(self.splitter)
+            self.splitter.Show()
+            self.notebook.Hide()
+        self.splitter.SplitVertically(self.text, self.previewCanvas.main_panel)
+        self.splitter.SetSashGravity(0.5)
+        self.splitted = True
+        self._mgr.Update()
+
     def OnClose(self, evt):
         self.config.Flush()
         super().OnClose(evt)
+
+    def OnSize(self, evt):
+        w, h = evt.GetSize()
+        if self.splitted and w < SPLITTED_UI_MIN_SIZE:
+            print("Switching to tab")
+            self.SwitchToTabbedUI()
+        elif not self.splitted and w >= SPLITTED_UI_MIN_SIZE:
+            print("Switching to split")
+            self.SwitchToSplittedUI()
 
     def BindMyMenu(self):
         """Bind a menu item, by xrc name, to a handler"""

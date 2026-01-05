@@ -93,6 +93,7 @@ class SDIMainFrame(wx.FileDropTarget):
         self.menuBar = self.frame.GetMenuBar()
         self.panesByMenu = {}
         self.menusByPane = {}
+        self.main_pane = None
         self.RetrieveRecentFileList()
 
     def Bind(self, event, handler, xrcname):
@@ -344,7 +345,13 @@ class SDIMainFrame(wx.FileDropTarget):
         pass
 
     def AddMainPane(self, window):
+        self.main_pane = window
         self._mgr.AddPane(window, aui.AuiPaneInfo().CenterPane().Name('_main'))
+
+    def ReplaceMainPane(self, new_window):
+        if self.main_pane is not None:
+            self._mgr.DetachPane(self.main_pane)
+        self.AddMainPane(new_window)
 
     def AddPane(self, window, info, caption, menuName):
         self._mgr.AddPane(window, info.Name(menuName).Caption(caption))
