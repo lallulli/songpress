@@ -15,6 +15,15 @@ import platform
 # import wx.aui as aui
 import wx.adv
 from wx import xrc
+from wx.aui import AuiNotebook
+# from wx.lib.agw.flatnotebook import FlatNotebook as AuiNotebook
+# from wx.lib.agw.aui import (
+#     AuiNotebook,
+#     AUI_NB_CLOSE_ON_ALL_TABS,
+#     AUI_NB_DEFAULT_STYLE,
+#     AUI_NB_SUB_NOTEBOOK,
+#     AUI_NB_TAB_SPLIT,
+# )
 
 from .Editor import *
 from .PreviewCanvas import *
@@ -210,15 +219,24 @@ class SongpressFrame(SDIMainFrame):
         )
         self.pref = Preferences()
         self.SetDefaultExtension(self.pref.defaultExtension)
-        self.text = Editor(self)
+        self.notebook = AuiNotebook(
+            self.frame,
+            style=wx.aui.AUI_NB_TOP | wx.aui.AUI_NB_TAB_SPLIT | wx.aui.AUI_NB_TAB_MOVE | wx.aui.AUI_NB_SCROLL_BUTTONS
+        )
+        self.text = Editor(self, frame=self.notebook)
+        self.notebook.AddPage(self.text, _("Editor"))
         dt = SDIDropTarget(self)
         self.text.SetDropTarget(dt)
         self.frame.Bind(wx.stc.EVT_STC_UPDATEUI, self.OnUpdateUI, self.text)
         self.text.Bind(wx.EVT_KEY_DOWN, self.OnTextKeyDown, self.text)
         # Other objects
-        self.previewCanvas = PreviewCanvas(self.frame, self.pref.format, self.pref.notations, self.pref.decorator)
-        self.AddMainPane(self.text)
-        self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 400), _('Preview'), 'preview')
+        self.previewCanvas = PreviewCanvas(self.notebook, self.pref.format, self.pref.notations, self.pref.decorator)
+        self.AddMainPane(self.notebook)
+        # self.AddPane(self.previewCanvas.main_panel, aui.AuiPaneInfo().Right().BestSize(240, 400), _('Preview'), 'preview')
+        self.notebook.AddPage(self.previewCanvas.main_panel, _('Preview'))
+        print(self.notebook.GetChildren())
+        self.notebook.Split(1, wx.RIGHT)
+        print(self.notebook.GetChildren())
         self.previewCanvas.main_panel.Bind(wx.adv.EVT_HYPERLINK, self.OnCopyAsImage, self.previewCanvas.link)
         self.mainToolBar = aui.AuiToolBar(self.frame, wx.ID_ANY, wx.DefaultPosition, agwStyle=aui.AUI_TB_PLAIN_BACKGROUND)
         self.mainToolBar.SetToolBitmapSize(wx.Size(16, 16))
