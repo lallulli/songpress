@@ -415,7 +415,11 @@ class SongpressFrame(SDIMainFrame):
             'copy': 'img/copy.png',
             'paste': 'img/paste.png',
             'pasteChords': 'img/pasteChords.png',
-            'copyAsImage': 'img/copyAsImage2.png'
+            'copyAsImage': 'img/copyAsImage2.png',
+            'title': 'img/title.png',
+            'chorus': 'img/chorus.png',
+            'chord': 'img/chord.png',
+            'verseWithCustomLabelOrWithoutLabel': 'img/verse.png'
         }
 
         for xrc_name, icon_path in menu_items.items():
