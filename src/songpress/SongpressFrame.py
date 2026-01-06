@@ -319,6 +319,9 @@ class SongpressFrame(SDIMainFrame):
         self.SetFont()
         self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
         self.FinalizePaneInitialization()
+        self.frame.Freeze()
+        self.RestoreWindowState()
+        self.frame.Thaw()
         # Reassign caption value to override caption saved in preferences (it could be another language)
         self._mgr.GetPane('preview').caption = _('Preview')
         self._mgr.GetPane('standard').caption = _('Standard')
@@ -340,9 +343,36 @@ class SongpressFrame(SDIMainFrame):
                     self.SetDefaultExtension(self.pref.defaultExtension)
         MyUpdateDialog.check_and_update(self.frame, self.pref)
 
+    def RestoreWindowState(self):
+            config = wx.Config.Get()
+            config.SetPath("/MainFrame")
+    
+            w = config.ReadInt("w", -1)
+            h = config.ReadInt("h", -1)
+            maximized = config.ReadBool("maximized", False)
+    
+            if w > 0 and h > 0:
+                self.frame.SetSize(wx.Size(w, h))
+    
+            if maximized:
+                self.frame.Maximize()
+
+
     def OnClose(self, evt):
-        self.config.Flush()
-        super().OnClose(evt)
+        config = wx.Config.Get()
+        config.SetPath("/MainFrame")
+
+        config.WriteBool("maximized", self.frame.IsMaximized())
+
+        # Salva la dimensione SOLO se non è massimizzata
+        if not self.frame.IsMaximized():
+            size = self.frame.GetSize()
+            config.WriteInt("w", size.width)
+            config.WriteInt("h", size.height)
+
+        config.Flush()
+        # IMPORTANTISSIMO: lascia continuare la chiusura
+        evt.Skip()
 
     def BindMyMenu(self):
         """Bind a menu item, by xrc name, to a handler"""
