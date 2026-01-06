@@ -319,6 +319,9 @@ class SongpressFrame(SDIMainFrame):
         self.SetFont()
         self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
         self.FinalizePaneInitialization()
+        self.frame.Freeze()
+        self.RestoreWindowState()
+        self.frame.Thaw()
         # Reassign caption value to override caption saved in preferences (it could be another language)
         self._mgr.GetPane('preview').caption = _('Preview')
         self._mgr.GetPane('standard').caption = _('Standard')
@@ -338,11 +341,49 @@ class SongpressFrame(SDIMainFrame):
                 if f.ShowModal() == wx.ID_OK:
                     self.text.SetFont(self.pref.editorFace, int(self.pref.editorSize))
                     self.SetDefaultExtension(self.pref.defaultExtension)
-        MyUpdateDialog.check_and_update(self.frame, self.pref)
+
+    def RestoreWindowState(self):
+        config = wx.Config.Get()
+        config.SetPath("/MainFrame")
+
+        w = config.ReadInt("w", -1)
+        h = config.ReadInt("h", -1)
+        x = config.ReadInt("x", -1)
+        y = config.ReadInt("y", -1)
+        maximized = config.ReadBool("maximized", False)
+
+        if w > 0 and h > 0:
+            self.frame.SetSize(w, h)
+
+        if x >= 0 and y >= 0:
+            self.frame.SetPosition(wx.Point(x, y))
+
+        if maximized:
+            self.frame.Maximize()
+
 
     def OnClose(self, evt):
-        self.config.Flush()
-        super().OnClose(evt)
+        config = wx.Config.Get()
+        config.SetPath("/MainFrame")
+
+        # Salva solo se NON massimizzata
+        if self.frame.IsMaximized():
+            config.WriteBool("maximized", True)
+        else:
+            config.WriteBool("maximized", False)
+            pos = self.frame.GetPosition()
+            size = self.frame.GetSize()
+
+            config.WriteInt("x", pos.x)
+            config.WriteInt("y", pos.y)
+            config.WriteInt("w", size.width)
+            config.WriteInt("h", size.height)
+
+        config.Flush()
+
+        # IMPORTANTISSIMO: lascia continuare la chiusura
+        evt.Skip()
+
 
     def BindMyMenu(self):
         """Bind a menu item, by xrc name, to a handler"""
