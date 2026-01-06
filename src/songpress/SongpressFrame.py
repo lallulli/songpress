@@ -315,6 +315,7 @@ class SongpressFrame(SDIMainFrame):
             self.menuBar.GetMenu(0).FindItemById(self.exportMenuId).GetSubMenu().Delete(self.exportAsEmfMenuId)
         self.menuBar.GetMenu(6).Delete(self.donateMenuId)
         self.findReplaceDialog = None
+        self.SetMenuIcons()
         self.CheckLabelVerses()
         self.SetFont()
         self.text.SetFont(self.pref.editorFace, self.pref.editorSize)
@@ -400,6 +401,29 @@ class SongpressFrame(SDIMainFrame):
         Bind(self.OnGuide, 'guide')
         Bind(self.OnNewsAndUpdates, 'newsAndUpdates')
         Bind(self.OnDonate, 'donate')
+
+            
+    def SetMenuIcons(self):
+        """Set icons in the menu to match toolbar icons"""
+        menu_items = {
+            'new': 'img/new.png',
+            'open': 'img/open.png',
+            'save': 'img/save.png',
+            'undo': 'img/undo.png',
+            'redo': 'img/redo.png',
+            'cut': 'img/cut.png',
+            'copy': 'img/copy.png',
+            'paste': 'img/paste.png',
+            'pasteChords': 'img/pasteChords.png',
+            'copyAsImage': 'img/copyAsImage2.png'
+        }
+
+        for xrc_name, icon_path in menu_items.items():
+            menu_item = self.menuBar.FindItemById(wx.xrc.XRCID(xrc_name))
+            if menu_item:
+                bmp = wx.Bitmap(glb.AddPath(icon_path))
+                menu_item.SetBitmap(bmp)
+
 
     def AddTool(self, toolbar, resource_string, icon_path, label, help):
         tool = wx.xrc.XRCID(resource_string)
