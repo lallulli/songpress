@@ -1,0 +1,79 @@
+#Project info
+site_name: Songpress - Il Canzonatore
+site_description: "Songpress is a free, easy to use song typeset program for Linux and Windows, that generates high-quality songbooks."
+site_url: https://www.songpress.it
+
+#Repository
+repo_name: "lallulli/songpress"
+repo_url: "https://github.com/lallulli/songpress"
+edit_uri: ""
+
+#Copyright
+copyright: 'Copyright (c) 2026 <a href="https://skeed.it/luca">Luca Allulli</a>.<br>Songpress is licensed under the <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">GNU General Public License version 2</a>'
+
+#Configuration
+site_dir: _site
+theme:
+  name: material
+  palette:
+    primary: deep orange
+  features:
+    - navigation.tabs
+    - navigation.top
+  logo: assets/songpress_icon.png
+  favicon: assets/favicon.ico
+
+#Navigation menu
+nav:
+  - Home: index.md
+  - Documentation:
+      - Getting Started: manual/getting_started.md
+      - ChordPro: manual/chordpro.md
+      - Example: manual/example.md
+      - Exporting: manual/exporting.md
+      - Chord Simplification: manual/chord_simplification.md
+      - Quick Editing Cords: manual/quick_editing.md
+      - Format conversion: manual/format_conversion.md
+  - News: news.md
+  - Screenshots: screenshots.md
+  - About:
+      - History: history.md
+      - Contribute: contribute.md
+      - License: license.md
+
+#Useful markdown extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+
+#Plugins
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+          site_name: "Songpress - Il Canzonatore (en)"
+        - locale: it
+          name: Italiano
+          build: true
+          site_name: "Songpress - Il Canzonatore (it)"
+          nav_translations:
+            Documentation: Documentazione
+            Getting Started: Per Iniziare
+            ChordPro: Formato ChordPro
+            Example: Esempio
+            Exporting: Esportazione
+            Chord Simplification: Semplificazione accordi
+            Quick Editing Cords: Modifica rapida accordi
+            Format conversion: Conversione formati
+            About: Informazioni
+            History: Storia
+            Contribute: Contribuire
+            License: Licenza
