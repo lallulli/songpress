@@ -1,7 +1,7 @@
 #Project info
 site_name: Songpress - Il Canzonatore
 site_description: "Songpress is a free, easy to use song typeset program for Linux and Windows, that generates high-quality songbooks."
-site_url: https://www.songpress.it
+site_url: https://songpress.skeed.it
 
 #Repository
 repo_name: "lallulli/songpress"
@@ -20,6 +20,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.top
+    - navigation.footer
   logo: assets/songpress_icon.png
   favicon: assets/favicon.ico
 
@@ -31,10 +32,36 @@ nav:
       - ChordPro: manual/chordpro.md
       - Example: manual/example.md
       - Exporting: manual/exporting.md
+      - Transposing: manual/transposing.md
       - Chord Simplification: manual/chord_simplification.md
       - Quick Editing Cords: manual/quick_editing.md
       - Format conversion: manual/format_conversion.md
-  - News: news.md
+  - News:
+    - 2026:
+      - news/songpress-1.9.md
+      - news/songpress-1.9.0rc1.md
+    - 2021:
+      - news/songpress-1.8.md
+    - 2019:
+      - news/songpress-1.7.md
+    - 2015:
+      - news/songpress-1.6.md
+    - 2013:
+      - news/songpress-1.5.md
+    - 2012:
+      - news/songpress-1.4.2.md
+    - 2011:
+      - news/songpress-1.4.1.md
+      - news/songpress-1.4.md
+      - news/sub-to-mercurial.md
+    - 2010:
+      - news/songpress-1.3.md
+      - news/songpress-1.2.md
+    - 2009:
+      - news/songpress-1.1.md
+      - news/autodetecting-song-key.md
+
+
   - Screenshots: screenshots.md
   - About:
       - History: history.md
@@ -45,6 +72,10 @@ nav:
 markdown_extensions:
   - admonition
   - attr_list
+  - tables
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
 
 #Plugins
 plugins:
@@ -70,6 +101,7 @@ plugins:
             ChordPro: Formato ChordPro
             Example: Esempio
             Exporting: Esportazione
+            Transposing: Trasposizione e notazione
             Chord Simplification: Semplificazione accordi
             Quick Editing Cords: Modifica rapida accordi
             Format conversion: Conversione formati
