@@ -24,7 +24,7 @@ Songpress è distribuito tramite [PyPI](https://pypi.org/project/songpress/), il
 1. Verifica se la versione più recente di Songpress è già installata sul computer. Se non lo è, l'installer scarica una versione locale di Python, dedicata a Songpress.
 2. Scarica e installa Songpress e tutte le sue dipendenze.
 
-Tutti i file sono contenuti in una singola sottocartella della directory _Programmi_, per consentire una rimozione pulita del rpogramma, tramite l'_uninstaller_ .
+Tutti i file sono contenuti in una singola sottocartella della directory _Programmi_, per consentire una rimozione pulita del programma, tramite l'_uninstaller_ .
 
 ### Installazione su Linux
 
