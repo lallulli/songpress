@@ -2,7 +2,7 @@
 
 Songpress is a free, easy to use song typeset program for Linux and Windows, that generates high-quality songbooks.
 
-Songpress is focused on __song formatting__. Once your song is ready, you can paste it into your favorite document editor or pagination program, to give your songbook the look you like the most.
+Songpress is focused on **song formatting**. Once your song is ready, you can paste it into your favorite document editor or pagination program, to give your songbook the look you like the most.
 
 ![Screenshot](assets/screenshot_mini.png)
 
