@@ -31,3 +31,10 @@ build-backend = "poetry.core.masonry.api"
 packages = [
     { include = "songpress", from = "src" },
 ]
+
+[tool.pixi.dependencies]
+python = ">=3.9"
+wxpython = ">=4.2.4,<5.0.0"
+requests = ">=2.32.4,<3.0.0"
+python-pptx = ">=1.0.2,<2.0.0"
+pyshortcuts = ">=1.9.5,<2.0.0"
