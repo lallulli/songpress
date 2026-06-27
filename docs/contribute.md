@@ -20,8 +20,6 @@ In order to translate the program, all you need is a Transifex account. If you w
 - gettext tools (commands: `xgettext`, `msgmerge`, `msgfmt`)
 - the Transifex client (command: `tx`)
 
--->
-</span>
 
 ### Songpress Transifex project
 
@@ -68,6 +66,10 @@ In order to upload translations to Transifex you can issue:
 ```bash
 python pygettext.py --push
 ```
+
+-->
+</span>
+
 
 ## Contributing to the documentation
 

@@ -19,8 +19,6 @@ Per tradurre il programma è sufficiente disporre di un account Transifex. Se de
 
 - gli strumenti gettext (comandi: `xgettext`, `msgmerge`, `msgfmt`)
 - il client Transifex (comando: `tx`)
--->
-</span>
 
 ### Progetto Songpress su Transifex
 
@@ -55,9 +53,17 @@ cd src
 python main.py
 ```
 
-Ecco la traduzione in italiano tecnico, mantenendo la formattazione Markdown originale:
+-->
+</span>
 
-````markdown
+
+## Contribuire alla documentazione
+
+Il [sito della documentazione di Songpress](https://www.google.com/search?q=index.md) è scritto in [Markdown](https://www.markdownguide.org/) e generato tramite i seguenti strumenti:
+
+* Il generatore di siti statici [mkdocs](https://www.mkdocs.org/)
+* [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) per il tema e per funzionalità non incluse in mkdocs
+* [mkdocs-static-i18n](https://ultrabug.github.io/mkdocs-static-i18n/) per localizzare il sito in diverse lingue (al momento sono disponibili l'inglese e l'italiano)
 
 
 ### Configurazione dell'ambiente
