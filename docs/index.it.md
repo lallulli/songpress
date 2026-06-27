@@ -23,7 +23,9 @@ Se hai bisogno di aiuto, o vuoi discutere su Songpress, visita il nostro [gruppo
 
 ## Installazione
 
-Vedi la pagina [Per iniziare](manual/getting_started.it.md) del manuale.
+:material-download: [Scarica Songpress per Windows](https://github.com/lallulli/songpress/releases/download/1.9.0/songpress-net-setup.exe)
+
+Per l'installazione su Linux e per maggiori informazioni, vedi la pagina [Per iniziare](manual/getting_started.it.md) del manuale.
 
 
 ## Esempi di canzonieri

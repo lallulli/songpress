@@ -22,7 +22,9 @@ If you need help, or wish to discuss, please visit our [user support group](http
 
 ## Installation
 
-Please, see [Getting Started](manual/getting_started.md) document.
+:material-download: [Download Songpress for Windows](https://github.com/lallulli/songpress/releases/download/1.9.0/songpress-net-setup.exe) 
+
+For installation on Linux and more information, please, see [Getting Started](manual/getting_started.md) page.
 
 ## Songbook Samples
 
