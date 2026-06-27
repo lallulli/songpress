@@ -33,15 +33,31 @@ Tutti i file sono contenuti in una singola sottocartella della directory _Progra
 
 Su Linux, puoi installare Songpress in tre modi alternativi:
 
-1. [Python virtual environment](https://docs.python.org/3/library/venv.html) e [pip](https://pypi.org/project/pip/)
-2. [pipx](https://github.com/pypa/pipx)
-3. [uv](https://github.com/astral-sh/uv)
+1. [pipx](https://github.com/pypa/pipx)
+2. [uv](https://github.com/astral-sh/uv)
+3. [Python virtual environment](https://docs.python.org/3/library/venv.html) e [pip](https://pypi.org/project/pip/)
 
 Il processo di installazione può richiedere diversi minuti perché è necessario scaricare e compilare le librerie [wxPython](https://wxpython.org/) e [wxWidgets](https://wxwidgets.org/).
 
 !!! Warning "Attenzione"
     Assicurati che il tuo sistema abbia i requisiti per  compilare le librerire [wxWidgets](https://docs.wxwidgets.org/3.2.10/page_introduction.html) e [wxPython](https://wiki.wxpython.org/How%20to%20install%20wxPython)
 
+
+#### Installazione tramite pipx
+
+Se hai installato [pipx](https://github.com/pypa/pipx) sul tuo computer:
+
+```bash
+pipx install songpress
+```
+
+#### Installazione tramite uv
+
+In alternativa, puoi usare [uv](https://github.com/astral-sh/uv):
+
+```bash
+uv tool install songpress
+```
 
 #### Installazione tramite ambiente virtuale Python e pip
 
@@ -63,21 +79,6 @@ quindi installa Songpress via pip:
 pip install songpress
 ```
 
-#### Installazione tramite pipx
-
-Se hai installato [pipx](https://github.com/pypa/pipx) sul tuo computer:
-
-```bash
-pipx install songpress
-```
-
-#### Installazione tramite uv
-
-In alternativa, puoi usare [uv](https://github.com/astral-sh/uv):
-
-```bash
-uv tool install songpress
-```
 
 ### Lanciare Songpress
 
