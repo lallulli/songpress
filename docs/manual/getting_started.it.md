@@ -13,7 +13,7 @@ In breve, come comporre una canzone?
 
 ## Installazione
 
-Songpress supporta ufficialmente Windows e Linux. Comunque, [l'installazione Linux](#installazione-tramite-ambiente-virtuale-python-e-pip) dovrebbe funzionare anche su MacOs.
+Songpress supporta ufficialmente Windows e Linux. [L'installazione Linux](#installazione-tramite-ambiente-virtuale-python-e-pip) potrebbe funzionare anche su macOS, ma il programma non è stato testato su tale piattaforma.
 
 ### Installazione su Windows
 

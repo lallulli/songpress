@@ -13,7 +13,7 @@ Thus, how do you prepare a song?
 
 ## Installation
 
-Songpress officially runs on Windows and Linux. Anyway, Linux installation should work on MacOs, too.
+Songpress officially runs on Windows and Linux. Installation via Linux instructions might also work on macOS, but it has not been tested on that platform.
 
 ### Windows Installation
 
