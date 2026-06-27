@@ -1,0 +1,1 @@
+Songpress ha una nuova casa! Ringraziamo molto [Cristiano Cinotti](https://github.com/cristianoc72) che ha realizzato il nuovo sito, più moderno e molto più facile da aggiornare. Il sito è basato su markdown, MkDocs and GitHub Pages.

@@ -38,6 +38,7 @@ nav:
       - Format conversion: manual/format_conversion.md
   - News:
     - 2026:
+      - news/new-site.md
       - news/songpress-1.9.md
       - news/songpress-1.9.0rc1.md
     - 2021:
