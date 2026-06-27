@@ -5,12 +5,13 @@ Prima di tutto: grazie mille per dedicare il tuo tempo a contribuire a questa ap
 Songpress è ospitato su [Github](https://github.com/lallulli/songpress) e puoi aiutare il progetto in diversi modi:
 
 - segnalando bug o suggerendo miglioramenti tramite il nostro [issue tracker su Github](https://github.com/lallulli/songpress/issues)
-- creando nuove [traduzioni](#contribuire-alla-traduzione)
+- creando nuove traduzioni
 - fornendo materiale grafico (icone, pulsanti, ecc.)
 - contribuendo al codice, effettuando un fork del repository e inviando una pull request
 - contribuendo alla documentazione
 
-
+<span>
+<!--
 ## Contribuire alla traduzione
 
 L'internazionalizzazione (i18n) di Songpress viene effettuata tramite gli strumenti GNU gettext ed è gestita attraverso Transifex.
@@ -18,6 +19,8 @@ Per tradurre il programma è sufficiente disporre di un account Transifex. Se de
 
 - gli strumenti gettext (comandi: `xgettext`, `msgmerge`, `msgfmt`)
 - il client Transifex (comando: `tx`)
+-->
+</span>
 
 ### Progetto Songpress su Transifex
 
