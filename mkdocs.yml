@@ -68,6 +68,8 @@ nav:
       - Contribute: contribute.md
       - License: license.md
 
+  - Skeed: https://www.skeed.it
+
 #Useful markdown extensions
 markdown_extensions:
   - admonition
