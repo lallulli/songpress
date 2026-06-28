@@ -133,7 +133,8 @@ class Renderer(object):
 
     def EndLine(self):
         if self.currentLine is not None:
-            self.currentBlock.AddBox(self.currentLine)
+            if len(self.currentLine.boxes) > 0 or self.currentBlock.type != SongBlock.title:
+                self.currentBlock.AddBox(self.currentLine)
             self.currentLine = None
 
     def GetAttribute(self):
@@ -309,6 +310,44 @@ class Renderer(object):
                             self.sf.chorus.chord.color = color
                         except BreakException:
                             pass
+                    elif cmd == 'chordtopspacing':
+                        try:
+                            a = self.GetAttribute()
+                            if a is None:
+                                spacing = self.starting_sf.chordTopSpacing
+                            else:
+                                a = a.strip()
+                                try:
+                                    spacing = int(a)
+                                except (TypeError, ValueError):
+                                    raise BreakException()
+                            self.format = ParagraphFormat(self.format)
+                            self.format.chordTopSpacing = spacing
+                            self.sf.chordTopSpacing = spacing
+                            self.sf.chorus.chordTopSpacing = spacing
+                            for v in self.sf.verse:
+                                v.chordTopSpacing = spacing
+                        except BreakException:
+                            pass
+                    elif cmd == 'linespacing':
+                        try:
+                            a = self.GetAttribute()
+                            if a is None:
+                                spacing = self.starting_sf.lineSpacing
+                            else:
+                                a = a.strip()
+                                try:
+                                    spacing = int(a)
+                                except (TypeError, ValueError):
+                                    raise BreakException()
+                            self.format = ParagraphFormat(self.format)
+                            self.format.lineSpacing = spacing
+                            self.sf.lineSpacing = spacing
+                            self.sf.chorus.lineSpacing = spacing
+                            for v in self.sf.verse:
+                                v.lineSpacing = spacing
+                        except BreakException:
+                            pass
 
             self.EndLine()
             if empty:
@@ -323,3 +362,4 @@ class Renderer(object):
 
     def SetDecorator(self, sd):
         self.sd = sd
+
