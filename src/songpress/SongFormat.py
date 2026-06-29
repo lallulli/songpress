@@ -75,6 +75,8 @@ class ParagraphFormat(FontFormat):
         self.bottomMargin = 0 if ff is None else ff.bottomMargin
         self.chordSpacing = 0.8 if ff is None else ff.chordSpacing
         self.textSpacing = 1 if ff is None else ff.textSpacing
+        self.chordTopSpacing = 0 if ff is None else ff.chordTopSpacing
+        self.lineSpacing = 0 if ff is None else ff.lineSpacing
         self.chord = FontFormat(ff.chord) if ff is not None else FontFormat()
         self.comment = FontFormat(ff.comment) if ff is not None else FontFormat()
         if ff is None:
@@ -101,7 +103,7 @@ class SongFormat(ParagraphFormat):
             self.chorus.bold = True
             self.chorus.underline = False
             self.title.bold = True
-            self.title.underline = True
+            self.title.underline = False
             self.subtitle.size = self.title.size * 0.95
             self.subtitle.italic = True
 
@@ -110,3 +112,4 @@ class SongFormat(ParagraphFormat):
 
     def InitVerses(self):
         self.verse = []
+
