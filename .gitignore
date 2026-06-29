@@ -1,2 +1,4 @@
 .cache
-_site
+_site# pixi environments
+.pixi/*
+!.pixi/config.toml

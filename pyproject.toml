@@ -9,7 +9,7 @@ license = { text = "GNU GPL v2" }
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "wxPython>=4.2.4,<5.0.0",
+    "wxPython>=4.2.5,<5.0.0",
     "requests>=2.32.4,<3.0.0",
     "python-pptx>=1.0.2,<2.0.0",
     "pyshortcuts>=1.9.5,<2.0.0",
@@ -22,12 +22,40 @@ songpress = "songpress.main:main"
 Homepage = "https://www.skeed.it/songpress"
 Source = "https://github.com/lallulli/songpress"
 Issues = "https://github.com/lallulli/songpress/issues"
+#
+#[build-system]
+#requires = ["poetry-core>=1.8.0"]
+#build-backend = "poetry.core.masonry.api"
 
 [build-system]
-requires = ["poetry-core>=1.8.0"]
-build-backend = "poetry.core.masonry.api"
+build-backend = "hatchling.build"
+requires = ["hatchling"]
 
 [tool.poetry]
 packages = [
     { include = "songpress", from = "src" },
 ]
+
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+
+[tool.pixi.package]
+name = { workspace = true }
+version = { workspace = true }
+
+[tool.pixi.package.build]
+backend = { name = "pixi-build-python", version = "0.*" }
+
+[tool.pixi.package.host-dependencies]
+hatchling = "==1.26.3"
+
+[tool.pixi.package.run-dependencies]
+wxpython = ">=4.2.5,<5"
+requests = ">=2.32.4,<3.0.0"
+python-pptx = ">=1.0.2,<2.0.0"
+pyshortcuts = ">=1.9.5,<2.0.0"
+
+
