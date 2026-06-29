@@ -400,6 +400,24 @@ class SongpressFrame(SDIMainFrame):
         Bind(self.OnGuide, 'guide')
         Bind(self.OnNewsAndUpdates, 'newsAndUpdates')
         Bind(self.OnDonate, 'donate')
+        # --- NUOVO: Normalizza spazi multipli ---
+        Bind(self.OnNormalizeSpaces, 'normalizeSpaces')
+
+    def OnNormalizeSpaces(self, evt):
+        """
+        Replace multiple consecutive spaces with a single space
+        in the selected text or the whole text if nothing is selected.
+        """
+        import re
+        s, e = self.text.GetSelection()
+        if s == e:  # niente selezione: usa tutto il testo
+            text = self.text.GetText()
+            new_text = re.sub(r' {2,}', ' ', text)
+            self.text.SetText(new_text)
+        else:  # usa solo la selezione
+            text = self.text.GetTextRange(s, e)
+            new_text = re.sub(r' {2,}', ' ', text)
+            self.text.ReplaceSelection(new_text)
 
     def AddTool(self, toolbar, resource_string, icon_path, label, help):
         tool = wx.xrc.XRCID(resource_string)
@@ -1113,5 +1131,3 @@ class SongpressFrame(SDIMainFrame):
         else:
             self.previewCanvas.SetDecorator(SongDecorator())
         self.previewCanvas.Refresh(self.text.GetText())
-
-
