@@ -144,6 +144,11 @@
 					<label>Inte_grate chords</label>
 					<help>Integrate chords of current line with text of following line</help>
 				</object>
+				    <!-- NUOVO: Normalize spaces -->
+				<object class="wxMenuItem" name="normalizeSpaces">
+					<label>Normalize spaces</label>
+					<help>Replace multiple consecutive spaces with a single space</help>
+				</object>
 			</object>
 			<object class="wxMenu" name="view">
 				<label>_View</label>
@@ -298,3 +303,4 @@
 		</object>
 	</object>
 </resource>
+
