@@ -77,10 +77,11 @@ class SongDecorator(object):
             textMaxTH = h
             line.textBaseline = h
         else:
-            line.textBaseline = chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
-        line.chordBaseline = chordMaxTH
+            chord_top = line.parent.format.chordTopSpacing
+            line.textBaseline = chord_top + chordMaxTH + chordMaxH * (line.parent.format.chordSpacing - 1) + textMaxTH
+        line.chordBaseline = chordMaxTH + (line.parent.format.chordTopSpacing if not (chordsOnly and hasChords) else 0)
         
-        line.h = line.textBaseline + textMaxH * (line.parent.format.textSpacing - 1)
+        line.h = line.textBaseline + textMaxH * (line.parent.format.textSpacing - 1) + line.parent.format.lineSpacing
         # Pass 2: set layout
         x = 0
         chordX = 0
@@ -169,7 +170,12 @@ class SongDecorator(object):
         
     def PostDrawText(self, text, tx, ty):
         # tx, ty: coordinates of top-left corner of drawable area
-        pass        
+        if text.type == SongText.title:
+            self.dc.SetPen(wx.Pen(text.color, 2))
+            x1 = int(tx + text.marginLeft)
+            x2 = int(tx + text.marginLeft + text.w)
+            y = int(ty + text.marginTop + text.h)
+            self.dc.DrawLine(x1, y, x2, y)
         
     def PostDrawLine(self, line, lx, ly):
         # lx, ly: coordinates of top-left corner of drawable area
@@ -228,3 +234,4 @@ class SongDecorator(object):
         else:
             w = self.lastBlockOffsetY
         return self.s.GetTotalWidth(), w
+
