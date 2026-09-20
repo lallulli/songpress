@@ -1,0 +1,7 @@
+n_blocks = 10;
+column_height = 20;
+column_module = 4;
+empty_starting_columns = 0;
+
+previous = [0, 1, 2, 3, 0, 5, 0, 7, 8, 9];
+height = [10, 4, 6, 2, 5, 9, 12, 14, 4, 10];
