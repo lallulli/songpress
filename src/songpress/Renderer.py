@@ -319,7 +319,24 @@ class Renderer(object):
         self.EndBlock()
         w, h = self.sd.Draw(self.song, dc)
         self.dc = None
+        self.GetBlockHeights()
         return w, h
 
     def SetDecorator(self, sd):
         self.sd = sd
+
+    def GetBlockHeights(self):
+        """
+        Return list of song block heights, excluding title
+
+        To be called to the object after rendering.
+        Return the height, in pixels, of each block (verse or chorus), excluding
+        separation between blocks
+        """
+        out = []
+        for box in self.song.boxes:
+            if isinstance(box, SongBlock) and box.type in [SongBlock.verse, SongBlock.chorus]:
+                out.append(box.h)
+        print("Heights:", out)
+        return out
+

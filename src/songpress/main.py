@@ -12,6 +12,7 @@ import platform
 
 import wx
 
+from songpress.get_metrics import get_song_metrics
 from .Globals import glb
 from . import i18n
 from . import dev_tool
@@ -35,7 +36,7 @@ class SongpressApp(wx.App):
 
         from . import SongpressFrame
         self.res = wx.xrc.XmlResource(glb.AddPath("xrc/songpress.xrc"))
-        songpressFrame = SongpressFrame.SongpressFrame(self.res)
+        self.songpressFrame = SongpressFrame.SongpressFrame(self.res)
         return True
 
 
@@ -44,12 +45,20 @@ def main():
         from .shortcuts import create_shortcuts
         create_shortcuts()
         return
+
     sys.excepthook = dev_tool.ExceptionHook
     if platform.system() == 'Windows':
         import ctypes
         appid = f'songpress.{glb.VERSION}'
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)
     songpressApp = SongpressApp()
+
+    if '--get-metrics' in sys.argv:
+        filename = sys.argv[-1]
+        sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
+        print(sm)
+        return
+
     songpressApp.MainLoop()
 
 
