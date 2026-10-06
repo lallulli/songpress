@@ -6,6 +6,7 @@ This mode can be used for optimizing the layout of songs in a multipage songbook
 
 import os
 
+from minizinc import Instance, Model, Solver
 from songpress.SongFormat import SongFormat
 from songpress.Renderer import Renderer
 import wx
@@ -38,3 +39,5 @@ def get_song_metrics(file_or_dir_name: str, song_format: SongFormat):
     dc = wx.MemoryDC(wx.Bitmap(1, 1))
     r.Render(text, dc)
     return [(os.path.basename(file_or_dir_name), r.GetBlockHeights())]
+
+

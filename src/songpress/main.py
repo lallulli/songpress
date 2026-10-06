@@ -13,6 +13,7 @@ import platform
 import wx
 
 from songpress.get_metrics import get_song_metrics
+from songpress.optimization.optimization import optimize
 from .Globals import glb
 from . import i18n
 from . import dev_tool
@@ -57,6 +58,12 @@ def main():
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
         print(sm)
+        return
+
+    if '--optimize' in sys.argv:
+        filename = sys.argv[-1]
+        sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
+        optimize(10, 10, 2, sm)
         return
 
     songpressApp.MainLoop()
