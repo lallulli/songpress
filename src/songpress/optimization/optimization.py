@@ -11,7 +11,7 @@ SCALE = 10
 
 async def _solve_async(instance):
     async for s in instance.solutions(
-        timeout=timedelta(seconds=100),
+        timeout=timedelta(seconds=1000),
         intermediate_solutions=True,
         processes=4,
     ):
@@ -24,18 +24,31 @@ async def _solve_async(instance):
 
 
 def optimize(
-    column_height,
-    title_height,
-    block_separator_height,
     metrics,
+    column_height=994,
+    real_title_height=67,
+    block_separator_height=29,
     column_module=4,
     empty_starting_columns=2,
 ):
     """
-    Optimize a set of songs.
+    Optimize a set of songs
 
     `metrics` is list of pairs `(filename, file_heights)` where 'file_heights` is the list
     of verse and chorus block heights.
+
+    `column_height` is the overall height of the column. It can be found by pasting a song
+    with a known height h, and scaling it to full height: apply the scaling factor to h.
+
+    `block_separator_height` is the original distance between consecutive blocks. It can be found as:
+    bsh = (song_height - sum_{i \in blocks}{block_height_i}) / (n_blocks - 1)
+
+    `real_title_height` is the height of the real title that will be used in the publication, including
+    the blank space to be left BELOW the title (and not above). It can be found in this way:
+    1. align the title to the top of the column
+    2. scale the block with known height h so that it extends from below the title to the end of the page
+    3. usable_column_height = h * scaling_factor
+    4. real_title_height = column_height - usable_column_height
     """
     # solver = Solver.lookup('ortools')
     driver = Driver(Path('../minizinc/MiniZincIDE-2.8.7-bundle-linux-x86_64/bin/minizinc'))
@@ -56,7 +69,7 @@ def optimize(
             song.append(filename)
             h += block_separator_height
             if i == 0:
-                h += title_height
+                h += real_title_height
                 previous.append(0)
             else:
                 previous.append(len(height))

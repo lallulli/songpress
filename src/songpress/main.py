@@ -63,7 +63,7 @@ def main():
     if '--optimize' in sys.argv:
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
-        optimize(10, 10, 2, sm)
+        optimize(sm)
         return
 
     songpressApp.MainLoop()

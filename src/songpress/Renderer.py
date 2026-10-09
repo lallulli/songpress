@@ -334,9 +334,13 @@ class Renderer(object):
         separation between blocks
         """
         out = []
+        all = []
         for box in self.song.boxes:
+            all.append(box.h)
             if isinstance(box, SongBlock) and box.type in [SongBlock.verse, SongBlock.chorus]:
                 out.append(box.h)
         print("Heights:", out)
+        print("All heights:", all)
+        print("Total Height:", self.song.h)
         return out
 
