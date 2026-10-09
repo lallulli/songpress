@@ -8,6 +8,8 @@ from minizinc import Instance, Model, Solver, Driver
 
 SCALE = 10
 
+def scale(h):
+    return int(round(SCALE * h))
 
 async def _solve_async(instance):
     async for s in instance.solutions(
@@ -61,10 +63,10 @@ def optimize(
     # Map each block to song name
     song = []
 
-    instance["column_height"] = int(round(SCALE * (column_height + block_separator_height)))
+    instance["column_height"] = scale(column_height + block_separator_height)
     instance["column_module"] = column_module
     instance["empty_starting_columns"] = empty_starting_columns
-    instance["min_isolated_block_height"] = min_isolated_block_height
+    instance["min_isolated_block_height"] = scale(min_isolated_block_height)
 
     for filename, heights in metrics:
         for i, h in enumerate(heights):
@@ -75,7 +77,7 @@ def optimize(
                 previous.append(0)
             else:
                 previous.append(len(height))
-            height.append(int(round(SCALE * h)))
+            height.append(scale(h))
 
     instance["n_blocks"] = len(height)
     instance["previous"] = previous

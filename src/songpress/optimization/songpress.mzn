@@ -66,7 +66,7 @@ constraint forall(b in BLOCKS where previous[b] > 0)(
 
 %% Small blocks cannot be isolated in a page
 
-constraint forall(b in BLOCKS where previous[b] = 1)(
+constraint forall(b in BLOCKS where previous[b] > 0 /\ previous[previous[b]] == 0)(
   (column[previous[b]] < column[b]) -> (height[previous[b]] >= min_isolated_block_height)
 );
 
