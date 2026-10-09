@@ -30,6 +30,7 @@ def optimize(
     block_separator_height=29,
     column_module=4,
     empty_starting_columns=2,
+    min_isolated_block_height=55,
 ):
     """
     Optimize a set of songs
@@ -63,6 +64,7 @@ def optimize(
     instance["column_height"] = int(round(SCALE * (column_height + block_separator_height)))
     instance["column_module"] = column_module
     instance["empty_starting_columns"] = empty_starting_columns
+    instance["min_isolated_block_height"] = min_isolated_block_height
 
     for filename, heights in metrics:
         for i, h in enumerate(heights):

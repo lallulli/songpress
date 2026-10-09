@@ -7,6 +7,7 @@ int: n_columns = n_blocks;
 int: column_height;
 int: column_module;
 int: empty_starting_columns; % in 0..column_module - 1
+int: min_isolated_block_height;
 
 set of int: BLOCKS = 1..n_blocks;
 set of int: BLOCKS_0 = 0..n_blocks;
@@ -61,6 +62,12 @@ constraint forall(b in BLOCKS where previous[b] > 0)(
   (column[previous[b]] == column[b])
   \/
   (first[b] /\ column[previous[b]] == column[b] - 1 /\ (column[b] mod column_module != empty_starting_columns))
+);
+
+%% Small blocks cannot be isolated in a page
+
+constraint forall(b in BLOCKS where previous[b] = 1)(
+  (column[previous[b]] < column[b]) -> (height[previous[b]] >= min_isolated_block_height)
 );
 
 %% Each column has at most 1 first block
