@@ -39,7 +39,6 @@ def greedy_columns(
     def is_page_start(c):
         return c % column_module == empty_starting_columns
 
-
     def place(song, col, load):
         """Place song starting from (col, load); return final (col, load), or None if not possible"""
         for i, b in enumerate(song):
@@ -98,10 +97,16 @@ class Problem:
         self.column_by_block = []
         self.max_column = 0
 
+    def format_range(self, first, last):
+        return f"{first}" if first == last else f"{first}-{last}"
+
     def print_solution_by_page(self, solution):
         for d in solution:
-            songs = ", ".join(f"{name} ({length})" for name, length in d['songs'])
-            print(f"Page {d['page']}, Col {d['column']}: {songs}")
+            songs = ", ".join(
+                f"{name} ({self.format_range(first_block, last_block)})"
+                for name, first_block, last_block in d['songs']
+            )
+            print(f"{d['orig_column']:02d}. Page {d['page']}, Col {d['page_column']}: {songs}")
 
     def get_solution_by_page(self, starting_page=1, starting_column=1):
         by_column = [defaultdict(int) for _ in range(self.max_column)]
@@ -113,6 +118,7 @@ class Problem:
         column = starting_column
         n = len(by_column)
         out = []
+        block_count_by_song = defaultdict(int)
         for c in range(n):
             prev_songs = set(by_column[c - 1]) if c > 0 else set()
             cur = by_column[c]
@@ -123,10 +129,18 @@ class Problem:
             other = cur_songs - first.union(last)
             seq = list(first) + list(other) + list(last)
 
+            songs = []
+            for song in seq:
+                first_block = block_count_by_song[song] + 1
+                block_count_by_song[song] += cur[song]
+                last_block = block_count_by_song[song]
+                songs.append((song, first_block, last_block))
+
             out.append({
+                'orig_column': c + 1,
                 'page': page,
-                'column': column,
-                'songs': [(k, cur[k]) for k in seq]
+                'page_column': column,
+                'songs':songs,
             })
 
             column += 1

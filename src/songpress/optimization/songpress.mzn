@@ -64,7 +64,7 @@ constraint forall(c in COLUMNS)(
 constraint forall(b in BLOCKS where previous[b] > 0)(
   (column[previous[b]] == column[b])
   \/
-  (first[b] /\ column[previous[b]] == column[b] - 1 /\ (column[b] mod column_module != empty_starting_columns))
+  (first[b] /\ (column[previous[b]] == column[b] - 1) /\ (column[b] mod column_module != (empty_starting_columns + 1) mod column_module))
 );
 
 %% Small blocks cannot be isolated in a page
