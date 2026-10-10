@@ -162,7 +162,7 @@ class Problem:
         ):
             logging.info(f"Status: {s.status}")
             print(s.status)
-            if s.status == Status.OPTIMAL_SOLUTION:
+            if s.status != Status.SATISFIED:
                 return
             self.column_by_block = s["column"]
             self.max_column = s['max_column']
@@ -254,26 +254,3 @@ class Problem:
         except Exception as e:
             logging.exception(f"Optimization Error: {e}")
         print(f"{len(self.song)} canzoni ottimizzate")
-        #
-        # for seed in range(random_seed, random_seed + restarts):
-        #     print(f"Run with random seed {seed}")
-        #     # ub is assigned in a child instance, since parameters of an instance cannot be reassigned.
-        #     # Each run uses the number of columns of the best solution so far as upper bound
-        #     try:
-        #         with instance.branch() as child:
-        #             child["ub"] = ub
-        #     except Exception as e:
-        #         logging.exception(f"Optimization Error: {e}")
-        #         continue
-        #     if s is not None:
-        #         if best is None or s.objective < best.objective:
-        #             best = s
-        #         ub = min(ub, s["max_column"])
-        #         print(f"New upper bound: {ub}")
-        #
-        #     if best is not None:
-        #         print(f"Best objective so far: {best.objective}")
-        # return best
-
-
-

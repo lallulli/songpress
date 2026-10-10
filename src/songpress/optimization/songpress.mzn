@@ -83,7 +83,9 @@ constraint forall(c in COLUMNS)(
 );
 
 % A song that takes more than 2 columns must not be interleaved with other songs
-constraint forall(i, j, k in BLOCKS where i < j /\ j < k /\ song[i] = song[k])(
-  (first[i] /\ first[k]) -> (song[i] = song[j])
+constraint forall(i, j, k in BLOCKS where i < k /\ song[i] = song[k])(
+  (column[i] < column[j] /\ column[j] < column[k]) -> song[j] = song[k]
 );
+
+
 
