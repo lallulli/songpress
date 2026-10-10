@@ -38,7 +38,8 @@ def greedy_columns(
         songs[-1].append(b)
 
     def is_page_start(c):
-        return c % column_module == empty_starting_columns
+        """Blocks cannot be wrapped to column c (same condition as in the models)"""
+        return c % column_module == (empty_starting_columns + 1) % column_module
 
     def place(song, col, load):
         """Place song starting from (col, load); return final (col, load), or None if not possible"""
@@ -311,7 +312,7 @@ def batched_optimization(
     min_isolated_block_height=55,
     n_songs_batch=18,
     min_pages_timeout_seconds=90,
-    max_songs_timeout_seconds=2 * 60 + 30,
+    max_songs_timeout_seconds=2 * 60,
 ):
     """
     Optimize a set of songs in batches.
@@ -372,6 +373,7 @@ def batched_optimization(
         empty_starting_columns = 0
         page = solution[-1]['page'] + 1
         to_remove = p_max.get_optimized_songs()
+        print(f"Discarded songs: {set(chosen_songs).difference(to_remove)}")
         songs.difference_update(to_remove)
 
     print("\n\nFinal Solution\n")
