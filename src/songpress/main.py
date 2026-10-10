@@ -14,7 +14,7 @@ import sys, os
 import wx
 
 from songpress.get_metrics import get_song_metrics
-from songpress.optimization.optimization import Problem
+from songpress.optimization.optimization import Problem, batched_optimization
 from .Globals import glb
 from . import i18n
 from . import dev_tool
@@ -64,8 +64,9 @@ def main():
     if '--optimize' in sys.argv:
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
-        p = Problem(sm)
-        p.optimize(time_limit=timedelta(seconds=120), restarts=3)
+        batched_optimization(sm, n_songs_batch=15)
+        # p = Problem(sm)
+        # p.optimize(30, time_limit=timedelta(seconds=120), restarts=3)
         return
 
     songpressApp.MainLoop()

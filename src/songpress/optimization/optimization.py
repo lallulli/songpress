@@ -4,6 +4,7 @@ from pathlib import Path
 from pprint import pprint
 import asyncio
 import logging
+import random
 import os
 
 from minizinc import Instance, Model, Solver, Driver, Status
@@ -101,16 +102,25 @@ class Problem:
         self.max_column = 0
         self.column_cap = None
 
-    def format_range(self, first, last):
+    @classmethod
+    def format_range(cls, first, last):
         return f"{first}" if first == last else f"{first}-{last}"
 
-    def print_solution_by_page(self, solution):
+    @classmethod
+    def print_solution_by_page(cls, solution):
         for d in solution:
             songs = ", ".join(
-                f"{name} ({self.format_range(first_block, last_block)})"
+                f"{name} ({cls.format_range(first_block, last_block)})"
                 for name, first_block, last_block in d['songs']
             )
             print(f"{d['orig_column']:02d}. Page {d['page']}, Col {d['page_column']}: {songs}")
+
+    def get_optimized_songs(self):
+        out = []
+        for song, selected in zip(self.metrics, self.selected):
+            if selected:
+                out.append(song)
+        return out
 
     def get_solution_by_page(self, starting_page=1, starting_column=1):
         by_column = [defaultdict(int) for _ in range(self.max_column)]
@@ -167,10 +177,11 @@ class Problem:
             logging.info(f"Status: {s.status}")
             print(s.status)
             if s.status != Status.SATISFIED:
-                try:
-                    s["column"]
-                except KeyError:
-                    return
+                return
+            try:
+                s["column"]
+            except KeyError:
+                return
             self.column_by_block = s["column"]
             if self.column_cap:
                 self.selected = s['selected']
@@ -181,13 +192,13 @@ class Problem:
 
             self.get_solution_by_page()
 
-    def optimize(self, column_cap=None, time_limit=timedelta(seconds=1000), restarts=1, processes=None, random_seed=0):
+    def optimize(self, column_cap=None, time_limit=timedelta(seconds=1000), processes=None):
         """
         Optimize a set of songs
 
         If `column_cap` is not given, minimize columns, otherwise maximize songs fitting given number of columns
 
-        `metrics` is list of pairs `(filename, file_heights)` where 'file_heights` is the list
+        `metrics` is a dict `{filename: file_heights}` where 'file_heights` is the list
         of verse and chorus block heights.
 
         `column_height` is the overall height of the column. It can be found by pasting a song
@@ -232,7 +243,7 @@ class Problem:
         instance["min_isolated_block_height"] = min_isolated_block_height
         n_song = 0
 
-        for filename, heights in self.metrics:
+        for filename, heights in self.metrics.items():
             n_song += 1
             for i, h in enumerate(heights):
                 self.song_name_by_block.append(filename)
@@ -273,3 +284,91 @@ class Problem:
         except Exception as e:
             logging.exception(f"Optimization Error: {e}")
         print(f"{len(self.song)} canzoni ottimizzate")
+
+
+def previous_column_zero(column, column_module, empty_starting_columns):
+    """
+    Return the previous column (wrt `column`) that is `empty_starting_columns + 1` mod column_module
+    """
+    prev = column - 1
+    diff = (prev - empty_starting_columns - 1) % column_module
+    return prev - diff
+
+
+def batched_optimization(
+    metrics,
+    starting_page=1,
+    column_height=1243,
+    real_title_height=67,
+    block_separator_height=29,
+    column_module=4,
+    columns_per_page=2,
+    empty_starting_columns=2,
+    min_isolated_block_height=55,
+    n_songs_batch=18,
+    min_pages_timeout_seconds=2*60,
+    max_songs_timeout_seconds=2*60,
+):
+    """
+    Optimize a set of songs in batches.
+
+    Iteratively alternate two steps:
+    1. Randomly select `n_songs_batch` unoptimized songs
+    2. Minimize pages
+    3. Remove some pages (using `previous_column_zero`)
+    4. Maximize songs in remaining pages
+    :return:
+    """
+    out = []
+    songs = set(metrics.keys())
+    page = starting_page
+
+    while len(songs) > 0:
+        # Minimize pages
+        chosen_songs = random.sample(list(songs), min(n_songs_batch, len(songs)))
+        chosen_metrics = {s: metrics[s] for s in chosen_songs}
+
+        print(f"Minimizing pages, {len(songs)} songs, starting page: {page}")
+        p_min = Problem(
+            chosen_metrics,
+            column_height,
+            real_title_height,
+            block_separator_height,
+            column_module,
+            columns_per_page,
+            empty_starting_columns,
+            min_isolated_block_height,
+        )
+        p_min.optimize(time_limit=timedelta(seconds=min_pages_timeout_seconds))
+        pages = previous_column_zero(
+            p_min.max_column,
+            column_module,
+            empty_starting_columns,
+        )
+
+        if len(songs) < n_songs_batch:
+            out.extend(p_min.get_solution_by_page(page))
+            break
+
+        # Maximize songs
+        print(f"Maximizing songs, {len(songs)} songs, pages: {pages} < {p_min.max_column}, starting page: {page}")
+        p_max = Problem(
+            chosen_metrics,
+            column_height,
+            real_title_height,
+            block_separator_height,
+            column_module,
+            columns_per_page,
+            empty_starting_columns,
+            min_isolated_block_height,
+        )
+        p_max.optimize(pages, time_limit=timedelta(seconds=max_songs_timeout_seconds))
+        out.extend(p_max.get_solution_by_page(page))
+        empty_starting_columns = 0
+        page += pages
+        to_remove = p_max.get_optimized_songs()
+        songs.difference_update(to_remove)
+
+    Problem.print_solution_by_page(out)
+    return out
+
