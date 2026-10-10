@@ -65,7 +65,7 @@ def main():
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
         p = Problem(sm)
-        p.optimize(timedelta(seconds=120), restarts=3)
+        p.optimize(time_limit=timedelta(seconds=120), restarts=3)
         return
 
     songpressApp.MainLoop()

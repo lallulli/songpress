@@ -94,9 +94,12 @@ class Problem:
         self.empty_starting_columns = empty_starting_columns
         self.min_isolated_block_height = min_isolated_block_height
         self.columns_per_page = columns_per_page
-        self.song_by_column = []
+        self.song_name_by_block = []
+        self.song_by_block = []
         self.column_by_block = []
+        self.selected = []
         self.max_column = 0
+        self.column_cap = None
 
     def format_range(self, first, last):
         return f"{first}" if first == last else f"{first}-{last}"
@@ -113,7 +116,8 @@ class Problem:
         by_column = [defaultdict(int) for _ in range(self.max_column)]
         for b, c in enumerate(self.column_by_block):
             # print(f"Block {b}: column {c}")
-            by_column[c - 1][self.song_by_column[b]] += 1
+            if self.selected[self.song_by_block[b] - 1]:
+                by_column[c - 1][self.song_name_by_block[b]] += 1
 
         page = starting_page
         column = starting_column
@@ -163,15 +167,25 @@ class Problem:
             logging.info(f"Status: {s.status}")
             print(s.status)
             if s.status != Status.SATISFIED:
-                return
+                try:
+                    s["column"]
+                except KeyError:
+                    return
             self.column_by_block = s["column"]
-            self.max_column = s['max_column']
-            self.get_solution_by_page()
-            print(f"Objective: {s.objective}, columns: {self.max_column}")
+            if self.column_cap:
+                self.selected = s['selected']
+                print(f"Objective: {s.objective}, blocks: {s['selected_blocks']}, songs: {s['selected_songs']}")
+            else:
+                self.max_column = s['max_column']
+                print(f"Objective: {s.objective}, columns: {self.max_column}")
 
-    def optimize(self, time_limit=timedelta(seconds=1000), restarts=1, processes=None, random_seed=0):
+            self.get_solution_by_page()
+
+    def optimize(self, column_cap=None, time_limit=timedelta(seconds=1000), restarts=1, processes=None, random_seed=0):
         """
         Optimize a set of songs
+
+        If `column_cap` is not given, minimize columns, otherwise maximize songs fitting given number of columns
 
         `metrics` is list of pairs `(filename, file_heights)` where 'file_heights` is the list
         of verse and chorus block heights.
@@ -195,6 +209,7 @@ class Problem:
 
         `processes` is the number of solver threads (default: number of CPUs).
         """
+        self.column_cap = column_cap
         if processes is None:
             processes = os.cpu_count()
         # solver = Solver.lookup('ortools')
@@ -202,7 +217,7 @@ class Problem:
         # driver = Driver(Path('../minizinc/MiniZincIDE-2.10.1-x86_64-linux-gnu/bin/minizinc'))
         solver = Solver.lookup('cp-sat', driver=driver)
         # solver = Solver.lookup('chuffed', driver=driver)
-        model = Model('songpress/optimization/songpress.mzn')
+        model = Model(f'songpress/optimization/songpress_{"maxsongs" if column_cap else "minpages"}.mzn')
         instance = Instance(solver, model, driver)
         previous = []
         height = []
@@ -215,13 +230,13 @@ class Problem:
         instance["column_module"] = self.column_module
         instance["empty_starting_columns"] = self.empty_starting_columns
         instance["min_isolated_block_height"] = min_isolated_block_height
-        song = []
         n_song = 0
 
         for filename, heights in self.metrics:
             n_song += 1
             for i, h in enumerate(heights):
-                self.song_by_column.append(filename)
+                self.song_name_by_block.append(filename)
+                self.song_by_block.append(n_song)
                 h += self.block_separator_height
                 if i == 0:
                     h += self.real_title_height
@@ -229,23 +244,27 @@ class Problem:
                 else:
                     previous.append(len(height))
                 height.append(scale(h))
-                song.append(n_song)
 
         instance["n_blocks"] = len(height)
         instance["previous"] = previous
         instance["height"] = height
-        instance["song"] = song
+        instance["song"] = self.song_by_block
         instance["n_songs"] = n_song
         # Same (scaled) values passed to the model
-        ub = greedy_columns(
-            previous,
-            height,
-            column_height,
-            self.column_module,
-            self.empty_starting_columns,
-            min_isolated_block_height,
-        )
-        print(f"Upper bound on columns: {ub}")
+        if column_cap:
+            ub = column_cap
+            self.max_column = ub
+        else:
+            self.selected = [True for _ in range(n_song)]
+            ub = greedy_columns(
+                previous,
+                height,
+                column_height,
+                self.column_module,
+                self.empty_starting_columns,
+                min_isolated_block_height,
+            )
+            print(f"Upper bound on columns: {ub}")
         instance['ub'] = ub
         # pprint(self.song)
 
