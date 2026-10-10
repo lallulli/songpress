@@ -77,7 +77,8 @@ class Problem:
     def __init__(
         self,
         metrics,
-        column_height=994,
+        # column_height=994,
+        column_height=1243,
         real_title_height=67,
         block_separator_height=29,
         column_module=4,
@@ -214,8 +215,11 @@ class Problem:
         instance["column_module"] = self.column_module
         instance["empty_starting_columns"] = self.empty_starting_columns
         instance["min_isolated_block_height"] = min_isolated_block_height
+        song = []
+        n_song = 0
 
         for filename, heights in self.metrics:
+            n_song += 1
             for i, h in enumerate(heights):
                 self.song_by_column.append(filename)
                 h += self.block_separator_height
@@ -225,10 +229,13 @@ class Problem:
                 else:
                     previous.append(len(height))
                 height.append(scale(h))
+                song.append(n_song)
 
         instance["n_blocks"] = len(height)
         instance["previous"] = previous
         instance["height"] = height
+        instance["song"] = song
+        instance["n_songs"] = n_song
         # Same (scaled) values passed to the model
         ub = greedy_columns(
             previous,

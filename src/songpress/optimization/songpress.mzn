@@ -3,6 +3,7 @@
 %%%%%%%%%%%%%%
 
 int: n_blocks;
+int: n_songs;
 int: column_height;
 int: column_module;
 int: empty_starting_columns; % in 0..column_module - 1
@@ -12,9 +13,11 @@ int: ub; % Upper bound on the number of columns (from a greedy solution)
 set of int: BLOCKS = 1..n_blocks;
 set of int: BLOCKS_0 = 0..n_blocks;
 set of int: COLUMNS = 1..ub;
+set of int: SONGS = 1..n_songs;
 
 array[BLOCKS] of BLOCKS_0: previous;
 array[BLOCKS] of int: height;
+array[BLOCKS] of SONGS: song;
 
 % Lower bound on the number of columns: total height over column height
 int: lb = (sum(height) + column_height - 1) div column_height;
@@ -79,6 +82,8 @@ constraint forall(c in COLUMNS)(
   sum(b in BLOCKS)((column[b] == c) * first[b]) <= 1
 );
 
-
-
+% A song that takes more than 2 columns must not be interleaved with other songs
+constraint forall(i, j, k in BLOCKS where i < j /\ j < k /\ song[i] = song[k])(
+  (first[i] /\ first[k]) -> (song[i] = song[j])
+);
 
