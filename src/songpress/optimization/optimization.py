@@ -123,6 +123,16 @@ class Problem:
         return out
 
     def get_solution_by_page(self, starting_page=1, starting_column=1):
+        """
+        Get structured solution
+
+        Return list of dicts: {
+            'orig_column': original (problem) column
+            'page': page number (`starting_page`-based)
+            'page_column': column number in page (1-based)
+            'songs': list of tuples `(song_name, first_block, last_block)`
+        }
+        """
         by_column = [defaultdict(int) for _ in range(self.max_column)]
         for b, c in enumerate(self.column_by_block):
             # print(f"Block {b}: column {c}")
@@ -213,12 +223,6 @@ class Problem:
         2. scale the block with known height h so that it extends from below the title to the end of the page
         3. usable_column_height = h * scaling_factor
         4. real_title_height = column_height - usable_column_height
-
-        The solver is run `restarts` times, each one with a different random seed (starting from
-        `random_seed`) and with a timeout of `time_limit`; the best solution is kept. Several short runs
-        often work better than a single long one, since a run can get stuck in a local optimum.
-
-        `processes` is the number of solver threads (default: number of CPUs).
         """
         self.column_cap = column_cap
         if processes is None:
@@ -291,7 +295,7 @@ def previous_column_zero(column, column_module, empty_starting_columns):
     Return the previous column (wrt `column`) that is `empty_starting_columns + 1` mod column_module
     """
     prev = column - 1
-    diff = (prev - empty_starting_columns - 1) % column_module
+    diff = (prev - empty_starting_columns) % column_module
     return prev - diff
 
 
@@ -306,8 +310,8 @@ def batched_optimization(
     empty_starting_columns=2,
     min_isolated_block_height=55,
     n_songs_batch=18,
-    min_pages_timeout_seconds=2*60,
-    max_songs_timeout_seconds=2*60,
+    min_pages_timeout_seconds=90,
+    max_songs_timeout_seconds=2 * 60 + 30,
 ):
     """
     Optimize a set of songs in batches.
@@ -340,7 +344,7 @@ def batched_optimization(
             min_isolated_block_height,
         )
         p_min.optimize(time_limit=timedelta(seconds=min_pages_timeout_seconds))
-        pages = previous_column_zero(
+        column = previous_column_zero(
             p_min.max_column,
             column_module,
             empty_starting_columns,
@@ -351,7 +355,7 @@ def batched_optimization(
             break
 
         # Maximize songs
-        print(f"Maximizing songs, {len(songs)} songs, pages: {pages} < {p_min.max_column}, starting page: {page}")
+        print(f"Maximizing songs, {len(songs)} songs, columns: {column} < {p_min.max_column}, starting page: {page}")
         p_max = Problem(
             chosen_metrics,
             column_height,
@@ -362,13 +366,15 @@ def batched_optimization(
             empty_starting_columns,
             min_isolated_block_height,
         )
-        p_max.optimize(pages, time_limit=timedelta(seconds=max_songs_timeout_seconds))
-        out.extend(p_max.get_solution_by_page(page))
+        p_max.optimize(column, time_limit=timedelta(seconds=max_songs_timeout_seconds))
+        solution = p_max.get_solution_by_page(page)
+        out.extend(solution)
         empty_starting_columns = 0
-        page += pages
+        page = solution[-1]['page'] + 1
         to_remove = p_max.get_optimized_songs()
         songs.difference_update(to_remove)
 
+    print("\n\nFinal Solution\n")
     Problem.print_solution_by_page(out)
     return out
 

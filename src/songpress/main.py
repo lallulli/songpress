@@ -64,9 +64,9 @@ def main():
     if '--optimize' in sys.argv:
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
-        batched_optimization(sm, n_songs_batch=15)
+        batched_optimization(sm, n_songs_batch=22)
         # p = Problem(sm)
-        # p.optimize(30, time_limit=timedelta(seconds=120), restarts=3)
+        # p.optimize(time_limit=timedelta(seconds=1000))
         return
 
     songpressApp.MainLoop()
