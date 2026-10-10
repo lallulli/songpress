@@ -153,6 +153,9 @@ class Problem:
             first = prev_songs.intersection(cur_songs)
             last = next_songs.intersection(cur_songs)
             other = cur_songs - first.union(last)
+            if len(last) > 0 and last == first:
+                assert len(other) == 0
+                last = set()
             seq = list(first) + list(other) + list(last)
 
             songs = []
