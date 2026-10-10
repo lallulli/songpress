@@ -9,6 +9,7 @@ int: column_module;
 int: empty_starting_columns; % in 0..column_module - 1
 int: min_isolated_block_height;
 int: ub; % Upper bound on the number of columns (from a greedy solution)
+% dfloat: beta = 1.2;
 
 set of int: BLOCKS = 1..n_blocks;
 set of int: BLOCKS_0 = 0..n_blocks;
@@ -22,6 +23,11 @@ array[BLOCKS] of SONGS: song;
 
 % Lower bound on the number of columns: total height over column height
 int: lb = (sum(height) + column_height - 1) div column_height;
+
+% Derivative: song height
+array[SONGS] of int: song_height = [sum(b in BLOCKS where song[b] = s)(height[b]) | s in SONGS];
+% Value of a song: its height, plus a superlinear bonus that favors bulky songs
+% array[SONGS] of int: value = [song_height[s] + beta * song_height[s] * song_height[s] div column_height | s in SONGS];
 
 
 %%%%%%%%%%%%%
@@ -45,11 +51,11 @@ var 0..n_songs: selected_songs :: output = sum(i in SONGS)(selected[i]);
 
 % Preferred term: column start with first block of a song
 
-var int: clean_columns :: output = sum(b in BLOCKS where previous[b] == 0)(first[b]);
+var int: clean_columns :: output = (column_height div 6) * sum(b in BLOCKS where previous[b] == 0)(first[b]);
 
 
-solve maximize 5 * selected_songs + 3 * selected_blocks + clean_columns;
-
+% solve maximize 5 * selected_songs + 3 * selected_blocks + clean_columns;
+solve maximize sum(s in SONGS)(selected[s] * song_height[s]) + clean_columns;
 
 
 %%%%%%%%%%%%%%%

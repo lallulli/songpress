@@ -203,7 +203,13 @@ class Problem:
 
             self.get_solution_by_page()
 
-    def optimize(self, column_cap=None, time_limit=timedelta(seconds=1000), processes=None):
+    def optimize(
+        self,
+        column_cap=None,
+        optimize_clean_columns=False,
+        time_limit=timedelta(seconds=1000),
+        processes=None
+    ):
         """
         Optimize a set of songs
 
@@ -280,6 +286,7 @@ class Problem:
                 self.empty_starting_columns,
                 min_isolated_block_height,
             )
+            instance['optimize_clean_columns'] = optimize_clean_columns
             print(f"Upper bound on columns: {ub}")
         instance['ub'] = ub
         # pprint(self.song)
@@ -333,6 +340,7 @@ def batched_optimization(
         chosen_songs = random.sample(list(songs), min(n_songs_batch, len(songs)))
         chosen_metrics = {s: metrics[s] for s in chosen_songs}
 
+        is_last = len(songs) < n_songs_batch
         print(f"Minimizing pages, {len(songs)} songs, starting page: {page}")
         p_min = Problem(
             chosen_metrics,
@@ -344,14 +352,14 @@ def batched_optimization(
             empty_starting_columns,
             min_isolated_block_height,
         )
-        p_min.optimize(time_limit=timedelta(seconds=min_pages_timeout_seconds))
+        p_min.optimize(time_limit=timedelta(seconds=min_pages_timeout_seconds), optimize_clean_columns=is_last)
         column = previous_column_zero(
             p_min.max_column,
             column_module,
             empty_starting_columns,
         )
 
-        if len(songs) < n_songs_batch:
+        if is_last:
             out.extend(p_min.get_solution_by_page(page))
             break
 

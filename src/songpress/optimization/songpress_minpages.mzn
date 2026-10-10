@@ -9,6 +9,7 @@ int: column_module;
 int: empty_starting_columns; % in 0..column_module - 1
 int: min_isolated_block_height;
 int: ub; % Upper bound on the number of columns (from a greedy solution)
+bool: optimize_clean_columns;
 
 set of int: BLOCKS = 1..n_blocks;
 set of int: BLOCKS_0 = 0..n_blocks;
@@ -46,8 +47,7 @@ var lb..ub: max_column :: output = max(i in BLOCKS)(column[i]);
 var int: clean_columns :: output = sum(b in BLOCKS where previous[b] == 0)(first[b]);
 
 
-solve minimize max_column;
-% solve minimize 20 * max_column - clean_columns;
+solve minimize 20 * max_column - optimize_clean_columns * clean_columns;
 
 
 
