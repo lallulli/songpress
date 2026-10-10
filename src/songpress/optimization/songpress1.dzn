@@ -6,3 +6,4 @@ min_isolated_block_height = 30;
 
 previous = [0, 1, 2, 3, 0, 5, 0, 7, 8, 9];
 height = [10, 4, 6, 2, 5, 9, 12, 14, 4, 10];
+ub = 2;

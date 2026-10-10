@@ -7,13 +7,14 @@
 # License:     GNU GPL v2
 ##############################################################
 
-import sys, os
+from datetime import timedelta
 import platform
+import sys, os
 
 import wx
 
 from songpress.get_metrics import get_song_metrics
-from songpress.optimization.optimization import optimize
+from songpress.optimization.optimization import Problem
 from .Globals import glb
 from . import i18n
 from . import dev_tool
@@ -63,7 +64,8 @@ def main():
     if '--optimize' in sys.argv:
         filename = sys.argv[-1]
         sm = get_song_metrics(filename, songpressApp.songpressFrame.pref.format)
-        optimize(sm)
+        p = Problem(sm)
+        p.optimize(timedelta(seconds=120), restarts=3)
         return
 
     songpressApp.MainLoop()

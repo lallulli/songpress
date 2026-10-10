@@ -3,18 +3,21 @@
 %%%%%%%%%%%%%%
 
 int: n_blocks;
-int: n_columns = n_blocks;
 int: column_height;
 int: column_module;
 int: empty_starting_columns; % in 0..column_module - 1
 int: min_isolated_block_height;
+int: ub; % Upper bound on the number of columns (from a greedy solution)
 
 set of int: BLOCKS = 1..n_blocks;
 set of int: BLOCKS_0 = 0..n_blocks;
-set of int: COLUMNS = 1..n_columns;
+set of int: COLUMNS = 1..ub;
 
 array[BLOCKS] of BLOCKS_0: previous;
 array[BLOCKS] of int: height;
+
+% Lower bound on the number of columns: total height over column height
+int: lb = (sum(height) + column_height - 1) div column_height;
 
 
 %%%%%%%%%%%%%
@@ -32,16 +35,16 @@ array[BLOCKS] of var bool: first; % First block of a column
 
 % Main term: number of generated columns
 
-var int: max_column = max(i in BLOCKS)(column[i]);
+var lb..ub: max_column :: output = max(i in BLOCKS)(column[i]);
 
 
 % Preferred term: column start with first block of a song
 
-var int: clean_columns = sum(b in BLOCKS where previous[b] == 0)(first[b]);
+var int: clean_columns :: output = sum(b in BLOCKS where previous[b] == 0)(first[b]);
 
 
-
-solve minimize 10 * max_column - clean_columns;
+solve minimize max_column;
+% solve minimize 20 * max_column - clean_columns;
 
 
 
