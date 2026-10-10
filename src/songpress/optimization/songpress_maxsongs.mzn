@@ -26,6 +26,10 @@ int: lb = (sum(height) + column_height - 1) div column_height;
 
 % Derivative: song height
 array[SONGS] of int: song_height = [sum(b in BLOCKS where song[b] = s)(height[b]) | s in SONGS];
+
+% First and last block of each song (blocks of a song are consecutive)
+array[SONGS] of BLOCKS: first_block = [min(b in BLOCKS where song[b] = s)(b) | s in SONGS];
+array[SONGS] of BLOCKS: last_block = [max(b in BLOCKS where song[b] = s)(b) | s in SONGS];
 % Value of a song: its height, plus a superlinear bonus that favors bulky songs
 % array[SONGS] of int: value = [song_height[s] + beta * song_height[s] * song_height[s] div column_height | s in SONGS];
 
@@ -83,6 +87,13 @@ constraint forall(b in BLOCKS where previous[b] > 0 /\ previous[previous[b]] == 
   selected[song[b]] -> ((column[previous[b]] < column[b]) -> (height[previous[b]] >= min_isolated_block_height))
 );
 
+%% Blocks of songs not selected are fixed: column 1, not first (symmetry breaking, and no
+%% contribution to clean_columns)
+
+constraint forall(b in BLOCKS)(
+  not selected[song[b]] -> (column[b] = 1 /\ not first[b])
+);
+
 %% Each column has at most 1 first block
 
 constraint forall(c in COLUMNS)(
@@ -90,8 +101,11 @@ constraint forall(c in COLUMNS)(
 );
 
 % A song that takes more than 2 columns must not be interleaved with other songs
-constraint forall(i, j, k in BLOCKS where i < k /\ song[i] = song[k])(
-  (selected[song[i]] /\ selected[song[j]] /\ column[i] < column[j] /\ column[j] < column[k]) -> song[j] = song[k]
+% (columns of a song are non-decreasing, hence it is enough to check its first and last blocks;
+% songs with less than 3 blocks cannot take more than 2 columns)
+constraint forall(s in SONGS, j in BLOCKS where last_block[s] - first_block[s] >= 2 /\ song[j] != s)(
+  (selected[s] /\ selected[song[j]]) ->
+  not (column[first_block[s]] < column[j] /\ column[j] < column[last_block[s]])
 );
 
 

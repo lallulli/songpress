@@ -23,6 +23,10 @@ array[BLOCKS] of SONGS: song;
 % Lower bound on the number of columns: total height over column height
 int: lb = (sum(height) + column_height - 1) div column_height;
 
+% First and last block of each song (blocks of a song are consecutive)
+array[SONGS] of BLOCKS: first_block = [min(b in BLOCKS where song[b] = s)(b) | s in SONGS];
+array[SONGS] of BLOCKS: last_block = [max(b in BLOCKS where song[b] = s)(b) | s in SONGS];
+
 
 %%%%%%%%%%%%%
 % Variables %
@@ -83,8 +87,10 @@ constraint forall(c in COLUMNS)(
 );
 
 % A song that takes more than 2 columns must not be interleaved with other songs
-constraint forall(i, j, k in BLOCKS where i < k /\ song[i] = song[k])(
-  (column[i] < column[j] /\ column[j] < column[k]) -> song[j] = song[k]
+% (columns of a song are non-decreasing, hence it is enough to check its first and last blocks;
+% songs with less than 3 blocks cannot take more than 2 columns)
+constraint forall(s in SONGS, j in BLOCKS where last_block[s] - first_block[s] >= 2 /\ song[j] != s)(
+  not (column[first_block[s]] < column[j] /\ column[j] < column[last_block[s]])
 );
 
 
