@@ -39,7 +39,7 @@ packages = [
 
 [tool.pixi.workspace]
 channels = ["conda-forge"]
-platforms = ["linux-64"]
+platforms = ["linux-64", "win-64"]
 preview = ["pixi-build"]
 
 [tool.pixi.package]
@@ -60,7 +60,7 @@ pyshortcuts = ">=1.9.5,<2.0.0"
 
 [tool.pixi.dependencies]
 wxpython = ">=4.3.1,<5"
-ortools-cpp = ">=9.6,<10"
+#ortools-cpp = ">=9.6,<10"
 ipython = ">=9.17.1,<10"
 
 

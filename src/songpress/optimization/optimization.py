@@ -9,6 +9,23 @@ import os
 
 from minizinc import Instance, Model, Solver, Driver, Status
 
+MIN_ISOLATED_BLOCK_HEIGHT = 65
+# MIN_ISOLATED_BLOCK_HEIGHT = 55
+
+BLOCK_SEPARATOR_HEIGHT = 21
+# BLOCK_SEPARATOR_HEIGHT = 29
+COLUMN_HEIGHT = 882.6
+# COLUMN_HEIGHT = 1243
+REAL_TITLE_HEIGHT = 47.2
+# REAL_TITLE_HEIGHT = 67
+
+COLUMNS_PER_PAGE = 2
+COLUMN_MODULE = 4
+EMPTY_STARTING_COLUMNS = 2
+
+MAX_SONGS_TIMEOUT_SECONDS = 2 * 60
+MIN_PAGE_TIMEOUT_SECONDS = 90
+N_SONGS_BATCH = 18
 SCALE = 10
 
 
@@ -79,15 +96,37 @@ class Problem:
     def __init__(
         self,
         metrics,
-        # column_height=994,
-        column_height=1243,
-        real_title_height=67,
-        block_separator_height=29,
-        column_module=4,
-        columns_per_page=2,
-        empty_starting_columns=2,
-        min_isolated_block_height=55,
+        column_height=COLUMN_HEIGHT,
+        real_title_height=REAL_TITLE_HEIGHT,
+        block_separator_height=BLOCK_SEPARATOR_HEIGHT,
+        column_module=COLUMN_MODULE,
+        columns_per_page=COLUMNS_PER_PAGE,
+        empty_starting_columns=EMPTY_STARTING_COLUMNS,
+        min_isolated_block_height=MIN_ISOLATED_BLOCK_HEIGHT,
     ):
+        """
+        Create optimizer object
+
+        `metrics` is a dict `{filename: file_heights}` where 'file_heights` is the list
+        of verse and chorus block heights.
+
+        `column_height` is the overall height of the column. It can be found by pasting a song
+        with a known height h:
+        - apply the desired resize scale r (e.g. r = 64%) to the song
+        - then, rescale the song to full height, by applying a scaling factor s
+        - column_height = h * s
+
+        `block_separator_height` is the real distance between consecutive blocks. It can be found as:
+        bsh = (song_height - sum_{i in blocks}{block_height_i}) / (n_blocks - 1)
+
+        `real_title_height` is the height of the real title that will be used in the publication, including
+        the blank space to be left BELOW the title (and not above). It can be found in this way:
+        1. align the title to the top of the column
+        2. paste a block with known height, and apply the usual resize scale (e.g. r = 64%)
+        3. scale the block with known height h so that it extends from below the title to the end of the page
+        4. usable_column_height = h * scaling_factor
+        5. real_title_height = column_height - usable_column_height
+        """
         self.metrics = metrics
         self.column_height = column_height
         self.real_title_height = real_title_height
@@ -99,6 +138,7 @@ class Problem:
         self.song_name_by_block = []
         self.song_by_block = []
         self.column_by_block = []
+        self.block_height = []
         self.selected = []
         self.max_column = 0
         self.column_cap = None
@@ -114,7 +154,8 @@ class Problem:
                 f"{name} ({cls.format_range(first_block, last_block)})"
                 for name, first_block, last_block in d['songs']
             )
-            print(f"{d['orig_column']:02d}. Page {d['page']}, Col {d['page_column']}: {songs}")
+            occupation = f"{d['occupation'] * 100:.1f}"
+            print(f"{d['orig_column']:02d}. Page {d['page']}, Col {d['page_column']} {occupation}%: {songs}")
 
     def get_optimized_songs(self):
         out = []
@@ -132,13 +173,16 @@ class Problem:
             'page': page number (`starting_page`-based)
             'page_column': column number in page (1-based)
             'songs': list of tuples `(song_name, first_block, last_block)`
+            'occupation': page occupation as %
         }
         """
         by_column = [defaultdict(int) for _ in range(self.max_column)]
+        column_h = [0 for _ in range(self.max_column)]
         for b, c in enumerate(self.column_by_block):
             # print(f"Block {b}: column {c}")
             if self.selected[self.song_by_block[b] - 1]:
                 by_column[c - 1][self.song_name_by_block[b]] += 1
+                column_h[c - 1] += self.block_height[b] + self.block_separator_height
 
         page = starting_page
         column = starting_column
@@ -146,6 +190,7 @@ class Problem:
         out = []
         block_count_by_song = defaultdict(int)
         for c in range(n):
+            h = column_h[c] - self.block_separator_height
             prev_songs = set(by_column[c - 1]) if c > 0 else set()
             cur = by_column[c]
             cur_songs = set(cur)
@@ -161,6 +206,9 @@ class Problem:
             songs = []
             for song in seq:
                 first_block = block_count_by_song[song] + 1
+                if first_block == 1:
+                    h += self.real_title_height
+
                 block_count_by_song[song] += cur[song]
                 last_block = block_count_by_song[song]
                 songs.append((song, first_block, last_block))
@@ -169,7 +217,8 @@ class Problem:
                 'orig_column': c + 1,
                 'page': page,
                 'page_column': column,
-                'songs':songs,
+                'songs': songs,
+                'occupation': h / self.column_height,
             })
 
             column += 1
@@ -217,28 +266,13 @@ class Problem:
         Optimize a set of songs
 
         If `column_cap` is not given, minimize columns, otherwise maximize songs fitting given number of columns
-
-        `metrics` is a dict `{filename: file_heights}` where 'file_heights` is the list
-        of verse and chorus block heights.
-
-        `column_height` is the overall height of the column. It can be found by pasting a song
-        with a known height h, and scaling it to full height: apply the scaling factor to h.
-
-        `block_separator_height` is the original distance between consecutive blocks. It can be found as:
-        bsh = (song_height - sum_{i in blocks}{block_height_i}) / (n_blocks - 1)
-
-        `real_title_height` is the height of the real title that will be used in the publication, including
-        the blank space to be left BELOW the title (and not above). It can be found in this way:
-        1. align the title to the top of the column
-        2. scale the block with known height h so that it extends from below the title to the end of the page
-        3. usable_column_height = h * scaling_factor
-        4. real_title_height = column_height - usable_column_height
         """
         self.column_cap = column_cap
         if processes is None:
             processes = os.cpu_count()
         # solver = Solver.lookup('ortools')
-        driver = Driver(Path('../minizinc/MiniZincIDE-2.8.7-bundle-linux-x86_64/bin/minizinc'))
+        # driver = Driver(Path('../minizinc/MiniZincIDE-2.8.7-bundle-linux-x86_64/bin/minizinc'))
+        driver = Driver(Path('C:\\Program Files\\MiniZinc\\minizinc.exe'))
         # driver = Driver(Path('../minizinc/MiniZincIDE-2.10.1-x86_64-linux-gnu/bin/minizinc'))
         solver = Solver.lookup('cp-sat', driver=driver)
         # solver = Solver.lookup('chuffed', driver=driver)
@@ -262,6 +296,7 @@ class Problem:
             for i, h in enumerate(heights):
                 self.song_name_by_block.append(filename)
                 self.song_by_block.append(n_song)
+                self.block_height.append(h)
                 h += self.block_separator_height
                 if i == 0:
                     h += self.real_title_height
@@ -313,16 +348,16 @@ def previous_column_zero(column, column_module, empty_starting_columns):
 def batched_optimization(
     metrics,
     starting_page=1,
-    column_height=1243,
-    real_title_height=67,
-    block_separator_height=29,
-    column_module=4,
-    columns_per_page=2,
-    empty_starting_columns=2,
-    min_isolated_block_height=55,
-    n_songs_batch=18,
-    min_pages_timeout_seconds=90,
-    max_songs_timeout_seconds=2 * 60,
+    column_height=COLUMN_HEIGHT,
+    real_title_height=REAL_TITLE_HEIGHT,
+    block_separator_height=BLOCK_SEPARATOR_HEIGHT,
+    column_module=COLUMN_MODULE,
+    columns_per_page=COLUMNS_PER_PAGE,
+    empty_starting_columns=EMPTY_STARTING_COLUMNS,
+    min_isolated_block_height=MIN_ISOLATED_BLOCK_HEIGHT,
+    n_songs_batch=N_SONGS_BATCH,
+    min_pages_timeout_seconds=MIN_PAGE_TIMEOUT_SECONDS,
+    max_songs_timeout_seconds=MAX_SONGS_TIMEOUT_SECONDS,
 ):
     """
     Optimize a set of songs in batches.
